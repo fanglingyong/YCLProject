@@ -1,0 +1,70 @@
+//
+//  HJC-PrefixHeader.pch
+//  HJC
+//
+//  Created by zhifu360 on 2017/10/17.
+//  Copyright © 2017年 EastChina. All rights reserved.
+//
+
+#ifndef HJC_PrefixHeader_pch
+#define HJC_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+//#import "AFNetworking.h"
+#import "UIView+ViewKit.h"
+#import "UILabel+LabelKit.h"
+#import "NSString+LabelKit.h"
+#import "GetImagePath.h"
+#import "UIViewController+UIAlertControllerKit.h"
+#import "SDImageCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "UIColor+AddColor.h"
+#endif /* HJC_PrefixHeader_pch */
+#endif
+
+#define APPVER @"1.0"
+#define serverAddress @"http://service.lingqianzaixian.com"
+//#define serverAddress @"http://service.jieba360.com"
+
+#define DataBasePath [[(NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)) lastObject]stringByAppendingPathComponent:@"JieBa.sqlite"]
+
+#define WidthXiShu(a) ((a) * kWidthXiShu)
+#define HeightXiShu(b) ((b) * kHeightXiShu)
+#define kWidthXiShu (kScreenWidth / 375.0)
+#define kHeightXiShu (kScreenHeight / 667.0)
+
+#define PingFangMedium @"PingFangSC-Medium"
+
+//屏幕尺寸
+#define kScreenBounds [UIScreen mainScreen].bounds
+#define kScreenSize [UIScreen mainScreen].bounds.size
+#define kScreenWidth CGRectGetWidth([UIScreen mainScreen].bounds)
+#define kScreenHeight CGRectGetHeight([UIScreen mainScreen].bounds)
+
+#define RGBCOLOR(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBACOLOR(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define HEITI(font) [UIFont fontWithName:@"Heiti SC" size:font]
+
+//导航颜色
+
+#define AllThreeColor RGBCOLOR(51, 51, 51)
+#define AllNineColor RGBCOLOR(153, 153, 153)
+
+#define BlackColor RGBCOLOR(66, 76, 79)
+#define NavColor RGBCOLOR(84, 149, 230)
+#define TitleColor RGBCOLOR(76, 76, 76)//文字颜色
+#define PlaceholderColor RGBCOLOR(180, 180, 180)//输入框提示文字
+#define MessageColor RGBCOLOR(177, 177, 177)//提示性小文字
+#define AllRedColor RGBCOLOR(250, 61, 20)//突出字体突出按钮色
+#define AllBackLightGratColor RGBCOLOR(239,239,239)//浅灰背景
+#define AllLightGrayColor RGBCOLOR(236,236,236)//分割线
+#define ButtonColor RGBCOLOR(40,156,235)//主按钮颜色
+
+
