@@ -11,10 +11,10 @@
 @interface MedicineBreedCell()
 @property(nonatomic,strong)UIImageView *medicineImageView;
 @property(nonatomic,strong)UILabel *medicineNameLabel;  //名称
-@property(nonatomic,strong)UILabel *medicineCompanyLabel; // 公司
-@property(nonatomic,strong)UILabel *medicinePriceLabel;   //价格
-@property(nonatomic,strong)UILabel *medicineIntegralLabel;  //积分
-@property(nonatomic,strong)UILabel *medicineCountLabel;  //积分
+@property(nonatomic,strong)UILabel *companyLabel; // 公司
+@property(nonatomic,strong)UILabel *priceLabel;   //价格
+@property(nonatomic,strong)UILabel *integralLabel;  //积分
+@property(nonatomic,strong)UILabel *countLabel;  //积分
 
 @property(nonatomic,strong)UIButton *addShopCartButton;  //加购物车
 @property (nonatomic, retain)UIImageView *lineView;
@@ -40,11 +40,11 @@
     if (self) {
 
         [self medicineImageView];
-        [self medicineNameLabel];
-        [self medicineCompanyLabel];
-        [self medicinePriceLabel];
-        [self medicineIntegralLabel];
-        [self medicineCountLabel];
+        [self companyLabel];
+        [self companyLabel];
+        [self priceLabel];
+        [self integralLabel];
+        [self countLabel];
         
         [self addShopCartButton];
         [self lineView];
@@ -78,57 +78,57 @@
     return _medicineNameLabel;
 }
 
--(UILabel *)medicineCompanyLabel{
-    if(!_medicineCompanyLabel){
-        UILabel *medicineCompanyLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(35), kScreenWidth - WidthXiShu(120), HeightXiShu(30))];
-        medicineCompanyLabel.text = @"江中药业股份有限公司";
-        medicineCompanyLabel.font = HEITI(HeightXiShu(13));
-        medicineCompanyLabel.textColor = TitleColor;
-        [self.contentView addSubview:medicineCompanyLabel];
-        _medicineCompanyLabel = medicineCompanyLabel;
+-(UILabel *)companyLabel{
+    if(!_companyLabel){
+        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(35), kScreenWidth - WidthXiShu(120), HeightXiShu(30))];
+        companyLabel.text = @"江中药业股份有限公司";
+        companyLabel.font = HEITI(HeightXiShu(13));
+        companyLabel.textColor = TitleColor;
+        [self.contentView addSubview:companyLabel];
+        _companyLabel = companyLabel;
     }
-    return _medicineCompanyLabel;
+    return _companyLabel;
 }
 
--(UILabel *)medicinePriceLabel{
-    if(!_medicinePriceLabel){
-        UILabel *medicinePriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(65), WidthXiShu(75), HeightXiShu(20))];
-        medicinePriceLabel.text = @"$6.39";
-        medicinePriceLabel.font = HEITI(HeightXiShu(14));
-        medicinePriceLabel.textColor = AllRedColor;
-        [self.contentView addSubview:medicinePriceLabel];
-        _medicinePriceLabel = medicinePriceLabel;
+-(UILabel *)priceLabel{
+    if(!_priceLabel){
+        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(65), WidthXiShu(75), HeightXiShu(20))];
+        priceLabel.text = @"$6.39";
+        priceLabel.font = HEITI(HeightXiShu(14));
+        priceLabel.textColor = AllRedColor;
+        [self.contentView addSubview:priceLabel];
+        _priceLabel = priceLabel;
     }
-    return _medicinePriceLabel;
+    return _priceLabel;
 }
 
--(UILabel *)medicineIntegralLabel{
-    if(!_medicineIntegralLabel){
-        UILabel *medicineIntegralLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(85), WidthXiShu(52), HeightXiShu(25))];
-        medicineIntegralLabel.text = @"积2分";
-        medicineIntegralLabel.textAlignment = NSTextAlignmentCenter;
-        medicineIntegralLabel.font = HEITI(HeightXiShu(12));
-        medicineIntegralLabel.backgroundColor = [UIColor orangeColor];
-        medicineIntegralLabel.textColor = [UIColor whiteColor];
-        medicineIntegralLabel.layer.masksToBounds = YES;
-        medicineIntegralLabel.layer.cornerRadius = HeightXiShu(4);
-        [self.contentView addSubview:medicineIntegralLabel];
-        _medicineIntegralLabel = medicineIntegralLabel;
+-(UILabel *)integralLabel{
+    if(!_integralLabel){
+        UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(85), WidthXiShu(52), HeightXiShu(25))];
+        integralLabel.text = @"积2分";
+        integralLabel.textAlignment = NSTextAlignmentCenter;
+        integralLabel.font = HEITI(HeightXiShu(12));
+        integralLabel.backgroundColor = [UIColor orangeColor];
+        integralLabel.textColor = [UIColor whiteColor];
+        integralLabel.layer.masksToBounds = YES;
+        integralLabel.layer.cornerRadius = HeightXiShu(4);
+        [self.contentView addSubview:integralLabel];
+        _integralLabel = integralLabel;
     }
-    return _medicineIntegralLabel;
+    return _integralLabel;
 }
 
 
--(UILabel *)medicineCountLabel{
-    if(!_medicineCountLabel){
-        UILabel *medicineCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(120), kScreenWidth - HeightXiShu(120), HeightXiShu(25))];
-        medicineCountLabel.text = @"已销售1887盒";
-        medicineCountLabel.font = HEITI(HeightXiShu(14));
-        medicineCountLabel.textColor = [UIColor darkGrayColor];
-        [self.contentView addSubview:medicineCountLabel];
-        _medicineCountLabel = medicineCountLabel;
+-(UILabel *)countLabel{
+    if(!_countLabel){
+        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(120), kScreenWidth - HeightXiShu(120), HeightXiShu(25))];
+        countLabel.text = @"已销售1887盒";
+        countLabel.font = HEITI(HeightXiShu(14));
+        countLabel.textColor = [UIColor darkGrayColor];
+        [self.contentView addSubview:countLabel];
+        _countLabel = countLabel;
     }
-    return _medicineCountLabel;
+    return _countLabel;
 }
 
 - (UIButton *)addShopCartButton {

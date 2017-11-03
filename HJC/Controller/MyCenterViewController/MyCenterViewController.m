@@ -10,6 +10,7 @@
 #import "MyCenterHead.h"
 #import "MyCenterButton.h"
 #import "NavView.h"
+#import "OrderCenterViewController.h"
 
 @interface MyCenterViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MyCenterHeadDelegate, MyCenterButtonDelegate>
 @property(nonatomic,strong)MyCenterHead *headView;
@@ -190,7 +191,24 @@
     }
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 || indexPath.row == 0) {
+        OrderCenterViewController *VC = [[OrderCenterViewController alloc] init];
+        VC.selectType = 0;
+        [self.navigationController pushViewController:VC animated:YES];
+    } else if (indexPath.section == 2 || indexPath.row == 0) {
+        NSLog(@"诊所信息");
+    } else if (indexPath.section == 2 || indexPath.row == 1) {
+        NSLog(@"收货地址");
+    } else if (indexPath.section == 2 || indexPath.row == 2) {
+        NSLog(@"付款银行卡");
+    } else if (indexPath.section == 3 || indexPath.row == 0) {
+        NSLog(@"帮助与反馈");
+    } else if (indexPath.section == 3 || indexPath.row == 1) {
+        NSLog(@"退出登录");
+    }
+    
+}
 #pragma mark - 页面元素
 - (MyCenterHead *)headView{
     if(!_headView){
@@ -223,30 +241,33 @@
 - (void)didMyCenterButton:(MyCenterButton *)myCenterButton {
     
     NSLog(@"%ld", (long)myCenterButton.tag);
-    NSInteger tag = myCenterButton.tag;
-    switch (tag) {
+    OrderCenterViewController *VC = [[OrderCenterViewController alloc] init];
+
+    switch (myCenterButton.tag) {
         case 100:
+            VC.selectType = 1;
             NSLog(@"待支付");
             break;
         case 101:
+            VC.selectType = 2;
             NSLog(@"待发货");
-
             break;
         case 102:
+            VC.selectType = 3;
             NSLog(@"待收货");
-
             break;
         case 103:
+            VC.selectType = 4;
             NSLog(@"已收货");
-
             break;
         case 104:
+            VC.selectType = 5;
             NSLog(@"退款/售后");
-
             break;
         default:
             break;
     }
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 
