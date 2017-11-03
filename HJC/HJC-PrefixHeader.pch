@@ -25,6 +25,9 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "UIColor+AddColor.h"
+
+#import "UIView+Common.h"
+
 #endif /* HJC_PrefixHeader_pch */
 #endif
 

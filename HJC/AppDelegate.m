@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BaseNavigationController.h"
 
+#import "LoginViewController.h"
 #import "MainViewController.h"
 #import "MessageCenterViewController.h"
 #import "ShoppingCartViewController.h"
@@ -28,6 +29,28 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
+    
+    [self jumpLogin];
+//    [self jumpMain];
+    
+    return YES;
+}
+
+/**
+ 登陆视图 window
+ */
+-(void)jumpLogin{
+    LoginViewController * login = [[LoginViewController alloc]init];
+    BaseNavigationController *loginNav = [[BaseNavigationController alloc] initWithRootViewController:login];
+    loginNav.navigationBarHidden = YES;
+    self.window.rootViewController = loginNav;
+    [self.window makeKeyAndVisible];
+}
+
+/**
+ 主视图 window
+ */
+-(void)jumpMain{
     MainViewController *main = [[MainViewController alloc] init];
     [main.tabBarItem setImageInsets:UIEdgeInsetsMake(7.0, 0.0, -7.0, 0.0)];
     main.tabBarItem.image = [[UIImage imageNamed:@"tabbar_home_gary"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -66,9 +89,7 @@
     tabbar.tabBar.opaque = YES;
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
-    return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

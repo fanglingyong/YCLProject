@@ -108,6 +108,14 @@
 		36CB9C9E1F988B4200EE774B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9D1F988B4200EE774B /* ImageIO.framework */; };
 		36CB9CA01F988B5900EE774B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */; };
 		36CB9CA21F988B6B00EE774B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9CA11F988B6B00EE774B /* AVFoundation.framework */; };
+		455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F321FAC3EBC00805340 /* NSData+Anima.m */; };
+		455E1F341FAC3F6F00805340 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F241FAC3E8B00805340 /* logo.png */; };
+		455E1F351FAC3F6F00805340 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F251FAC3E8B00805340 /* logo@2x.png */; };
+		455E1F361FAC3F6F00805340 /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F261FAC3E8B00805340 /* logo@3x.png */; };
+		455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F291FAC3EA500805340 /* BindClinicViewController.m */; };
+		455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */; };
+		455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2E1FAC3EA600805340 /* LoginViewController.m */; };
+		455E1F3A1FAC3FA200805340 /* PasswordLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +303,19 @@
 		36CB9C9D1F988B4200EE774B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		36CB9CA11F988B6B00EE774B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		455E1F241FAC3E8B00805340 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		455E1F251FAC3E8B00805340 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		455E1F261FAC3E8B00805340 /* logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@3x.png"; sourceTree = "<group>"; };
+		455E1F281FAC3EA500805340 /* BindClinicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindClinicViewController.h; sourceTree = "<group>"; };
+		455E1F291FAC3EA500805340 /* BindClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindClinicViewController.m; sourceTree = "<group>"; };
+		455E1F2B1FAC3EA500805340 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		455E1F2D1FAC3EA500805340 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		455E1F2E1FAC3EA600805340 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		455E1F2F1FAC3EA600805340 /* PasswordLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordLoginViewController.h; sourceTree = "<group>"; };
+		455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordLoginViewController.m; sourceTree = "<group>"; };
+		455E1F311FAC3EBC00805340 /* NSData+Anima.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Anima.h"; sourceTree = "<group>"; };
+		455E1F321FAC3EBC00805340 /* NSData+Anima.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Anima.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,6 +672,7 @@
 		3696FC781F95DC87000B9172 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				455E1F231FAC3E8B00805340 /* Login */,
 				36430B451F9DB748001709DD /* Tabbar */,
 			);
 			path = Images;
@@ -659,6 +681,8 @@
 		3696FEA41F95DC87000B9172 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				455E1F311FAC3EBC00805340 /* NSData+Anima.h */,
+				455E1F321FAC3EBC00805340 /* NSData+Anima.m */,
 				3696FEA51F95DC87000B9172 /* NSString+LabelKit.h */,
 				3696FEA61F95DC87000B9172 /* NSString+LabelKit.m */,
 				3696FEA71F95DC87000B9172 /* NSString+StringKit.h */,
@@ -680,6 +704,8 @@
 		3696FEB31F95DC87000B9172 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				455E1F271FAC3EA500805340 /* BindClinic */,
+				455E1F2A1FAC3EA500805340 /* LoginController */,
 				3696FEB41F95DC87000B9172 /* BaseController */,
 				3696FEBF1F95DC87000B9172 /* HomePage */,
 				369600231F95E31F000B9172 /* MessageCenter */,
@@ -738,6 +764,38 @@
 				36CB9C991F988B2C00EE774B /* JavaScriptCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		455E1F231FAC3E8B00805340 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				455E1F241FAC3E8B00805340 /* logo.png */,
+				455E1F251FAC3E8B00805340 /* logo@2x.png */,
+				455E1F261FAC3E8B00805340 /* logo@3x.png */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		455E1F271FAC3EA500805340 /* BindClinic */ = {
+			isa = PBXGroup;
+			children = (
+				455E1F281FAC3EA500805340 /* BindClinicViewController.h */,
+				455E1F291FAC3EA500805340 /* BindClinicViewController.m */,
+			);
+			path = BindClinic;
+			sourceTree = "<group>";
+		};
+		455E1F2A1FAC3EA500805340 /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				455E1F2B1FAC3EA500805340 /* ForgetPasswordViewController.h */,
+				455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */,
+				455E1F2D1FAC3EA500805340 /* LoginViewController.h */,
+				455E1F2E1FAC3EA600805340 /* LoginViewController.m */,
+				455E1F2F1FAC3EA600805340 /* PasswordLoginViewController.h */,
+				455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */,
+			);
+			path = LoginController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -822,6 +880,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455E1F341FAC3F6F00805340 /* logo.png in Resources */,
+				455E1F351FAC3F6F00805340 /* logo@2x.png in Resources */,
+				455E1F361FAC3F6F00805340 /* logo@3x.png in Resources */,
 				36430B5E1F9DB794001709DD /* tabbar_home_blue.png in Resources */,
 				36430B5F1F9DB794001709DD /* tabbar_home_blue@2x.png in Resources */,
 				36430B601F9DB794001709DD /* tabbar_home_blue@3x.png in Resources */,
@@ -867,6 +928,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */,
+				455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */,
+				455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */,
+				455E1F3A1FAC3FA200805340 /* PasswordLoginViewController.m in Sources */,
 				36624ED11FA9BDD300F58A94 /* MyCenterHead.m in Sources */,
 				36430BBC1F9DBF8F001709DD /* UIButton+WebCache.m in Sources */,
 				36430BBD1F9DBF8F001709DD /* UIImage+GIF.m in Sources */,
@@ -932,6 +997,7 @@
 				366EAAFB1F9D854A00A63E83 /* MainViewController.m in Sources */,
 				3696002A1F95E44F000B9172 /* ShoppingCartViewController.m in Sources */,
 				3696F97C1F95DA85000B9172 /* main.m in Sources */,
+				455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */,
 				3696F96E1F95DA84000B9172 /* AppDelegate.m in Sources */,
 				369600271F95E41D000B9172 /* MessageCenterViewController.m in Sources */,
 			);
