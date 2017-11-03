@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @protocol MyCenterHeadDelegate <NSObject>
--(void)messageClick;
--(void)QRCoedeClick;
--(void)signClick;
--(void)activeClick;
--(void)changeHeadClick;
+
+- (void)changeHeadClick;
+
 @end
 
 @interface MyCenterHead : UIView

@@ -12,10 +12,10 @@
 @property(nonatomic,strong)UIImageView *bgImageView;
 @property(nonatomic,strong)UIButton *userImgBtn;
 @property(nonatomic,strong)UILabel *nameLabel;
-@property(nonatomic,strong)UILabel *levelLabel;
-@property(nonatomic,strong)UIButton *QRBtn;
-@property(nonatomic,strong)UIView *messageView;
-@property(nonatomic,strong)UILabel *numLabel;
+@property(nonatomic,strong)UILabel *addressLabel;
+@property(nonatomic,strong)UILabel *phoneLabel;
+@property(nonatomic,strong)UIButton *changeBtn;
+
 @end
 
 @implementation MyCenterHead
@@ -25,9 +25,9 @@
         [self bgImageView];
         [self userImgBtn];
         [self nameLabel];
-        [self levelLabel];
-        [self messageView];
-        [self QRBtn];
+        [self addressLabel];
+        [self phoneLabel];
+        [self changeBtn];
     }
     return self;
 }
@@ -37,6 +37,7 @@
     if(!_bgImageView){
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         bgImageView.image = [GetImagePath getImagePath:@"myCenter_banner"];
+        bgImageView.backgroundColor = NavColor;
         [self addSubview:bgImageView];
         _bgImageView = bgImageView;
     }
@@ -45,7 +46,7 @@
 
 - (UIButton *)userImgBtn {
     if (!_userImgBtn) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(60), WidthXiShu(65), HeightXiShu(65))];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(WidthXiShu(30), HeightXiShu(70), WidthXiShu(75), HeightXiShu(75))];
         btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         btn.layer.cornerRadius = btn.halfWidth;
         btn.layer.borderWidth = 5;
@@ -62,92 +63,77 @@
 
 -(UILabel *)nameLabel{
     if(!_nameLabel){
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(90), HeightXiShu(72), WidthXiShu(150), HeightXiShu(20))];
-        nameLabel.text = @"";
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(110), HeightXiShu(80), WidthXiShu(150), HeightXiShu(25))];
+        nameLabel.text = @"奔走的大熊";
         nameLabel.textColor = [UIColor whiteColor];
-        nameLabel.font = HEITI(HeightXiShu(14));
+        nameLabel.font = HEITI(HeightXiShu(17));
         [self addSubview:nameLabel];
         _nameLabel = nameLabel;
     }
     return _nameLabel;
 }
 
--(UILabel *)levelLabel{
-    if(!_levelLabel){
-        UILabel *levelLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(90), HeightXiShu(97), WidthXiShu(150), HeightXiShu(20))];
-        levelLabel.textColor = [UIColor whiteColor];
-        levelLabel.text = @"";
-        levelLabel.font = HEITI(HeightXiShu(14));
-        [self addSubview:levelLabel];
-        _levelLabel = levelLabel;
+-(UILabel *)addressLabel{
+    if(!_addressLabel){
+        UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(110), HeightXiShu(110), WidthXiShu(150), HeightXiShu(20))];
+        addressLabel.textColor = [UIColor whiteColor];
+        addressLabel.text = @"古荡社区诊所";
+        addressLabel.font = HEITI(HeightXiShu(14));
+        [self addSubview:addressLabel];
+        _addressLabel = addressLabel;
     }
-    return _levelLabel;
+    return _addressLabel;
 }
 
--(UIView *)messageView{
-    if(!_messageView){
-        UIView *messageView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-WidthXiShu(20)-WidthXiShu(30), HeightXiShu(30), WidthXiShu(30), HeightXiShu(30))];
-        
-        UIImageView *messageImage = [[UIImageView alloc] initWithImage:[GetImagePath getImagePath:@"myCenter_message"]];
-        messageImage.center = CGPointMake(WidthXiShu(15), HeightXiShu(15));
-        [messageView addSubview:messageImage];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, messageView.width, messageView.height);
-        [btn addTarget:self action:@selector(messageAction) forControlEvents:UIControlEventTouchUpInside];
-        [messageView addSubview:btn];
-        
-        [self addSubview:messageView];
-        
-        _messageView = messageView;
+-(UILabel *)phoneLabel{
+    if(!_phoneLabel){
+        UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(110), HeightXiShu(130), WidthXiShu(150), HeightXiShu(20))];
+        phoneLabel.textColor = [UIColor whiteColor];
+        phoneLabel.text = @"182-6883-44545";
+        phoneLabel.font = HEITI(HeightXiShu(14));
+        [self addSubview:phoneLabel];
+        _phoneLabel = phoneLabel;
     }
-    return _messageView;
+    return _phoneLabel;
 }
 
--(UIButton *)QRBtn{
-    if(!_QRBtn){
-        UIButton *QRBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        QRBtn.frame = CGRectMake(kScreenWidth-WidthXiShu(20)-WidthXiShu(25), HeightXiShu(84), WidthXiShu(25), HeightXiShu(23));
-        [QRBtn setImage:[GetImagePath getImagePath:@"myCenter_ewm"] forState:UIControlStateNormal];
-        [QRBtn addTarget:self action:@selector(QRCodeAction) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:QRBtn];
-        _QRBtn = QRBtn;
+-(UIButton *)changeBtn{
+    if(!_changeBtn){
+        UIButton *changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        changeBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(7)-WidthXiShu(53), HeightXiShu(75), WidthXiShu(53), HeightXiShu(20));
+        changeBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        changeBtn.layer.cornerRadius = HeightXiShu(5);
+        changeBtn.layer.borderWidth = 1;
+        changeBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+        changeBtn.layer.masksToBounds = YES;
+        [changeBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        [changeBtn setImage:[GetImagePath getImagePath:@"myCenter_ewm"] forState:UIControlStateNormal];
+        changeBtn.titleLabel.font = HEITI(HeightXiShu(13));
+        changeBtn.titleLabel.textColor = TitleColor;
+        [changeBtn setTitle:@"修改" forState:UIControlStateNormal];
+        [changeBtn addTarget:self action:@selector(changeBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:changeBtn];
+        _changeBtn = changeBtn;
     }
-    return _QRBtn;
+    return _changeBtn;
 }
 
 
 
 #pragma mark - 事件
+
 -(void)changeHeadAction{
     if([self.delegate respondsToSelector:@selector(changeHeadClick)]){
         [self.delegate changeHeadClick];
     }
 }
 
--(void)messageAction{
-    if([self.delegate respondsToSelector:@selector(messageClick)]){
-        [self.delegate messageClick];
+-(void)changeBtnAction{
+    if([self.delegate respondsToSelector:@selector(changeHeadClick)]){
+        [self.delegate changeHeadClick];
     }
 }
 
--(void)QRCodeAction{
-    if([self.delegate respondsToSelector:@selector(QRCoedeClick)]){
-        [self.delegate QRCoedeClick];
-    }
-}
-
--(void)signAction{
-    if([self.delegate respondsToSelector:@selector(signClick)]){
-        [self.delegate signClick];
-    }
-}
-
--(void)activeAction{
-    if([self.delegate respondsToSelector:@selector(activeClick)]){
-        [self.delegate activeClick];
-    }
-}
 
 #pragma mark - setter
 

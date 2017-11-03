@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self statusBar];
     // Do any additional setup after loading the view.
     [self setUpHeaderRefresh:NO footerRefresh:NO];
     [self.tableView setMinY:0 maxY:kScreenHeight - 44];
@@ -145,6 +146,7 @@
                 MyCenterButton *button = [[MyCenterButton alloc] initWithFrame:CGRectMake(kScreenWidth / 5 * i, 0, kScreenWidth / 5, HeightXiShu(70))];
                 button.labelTitle = @[@"待支付", @"待发货", @"待收货", @"已收货", @"退款/售后"][i];
                 button.delegate = self;
+                button.tag = i + 100;
                 [cell.contentView addSubview:button];
                 
                 UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake((kScreenWidth / 5 * i) - .5, 0, 1, HeightXiShu(70))];
@@ -192,7 +194,7 @@
 #pragma mark - 页面元素
 - (MyCenterHead *)headView{
     if(!_headView){
-        MyCenterHead *headView = [[MyCenterHead alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(210))];
+        MyCenterHead *headView = [[MyCenterHead alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
         headView.delegate = self;
         _headView = headView;
     }
@@ -216,6 +218,38 @@
     [alertControl addAction:takeAction];
     [self presentViewController:alertControl animated:YES completion:nil];
 }
+
+#pragma mark - MyCenterButtonDelegate
+- (void)didMyCenterButton:(MyCenterButton *)myCenterButton {
+    
+    NSLog(@"%ld", (long)myCenterButton.tag);
+    NSInteger tag = myCenterButton.tag;
+    switch (tag) {
+        case 100:
+            NSLog(@"待支付");
+            break;
+        case 101:
+            NSLog(@"待发货");
+
+            break;
+        case 102:
+            NSLog(@"待收货");
+
+            break;
+        case 103:
+            NSLog(@"已收货");
+
+            break;
+        case 104:
+            NSLog(@"退款/售后");
+
+            break;
+        default:
+            break;
+    }
+    
+}
+
 
 #pragma mark - 接口
 -(void)gotoAddImage:(NSData *)imageData image:(UIImage *)image{
