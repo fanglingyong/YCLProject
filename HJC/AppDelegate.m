@@ -66,7 +66,6 @@
     tabbar.tabBar.opaque = YES;
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 
