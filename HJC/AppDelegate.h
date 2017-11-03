@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//跳转到登陆页面
+-(void)jumpLogin;
+//跳转到主视图
+-(void)jumpMain;
 
 @end
 
