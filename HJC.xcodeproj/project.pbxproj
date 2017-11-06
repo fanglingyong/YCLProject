@@ -117,6 +117,9 @@
 		36CB9C9E1F988B4200EE774B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9D1F988B4200EE774B /* ImageIO.framework */; };
 		36CB9CA01F988B5900EE774B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */; };
 		36CB9CA21F988B6B00EE774B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9CA11F988B6B00EE774B /* AVFoundation.framework */; };
+		4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */; };
+		4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */; };
+		4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */; };
 		455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F321FAC3EBC00805340 /* NSData+Anima.m */; };
 		455E1F341FAC3F6F00805340 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F241FAC3E8B00805340 /* logo.png */; };
 		455E1F351FAC3F6F00805340 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F251FAC3E8B00805340 /* logo@2x.png */; };
@@ -330,6 +333,12 @@
 		36CB9C9D1F988B4200EE774B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		36CB9CA11F988B6B00EE774B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4500A46E1FAF4CDE002AEC90 /* BindInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindInfoViewController.h; sourceTree = "<group>"; };
+		4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindInfoViewController.m; sourceTree = "<group>"; };
+		4500A4711FAF4CFA002AEC90 /* RegisterClinicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClinicViewController.h; sourceTree = "<group>"; };
+		4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClinicViewController.m; sourceTree = "<group>"; };
+		4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssoSuccessViewController.h; sourceTree = "<group>"; };
+		4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssoSuccessViewController.m; sourceTree = "<group>"; };
 		455E1F241FAC3E8B00805340 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		455E1F251FAC3E8B00805340 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		455E1F261FAC3E8B00805340 /* logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@3x.png"; sourceTree = "<group>"; };
@@ -875,6 +884,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4500A4771FB0AF8B002AEC90 /* Bind */ = {
+			isa = PBXGroup;
+			children = (
+				455E1F281FAC3EA500805340 /* BindClinicViewController.h */,
+				455E1F291FAC3EA500805340 /* BindClinicViewController.m */,
+				4500A46E1FAF4CDE002AEC90 /* BindInfoViewController.h */,
+				4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */,
+				4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */,
+				4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */,
+			);
+			path = Bind;
+			sourceTree = "<group>";
+		};
+		4500A4781FB0AF9D002AEC90 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				4500A4711FAF4CFA002AEC90 /* RegisterClinicViewController.h */,
+				4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		455E1F231FAC3E8B00805340 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,8 +919,8 @@
 		455E1F271FAC3EA500805340 /* BindClinic */ = {
 			isa = PBXGroup;
 			children = (
-				455E1F281FAC3EA500805340 /* BindClinicViewController.h */,
-				455E1F291FAC3EA500805340 /* BindClinicViewController.m */,
+				4500A4781FB0AF9D002AEC90 /* Register */,
+				4500A4771FB0AF8B002AEC90 /* Bind */,
 			);
 			path = BindClinic;
 			sourceTree = "<group>";
@@ -1100,16 +1131,19 @@
 				36430B831F9DB96B001709DD /* IntegralBreedViewController.m in Sources */,
 				36430BC61F9DD6C3001709DD /* MedicineBreedCell.m in Sources */,
 				36430B861F9DBB6B001709DD /* AllBreedViewController.m in Sources */,
+				4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */,
 				366EAB3A1F9D8BA100A63E83 /* UIView+MJExtension.m in Sources */,
 				366EAB3B1F9D8BB000A63E83 /* MJRefreshGifHeader.m in Sources */,
 				366EAB3C1F9D8BBE00A63E83 /* UIScrollView+MJRefresh.m in Sources */,
 				36C9E5A91FAC4780003A6451 /* HaveGoodsViewController.m in Sources */,
+				4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */,
 				366EAB3D1F9D8BC700A63E83 /* MJRefreshHeader.m in Sources */,
 				366EAB3E1F9D8BCE00A63E83 /* MJRefreshConst.m in Sources */,
 				366EAB011F9D868C00A63E83 /* BaseViewController.m in Sources */,
 				366EAB001F9D868700A63E83 /* BaseTableViewController.m in Sources */,
 				366EAAFF1F9D868100A63E83 /* BaseTableView.m in Sources */,
 				366EAAFE1F9D867A00A63E83 /* BaseNavigationController.m in Sources */,
+				4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */,
 				366EAAFD1F9D867400A63E83 /* BaseCollectionViewCell.m in Sources */,
 				366EAAFC1F9D855500A63E83 /* MyCenterViewController.m in Sources */,
 				366EAAFB1F9D854A00A63E83 /* MainViewController.m in Sources */,

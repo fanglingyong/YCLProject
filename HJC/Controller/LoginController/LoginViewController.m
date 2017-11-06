@@ -72,14 +72,16 @@
  @param sender sure button
  */
 - (void)sureForLoginActionMenthod:(UIButton *)sender{
-    NSLog(@"跳转到主页");
+    
     /** jumpMain
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSLog(@"跳转到主页");
+     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate jumpMain];
      */
     /**jump bind clinic
      
      */
+    NSLog(@"跳转到绑定页面");
     BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
     [self.navigationController pushViewController:bindClinic animated:YES];
 }
