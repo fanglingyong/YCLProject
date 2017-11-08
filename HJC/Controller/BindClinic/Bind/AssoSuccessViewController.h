@@ -10,4 +10,7 @@
 
 @interface AssoSuccessViewController : BaseViewController
 
+//提示语
+@property (nonatomic,strong) NSString *assoText;
+
 @end

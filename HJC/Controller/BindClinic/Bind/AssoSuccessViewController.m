@@ -27,11 +27,11 @@
 
 -(void)loadSomeView{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.centerX-80, _navView.maxY+40, 160, 160)];
-    imageView.image = [UIImage imageNamed:@"logo.png"];
+    imageView.image = [UIImage imageNamed:@"success.png"];
     [self.view addSubview:imageView];
     
     UILabel *assoTitle = [[UILabel alloc] initWithFrame:CGRectMake(8, imageView.maxY+10, kScreenWidth-16, 22)];
-    assoTitle.text = @"关联申请已经提交 请耐心等待审核";
+    assoTitle.text = self.assoText;;
     assoTitle.textAlignment = NSTextAlignmentCenter;
     assoTitle.font = [UIFont systemFontOfSize:17 weight:800];
     

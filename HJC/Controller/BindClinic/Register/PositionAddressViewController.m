@@ -1,39 +1,42 @@
 //
-//  RegisterClinicViewController.m
+//  PositionAddressViewController.m
 //  HJC
 //
-//  Created by 方灵勇 on 2017/11/5.
+//  Created by 方灵勇 on 2017/11/8.
 //  Copyright © 2017年 EastChina. All rights reserved.
 //
 
-#import "RegisterClinicViewController.h"
-#import "NavView.h"
-#import "InputTextFiledView.h"
-#import "SelectBoxView.h"
 #import "PositionAddressViewController.h"
+#import "NavView.h"
+#import "CompletionInfoViewController.h"
 
-@interface RegisterClinicViewController ()
+@interface PositionAddressViewController ()
 
-@property (nonatomic,strong) NavView * navView;
+@property (nonatomic,strong) NavView *navView;
 
 @end
 
-@implementation RegisterClinicViewController
+@implementation PositionAddressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view addSubview:self.navView];
-    [self viewCrateUI];
+    [self addressPosotionView];
     [self tabbarView];
     // Do any additional setup after loading the view.
 }
+#pragma mark - 地图定位
+-(void)addressPosotionView{
+    
+}
+#pragma mark - UI
 -(NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
         navView.minY = kStateHeight;
         navView.backgroundColor = [UIColor whiteColor];
-        navView.titleLabel.text = @"注册新诊所";
+        navView.titleLabel.text = @"定位诊所地址";
         navView.titleLabel.textColor = [UIColor blackColor];
         navView.leftBtn.hidden = YES;
         navView.rightBtn.hidden = YES;
@@ -41,50 +44,6 @@
     }
     return _navView;
 }
-
-
-- (void)viewCrateUI{
-    InputTextFiledView * clinicName = [[InputTextFiledView alloc] initWithFrame:CGRectMake(8, _navView.maxY+8, kScreenWidth-16, 50)];
-    clinicName.textField.frame = CGRectMake(10, 8, clinicName.width-20, 31);
-    clinicName.placeholder = @"请输入诊所名称";
-    clinicName.placeholderColor = [UIColor colorFromHexCode:@"#696969"];
-    clinicName.backgroundColor = [UIColor colorFromHexCode:@"#fdfdfd"];
-    clinicName.layer.borderWidth = 1;
-    clinicName.layer.borderColor = [[UIColor colorFromHexCode:@"#c1ccd5"] CGColor];
-    [self.view addSubview:clinicName];
-    
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(8, clinicName.maxY+20, 100, 22)];
-    title.text = @"诊所具体地址";
-    title.font = [UIFont systemFontOfSize:15];
-    title.textColor = [UIColor colorFromHexCode:@"#2c2c2c"];
-    [self.view addSubview:title];
-    
-    SelectBoxView * proBox = [[SelectBoxView alloc] initWithFrame:CGRectMake(8, title.maxY+8, (kScreenWidth-32)/3, 40)];
-    proBox.placeholder = @"选择省";
-    [self.view addSubview:proBox];
-    
-    SelectBoxView * citBox = [[SelectBoxView alloc] initWithFrame:CGRectMake(proBox.maxX+8, title.maxY+8, (kScreenWidth-32)/3, 40)];
-    citBox.placeholder = @"选择市";
-    [self.view addSubview:citBox];
-
-    SelectBoxView * areBox = [[SelectBoxView alloc] initWithFrame:CGRectMake(citBox.maxX+8, title.maxY+8, (kScreenWidth-32)/3, 40)];
-    areBox.placeholder = @"选择区";
-    [self.view addSubview:areBox];
-    
-    SelectBoxView * streetBox = [[SelectBoxView alloc] initWithFrame:CGRectMake(8, proBox.maxY+8, kScreenWidth-16, 40)];
-    streetBox.placeholder = @"选择街道";
-    [self.view addSubview:streetBox];
-    
-    InputTextFiledView * addDetail = [[InputTextFiledView alloc] initWithFrame:CGRectMake(8, streetBox.maxY+8, kScreenWidth-16, 50)];
-    addDetail.textField.frame = CGRectMake(10, 8, clinicName.width-20, 31);
-    addDetail.placeholder = @"请输入诊所所在的具体地址";
-    addDetail.placeholderColor = [UIColor colorFromHexCode:@"#696969"];
-    addDetail.backgroundColor = [UIColor colorFromHexCode:@"#fdfdfd"];
-    addDetail.layer.borderWidth = 1;
-    addDetail.layer.borderColor = [[UIColor colorFromHexCode:@"#c1ccd5"] CGColor];
-    [self.view addSubview:addDetail];
-}
-
 -(void)tabbarView{
     UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49)];
     dView.backgroundColor = [UIColor whiteColor];
@@ -118,14 +77,12 @@
 }
 // last / next button menthod
 -(void)jumpToAssoSuccess:(UIButton*)sender{
-    PositionAddressViewController * pa = [[PositionAddressViewController alloc] init];
-    [self.navigationController pushViewController:pa animated:YES];
+    CompletionInfoViewController * comInfo = [[CompletionInfoViewController alloc] init];
+    [self.navigationController pushViewController:comInfo animated:YES];
 }
 -(void)popLastPage:(UIButton*)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -96,6 +96,7 @@
 // last / next button menthod
 -(void)jumpToAssoSuccess:(UIButton*)sender{
     AssoSuccessViewController * asso = [[AssoSuccessViewController alloc] init];
+    asso.assoText = @"关联申请已经提交 请耐心等待审核";
     [self.navigationController pushViewController:asso animated:YES];
 }
 -(void)popLastPage:(UIButton*)sender{
