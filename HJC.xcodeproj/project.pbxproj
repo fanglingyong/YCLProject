@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3616EB0F1FB2D7D600CEF075 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB0E1FB2D7A800CEF075 /* CycleScrollView.m */; };
+		3616EB121FB2D9DE00CEF075 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB101FB2D9DD00CEF075 /* NSTimer+Addition.m */; };
+		3616EB161FB3063400CEF075 /* MerchandiseFooterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB151FB3063400CEF075 /* MerchandiseFooterButton.m */; };
 		361B94D01FAC63B200069AAD /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 361B94CF1FAC63B200069AAD /* OrderCell.m */; };
 		361B94D41FAC684200069AAD /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361B94D31FAC684200069AAD /* OrderModel.m */; };
 		36430B3E1F9DB115001709DD /* NSString+LabelKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696FEA61F95DC87000B9172 /* NSString+LabelKit.m */; };
@@ -42,8 +45,6 @@
 		36430B751F9DB794001709DD /* tabbar_rent_gary@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36430B5D1F9DB748001709DD /* tabbar_rent_gary@3x.png */; };
 		36430B7F1F9DB903001709DD /* StageAndNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430B781F9DB8DE001709DD /* StageAndNumberView.m */; };
 		36430B801F9DB90B001709DD /* StageChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430B7A1F9DB8DE001709DD /* StageChooseView.m */; };
-		36430B831F9DB96B001709DD /* IntegralBreedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430B821F9DB96B001709DD /* IntegralBreedViewController.m */; };
-		36430B861F9DBB6B001709DD /* AllBreedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430B851F9DBB6B001709DD /* AllBreedViewController.m */; };
 		36430B891F9DBCDA001709DD /* NavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696FC6B1F95DC86000B9172 /* NavView.m */; };
 		36430B8A1F9DBD4E001709DD /* BaseTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696FC651F95DC86000B9172 /* BaseTextFiled.m */; };
 		36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696FC671F95DC86000B9172 /* HomePageTimeScrollView.m */; };
@@ -98,6 +99,15 @@
 		366EAB451F9D8F0400A63E83 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 366EAB411F9D8BF400A63E83 /* GetImagePath.m */; };
 		369600271F95E41D000B9172 /* MessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369600261F95E41D000B9172 /* MessageCenterViewController.m */; };
 		3696002A1F95E44F000B9172 /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369600291F95E44F000B9172 /* ShoppingCartViewController.m */; };
+		36965D901FAFFB3D006B93E4 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D8F1FAFFB3D006B93E4 /* OrderDetailViewController.m */; };
+		36965D9A1FB04466006B93E4 /* MerchandiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D991FB04466006B93E4 /* MerchandiseViewController.m */; };
+		36965D9D1FB0447F006B93E4 /* DetailedParameterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D9C1FB0447F006B93E4 /* DetailedParameterViewController.m */; };
+		36965DA01FB04499006B93E4 /* PurchasingRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D9F1FB04499006B93E4 /* PurchasingRecordsViewController.m */; };
+		36965DA31FB0459E006B93E4 /* MedicineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965DA21FB0459E006B93E4 /* MedicineDetailViewController.m */; };
+		36965DA41FB04744006B93E4 /* AllBreedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D931FB04401006B93E4 /* AllBreedViewController.m */; };
+		36965DA51FB04749006B93E4 /* IntegralBreedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D961FB04401006B93E4 /* IntegralBreedViewController.m */; };
+		36965DA81FB047EB006B93E4 /* MedicineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965DA71FB047EB006B93E4 /* MedicineDetailModel.m */; };
+		36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965DAA1FB04823006B93E4 /* MedicineDetailCell.m */; };
 		3696F96E1F95DA84000B9172 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F96D1F95DA84000B9172 /* AppDelegate.m */; };
 		3696F9741F95DA85000B9172 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9721F95DA85000B9172 /* Main.storyboard */; };
 		3696F9761F95DA85000B9172 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9751F95DA85000B9172 /* Assets.xcassets */; };
@@ -138,6 +148,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3616EB0D1FB2D7A800CEF075 /* CycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		3616EB0E1FB2D7A800CEF075 /* CycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		3616EB101FB2D9DD00CEF075 /* NSTimer+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		3616EB111FB2D9DD00CEF075 /* NSTimer+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
+		3616EB141FB3063400CEF075 /* MerchandiseFooterButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MerchandiseFooterButton.h; sourceTree = "<group>"; };
+		3616EB151FB3063400CEF075 /* MerchandiseFooterButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MerchandiseFooterButton.m; sourceTree = "<group>"; };
 		361B94CE1FAC63B200069AAD /* OrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		361B94CF1FAC63B200069AAD /* OrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		361B94D21FAC684200069AAD /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
@@ -170,10 +186,6 @@
 		36430B781F9DB8DE001709DD /* StageAndNumberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StageAndNumberView.m; sourceTree = "<group>"; };
 		36430B791F9DB8DE001709DD /* StageChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StageChooseView.h; sourceTree = "<group>"; };
 		36430B7A1F9DB8DE001709DD /* StageChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StageChooseView.m; sourceTree = "<group>"; };
-		36430B811F9DB96B001709DD /* IntegralBreedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralBreedViewController.h; sourceTree = "<group>"; };
-		36430B821F9DB96B001709DD /* IntegralBreedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralBreedViewController.m; sourceTree = "<group>"; };
-		36430B841F9DBB6B001709DD /* AllBreedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllBreedViewController.h; sourceTree = "<group>"; };
-		36430B851F9DBB6B001709DD /* AllBreedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllBreedViewController.m; sourceTree = "<group>"; };
 		36430B921F9DBE9E001709DD /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		36430B931F9DBE9E001709DD /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		36430B941F9DBE9E001709DD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -258,6 +270,24 @@
 		369600261F95E41D000B9172 /* MessageCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterViewController.m; sourceTree = "<group>"; };
 		369600281F95E44F000B9172 /* ShoppingCartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		369600291F95E44F000B9172 /* ShoppingCartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
+		36965D8E1FAFFB3D006B93E4 /* OrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		36965D8F1FAFFB3D006B93E4 /* OrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		36965D921FB04401006B93E4 /* AllBreedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllBreedViewController.h; sourceTree = "<group>"; };
+		36965D931FB04401006B93E4 /* AllBreedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllBreedViewController.m; sourceTree = "<group>"; };
+		36965D951FB04401006B93E4 /* IntegralBreedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralBreedViewController.h; sourceTree = "<group>"; };
+		36965D961FB04401006B93E4 /* IntegralBreedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralBreedViewController.m; sourceTree = "<group>"; };
+		36965D981FB04466006B93E4 /* MerchandiseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MerchandiseViewController.h; sourceTree = "<group>"; };
+		36965D991FB04466006B93E4 /* MerchandiseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MerchandiseViewController.m; sourceTree = "<group>"; };
+		36965D9B1FB0447F006B93E4 /* DetailedParameterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedParameterViewController.h; sourceTree = "<group>"; };
+		36965D9C1FB0447F006B93E4 /* DetailedParameterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedParameterViewController.m; sourceTree = "<group>"; };
+		36965D9E1FB04499006B93E4 /* PurchasingRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PurchasingRecordsViewController.h; sourceTree = "<group>"; };
+		36965D9F1FB04499006B93E4 /* PurchasingRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PurchasingRecordsViewController.m; sourceTree = "<group>"; };
+		36965DA11FB0459E006B93E4 /* MedicineDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedicineDetailViewController.h; sourceTree = "<group>"; };
+		36965DA21FB0459E006B93E4 /* MedicineDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineDetailViewController.m; sourceTree = "<group>"; };
+		36965DA61FB047EB006B93E4 /* MedicineDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedicineDetailModel.h; sourceTree = "<group>"; };
+		36965DA71FB047EB006B93E4 /* MedicineDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineDetailModel.m; sourceTree = "<group>"; };
+		36965DA91FB04823006B93E4 /* MedicineDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedicineDetailCell.h; sourceTree = "<group>"; };
+		36965DAA1FB04823006B93E4 /* MedicineDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineDetailCell.m; sourceTree = "<group>"; };
 		3696F9691F95DA84000B9172 /* HJC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HJC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3696F96C1F95DA84000B9172 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3696F96D1F95DA84000B9172 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -368,6 +398,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3616EB0C1FB2D7A800CEF075 /* CycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				3616EB0D1FB2D7A800CEF075 /* CycleScrollView.h */,
+				3616EB0E1FB2D7A800CEF075 /* CycleScrollView.m */,
+				3616EB111FB2D9DD00CEF075 /* NSTimer+Addition.h */,
+				3616EB101FB2D9DD00CEF075 /* NSTimer+Addition.m */,
+			);
+			path = CycleScrollView;
+			sourceTree = "<group>";
+		};
+		3616EB131FB3060C00CEF075 /* MerchandiseFooterButton */ = {
+			isa = PBXGroup;
+			children = (
+				3616EB141FB3063400CEF075 /* MerchandiseFooterButton.h */,
+				3616EB151FB3063400CEF075 /* MerchandiseFooterButton.m */,
+			);
+			path = MerchandiseFooterButton;
+			sourceTree = "<group>";
+		};
 		361B94CD1FAC638800069AAD /* OrderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,22 +518,26 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		36430BC31F9DD6AB001709DD /* MedicineBreesCell */ = {
+		36430BC31F9DD6AB001709DD /* MedicineCell */ = {
 			isa = PBXGroup;
 			children = (
 				36430BC41F9DD6C3001709DD /* MedicineBreedCell.h */,
 				36430BC51F9DD6C3001709DD /* MedicineBreedCell.m */,
+				36965DA91FB04823006B93E4 /* MedicineDetailCell.h */,
+				36965DAA1FB04823006B93E4 /* MedicineDetailCell.m */,
 			);
-			path = MedicineBreesCell;
+			path = MedicineCell;
 			sourceTree = "<group>";
 		};
-		36430BC71F9DD7CD001709DD /* MedicineBreesModel */ = {
+		36430BC71F9DD7CD001709DD /* MedicineModel */ = {
 			isa = PBXGroup;
 			children = (
 				36430BC81F9DD7DD001709DD /* MedicineBreesModel.h */,
 				36430BC91F9DD7DD001709DD /* MedicineBreesModel.m */,
+				36965DA61FB047EB006B93E4 /* MedicineDetailModel.h */,
+				36965DA71FB047EB006B93E4 /* MedicineDetailModel.m */,
 			);
-			path = MedicineBreesModel;
+			path = MedicineModel;
 			sourceTree = "<group>";
 		};
 		36624ECE1FA9BD9600F58A94 /* MyCenterHeader */ = {
@@ -617,6 +671,39 @@
 			path = ShoppingCart;
 			sourceTree = "<group>";
 		};
+		36965D911FB04401006B93E4 /* AllBreed */ = {
+			isa = PBXGroup;
+			children = (
+				36965D921FB04401006B93E4 /* AllBreedViewController.h */,
+				36965D931FB04401006B93E4 /* AllBreedViewController.m */,
+			);
+			path = AllBreed;
+			sourceTree = "<group>";
+		};
+		36965D941FB04401006B93E4 /* IntegralBreed */ = {
+			isa = PBXGroup;
+			children = (
+				36965D951FB04401006B93E4 /* IntegralBreedViewController.h */,
+				36965D961FB04401006B93E4 /* IntegralBreedViewController.m */,
+			);
+			path = IntegralBreed;
+			sourceTree = "<group>";
+		};
+		36965D971FB04438006B93E4 /* MedicineDetail */ = {
+			isa = PBXGroup;
+			children = (
+				36965DA11FB0459E006B93E4 /* MedicineDetailViewController.h */,
+				36965DA21FB0459E006B93E4 /* MedicineDetailViewController.m */,
+				36965D981FB04466006B93E4 /* MerchandiseViewController.h */,
+				36965D991FB04466006B93E4 /* MerchandiseViewController.m */,
+				36965D9B1FB0447F006B93E4 /* DetailedParameterViewController.h */,
+				36965D9C1FB0447F006B93E4 /* DetailedParameterViewController.m */,
+				36965D9E1FB04499006B93E4 /* PurchasingRecordsViewController.h */,
+				36965D9F1FB04499006B93E4 /* PurchasingRecordsViewController.m */,
+			);
+			path = MedicineDetail;
+			sourceTree = "<group>";
+		};
 		3696F9601F95DA83000B9172 = {
 			isa = PBXGroup;
 			children = (
@@ -670,9 +757,10 @@
 		3696F9901F95DC85000B9172 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3616EB131FB3060C00CEF075 /* MerchandiseFooterButton */,
 				361B94CD1FAC638800069AAD /* OrderCell */,
 				36624ECE1FA9BD9600F58A94 /* MyCenterHeader */,
-				36430BC31F9DD6AB001709DD /* MedicineBreesCell */,
+				36430BC31F9DD6AB001709DD /* MedicineCell */,
 				36430B761F9DB8DE001709DD /* StageChooseView */,
 			);
 			path = View;
@@ -681,6 +769,7 @@
 		3696F9D61F95DC86000B9172 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3616EB0C1FB2D7A800CEF075 /* CycleScrollView */,
 				36430B911F9DBE9E001709DD /* SDWebImage */,
 				366EAB3F1F9D8BF400A63E83 /* GetImagePath */,
 				366EAB021F9D86D100A63E83 /* MJRefresh */,
@@ -692,7 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				361B94D11FAC683400069AAD /* OrderModel */,
-				36430BC71F9DD7CD001709DD /* MedicineBreesModel */,
+				36430BC71F9DD7CD001709DD /* MedicineModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -782,12 +871,11 @@
 		3696FEBF1F95DC87000B9172 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				36965D941FB04401006B93E4 /* IntegralBreed */,
+				36965D911FB04401006B93E4 /* AllBreed */,
+				36965D971FB04438006B93E4 /* MedicineDetail */,
 				3696FEE81F95DC87000B9172 /* MainViewController.h */,
 				3696FEE91F95DC87000B9172 /* MainViewController.m */,
-				36430B811F9DB96B001709DD /* IntegralBreedViewController.h */,
-				36430B821F9DB96B001709DD /* IntegralBreedViewController.m */,
-				36430B841F9DBB6B001709DD /* AllBreedViewController.h */,
-				36430B851F9DBB6B001709DD /* AllBreedViewController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -805,6 +893,8 @@
 				3696FFB11F95DC88000B9172 /* MyCenterViewController.m */,
 				36C9E5AD1FAC4890003A6451 /* OrderCenterViewController.h */,
 				36C9E5AE1FAC4890003A6451 /* OrderCenterViewController.m */,
+				36965D8E1FAFFB3D006B93E4 /* OrderDetailViewController.h */,
+				36965D8F1FAFFB3D006B93E4 /* OrderDetailViewController.m */,
 			);
 			path = MyCenterViewController;
 			sourceTree = "<group>";
@@ -1037,10 +1127,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3616EB0F1FB2D7D600CEF075 /* CycleScrollView.m in Sources */,
+				36965DA51FB04749006B93E4 /* IntegralBreedViewController.m in Sources */,
+				36965DA41FB04744006B93E4 /* AllBreedViewController.m in Sources */,
 				455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */,
 				36C9E5AF1FAC4890003A6451 /* OrderCenterViewController.m in Sources */,
 				455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */,
+				3616EB161FB3063400CEF075 /* MerchandiseFooterButton.m in Sources */,
 				36C9E5AC1FAC478B003A6451 /* AfterSalesViewController.m in Sources */,
+				36965DA01FB04499006B93E4 /* PurchasingRecordsViewController.m in Sources */,
 				455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */,
 				455E1F3A1FAC3FA200805340 /* PasswordLoginViewController.m in Sources */,
 				36624ED11FA9BDD300F58A94 /* MyCenterHead.m in Sources */,
@@ -1050,6 +1145,7 @@
 				36430BBF1F9DBF8F001709DD /* UIImage+WebP.m in Sources */,
 				36430BC01F9DBF8F001709DD /* UIImageView+HighlightedWebCache.m in Sources */,
 				36C9E59D1FAC4750003A6451 /* AllOrderViewController.m in Sources */,
+				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,
 				36430BC11F9DBF8F001709DD /* UIImageView+WebCache.m in Sources */,
 				36430BC21F9DBF8F001709DD /* UIView+WebCacheOperation.m in Sources */,
 				36430BBB1F9DBF7D001709DD /* SDWebImagePrefetcher.m in Sources */,
@@ -1063,6 +1159,8 @@
 				36430BB41F9DBF5A001709DD /* NSData+ImageContentType.m in Sources */,
 				36430BB31F9DBEBE001709DD /* MKAnnotationView+WebCache.m in Sources */,
 				36430B901F9DBE57001709DD /* ZWAdView.m in Sources */,
+				36965D901FAFFB3D006B93E4 /* OrderDetailViewController.m in Sources */,
+				36965D9A1FB04466006B93E4 /* MerchandiseViewController.m in Sources */,
 				36430B8E1F9DBE4B001709DD /* PickerView.m in Sources */,
 				36430B8C1F9DBE41001709DD /* InputTextFiledView.m in Sources */,
 				36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */,
@@ -1078,6 +1176,7 @@
 				36C9E5941FAB0691003A6451 /* MyCenterButton.m in Sources */,
 				36C9E5A01FAC475D003A6451 /* WaitPayViewController.m in Sources */,
 				36430B411F9DB127001709DD /* UILabel+LabelKit.m in Sources */,
+				3616EB121FB2D9DE00CEF075 /* NSTimer+Addition.m in Sources */,
 				36430B401F9DB122001709DD /* UIColor+AddColor.m in Sources */,
 				36430B3F1F9DB11B001709DD /* NSString+StringKit.m in Sources */,
 				36C9E5A61FAC4775003A6451 /* WaitShipViewController.m in Sources */,
@@ -1097,16 +1196,17 @@
 				366EAB301F9D8B0D00A63E83 /* MJRefreshAutoFooter.m in Sources */,
 				366EAB391F9D8B9600A63E83 /* MJRefreshAutoStateFooter.m in Sources */,
 				366EAB431F9D8D3A00A63E83 /* MJRefreshNormalHeader.m in Sources */,
-				36430B831F9DB96B001709DD /* IntegralBreedViewController.m in Sources */,
+				36965D9D1FB0447F006B93E4 /* DetailedParameterViewController.m in Sources */,
 				36430BC61F9DD6C3001709DD /* MedicineBreedCell.m in Sources */,
-				36430B861F9DBB6B001709DD /* AllBreedViewController.m in Sources */,
 				366EAB3A1F9D8BA100A63E83 /* UIView+MJExtension.m in Sources */,
 				366EAB3B1F9D8BB000A63E83 /* MJRefreshGifHeader.m in Sources */,
 				366EAB3C1F9D8BBE00A63E83 /* UIScrollView+MJRefresh.m in Sources */,
 				36C9E5A91FAC4780003A6451 /* HaveGoodsViewController.m in Sources */,
+				36965DA31FB0459E006B93E4 /* MedicineDetailViewController.m in Sources */,
 				366EAB3D1F9D8BC700A63E83 /* MJRefreshHeader.m in Sources */,
 				366EAB3E1F9D8BCE00A63E83 /* MJRefreshConst.m in Sources */,
 				366EAB011F9D868C00A63E83 /* BaseViewController.m in Sources */,
+				36965DA81FB047EB006B93E4 /* MedicineDetailModel.m in Sources */,
 				366EAB001F9D868700A63E83 /* BaseTableViewController.m in Sources */,
 				366EAAFF1F9D868100A63E83 /* BaseTableView.m in Sources */,
 				366EAAFE1F9D867A00A63E83 /* BaseNavigationController.m in Sources */,

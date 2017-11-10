@@ -9,6 +9,7 @@
 #import "IntegralBreedViewController.h"
 #import "MedicineBreedCell.h"
 #import "MedicineBreesModel.h"
+#import "MedicineDetailViewController.h"
 @interface IntegralBreedViewController ()<MedicineBreedCellDelegate>
 
 @property(nonatomic)NSInteger startIndex;
@@ -65,7 +66,11 @@
     return medicineBreedCell;
     
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma mark - 事件
 -(void)reloadData{
     NSLog(@"MyCarInsuranceAllViewController reloadData");

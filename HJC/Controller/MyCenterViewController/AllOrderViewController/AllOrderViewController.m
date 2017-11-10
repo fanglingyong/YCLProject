@@ -9,7 +9,7 @@
 #import "AllOrderViewController.h"
 #import "OrderCell.h"
 #import "OrderModel.h"
-
+#import "OrderDetailViewController.h"
 @interface AllOrderViewController ()
 
 @property(nonatomic)NSInteger startIndex;
@@ -25,11 +25,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:[NSString stringWithFormat:@"%@",[self class]] object:nil];
     
-    
-    [self.tableView setMinY:0 maxY:kScreenHeight-HeightXiShu(110)];
+    [self.tableView setMinY:0 maxY:kScreenHeight - HeightXiShu(110)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,10 +56,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeightXiShu(10);
+    return HeightXiShu(7);
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(7))];
     view.backgroundColor = AllLightGrayColor;
     return view;
 }
@@ -135,17 +140,20 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    OrderDetailViewController *VC = [[OrderDetailViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
+    
+}
+
 #pragma mark - 事件
 -(void)reloadData{
     NSLog(@"AllOrderViewController reloadData");
     [self netWorkWithType:BaseTableViewRefreshFirstLoad];
 }
 
-- (void)addShoppingCartClick:(NSInteger)index {
-    
-    NSLog(@"%ld", (long)index);
-    
-}
+
 
 #pragma mark - 接口
 - (void)handleData {

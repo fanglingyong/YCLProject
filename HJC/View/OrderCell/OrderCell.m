@@ -156,5 +156,189 @@
 
 }
 
+@end
+
+
+@interface OrderLogisticsInfoCell()
+
+@property(nonatomic,strong)UIImageView *leftImageView;
+@property(nonatomic,strong)UILabel *titleLabel;  //名称
+@property(nonatomic,strong)UILabel *timeLabel; // 公司
+@property(nonatomic,strong)UIImageView *arrowImageView;
+@property (nonatomic, retain)UIImageView *lineView;
 
 @end
+
+@implementation OrderLogisticsInfoCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self leftImageView];
+        [self titleLabel];
+        [self timeLabel];
+        [self arrowImageView];
+        [self lineView];
+    }
+    return self;
+}
+
+#pragma mark - 页面元素
+-(UIImageView *)leftImageView{
+    if(!_leftImageView){
+        UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(20), WidthXiShu(30), HeightXiShu(30))];
+        leftImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        leftImageView.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:leftImageView];
+        _leftImageView = leftImageView;
+    }
+    return _leftImageView;
+}
+
+-(UILabel *)titleLabel{
+    if(!_titleLabel){
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), 0, kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(45))];
+        titleLabel.text = @"货品已经签收, 签收人李先生. 派件员电话188-8866-6044";
+        titleLabel.numberOfLines = 2;
+        titleLabel.font = HEITI(HeightXiShu(15));
+        titleLabel.textColor = [UIColor orangeColor];
+        [self.contentView addSubview:titleLabel];
+        _titleLabel = titleLabel;
+    }
+    return _titleLabel;
+}
+
+-(UILabel *)timeLabel{
+    if(!_timeLabel){
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(50), kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(15))];
+        timeLabel.text = @"2017-7-27 12:08:14";
+        timeLabel.font = HEITI(HeightXiShu(12));
+        timeLabel.textColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:timeLabel];
+        _timeLabel = timeLabel;
+    }
+    return _timeLabel;
+}
+
+-(UIImageView *)arrowImageView{
+    if(!_arrowImageView){
+        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(23), HeightXiShu(25), WidthXiShu(16), HeightXiShu(20))];
+        arrowImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        arrowImageView.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:arrowImageView];
+        _arrowImageView = arrowImageView;
+    }
+    return _arrowImageView;
+}
+
+- (UIImageView *)lineView{
+    if(!_lineView){
+        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(69), kScreenWidth, .5)];
+        lineView.backgroundColor = AllLightGrayColor;
+        [self.contentView addSubview:lineView];
+        _lineView = lineView;
+    }
+    return _lineView;
+}
+
+
+@end
+
+
+@interface OrderAddressCell()
+
+@property(nonatomic,strong)UIImageView *leftImageView;
+@property(nonatomic,strong)UILabel *nameLabel;  //名称
+@property(nonatomic,strong)UILabel *phoneLabel; // 公司
+@property(nonatomic,strong)UILabel *addressLabel; // 公司
+
+@end
+@implementation OrderAddressCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self leftImageView];
+        [self nameLabel];
+        [self phoneLabel];
+        [self addressLabel];
+    }
+    return self;
+}
+
+#pragma mark - 页面元素
+-(UIImageView *)leftImageView{
+    if(!_leftImageView){
+        UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(15), WidthXiShu(30), HeightXiShu(30))];
+        leftImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        leftImageView.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:leftImageView];
+        _leftImageView = leftImageView;
+    }
+    return _leftImageView;
+}
+
+-(UILabel *)nameLabel{
+    if(!_nameLabel){
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(10), kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(20))];
+        nameLabel.text = @"古荡社区诊所 李小明";
+        nameLabel.font = HEITI(HeightXiShu(13));
+        nameLabel.textColor = TitleColor;
+        [self.contentView addSubview:nameLabel];
+        _nameLabel = nameLabel;
+    }
+    return _nameLabel;
+}
+
+-(UILabel *)phoneLabel{
+    if(!_phoneLabel){
+        UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(240), HeightXiShu(10), kScreenWidth - WidthXiShu(240), HeightXiShu(20))];
+        phoneLabel.text = @"182-2288-1122";
+        phoneLabel.font = HEITI(HeightXiShu(12));
+        phoneLabel.textColor = TitleColor;
+        [self.contentView addSubview:phoneLabel];
+        _phoneLabel = phoneLabel;
+    }
+    return _phoneLabel;
+}
+
+-(UILabel *)addressLabel{
+    if(!_addressLabel){
+        UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(35), kScreenWidth - WidthXiShu(50), HeightXiShu(20))];
+        addressLabel.text = @"浙江省杭州市西湖区天目山路百丽大厦10栋1层2334室";
+        addressLabel.font = HEITI(HeightXiShu(13));
+        addressLabel.textColor = TitleColor;
+        [self.contentView addSubview:addressLabel];
+        _addressLabel = addressLabel;
+    }
+    return _addressLabel;
+}
+
+@end
+
+
+
