@@ -8,9 +8,12 @@
 
 #import "ShoppingCartViewController.h"
 #import "NavView.h"
-
+#import "ShoppingCartModel.h"
+#import "ShoppingCartCell.h"
 @interface ShoppingCartViewController ()
+
 @property(nonatomic,strong)NavView *navView;
+@property(nonatomic,strong)NSMutableArray *modelArr;
 
 @end
 
@@ -21,6 +24,10 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
+    
+    [self.tableView setMinY:64 maxY:kScreenHeight - 64];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = AllBackLightGratColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +53,66 @@
         [self.view addSubview:_navView];
     }
     return _navView;
+}
+
+#pragma mark - tableView delegate dataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 2;
+    }
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return HeightXiShu(25);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(25))];
+    view.backgroundColor = AllLightGrayColor;
+    
+    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, kScreenWidth / 2, HeightXiShu(25))];
+    integralLabel.text = @[@"积分专区(￥199.86)", @"正常品种(￥122.17)"][section];
+    integralLabel.textColor = TitleColor;
+    integralLabel.font = HEITI(HeightXiShu(13));
+    [view addSubview:integralLabel];
+
+    UILabel *canUseLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(160), 0, WidthXiShu(150), HeightXiShu(25))];
+    canUseLabel.text = @[@"可用积分：209", @""][section];
+    canUseLabel.textAlignment = NSTextAlignmentRight;
+    canUseLabel.textColor = TitleColor;
+    canUseLabel.font = HEITI(HeightXiShu(13));
+    [view addSubview:canUseLabel];
+    
+    return view;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return HeightXiShu(170);
+    }
+    return HeightXiShu(125);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ShoppingCartModel *model = [[ShoppingCartModel alloc] init];
+    if (self.modelArr.count > 0) {
+        model = self.modelArr[indexPath.row];
+    }
+    static NSString* const identifier = @"ShoppingCartCell";
+    ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[ShoppingCartCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.model = model;
+    return cell;
 }
 
 /*

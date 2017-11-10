@@ -40,7 +40,7 @@
     if (self) {
 
         [self medicineImageView];
-        [self companyLabel];
+        [self medicineNameLabel];
         [self companyLabel];
         [self priceLabel];
         [self integralLabel];
