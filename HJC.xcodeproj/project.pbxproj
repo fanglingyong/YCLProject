@@ -99,6 +99,7 @@
 		366EAB451F9D8F0400A63E83 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 366EAB411F9D8BF400A63E83 /* GetImagePath.m */; };
 		3675BBE51FB57E2D0030F914 /* ShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675BBE41FB57E2D0030F914 /* ShoppingCartCell.m */; };
 		3675BBE91FB57FEE0030F914 /* ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675BBE81FB57FEE0030F914 /* ShoppingCartModel.m */; };
+		3675BBEC1FB5974F0030F914 /* ShoppingCartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3675BBEB1FB5974F0030F914 /* ShoppingCartFooterView.m */; };
 		369600271F95E41D000B9172 /* MessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369600261F95E41D000B9172 /* MessageCenterViewController.m */; };
 		3696002A1F95E44F000B9172 /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369600291F95E44F000B9172 /* ShoppingCartViewController.m */; };
 		36965D901FAFFB3D006B93E4 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D8F1FAFFB3D006B93E4 /* OrderDetailViewController.m */; };
@@ -290,6 +291,8 @@
 		3675BBE41FB57E2D0030F914 /* ShoppingCartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartCell.m; sourceTree = "<group>"; };
 		3675BBE71FB57FEE0030F914 /* ShoppingCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartModel.h; sourceTree = "<group>"; };
 		3675BBE81FB57FEE0030F914 /* ShoppingCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartModel.m; sourceTree = "<group>"; };
+		3675BBEA1FB5974F0030F914 /* ShoppingCartFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartFooterView.h; sourceTree = "<group>"; };
+		3675BBEB1FB5974F0030F914 /* ShoppingCartFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartFooterView.m; sourceTree = "<group>"; };
 		369600221F95DF30000B9172 /* HJC-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HJC-PrefixHeader.pch"; sourceTree = "<group>"; };
 		369600251F95E41D000B9172 /* MessageCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCenterViewController.h; sourceTree = "<group>"; };
 		369600261F95E41D000B9172 /* MessageCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCenterViewController.m; sourceTree = "<group>"; };
@@ -709,6 +712,8 @@
 			children = (
 				3675BBE31FB57E2D0030F914 /* ShoppingCartCell.h */,
 				3675BBE41FB57E2D0030F914 /* ShoppingCartCell.m */,
+				3675BBEA1FB5974F0030F914 /* ShoppingCartFooterView.h */,
+				3675BBEB1FB5974F0030F914 /* ShoppingCartFooterView.m */,
 			);
 			path = ShoppingCartCell;
 			sourceTree = "<group>";
@@ -1307,6 +1312,7 @@
 				36430BB71F9DBF68001709DD /* SDWebImageDecoder.m in Sources */,
 				36430BB61F9DBF63001709DD /* SDWebImageCompat.m in Sources */,
 				36430BB51F9DBF5F001709DD /* SDImageCache.m in Sources */,
+				3675BBEC1FB5974F0030F914 /* ShoppingCartFooterView.m in Sources */,
 				36430BB41F9DBF5A001709DD /* NSData+ImageContentType.m in Sources */,
 				36430BB31F9DBEBE001709DD /* MKAnnotationView+WebCache.m in Sources */,
 				36430B901F9DBE57001709DD /* ZWAdView.m in Sources */,
