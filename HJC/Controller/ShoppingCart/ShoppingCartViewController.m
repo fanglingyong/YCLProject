@@ -25,7 +25,7 @@
     [self statusBar];
     [self navView];
     
-    [self.tableView setMinY:64 maxY:kScreenHeight - 64];
+    [self.tableView setMinY:64 maxY:kScreenHeight - 49 - HeightXiShu(45)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
 }
@@ -112,6 +112,11 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.model = model;
+    if (indexPath.section == 0) {
+        cell.footerView.hidden = NO;
+    } else {
+        cell.footerView.hidden = YES;
+    }
     return cell;
 }
 
