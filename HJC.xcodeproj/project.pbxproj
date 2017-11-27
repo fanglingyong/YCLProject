@@ -132,6 +132,7 @@
 		4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */; };
 		4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */; };
 		4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */; };
+		4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */; };
 		455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F321FAC3EBC00805340 /* NSData+Anima.m */; };
 		455E1F341FAC3F6F00805340 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F241FAC3E8B00805340 /* logo.png */; };
 		455E1F351FAC3F6F00805340 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1F251FAC3E8B00805340 /* logo@2x.png */; };
@@ -390,6 +391,8 @@
 		4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClinicViewController.m; sourceTree = "<group>"; };
 		4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssoSuccessViewController.h; sourceTree = "<group>"; };
 		4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssoSuccessViewController.m; sourceTree = "<group>"; };
+		4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserViewController.h; sourceTree = "<group>"; };
+		4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterUserViewController.m; sourceTree = "<group>"; };
 		455E1F241FAC3E8B00805340 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		455E1F251FAC3E8B00805340 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		455E1F261FAC3E8B00805340 /* logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@3x.png"; sourceTree = "<group>"; };
@@ -1092,6 +1095,8 @@
 				455E1F2E1FAC3EA600805340 /* LoginViewController.m */,
 				455E1F2F1FAC3EA600805340 /* PasswordLoginViewController.h */,
 				455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */,
+				4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */,
+				4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -1309,6 +1314,7 @@
 				36965D9A1FB04466006B93E4 /* MerchandiseViewController.m in Sources */,
 				36430B8E1F9DBE4B001709DD /* PickerView.m in Sources */,
 				36430B8C1F9DBE41001709DD /* InputTextFiledView.m in Sources */,
+				4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */,
 				36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */,
 				36430B8A1F9DBD4E001709DD /* BaseTextFiled.m in Sources */,
 				36430B891F9DBCDA001709DD /* NavView.m in Sources */,

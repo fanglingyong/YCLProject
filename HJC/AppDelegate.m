@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "BaseNavigationController.h"
 
-#import "LoginViewController.h"
+#import "PasswordLoginViewController.h"
 #import "MainViewController.h"
 #import "MessageCenterViewController.h"
 #import "ShoppingCartViewController.h"
@@ -40,7 +40,7 @@
  登陆视图 window
  */
 -(void)jumpLogin{
-    LoginViewController * login = [[LoginViewController alloc]init];
+    PasswordLoginViewController * login = [[PasswordLoginViewController alloc]init];
     BaseNavigationController *loginNav = [[BaseNavigationController alloc] initWithRootViewController:login];
     loginNav.navigationBarHidden = YES;
     self.window.rootViewController = loginNav;

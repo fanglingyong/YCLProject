@@ -10,6 +10,7 @@
 #import "BindClinicViewController.h"
 #import "AppDelegate.h"
 #import "ForgetPasswordViewController.h"
+#import "RegisterUserViewController.h"
 
 @interface PasswordLoginViewController ()
 
@@ -27,12 +28,12 @@
 
 //UI布局
 -(void)createUIMenthed{
-    
+    /*
     UIButton * pwPageBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     pwPageBtn.frame = CGRectMake(8, 30, 70, 30);
     [pwPageBtn setTitle:@"快键登陆" forState:UIControlStateNormal];
     [pwPageBtn addTarget:self action:@selector(jumpLasrViewController:) forControlEvents:UIControlEventTouchUpInside];
-    
+    */
     UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake([self.view centerX]-40, 100, 80, 80)];
     logo.image = [UIImage imageNamed:@"logo"];
     
@@ -43,9 +44,15 @@
     name.textColor = RGBACOLOR(118, 135, 156, 1);
     
     UIButton * forgetPWBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    forgetPWBtn.frame = CGRectMake(kScreenWidth-20-70, 345, 70, 32);
-    [forgetPWBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
+    forgetPWBtn.frame = CGRectMake(20, 345, 70, 32);
+    [forgetPWBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
     [forgetPWBtn addTarget:self action:@selector(jumpForgetPasswordController:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton * registerUsBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    registerUsBtn.frame = CGRectMake(kScreenWidth-20-70, 345, 70, 32);
+    [registerUsBtn setTitle:@"注册新用户" forState:UIControlStateNormal];
+    [registerUsBtn addTarget:self action:@selector(jumpForgetPasswordController:) forControlEvents:UIControlEventTouchUpInside];
+
     
     UIButton * sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     sureBtn.frame = CGRectMake(20, 400, kScreenWidth-40, 40);
@@ -56,7 +63,7 @@
     sureBtn.backgroundColor = RGBACOLOR(67, 155, 234, 1);
     [sureBtn addTarget:self action:@selector(sureForLoginActionMenthod:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:pwPageBtn];
+//    [self.view addSubview:pwPageBtn];
     [self.view addSubview:logo];
     [self.view addSubview:name];
     [self.view addSubview:[self textfiledView]];
@@ -64,13 +71,22 @@
     [self.view addSubview:sureBtn];
     [self.view addSubview:[self termsOfServiceView]];
 }
-//跳转
+//返回
 -(void)jumpLasrViewController:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void) jumpForgetPasswordController:(UIButton*)sender {
+    /* forget password
     ForgetPasswordViewController * forget = [[ForgetPasswordViewController alloc] init];
     [self.navigationController pushViewController:forget animated:YES
+     ];
+     */
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"please call admin,phone is 0571-88888888" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
+    [alert show];
+}
+-(void) registerNewUserController:(UIButton*)sender{
+    RegisterUserViewController * rgUser = [[RegisterUserViewController alloc] init];
+    [self.navigationController pushViewController:rgUser animated:YES
      ];
 }
 
@@ -81,7 +97,6 @@
  @param sender sure button
  */
 - (void)sureForLoginActionMenthod:(UIButton *)sender{
-    NSLog(@"跳转到主页");
     /** jumpMain
      AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
      [appDelegate jumpMain];
