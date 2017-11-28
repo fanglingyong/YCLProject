@@ -10,10 +10,12 @@
 #import "NavView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AssoSuccessViewController.h"
+#import "ClinicCell.h"
 
-@interface BindInfoViewController ()<UISearchBarDelegate>
+@interface BindInfoViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NavView * navView;
 @property (nonatomic,strong) UISearchBar * searchBar;
+@property (nonatomic,strong) UITableView * tableView;
 
 @end
 
@@ -24,7 +26,7 @@
     
     [self.view addSubview:self.navView];
     [self searchBarView];
-    [self tabbarView];
+    [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
 }
 -(NavView *)navView{
@@ -34,24 +36,26 @@
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"关联已注册的诊所";
         navView.titleLabel.textColor = [UIColor blackColor];
-        navView.leftBtn.hidden = YES;
+        [navView.leftBtn addTarget:self action:@selector(back_lastController) forControlEvents:UIControlEventTouchUpInside];
         navView.rightBtn.hidden = YES;
         _navView = navView;
     }
     return _navView;
 }
+-(void)back_lastController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)searchBarView{
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, _navView.maxY+8, kScreenWidth-62, 40)];
-    _searchBar.placeholder = @"请输入诊所的结算银行卡号";
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, _navView.maxY+8, kScreenWidth-42, 40)];
+    _searchBar.placeholder = @"请输入诊所名称的关键词";
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.delegate = self;
     [self.view addSubview:_searchBar];
     
     UIButton * searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
-    searchBtn.frame = CGRectMake(kScreenWidth-60, _navView.maxY+11, 52, 35);
-    searchBtn.backgroundColor = RGBCOLOR(37, 121, 228);
+    [searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    searchBtn.frame = CGRectMake(kScreenWidth-40, _navView.maxY+11, 35, 35);
     [searchBtn addTarget:self action:@selector(searchResult:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchBtn];
 }
@@ -59,48 +63,40 @@
     NSLog(@"开始搜索了");
 }
 
--(void)tabbarView{
-    UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49)];
-    dView.backgroundColor = [UIColor whiteColor];
-//    dView.layer.shadowRadius = 4.f;
-//    dView.layer.shadowOffset = CGSizeMake(0, 0);
-    dView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    dView.layer.shadowOpacity = 0.5f;
-    
-    UIButton * lastBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    lastBtn.frame = CGRectMake(10, 4, kScreenWidth/2-15, 40);
-    lastBtn.layer.borderWidth = 1;
-    lastBtn.layer.borderColor = [[UIColor colorFromHexCode:@"#b3b3b3"] CGColor];
-    lastBtn.layer.cornerRadius = 3;
-    lastBtn.clipsToBounds = YES;
-    [lastBtn setTitle:@"上一步" forState:UIControlStateNormal];
-    [lastBtn setTitleColor:[UIColor colorFromHexCode:@"#000000"] forState:UIControlStateNormal];
-    [lastBtn addTarget:self action:@selector(popLastPage:) forControlEvents:UIControlEventTouchUpInside];
-    [dView addSubview:lastBtn];
-    
-    UIButton * nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextBtn.frame = CGRectMake(kScreenWidth/2+5, 4, kScreenWidth/2-15, 40);
-    nextBtn.layer.borderWidth = 1;
-    nextBtn.layer.borderColor = [[UIColor colorFromHexCode:@"#b3b3b3"] CGColor];
-    nextBtn.layer.cornerRadius = 3;
-    nextBtn.clipsToBounds = YES;
-    [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
-    nextBtn.backgroundColor = [UIColor colorFromHexCode:@"#4399e9"];
-    [nextBtn setTitleColor:[UIColor colorFromHexCode:@"#ffffff"] forState:UIControlStateNormal];
-    [nextBtn addTarget:self action:@selector(jumpToAssoSuccess:) forControlEvents:UIControlEventTouchUpInside];
-    [dView addSubview:nextBtn];
-
-    
-    [self.view addSubview:dView];
+-(UITableView*)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+48, kScreenWidth, kScreenHeight-_navView.maxY-48) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    }
+    return _tableView;
 }
-// last / next button menthod
--(void)jumpToAssoSuccess:(UIButton*)sender{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 170.0;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ClinicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"clinic"];
+    if (!cell) {
+        cell = [[ClinicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"clinic"];
+    }
+    [cell setValuesForClinicName:@"华东医药股份有限公司药品分公司" leader:@"李邦良" address:@"杭州市上城区小营街道清泰街366号北五楼信息中心"];
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self jumpToAssoSuccess];
+    
+}
+//  is success
+-(void)jumpToAssoSuccess{
     AssoSuccessViewController * asso = [[AssoSuccessViewController alloc] init];
     asso.assoText = @"关联申请已经提交 请耐心等待审核";
     [self.navigationController pushViewController:asso animated:YES];
-}
--(void)popLastPage:(UIButton*)sender{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
