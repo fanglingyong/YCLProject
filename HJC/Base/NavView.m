@@ -34,7 +34,7 @@
         UIButton *leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, WidthXiShu(65), [self.class defualtHeight])];
         [leftBtn setImage:[GetImagePath getImagePath:@"share"] forState:UIControlStateNormal];
         [leftBtn setTitle:@"返回" forState:UIControlStateNormal];
-        leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5,0,0,0);//设置
+        leftBtn.imageEdgeInsets = UIEdgeInsetsMake(8,0,0,0);//设置
         [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         leftBtn.titleLabel.font = HEITI(HeightXiShu(16));
         [self addSubview:leftBtn];

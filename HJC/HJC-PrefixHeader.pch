@@ -69,7 +69,7 @@
 #define AllNineColor RGBCOLOR(153, 153, 153)
 
 #define BlackColor RGBCOLOR(0, 0, 0)
-#define NavColor RGBCOLOR(84, 149, 230)
+#define NavColor RGBCOLOR(240, 240, 240)
 #define TitleColor RGBCOLOR(76, 76, 76)//文字颜色
 #define PlaceholderColor RGBCOLOR(180, 180, 180)//输入框提示文字
 #define MessageColor RGBCOLOR(177, 177, 177)//提示性小文字
