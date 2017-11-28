@@ -145,9 +145,9 @@
         } else if (indexPath.row == 1) {
             OrderModel *model = self.modelArr[indexPath.row];
             static NSString* const identifier = @"OrderCell";
-            OrderCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            OrderListCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
             if (!orderCell) {
-                orderCell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                orderCell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             orderCell.model = model;

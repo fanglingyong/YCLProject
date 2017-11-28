@@ -7,13 +7,10 @@
 //
 
 #import "MyCenterViewController.h"
-#import "MyCenterHead.h"
-#import "MyCenterButton.h"
 #import "NavView.h"
-#import "OrderCenterViewController.h"
-
-@interface MyCenterViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MyCenterHeadDelegate, MyCenterButtonDelegate>
-@property(nonatomic,strong)MyCenterHead *headView;
+#import "MyOrderViewController.h"
+@interface MyCenterViewController ()
+@property(nonatomic,strong)NavView *navView;
 
 @end
 
@@ -22,11 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self statusBar];
+    [self navView];
+
     // Do any additional setup after loading the view.
     [self setUpHeaderRefresh:NO footerRefresh:NO];
-    [self.tableView setMinY:0 maxY:kScreenHeight - 44];
+    [self.tableView setMinY:64 maxY:kScreenHeight - 44];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableHeaderView = self.headView;
     self.tableView.backgroundColor = AllBackLightGratColor;
 
 }
@@ -52,33 +50,24 @@
     }else if(section == 1){
         return 2;
     }else if(section == 2){
-        return 3;
-    }else {
         return 2;
+    }else {
+        return 1;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
-        return HeightXiShu(70);
+        return HeightXiShu(250);
     }
-    if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            return HeightXiShu(40);
-        }
-        return HeightXiShu(70);
-    }
-    return HeightXiShu(40);
+    return HeightXiShu(50);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(8))];
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if(section == 0){
-        return 0;
-    }
     return HeightXiShu(10);
 }
 
@@ -93,237 +82,149 @@
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if(indexPath.section == 0){
         
-        UILabel *shopCountLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth / 2, HeightXiShu(40))];
-        shopCountLB.text = @"12";
-        shopCountLB.textAlignment = NSTextAlignmentCenter;
-        shopCountLB.font = HEITI(HeightXiShu(25));
-        [cell.contentView addSubview:shopCountLB];
+        UIButton *integralBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        integralBtn.frame = CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76));
+        integralBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [integralBtn setImage:[GetImagePath getImagePath:@"integral"] forState:UIControlStateNormal];
+        [integralBtn addTarget:self action:@selector(integralBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:integralBtn];
         
-        UILabel *shopListLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), kScreenWidth / 2, HeightXiShu(30))];
-        shopListLB.text = @"常用采购清单";
-        shopListLB.textAlignment = NSTextAlignmentCenter;
-        shopListLB.font = HEITI(HeightXiShu(15));
-        [cell.contentView addSubview:shopListLB];
         
-        UILabel *integralCountLB = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2, 0, kScreenWidth / 2, HeightXiShu(40))];
-        integralCountLB.text = @"199";
-        integralCountLB.textAlignment = NSTextAlignmentCenter;
-        integralCountLB.font = HEITI(HeightXiShu(25));
-        [cell.contentView addSubview:integralCountLB];
+        UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(24))];
+        integralLB.text = @"233分";
+        integralLB.textAlignment = NSTextAlignmentCenter;
+        integralLB.textColor = BlackColor;
+        integralLB.font = HEITI(HeightXiShu(19));
+        [cell.contentView addSubview:integralLB];
         
-        UILabel *integralBalanceLB = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2, HeightXiShu(40), kScreenWidth / 2, HeightXiShu(30))];
-        integralBalanceLB.text = @"积分余额";
-        integralBalanceLB.textAlignment = NSTextAlignmentCenter;
-        integralBalanceLB.font = HEITI(HeightXiShu(15));
-        [cell.contentView addSubview:integralBalanceLB];
+        UILabel *integralDeLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(65), WidthXiShu(75), HeightXiShu(15))];
+        integralDeLB.text = @"积分明细";
+        integralDeLB.textAlignment = NSTextAlignmentCenter;
+        integralDeLB.textColor = [UIColor whiteColor];
+        integralDeLB.font = HEITI(HeightXiShu(10));
+        [cell.contentView addSubview:integralDeLB];
         
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - .5, 0, 1, HeightXiShu(70))];
-        cutLine.backgroundColor = AllLightGrayColor;
-        [cell.contentView addSubview:cutLine];
+        UIButton *userImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - WidthXiShu(75), HeightXiShu(10), WidthXiShu(150), HeightXiShu(150))];
+        userImageBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [userImageBtn setImage:[GetImagePath getImagePath:@"headPortrait"] forState:UIControlStateNormal];
+        userImageBtn.layer.cornerRadius = userImageBtn.halfWidth;
+        userImageBtn.layer.borderWidth = .5;
+        userImageBtn.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
+        userImageBtn.layer.masksToBounds = YES;
+        [userImageBtn setImageEdgeInsets:UIEdgeInsetsMake(.5, .5, .5, .5)];
+        [userImageBtn addTarget:self action:@selector(userImageBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:userImageBtn];
+        
+        
+        UILabel *userNameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(180), kScreenWidth, HeightXiShu(25))];
+        userNameLB.text = @"王小明123";
+        userNameLB.textAlignment = NSTextAlignmentCenter;
+        userNameLB.textColor = BlackColor;
+        userNameLB.font = HEITI(HeightXiShu(18));
+        [cell.contentView addSubview:userNameLB];
+        
+        UILabel *clinicLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(206), kScreenWidth, HeightXiShu(20))];
+        clinicLB.text = @"杏联诊所(天水桥)";
+        clinicLB.textAlignment = NSTextAlignmentCenter;
+        clinicLB.textColor = TitleColor;
+        clinicLB.font = HEITI(HeightXiShu(14));
+        [cell.contentView addSubview:clinicLB];
         
     } else if(indexPath.section == 1){
         
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
+        titleLabel.text = @[@"我的订单", @"我的收藏"][indexPath.row];
+        titleLabel.textColor = TitleColor;
+        titleLabel.font = HEITI(HeightXiShu(15));
+        [cell.contentView addSubview:titleLabel];
+        
+        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
+        arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
+        [cell.contentView addSubview:arrowImgView];
+        
+        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
+        cutLine.backgroundColor = AllLightGrayColor;
         if (indexPath.row == 0) {
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(40))];
-            titleLabel.text = @"我的订单";
-            titleLabel.textColor = TitleColor;
-            titleLabel.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:titleLabel];
-            
-            UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth -  WidthXiShu(180), 0, WidthXiShu(170), HeightXiShu(40))];
-            moreLabel.text = @"查看更多订单>";
-            moreLabel.textAlignment = NSTextAlignmentRight;
-            moreLabel.textColor = TitleColor;
-            moreLabel.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:moreLabel];
-            
-            UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), kScreenWidth, HeightXiShu(.5))];
-            cutLine.backgroundColor = AllLightGrayColor;
             [cell.contentView addSubview:cutLine];
-            
-        } else {
-            
-            for (int i = 0; i < 5; i++) {
-                MyCenterButton *button = [[MyCenterButton alloc] initWithFrame:CGRectMake(kScreenWidth / 5 * i, 0, kScreenWidth / 5, HeightXiShu(70))];
-                button.labelTitle = @[@"待支付", @"待发货", @"待收货", @"已收货", @"退款/售后"][i];
-                button.delegate = self;
-                button.tag = i + 100;
-                [cell.contentView addSubview:button];
-                
-                UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake((kScreenWidth / 5 * i) - .5, 0, 1, HeightXiShu(70))];
-                cutLine.backgroundColor = AllLightGrayColor;
-                [cell.contentView addSubview:cutLine];
-                
-            }
-
         }
-
     } else if (indexPath.section == 2){
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(40))];
-        titleLabel.text = @[@"诊所信息", @"收货地址", @"付款银行卡"][indexPath.row];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
+        titleLabel.text = @[@"我的诊所", @"我的地址"][indexPath.row];
         titleLabel.textColor = TitleColor;
         titleLabel.font = HEITI(HeightXiShu(15));
         [cell.contentView addSubview:titleLabel];
         
-        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-WidthXiShu(16), HeightXiShu(13), WidthXiShu(8), HeightXiShu(13))];
-        arrowImgView.image = [GetImagePath getImagePath:@"myCenter_arrow"];
+        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
+        arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
         [cell.contentView addSubview:arrowImgView];
         
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), kScreenWidth, HeightXiShu(.5))];
+        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
         cutLine.backgroundColor = AllLightGrayColor;
-        [cell.contentView addSubview:cutLine];
-        
+        if (indexPath.row == 0) {
+            [cell.contentView addSubview:cutLine];
+        }
     } else {
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(40))];
-        titleLabel.text = @[@"帮助与反馈", @"退出登录"][indexPath.row];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
+        titleLabel.text = @[@"联系客服"][indexPath.row];
         titleLabel.textColor = TitleColor;
         titleLabel.font = HEITI(HeightXiShu(15));
         [cell.contentView addSubview:titleLabel];
         
-        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-WidthXiShu(16), HeightXiShu(13), WidthXiShu(8), HeightXiShu(13))];
-        arrowImgView.image = [GetImagePath getImagePath:@"myCenter_arrow"];
+        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
+        arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
         [cell.contentView addSubview:arrowImgView];
         
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), kScreenWidth, HeightXiShu(.5))];
-        cutLine.backgroundColor = AllLightGrayColor;
-        [cell.contentView addSubview:cutLine];
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 || indexPath.row == 0) {
-        OrderCenterViewController *VC = [[OrderCenterViewController alloc] init];
-        VC.selectType = 0;
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        NSLog(@"我的订单");
+        MyOrderViewController *VC = [[MyOrderViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-    } else if (indexPath.section == 2 || indexPath.row == 0) {
-        NSLog(@"诊所信息");
-    } else if (indexPath.section == 2 || indexPath.row == 1) {
-        NSLog(@"收货地址");
-    } else if (indexPath.section == 2 || indexPath.row == 2) {
-        NSLog(@"付款银行卡");
-    } else if (indexPath.section == 3 || indexPath.row == 0) {
-        NSLog(@"帮助与反馈");
-    } else if (indexPath.section == 3 || indexPath.row == 1) {
-        NSLog(@"退出登录");
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
+        NSLog(@"我的收藏");
+    } else if (indexPath.section == 2 && indexPath.row == 0) {
+        NSLog(@"我的诊所");
+    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        NSLog(@"我的地址");
+    } else if (indexPath.section == 3) {
+        NSLog(@"联系客服");
     }
     
 }
 #pragma mark - 页面元素
-- (MyCenterHead *)headView{
-    if(!_headView){
-        MyCenterHead *headView = [[MyCenterHead alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
-        headView.delegate = self;
-        _headView = headView;
+- (NavView *)navView{
+    if(!_navView){
+        NavView *navView = [NavView initNavView];
+        navView.minY = 20;
+        navView.backgroundColor = [UIColor whiteColor];
+        navView.titleLabel.text = @"个人中心";
+        [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        _navView = navView;
+        [self.view addSubview:_navView];
     }
-    return _headView;
+    return _navView;
+}
+#pragma mark - 事件
+- (void)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - head的delegate
 
-- (void)changeHeadClick{
-    __block typeof(self)wSelf = self;
-    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *loaclAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [wSelf localPhoto];
-    }];
-    UIAlertAction *takeAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [wSelf takePhoto];
-    }];
-    [alertControl addAction:cancelAction];
-    [alertControl addAction:loaclAction];
-    [alertControl addAction:takeAction];
-    [self presentViewController:alertControl animated:YES completion:nil];
-}
-
-#pragma mark - MyCenterButtonDelegate
-- (void)didMyCenterButton:(MyCenterButton *)myCenterButton {
+- (void)integralBtnAction {
     
-    NSLog(@"%ld", (long)myCenterButton.tag);
-    OrderCenterViewController *VC = [[OrderCenterViewController alloc] init];
+}
 
-    switch (myCenterButton.tag) {
-        case 100:
-            VC.selectType = 1;
-            NSLog(@"待支付");
-            break;
-        case 101:
-            VC.selectType = 2;
-            NSLog(@"待发货");
-            break;
-        case 102:
-            VC.selectType = 3;
-            NSLog(@"待收货");
-            break;
-        case 103:
-            VC.selectType = 4;
-            NSLog(@"已收货");
-            break;
-        case 104:
-            VC.selectType = 5;
-            NSLog(@"退款/售后");
-            break;
-        default:
-            break;
-    }
-    [self.navigationController pushViewController:VC animated:YES];
+- (void)userImageBtnAction {
     
 }
 
 
 #pragma mark - 接口
--(void)gotoAddImage:(NSData *)imageData image:(UIImage *)image{
 
-}
 
 #pragma mark - 选照片
-//开始拍照
--(void)takePhoto{
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
-    {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        //设置拍照后的图片可被编辑
-        picker.allowsEditing = YES;
-        picker.sourceType = sourceType;
-        [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
-    }else{
-        NSLog(@"模拟其中无法打开照相机,请在真机中使用");
-    }
-}
-
-//打开本地相册
--(void)localPhoto{
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    //设置选择后的图片可被编辑
-    picker.allowsEditing = YES;
-    [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
-}
-
-#pragma mark - UIImagePickerDelegate
-
-//当选择一张图片后进入这里
--(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    //UIImageWriteToSavedPhotosAlbum(image, self,nil, nil);
-    
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
-    //    imageData = UIImageJPEGRepresentation([GetImagePath getImagePath:@"001"], .3);
-    
-    //NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
-    [self gotoAddImage:imageData image:image];
-    //[self.headImgView setImage:image forState:UIControlStateNormal];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    NSLog(@"您取消了选择图片");
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end

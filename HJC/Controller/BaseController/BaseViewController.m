@@ -47,7 +47,7 @@
 -(UIView *)statusBar{
     if(!_statusBar){
         UIView *statusBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-        statusBar.backgroundColor = NavColor;
+        statusBar.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:statusBar];
         
         _statusBar = statusBar;

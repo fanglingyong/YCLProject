@@ -32,7 +32,7 @@
 - (UIButton *)leftBtn {
     if (!_leftBtn) {
         UIButton *leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, WidthXiShu(65), [self.class defualtHeight])];
-        [leftBtn setImage:[GetImagePath getImagePath:@"login_back"] forState:UIControlStateNormal];
+        [leftBtn setImage:[GetImagePath getImagePath:@"share"] forState:UIControlStateNormal];
         [leftBtn setTitle:@"返回" forState:UIControlStateNormal];
         leftBtn.imageEdgeInsets = UIEdgeInsetsMake(5,0,0,0);//设置
         [leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -47,7 +47,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, [self.class defualtHeight])];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = BlackColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = HEITI(HeightXiShu(18));
         [self insertSubview:label atIndex:0];
