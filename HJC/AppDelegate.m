@@ -30,8 +30,8 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     
-    [self jumpLogin];
-//    [self jumpMain];
+//    [self jumpLogin];
+    [self jumpMain];
     
     return YES;
 }

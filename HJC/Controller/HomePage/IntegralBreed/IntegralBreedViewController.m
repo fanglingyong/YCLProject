@@ -68,8 +68,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];
+    if (indexPath.row == 0) {
+        MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    } else {
+        
+    }
+
 }
 #pragma mark - 事件
 -(void)reloadData{

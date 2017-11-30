@@ -45,9 +45,7 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/1154433-d1131eb89323cd1e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/8390198-e0efc31aa87a32fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/1154433-a4cc27b8469fbb8e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
+   
 
     [self createAdScrollView];
     [self footerView];

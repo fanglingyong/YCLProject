@@ -9,6 +9,7 @@
 #import "MyOrderViewController.h"
 #import "NavView.h"
 #import "OrderCell.h"
+#import "OrderDetailViewController.h"
 
 @interface MyOrderViewController ()
 
@@ -89,8 +90,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    OrderDetailViewController *VC = [[OrderDetailViewController alloc] init];
-//    [self.navigationController pushViewController:VC animated:YES];
+    OrderDetailViewController *VC = [[OrderDetailViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 
@@ -107,7 +108,7 @@
         NavView *navView = [NavView initNavView];
         navView.minY = 20;
         navView.backgroundColor = [UIColor whiteColor];
-        navView.titleLabel.text = @"个人中心";
+        navView.titleLabel.text = @"我的订单";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         
         [navView.rightBtn setImage:[GetImagePath getImagePath:@"orderSearch"] forState:UIControlStateNormal];

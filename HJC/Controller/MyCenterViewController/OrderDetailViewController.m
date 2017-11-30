@@ -1,4 +1,4 @@
- //
+//
 //  OrderDetailViewController.m
 //  HJC
 //
@@ -26,7 +26,7 @@
     [self navView];
     [self.tableView setMinY:64 maxY:kScreenHeight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = AllBackLightGratColor;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
 }
 
@@ -45,7 +45,7 @@
     if(!_navView){
         NavView *navView = [NavView initNavView];
         navView.minY = 20;
-        navView.backgroundColor = NavColor;
+        navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"订单详情";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         _navView = navView;
@@ -144,10 +144,10 @@
             [cell.contentView addSubview:dateLabel];
         } else if (indexPath.row == 1) {
             OrderModel *model = self.modelArr[indexPath.row];
-            static NSString* const identifier = @"OrderCell";
-            OrderListCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            static NSString* const identifier = @"OrderDetailCell";
+            OrderDetailCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
             if (!orderCell) {
-                orderCell = [[OrderListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                orderCell = [[OrderDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             orderCell.model = model;
@@ -209,13 +209,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+

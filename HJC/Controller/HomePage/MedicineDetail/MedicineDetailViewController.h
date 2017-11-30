@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface MedicineDetailViewController : BaseTableViewController
+@interface MedicineDetailViewController : BaseViewController
 
 @end

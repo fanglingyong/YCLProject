@@ -201,18 +201,12 @@
         navView.minY = 20;
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
-        [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
 #pragma mark - 事件
-- (void)backAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
 - (void)integralBtnAction {
     
 }
