@@ -439,8 +439,7 @@
 -(UIImageView *)arrowImageView{
     if(!_arrowImageView){
         UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(23), HeightXiShu(25), WidthXiShu(16), HeightXiShu(20))];
-        arrowImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        arrowImageView.backgroundColor = [UIColor lightGrayColor];
+        arrowImageView.image = [GetImagePath getImagePath:@"right_arrow"];
         [self.contentView addSubview:arrowImageView];
         _arrowImageView = arrowImageView;
     }

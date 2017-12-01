@@ -9,6 +9,7 @@
 #import "MyCenterViewController.h"
 #import "NavView.h"
 #import "MyOrderViewController.h"
+#import "RegisterClinicViewController.h"
 @interface MyCenterViewController ()
 @property(nonatomic,strong)NavView *navView;
 
@@ -187,6 +188,9 @@
         NSLog(@"我的收藏");
     } else if (indexPath.section == 2 && indexPath.row == 0) {
         NSLog(@"我的诊所");
+        RegisterClinicViewController * VC = [[RegisterClinicViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+
     } else if (indexPath.section == 2 && indexPath.row == 1) {
         NSLog(@"我的地址");
     } else if (indexPath.section == 3) {
