@@ -37,10 +37,13 @@
 
 #define DataBasePath [[(NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)) lastObject]stringByAppendingPathComponent:@"JieBa.sqlite"]
 
+#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
 #define WidthXiShu(a) ((a) * kWidthXiShu)
 #define HeightXiShu(b) ((b) * kHeightXiShu)
 #define kWidthXiShu (kScreenWidth / 375.0)
-#define kHeightXiShu (kScreenHeight / 667.0)
+#define kHeightXiShu (kScreenHeight / Device)
+#define Device (iPhoneX ? 812.0 : 667.0)
 
 #define PingFangMedium @"PingFangSC-Medium"
 

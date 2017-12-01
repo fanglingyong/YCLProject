@@ -47,7 +47,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, [self.class defualtHeight])];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = BlackColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = HEITI(HeightXiShu(18));
         [self insertSubview:label atIndex:0];
