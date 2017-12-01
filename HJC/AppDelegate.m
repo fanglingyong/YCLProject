@@ -11,6 +11,7 @@
 
 #import "PasswordLoginViewController.h"
 #import "MainViewController.h"
+#import "ProcurementViewController.h"
 #import "MessageCenterViewController.h"
 #import "ShoppingCartViewController.h"
 #import "MyCenterViewController.h"
@@ -30,8 +31,8 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     
-    [self jumpLogin];
-//    [self jumpMain];
+//    [self jumpLogin];
+    [self jumpMain];
     
     return YES;
 }
@@ -52,40 +53,51 @@
  */
 -(void)jumpMain{
     MainViewController *main = [[MainViewController alloc] init];
-    [main.tabBarItem setImageInsets:UIEdgeInsetsMake(7.0, 0.0, -7.0, 0.0)];
+    [main.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
     main.tabBarItem.image = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     main.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     main.tabBarItem.title = @"首页";
     BaseNavigationController *mainNav = [[BaseNavigationController alloc] initWithRootViewController:main];
     mainNav.navigationBarHidden = YES;
     
-    MessageCenterViewController *message = [[MessageCenterViewController alloc] init];
-    [message.tabBarItem setImageInsets:UIEdgeInsetsMake(7.0, 0.0, -7.0, 0.0)];
-    message.tabBarItem.title = @"消息";
-    message.tabBarItem.image = [[UIImage imageNamed:@"message_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    message.tabBarItem.selectedImage = [[UIImage imageNamed:@"message_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    BaseNavigationController *messageNav = [[BaseNavigationController alloc] initWithRootViewController:message];
-    messageNav.navigationBarHidden = YES;
+    
+    ProcurementViewController *pro = [[ProcurementViewController alloc] init];
+    [pro.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    pro.tabBarItem.image = [[UIImage imageNamed:@"purchase_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    pro.tabBarItem.selectedImage = [[UIImage imageNamed:@"purchase_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    pro.tabBarItem.title = @"采购";
+    BaseNavigationController *proNav = [[BaseNavigationController alloc] initWithRootViewController:pro];
+    proNav.navigationBarHidden = YES;
     
     ShoppingCartViewController *shop = [[ShoppingCartViewController alloc] init];
-    [shop.tabBarItem setImageInsets:UIEdgeInsetsMake(7.0, 0.0, -7.0, 0.0)];
+    [shop.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
     shop.tabBarItem.title = @"购物车";
     shop.tabBarItem.image = [[UIImage imageNamed:@"shop_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     shop.tabBarItem.selectedImage = [[UIImage imageNamed:@"shop_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     BaseNavigationController *shopNav = [[BaseNavigationController alloc] initWithRootViewController:shop];
     shopNav.navigationBarHidden = YES;
     
+    
+    MessageCenterViewController *message = [[MessageCenterViewController alloc] init];
+    [message.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    message.tabBarItem.title = @"消息";
+    message.tabBarItem.image = [[UIImage imageNamed:@"message_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    message.tabBarItem.selectedImage = [[UIImage imageNamed:@"message_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    BaseNavigationController *messageNav = [[BaseNavigationController alloc] initWithRootViewController:message];
+    messageNav.navigationBarHidden = YES;
+    
+   
     MyCenterViewController *myCenter = [[MyCenterViewController alloc] init];
-    [myCenter.tabBarItem setImageInsets:UIEdgeInsetsMake(7.0, 0.0, -7.0, 0.0)];
+    [myCenter.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
     myCenter.tabBarItem.title = @"我的";
-    myCenter.tabBarItem.image = [[UIImage imageNamed:@"persom_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    myCenter.tabBarItem.image = [[UIImage imageNamed:@"person_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     myCenter.tabBarItem.selectedImage = [[UIImage imageNamed:@"person_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     BaseNavigationController *myCenterNav = [[BaseNavigationController alloc] initWithRootViewController:myCenter];
     myCenterNav.navigationBarHidden = YES;
     
     UITabBarController *tabbar = [[UITabBarController alloc] init];
     tabbar.delegate = self;
-    tabbar.viewControllers = @[mainNav,messageNav,shopNav,myCenterNav];
+    tabbar.viewControllers = @[mainNav, proNav, shopNav, messageNav,myCenterNav];
     self.tabBarController = tabbar;
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, tabbar.tabBar.height)];

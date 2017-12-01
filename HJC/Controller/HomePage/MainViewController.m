@@ -61,7 +61,7 @@
         navView.leftBtn.hidden = YES;
         [navView.rightBtn setImage:[GetImagePath getImagePath:@"MyCarInsurance_More@2x"] forState:UIControlStateNormal];
         navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, WidthXiShu(30), 0, 0);
-        [navView.rightBtn addTarget:self action:@selector(mycar_MoreClick) forControlEvents:UIControlEventTouchUpInside];
+//        [navView.rightBtn addTarget:self action:@selector(mycar_MoreClick) forControlEvents:UIControlEventTouchUpInside];
         
         _navView = navView;
         [self.view addSubview:_navView];

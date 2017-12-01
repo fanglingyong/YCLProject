@@ -1,20 +1,19 @@
 //
-//  MessageCenterViewController.m
+//  ProcurementViewController.m
 //  HJC
 //
-//  Created by zhifu360 on 2017/10/17.
+//  Created by 陈晨 on 2017/12/1.
 //  Copyright © 2017年 EastChina. All rights reserved.
 //
 
-#import "MessageCenterViewController.h"
+#import "ProcurementViewController.h"
 #import "NavView.h"
-
-@interface MessageCenterViewController ()
+@interface ProcurementViewController ()
 @property(nonatomic,strong)NavView *navView;
 
 @end
 
-@implementation MessageCenterViewController
+@implementation ProcurementViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,25 +29,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
-}
 
 #pragma mark - 页面元素
 
--(NavView *)navView{
+- (NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
         navView.minY = 20;
-        navView.backgroundColor = NavColor;
-        navView.titleLabel.text = @"消息中心";
-        navView.leftBtn.hidden = YES;
+        navView.backgroundColor = [UIColor whiteColor];
+        navView.titleLabel.text = @"采购";
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
+
 
 /*
 #pragma mark - Navigation
