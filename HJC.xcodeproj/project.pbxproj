@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		336FDB881FD11EFD00AFC918 /* ProcurementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 336FDB871FD11EFD00AFC918 /* ProcurementViewController.m */; };
+		336FDB8C1FD1264000AFC918 /* MainButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 336FDB8B1FD1256400AFC918 /* MainButtonCell.m */; };
 		3616EB0F1FB2D7D600CEF075 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB0E1FB2D7A800CEF075 /* CycleScrollView.m */; };
 		3616EB121FB2D9DE00CEF075 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB101FB2D9DD00CEF075 /* NSTimer+Addition.m */; };
 		3616EB161FB3063400CEF075 /* MerchandiseFooterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3616EB151FB3063400CEF075 /* MerchandiseFooterButton.m */; };
@@ -260,6 +261,8 @@
 /* Begin PBXFileReference section */
 		336FDB861FD11EFD00AFC918 /* ProcurementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcurementViewController.h; sourceTree = "<group>"; };
 		336FDB871FD11EFD00AFC918 /* ProcurementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcurementViewController.m; sourceTree = "<group>"; };
+		336FDB8A1FD1256400AFC918 /* MainButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainButtonCell.h; sourceTree = "<group>"; };
+		336FDB8B1FD1256400AFC918 /* MainButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainButtonCell.m; sourceTree = "<group>"; };
 		3616EB0D1FB2D7A800CEF075 /* CycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		3616EB0E1FB2D7A800CEF075 /* CycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		3616EB101FB2D9DD00CEF075 /* NSTimer+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
@@ -635,6 +638,15 @@
 			path = ProcurementController;
 			sourceTree = "<group>";
 		};
+		336FDB891FD1256400AFC918 /* HomePageButton */ = {
+			isa = PBXGroup;
+			children = (
+				336FDB8A1FD1256400AFC918 /* MainButtonCell.h */,
+				336FDB8B1FD1256400AFC918 /* MainButtonCell.m */,
+			);
+			path = HomePageButton;
+			sourceTree = "<group>";
+		};
 		3616EB0C1FB2D7A800CEF075 /* CycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +998,7 @@
 		3696F9901F95DC85000B9172 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				336FDB891FD1256400AFC918 /* HomePageButton */,
 				3675BBE21FB57E080030F914 /* ShoppingCartCell */,
 				3616EB131FB3060C00CEF075 /* MerchandiseFooterButton */,
 				361B94CD1FAC638800069AAD /* OrderCell */,
@@ -1648,6 +1661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				336FDB8C1FD1264000AFC918 /* MainButtonCell.m in Sources */,
 				3616EB0F1FB2D7D600CEF075 /* CycleScrollView.m in Sources */,
 				36965DA51FB04749006B93E4 /* IntegralBreedViewController.m in Sources */,
 				36965DA41FB04744006B93E4 /* AllBreedViewController.m in Sources */,
