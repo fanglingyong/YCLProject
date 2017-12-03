@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 #import "HJC-PrefixHeader.pch"
-@interface ProcurementViewController : BaseTableViewController
+@interface ProcurementViewController : BaseViewController
 
 @end
