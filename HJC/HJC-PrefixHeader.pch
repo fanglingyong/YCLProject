@@ -69,7 +69,7 @@
 #define AllNineColor RGBCOLOR(153, 153, 153)
 
 #define BlackColor RGBCOLOR(0, 0, 0)
-#define NavColor RGBCOLOR(240, 240, 240)
+#define NavColor RGBCOLOR(255, 255, 255)
 #define TitleColor RGBCOLOR(76, 76, 76)//文字颜色
 #define PlaceholderColor RGBCOLOR(180, 180, 180)//输入框提示文字
 #define MessageColor RGBCOLOR(177, 177, 177)//提示性小文字
@@ -78,4 +78,5 @@
 #define AllLightGrayColor RGBCOLOR(236,236,236)//分割线
 #define ButtonColor RGBCOLOR(40,156,235)//主按钮颜色
 
+#define sysBlue [UIColor colorFromHexCode:@"#3975e2"]
 

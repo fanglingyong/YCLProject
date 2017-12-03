@@ -41,7 +41,7 @@
         _noClinic = [[UILabel alloc] initWithFrame:CGRectMake(view.centerX-30, view.centerY-12, 60, 24)];
         _noClinic.text = @"绑定诊所";
         _noClinic.textColor = [UIColor grayColor];
-        [view addSubview:_clinicLeader];
+        [view addSubview:_noClinic];
         
         [self.contentView addSubview:view];
     }

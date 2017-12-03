@@ -103,6 +103,7 @@
 		4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */; };
 		4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */; };
 		4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */; };
+		453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 453137E21FD183530095B155 /* SmsCodeTextField.m */; };
 		4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */; };
 		4559C1231FCBE865005EC6BA /* code_25_25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0A81FCBE864005EC6BA /* code_25_25.png */; };
 		4559C1241FCBE865005EC6BA /* code_25_25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0A91FCBE864005EC6BA /* code_25_25@2x.png */; };
@@ -230,7 +231,6 @@
 		455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F291FAC3EA500805340 /* BindClinicViewController.m */; };
 		455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */; };
 		455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2E1FAC3EA600805340 /* LoginViewController.m */; };
-		455E1F3A1FAC3FA200805340 /* PasswordLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */; };
 		45BDBE281FB293BE001B9581 /* SelectBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BDBE271FB293BE001B9581 /* SelectBoxView.m */; };
 		45BDBE301FB2A323001B9581 /* select_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2A1FB2A323001B9581 /* select_up@3x.png */; };
 		45BDBE311FB2A323001B9581 /* select_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2B1FB2A323001B9581 /* select_down.png */; };
@@ -450,6 +450,8 @@
 		4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClinicViewController.m; sourceTree = "<group>"; };
 		4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssoSuccessViewController.h; sourceTree = "<group>"; };
 		4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssoSuccessViewController.m; sourceTree = "<group>"; };
+		453137E11FD183530095B155 /* SmsCodeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmsCodeTextField.h; sourceTree = "<group>"; };
+		453137E21FD183530095B155 /* SmsCodeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsCodeTextField.m; sourceTree = "<group>"; };
 		4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserViewController.h; sourceTree = "<group>"; };
 		4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterUserViewController.m; sourceTree = "<group>"; };
 		4559C0A81FCBE864005EC6BA /* code_25_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = code_25_25.png; sourceTree = "<group>"; };
@@ -582,8 +584,6 @@
 		455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		455E1F2D1FAC3EA500805340 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		455E1F2E1FAC3EA600805340 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		455E1F2F1FAC3EA600805340 /* PasswordLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordLoginViewController.h; sourceTree = "<group>"; };
-		455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordLoginViewController.m; sourceTree = "<group>"; };
 		455E1F311FAC3EBC00805340 /* NSData+Anima.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Anima.h"; sourceTree = "<group>"; };
 		455E1F321FAC3EBC00805340 /* NSData+Anima.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Anima.m"; sourceTree = "<group>"; };
 		45BDBE261FB293BE001B9581 /* SelectBoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBoxView.h; sourceTree = "<group>"; };
@@ -683,13 +683,6 @@
 				361B94D31FAC684200069AAD /* OrderModel.m */,
 			);
 			path = OrderModel;
-			sourceTree = "<group>";
-		};
-		36430B451F9DB748001709DD /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		36430B761F9DB8DE001709DD /* StageChooseView */ = {
@@ -1049,6 +1042,8 @@
 				45BDBE271FB293BE001B9581 /* SelectBoxView.m */,
 				4559C19B1FCBFF79005EC6BA /* TextFiledView.h */,
 				4559C19C1FCBFF79005EC6BA /* TextFiledView.m */,
+				453137E11FD183530095B155 /* SmsCodeTextField.h */,
+				453137E21FD183530095B155 /* SmsCodeTextField.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1060,7 +1055,6 @@
 				45BDBE431FB33420001B9581 /* AssoSuccess */,
 				45BDBE3C1FB32DBF001B9581 /* DefaultIcon */,
 				45BDBE291FB2A2EA001B9581 /* SelectBox */,
-				36430B451F9DB748001709DD /* Tabbar */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1379,8 +1373,6 @@
 				455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */,
 				455E1F2D1FAC3EA500805340 /* LoginViewController.h */,
 				455E1F2E1FAC3EA600805340 /* LoginViewController.m */,
-				455E1F2F1FAC3EA600805340 /* PasswordLoginViewController.h */,
-				455E1F301FAC3EA600805340 /* PasswordLoginViewController.m */,
 				4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */,
 				4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */,
 			);
@@ -1666,10 +1658,10 @@
 				36965DA51FB04749006B93E4 /* IntegralBreedViewController.m in Sources */,
 				36965DA41FB04744006B93E4 /* AllBreedViewController.m in Sources */,
 				455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */,
+				453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */,
 				455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */,
 				3616EB161FB3063400CEF075 /* MerchandiseFooterButton.m in Sources */,
 				455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */,
-				455E1F3A1FAC3FA200805340 /* PasswordLoginViewController.m in Sources */,
 				36624ED11FA9BDD300F58A94 /* MyCenterHead.m in Sources */,
 				336FDB881FD11EFD00AFC918 /* ProcurementViewController.m in Sources */,
 				36430BBC1F9DBF8F001709DD /* UIButton+WebCache.m in Sources */,
