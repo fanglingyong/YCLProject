@@ -9,6 +9,7 @@
 #import "RegisterUserViewController.h"
 #import "NavView.h"
 #import "TextFiledView.h"
+#import "SmsCodeTextField.h"
 
 @interface RegisterUserViewController ()
 
@@ -16,13 +17,17 @@
 @property (nonatomic,strong) TextFiledView *account;
 @property (nonatomic,strong) TextFiledView *password;
 @property (nonatomic,strong) TextFiledView *againpswd;
+@property (nonatomic,strong) TextFiledView *phonenumber;
+@property (nonatomic,strong) SmsCodeTextField *smsCode;
 @property (nonatomic,strong) UIButton * isSelectXY;
+
 @end
 
 @implementation RegisterUserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self statusBar];
     [self.view addSubview:self.navView];
     [self createUI];
     // Do any additional setup after loading the view.
@@ -42,7 +47,6 @@
     }
     return _navView;
 }
-
 -(void)backLastController_menthod{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -63,11 +67,21 @@
     _againpswd.leftView.image = [UIImage imageNamed:@"password_25_25"];
     _againpswd.textField.secureTextEntry = YES;//暗文
     
+    self.phonenumber = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _againpswd.maxY+10, kScreenWidth-50, 35)];
+    _phonenumber.textField.placeholder = @"请输入手机号";
+    _phonenumber.leftView.image = [UIImage imageNamed:@"code_25_25"];
+    
+    self.smsCode = [[SmsCodeTextField alloc] initWithFrame:CGRectMake(25, _phonenumber.maxY+10, kScreenWidth-50, 35)];
+    _smsCode.textField.placeholder = @"请输入短信验证码";
+    _smsCode.leftView.image = [UIImage imageNamed:@"code_25_25"];
+    
     [self.view addSubview:_account];
     [self.view addSubview:_password];
     [self.view addSubview:_againpswd];
+    [self.view addSubview:_phonenumber];
+    [self.view addSubview:_smsCode];
     
-    UIView *tosView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-135, _againpswd.maxY+20, 270, 22)];
+    UIView *tosView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-135, _smsCode.maxY+50, 270, 22)];
     
     self.isSelectXY = [UIButton buttonWithType:UIButtonTypeCustom];
     _isSelectXY.frame = CGRectMake(0, 0, 22, 22);
@@ -93,7 +107,7 @@
     [rgBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rgBtn.layer.cornerRadius = 5;
     rgBtn.clipsToBounds = YES;
-    rgBtn.backgroundColor = [UIColor colorFromHexCode:@"#3975e2"];
+    rgBtn.backgroundColor = sysBlue;
     [rgBtn addTarget:self action:@selector(registerAccountMenthod:) forControlEvents:UIControlEventTouchUpInside];
     
     [tosView addSubview:_isSelectXY];
@@ -108,10 +122,10 @@
 }
 -(void)jumpProtocolHtml{
     //jump protocol web page
-    NSLog(@"hehuimin");
+    NSLog(@"jump--->hehuimin");
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
-    
+    NSLog(@"注册成功!!!");
 }
 
 - (void)didReceiveMemoryWarning {

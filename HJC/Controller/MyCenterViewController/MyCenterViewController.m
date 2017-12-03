@@ -10,6 +10,9 @@
 #import "NavView.h"
 #import "MyOrderViewController.h"
 #import "RegisterClinicViewController.h"
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
+
 @interface MyCenterViewController ()
 @property(nonatomic,strong)NavView *navView;
 
@@ -205,12 +208,20 @@
         navView.minY = 20;
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
+        [navView.leftBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
 #pragma mark - 事件
+-(void)loginAction{
+    LoginViewController *login = [[LoginViewController alloc] init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:login];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
+}
 - (void)integralBtnAction {
     
 }

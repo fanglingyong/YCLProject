@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "BaseNavigationController.h"
 
-#import "PasswordLoginViewController.h"
+#import "LoginViewController.h"
 #import "MainViewController.h"
 #import "ProcurementViewController.h"
 #import "MessageCenterViewController.h"
@@ -30,8 +30,6 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
-    
-//    [self jumpLogin];
     [self jumpMain];
     
     return YES;
@@ -41,7 +39,7 @@
  登陆视图 window
  */
 -(void)jumpLogin{
-    PasswordLoginViewController * login = [[PasswordLoginViewController alloc]init];
+    LoginViewController * login = [[LoginViewController alloc]init];
     BaseNavigationController *loginNav = [[BaseNavigationController alloc] initWithRootViewController:login];
     loginNav.navigationBarHidden = YES;
     self.window.rootViewController = loginNav;

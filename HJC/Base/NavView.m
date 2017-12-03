@@ -25,6 +25,9 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self == [super initWithFrame:frame]){
         [self leftBtn];
+        UIView *fg = [[UIView alloc] initWithFrame:CGRectMake(0, self.maxY-1, kScreenWidth, 1)];
+        fg.backgroundColor = [UIColor colorFromHexCode:@"#d6d6d8"];
+        [self addSubview:fg];
     }
     return self;
 }

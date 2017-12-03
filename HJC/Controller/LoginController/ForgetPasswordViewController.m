@@ -8,9 +8,19 @@
 
 #import "ForgetPasswordViewController.h"
 #import "BindClinicViewController.h"
-#import "AppDelegate.h"
+#import "NavView.h"
+#import "TextFiledView.h"
+#import "SmsCodeTextField.h"
 
 @interface ForgetPasswordViewController ()
+
+@property (nonatomic,strong) NavView *navView;
+@property (nonatomic,strong) TextFiledView *account;
+@property (nonatomic,strong) TextFiledView *password;
+@property (nonatomic,strong) TextFiledView *againpswd;
+@property (nonatomic,strong) TextFiledView *phonenumber;
+@property (nonatomic,strong) SmsCodeTextField *smsCode;
+
 
 @end
 
@@ -18,147 +28,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createUIMenthed];
+    [self statusBar];
+    [self.view addSubview:self.navView];
+    [self createUI];
     // Do any additional setup after loading the view.
 }
 
-
 //UI布局
--(void)createUIMenthed{
-    
-    UIButton * pwPageBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    pwPageBtn.frame = CGRectMake(8, 30, 70, 30);
-    [pwPageBtn setTitle:@"密码登陆" forState:UIControlStateNormal];
-    [pwPageBtn addTarget:self action:@selector(jumpLastControllerMenthod:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake([self.view centerX]-40, 100, 80, 80)];
-    logo.image = [UIImage imageNamed:@"logo"];
-    
-    UILabel * name = [[UILabel alloc] initWithFrame:CGRectMake(8, 188, kScreenWidth-16, 22)];
-    name.textAlignment = NSTextAlignmentCenter;
-    name.font = [UIFont systemFontOfSize:15];
-    name.text =@"华东药联采提供服务";
-    name.textColor = RGBACOLOR(118, 135, 156, 1);
-    
-    UIButton * sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame = CGRectMake(20, kScreenHeight-92, kScreenWidth-40, 40);
-    [sureBtn setTitle:@"确认并登陆" forState:UIControlStateNormal];
-    [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    sureBtn.layer.cornerRadius = 5;
-    sureBtn.clipsToBounds = YES;
-    sureBtn.backgroundColor = RGBACOLOR(67, 155, 234, 1);
-    [sureBtn addTarget:self action:@selector(sureForLoginActionMenthod:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:pwPageBtn];
-    [self.view addSubview:logo];
-    [self.view addSubview:name];
-    [self.view addSubview:[self textfiledView]];
-    [self.view addSubview:sureBtn];
-    [self.view addSubview:[self termsOfServiceView]];
+-(NavView *)navView{
+    if(!_navView){
+        NavView *navView = [NavView initNavView];
+        navView.minY = kStateHeight;
+        navView.backgroundColor = NavColor;
+        navView.titleLabel.text = @"找回密码";
+        navView.titleLabel.textColor = [UIColor blackColor];
+        navView.titleLabel.font = [UIFont systemFontOfSize:18];
+        navView.leftBtn.hidden = NO;
+        navView.rightBtn.hidden = YES;
+        [navView.leftBtn addTarget:self action:@selector(backLastController_menthod) forControlEvents:UIControlEventTouchUpInside];
+        _navView = navView;
+    }
+    return _navView;
 }
 
--(void)jumpLastControllerMenthod:(UIButton *)sender{
+-(void)backLastController_menthod{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-/**
- this is sure button menthod for jump home page
- 
- @param sender sure button
- */
-- (void)sureForLoginActionMenthod:(UIButton *)sender{
-    /** jumpMain
-     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-     [appDelegate jumpMain];
-     */
-    /**jump bind clinic
-     BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
-     [self.navigationController pushViewController:bindClinic animated:YES];
-
-     */
+- (void)createUI{
+    
+    self.account = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _navView.maxY+40, kScreenWidth-50, 35)];
+    _account.textField.placeholder = @"请输入预留的手机号";
+    _account.leftView.image = [UIImage imageNamed:@"user_25_25"];
+    
+    self.password = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _account.maxY+10, kScreenWidth-50, 35)];
+    _password.textField.placeholder = @"请输入密码";
+    _password.leftView.image = [UIImage imageNamed:@"password_25_25"];
+    _password.textField.secureTextEntry = YES;//暗文
+    
+    self.againpswd = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _password.maxY+10, kScreenWidth-50, 35)];
+    _againpswd.textField.placeholder = @"再输入一次密码";
+    _againpswd.leftView.image = [UIImage imageNamed:@"password_25_25"];
+    _againpswd.textField.secureTextEntry = YES;//暗文
+    
+    self.smsCode = [[SmsCodeTextField alloc] initWithFrame:CGRectMake(25, _againpswd.maxY+10, kScreenWidth-50, 35)];
+    _smsCode.textField.placeholder = @"请输入短信验证码";
+    _smsCode.leftView.image = [UIImage imageNamed:@"code_25_25"];
+    
+    [self.view addSubview:_account];
+    [self.view addSubview:_password];
+    [self.view addSubview:_againpswd];
+    [self.view addSubview:_smsCode];
+    
+    UIButton * rgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rgBtn.frame = CGRectMake(25, _smsCode.maxY+50, kScreenWidth-50, 40);
+    [rgBtn setTitle:@"确认修改" forState:UIControlStateNormal];
+    [rgBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rgBtn.layer.cornerRadius = 5;
+    rgBtn.clipsToBounds = YES;
+    rgBtn.backgroundColor = sysBlue;
+    [rgBtn addTarget:self action:@selector(registerAccountMenthod:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:rgBtn];
 }
 
-/**
- create view
- 
- @return 返回一个带有输入框的view
- */
--(UIView *)textfiledView{
-    UIView * tfView = [[UIView alloc] initWithFrame:CGRectMake(20, 240, kScreenWidth-40, 203)];
-    tfView.backgroundColor = [UIColor cloudsColor];
-    tfView.layer.borderWidth = 1;
-    tfView.layer.borderColor = [RGBCOLOR(193, 204, 213) CGColor];
-    
-    UITextField * account = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, tfView.width-20, 30)];
-    account.placeholder = @"请输入手机号";
-    
-    UIView * h_x_1 = [[UIView alloc] initWithFrame:CGRectMake(0, 50, tfView.width, 1)];
-    h_x_1.backgroundColor = RGBCOLOR(193, 204, 213);
-    
-    UITextField* vailCode = [[UITextField alloc] initWithFrame:CGRectMake(10, 61, tfView.width-130, 30)];
-    vailCode.placeholder = @"请输入验证码";
-    
-    UIButton * vailBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    vailBtn.frame = CGRectMake(tfView.width-110, 60, 100, 32);
-    [vailBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [vailBtn setTitleColor:RGBCOLOR(116, 133, 147) forState:UIControlStateNormal];
-    vailBtn.layer.borderColor = [RGBCOLOR(116, 133, 147) CGColor];
-    vailBtn.layer.borderWidth = 1;
-    [vailBtn addTarget:self action:@selector(getVailCode:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView * h_x_2 = [[UIView alloc] initWithFrame:CGRectMake(0, 101, tfView.width, 1)];
-    h_x_2.backgroundColor = RGBCOLOR(193, 204, 213);
-    
-    UITextField * password = [[UITextField alloc] initWithFrame:CGRectMake(10, 112, tfView.width-20, 30)];
-    password.placeholder = @"请输入密码";
-    
-    UIView * h_x_3 = [[UIView alloc] initWithFrame:CGRectMake(0, 152, tfView.width, 1)];
-    h_x_3.backgroundColor = RGBCOLOR(193, 204, 213);
-    
-    UITextField * password_again = [[UITextField alloc] initWithFrame:CGRectMake(10, 163, tfView.width-20, 30)];
-    password_again.placeholder = @"请输入密码进行确认";
-    
-    
-    [tfView addSubview:account];
-    [tfView addSubview:h_x_1];
-    [tfView addSubview:vailCode];
-    [tfView addSubview:vailBtn];
-    [tfView addSubview:h_x_2];
-    [tfView addSubview:password];
-    [tfView addSubview:h_x_3];
-    [tfView addSubview:password_again];
-    return tfView;
-}
-
--(void) getVailCode:(UIButton*)sender {
-    NSLog(@"获取验证码");
-}
-/**
- create view
- 
- @return 返回一个服务条款同意view
- */
--(UIView *)termsOfServiceView{
-    UIView *tosView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-111, kScreenHeight-42, 222, 22)];
-    
-    UIButton * select = [UIButton buttonWithType:UIButtonTypeCustom];
-    select.frame = CGRectMake(0, 0, 22, 22);
-    [select setTitle:@"Y" forState:UIControlStateNormal];
-    [select setTitle:@"N" forState:UIControlStateSelected];
-    select.backgroundColor = [UIColor blueColor];
-    [select addTarget:self action:@selector(selectTersOfService:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UILabel *content = [[UILabel alloc] initWithFrame:CGRectMake(22, 0, 200, 22)];
-    content.text = @"我已阅读并接受《服务条款》";
-    content.font = [UIFont systemFontOfSize:15];
-    content.textColor = [UIColor grayColor];
-    
-    [tosView addSubview:select];
-    [tosView addSubview:content];
-    return tosView;
-}
--(void)selectTersOfService:(UIButton *)sender{
-    sender.selected = !sender.selected;
+-(void)registerAccountMenthod:(UIButton*)sender{
+    NSLog(@"----->修改!!!");
 }
 
 

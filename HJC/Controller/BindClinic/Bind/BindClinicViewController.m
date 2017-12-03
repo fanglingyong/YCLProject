@@ -12,10 +12,16 @@
 #import "RegisterClinicViewController.h"
 #import "ClinicCell.h"
 
-@interface BindClinicViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface BindClinicViewController ()
 
 @property(nonatomic,strong) NavView * navView;
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) UIImageView *bindStatus;
+@property (nonatomic,strong) UILabel *clinicNmae;
+@property (nonatomic,strong) UILabel *clinicLeader;
+@property (nonatomic,strong) UILabel *clinicAddress;
+@property (nonatomic,strong) UILabel *noClinic;
+@property (nonatomic,strong) UIView  *clinicView;
 
 @end
 
@@ -37,9 +43,7 @@
         navView.titleLabel.text = @"我的诊所";
         navView.titleLabel.textColor = [UIColor blackColor];
         [navView.leftBtn addTarget:self action:@selector(back_lastController) forControlEvents:UIControlEventTouchUpInside];
-        [navView.rightBtn setImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
-        navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-        [navView.rightBtn addTarget:self action:@selector(showAlertViewController) forControlEvents:UIControlEventTouchUpInside];
+        navView.rightBtn.hidden = YES;
         _navView = navView;
     }
     return _navView;
@@ -49,6 +53,10 @@
 }
 -(void)showAlertViewController{
     UIAlertController *alControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alControl addAction:[UIAlertAction actionWithTitle:@"注册并绑定诊所" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //添加
+        [self jumpToRegisterAccount];
+    }]];
     [alControl addAction:[UIAlertAction actionWithTitle:@"绑定已有诊所" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         //添加
         [self jumpToBindAccount];
@@ -60,39 +68,59 @@
         
     }];
 }
-/**
- create UI
- */
+//loadUI
 -(void)loadUI{
+    self.clinicView = [[UIView alloc] initWithFrame:CGRectMake(10, _navView.maxY+30, kScreenWidth-20, 150)];
+    _clinicView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
+    _clinicView.backgroundColor = [UIColor whiteColor];
+    _clinicView.clipsToBounds = YES;
+    _clinicView.layer.cornerRadius = 5;
     
-    [self.view addSubview:self.tableView];
-}
--(UITableView*)tableView{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY, kScreenWidth, kScreenHeight-_navView.maxY) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
-        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    }
-    return _tableView;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 170.0;
-}
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ClinicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"clinic"];
-    if (!cell) {
-        cell = [[ClinicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"clinic"];
-    }
-    [cell setValuesForClinicName:@"华东医药股份有限公司药品分公司" leader:@"李邦良" address:@"杭州市上城区小营街道清泰街366号北五楼信息中心"];
-    return cell;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _bindStatus = [[UIImageView alloc] initWithFrame:CGRectMake(_clinicView.maxX-60, 10, 37, 16)];
+    _bindStatus.image = [UIImage imageNamed:@"didBin"];
+    [_clinicView addSubview:_bindStatus];
     
+    _clinicNmae = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, _clinicView.maxX-20, 30)];
+    _clinicNmae.font = [UIFont systemFontOfSize:17 weight:600];
+    [_clinicView addSubview:_clinicNmae];
+    
+    _clinicLeader = [[UILabel alloc] initWithFrame:CGRectMake(10, 63, _clinicView.maxX-20, 24)];
+    _clinicLeader.font = [UIFont systemFontOfSize:15];
+    [_clinicView addSubview:_clinicLeader];
+    
+    _clinicAddress = [[UILabel alloc] initWithFrame:CGRectMake(10, 87, _clinicView.maxX-20, 48)];
+    _clinicAddress.numberOfLines = 2;
+    _clinicAddress.textColor = [UIColor grayColor];
+    _clinicAddress.font = [UIFont systemFontOfSize:14];
+    [_clinicView addSubview:_clinicAddress];
+    
+    _noClinic = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, _clinicView.maxX-20, 30)];
+    _noClinic.text = @"点击绑定诊所或注册诊所";
+    _noClinic.textAlignment = NSTextAlignmentCenter;
+    _noClinic.textColor = [UIColor grayColor];
+    [_clinicView addSubview:_noClinic];
+    
+    UITapGestureRecognizer *clinicClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAlertViewController)];
+    [_clinicView addGestureRecognizer:clinicClick];
+    
+    [self.view addSubview:_clinicView];
+    [self setNoData];
+}
+-(void)setValuesForClinicName:(NSString*)name leader:(NSString*)leader address:(NSString*)address{
+    _clinicNmae.text = name;
+    _clinicLeader.text = leader;
+    _clinicAddress.text = address;
+    _bindStatus.hidden = NO;
+    _noClinic.hidden = YES;
+    _clinicView.userInteractionEnabled = NO;
+}
+-(void)setNoData{
+    _clinicNmae.hidden = YES;
+    _clinicLeader.hidden = YES;
+    _clinicAddress.hidden = YES;
+    _bindStatus.hidden = YES;
+    _noClinic.hidden = NO;
+    _clinicView.userInteractionEnabled = YES;
 }
 #pragma mark - other
 -(void) jumpToBindAccount{
