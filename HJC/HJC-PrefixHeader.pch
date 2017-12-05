@@ -32,8 +32,23 @@
 #endif
 
 #define APPVER @"1.0"
-#define serverAddress @"http://service.lingqianzaixian.com"
-//#define serverAddress @"http://service.jieba360.com"
+
+#define HostPath @"http://120.26.97.79/WebApi/api"
+
+
+#define RegisterURL @"/WebApi/api/NewPerson"
+#define LoginURL @"/api/v6_Login"
+#define RegClinicURL @"/BTN_CORP_INFO_SAVE"
+#define BindClinicURL @"/BTN_CORP_USE_SAVE"
+#define PpdateCorpAddressURL @"/WebApi/api/BTN_CORPADDRESS_INFO_SAVE"
+#define GetCorpAddressURL @"/QN_CORPADDRESS_LIST"
+#define GetGoodsListURL @"/QN_GOODS_LIST_FORORDER"
+#define JoinShopCarURL @"/BTN_VECHILE_ITEM_OPERATER"
+#define ProOrderURL @"/BTN_VECHILE_ITEM_OPERATER"
+#define GetShopCarInfo @"/QN_VEHICLE_LIST_STD"
+#define GetHostInfo @"/Producer"
+#define GetClinicList @"/Custom"
+
 
 #define DataBasePath [[(NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES)) lastObject]stringByAppendingPathComponent:@"JieBa.sqlite"]
 

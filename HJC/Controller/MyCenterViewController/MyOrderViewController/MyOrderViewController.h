@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface MyOrderViewController : BaseTableViewController
+@interface MyOrderViewController : BaseViewController
 
 @end

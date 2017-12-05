@@ -15,6 +15,8 @@
 #import "MessageCenterViewController.h"
 #import "ShoppingCartViewController.h"
 #import "MyCenterViewController.h"
+#import "BaseApi.h"
+#import "EncrtDecrt.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -29,8 +31,28 @@
     // Override point for customization after application launch.
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [BaseApi getProducerWithBlock:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"dict%@", dict);
+        }
+    } dic:nil noNetWork:nil];
+    
+    
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setObject:@"" forKey:@""];
+    [param setObject:@"" forKey:@""];
 
+    [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"dict%@", dict);
+        }
+    } dic:nil noNetWork:nil];
+    [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
+        
+    } dic:param noNetWork:nil];
+    
     [self jumpMain];
+
     
     return YES;
 }
@@ -51,45 +73,55 @@
  */
 -(void)jumpMain{
     MainViewController *main = [[MainViewController alloc] init];
-    [main.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    [main.tabBarItem setImageInsets:UIEdgeInsetsMake(-7.0, 0.0, -5.0, 0.0)];
     main.tabBarItem.image = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     main.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     main.tabBarItem.title = @"首页";
+    [main.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"#f5b741"]} forState:UIControlStateSelected];
+    [main.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -3.0)];
     BaseNavigationController *mainNav = [[BaseNavigationController alloc] initWithRootViewController:main];
     mainNav.navigationBarHidden = YES;
     
     
     ProcurementViewController *pro = [[ProcurementViewController alloc] init];
-    [pro.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    [pro.tabBarItem setImageInsets:UIEdgeInsetsMake(-7.0, 0.0, -5.0, 0.0)];
     pro.tabBarItem.image = [[UIImage imageNamed:@"purchase_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     pro.tabBarItem.selectedImage = [[UIImage imageNamed:@"purchase_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     pro.tabBarItem.title = @"采购";
+    [pro.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"#f5b741"]} forState:UIControlStateSelected];
+    [pro.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -3.0)];
     BaseNavigationController *proNav = [[BaseNavigationController alloc] initWithRootViewController:pro];
     proNav.navigationBarHidden = YES;
     
     ShoppingCartViewController *shop = [[ShoppingCartViewController alloc] init];
-    [shop.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    [shop.tabBarItem setImageInsets:UIEdgeInsetsMake(-7.0, 0.0, -5.0, 0.0)];
     shop.tabBarItem.title = @"购物车";
     shop.tabBarItem.image = [[UIImage imageNamed:@"shop_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     shop.tabBarItem.selectedImage = [[UIImage imageNamed:@"shop_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [shop.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"#f5b741"]} forState:UIControlStateSelected];
+    [shop.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -3.0)];
     BaseNavigationController *shopNav = [[BaseNavigationController alloc] initWithRootViewController:shop];
     shopNav.navigationBarHidden = YES;
     
     
     MessageCenterViewController *message = [[MessageCenterViewController alloc] init];
-    [message.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
+    [message.tabBarItem setImageInsets:UIEdgeInsetsMake(-7.0, 0.0, -5.0, 0.0)];
     message.tabBarItem.title = @"消息";
     message.tabBarItem.image = [[UIImage imageNamed:@"message_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     message.tabBarItem.selectedImage = [[UIImage imageNamed:@"message_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [message.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"#f5b741"]} forState:UIControlStateSelected];
+    [message.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -3.0)];
     BaseNavigationController *messageNav = [[BaseNavigationController alloc] initWithRootViewController:message];
     messageNav.navigationBarHidden = YES;
     
    
     MyCenterViewController *myCenter = [[MyCenterViewController alloc] init];
-    [myCenter.tabBarItem setImageInsets:UIEdgeInsetsMake(0.0, 0.0, -7.0, 0.0)];
-    myCenter.tabBarItem.title = @"我的";
+    [myCenter.tabBarItem setImageInsets:UIEdgeInsetsMake(-7.0, 0.0, -5.0, 0.0)];
+    myCenter.tabBarItem.title = @"个人中心";
     myCenter.tabBarItem.image = [[UIImage imageNamed:@"person_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     myCenter.tabBarItem.selectedImage = [[UIImage imageNamed:@"person_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [myCenter.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"#f5b741"]} forState:UIControlStateSelected];
+    [myCenter.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -3.0)];
     BaseNavigationController *myCenterNav = [[BaseNavigationController alloc] initWithRootViewController:myCenter];
     myCenterNav.navigationBarHidden = YES;
     

@@ -86,27 +86,16 @@
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if(indexPath.section == 0){
         
-        UIButton *integralBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        integralBtn.frame = CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76));
-        integralBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [integralBtn setImage:[GetImagePath getImagePath:@"integral"] forState:UIControlStateNormal];
-        [integralBtn addTarget:self action:@selector(integralBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:integralBtn];
+        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76))];
+        integralImg.image = [GetImagePath getImagePath:@"integral"];
+        [cell.contentView addSubview:integralImg];
         
-        
-        UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(24))];
+        UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(30))];
         integralLB.text = @"233分";
         integralLB.textAlignment = NSTextAlignmentCenter;
         integralLB.textColor = BlackColor;
         integralLB.font = HEITI(HeightXiShu(19));
         [cell.contentView addSubview:integralLB];
-        
-        UILabel *integralDeLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(65), WidthXiShu(75), HeightXiShu(15))];
-        integralDeLB.text = @"积分明细";
-        integralDeLB.textAlignment = NSTextAlignmentCenter;
-        integralDeLB.textColor = [UIColor whiteColor];
-        integralDeLB.font = HEITI(HeightXiShu(10));
-        [cell.contentView addSubview:integralDeLB];
         
         UIButton *userImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - WidthXiShu(75), HeightXiShu(10), WidthXiShu(150), HeightXiShu(150))];
         userImageBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;

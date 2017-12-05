@@ -11,7 +11,8 @@
 #import "HDDropdownButton.h"
 #import "DropdownSimpleView.h"
 #import "Procurement.h"
-
+#import "ProcurementModel.h"
+#import "ProcurementCell.h"
 #import "MJRefresh.h"
 
 @interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate>
@@ -103,7 +104,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 
@@ -177,6 +178,8 @@
     } else {
     }
     
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     NSLog(@"%@", dic);
     
 //    [JiltOrderApi watchOthersOrderListGoldAgentBlock:^(NSMutableArray *array, NSError *error) {
@@ -300,27 +303,45 @@
     }
     return _navView;
 }
+#pragma mark - tableView delegate dataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return HeightXiShu(10);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
+    view.backgroundColor = AllLightGrayColor;
+    return view;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return HeightXiShu(145);
+    return HeightXiShu(135);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return self.dataArray.count;
+//    return self.dataArray.count;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *model = self.dataArray[indexPath.row];
-    static NSString *identifier = @"JiltOrderCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    ProcurementModel *model = [[ProcurementModel alloc] init];
+    if (self.dataArray.count > 0) {
+        model = self.dataArray[indexPath.row];
+    }
+    static NSString *identifier = @"ProcurementCell";
+    ProcurementCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[ProcurementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.model = model;
+    cell.indexPath = indexPath;
     return cell;
-    
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

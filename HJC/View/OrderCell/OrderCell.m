@@ -11,19 +11,25 @@
 @interface OrderListCell()
 
 @property (nonatomic, retain)UIView *bgView;
-@property(nonatomic,strong)UILabel *orderNumLB;
-@property(nonatomic,strong)UIImageView *headerLine;
+@property(nonatomic,strong)UILabel *orderNumLb;
+//@property(nonatomic,strong)UIImageView *headerLine;
 
-@property(nonatomic,strong)UIImageView *medicineIMG;
-@property(nonatomic,strong)UILabel *medicineNameLB;  //名称
-@property(nonatomic,strong)UILabel *specificationLB; // 规格
-@property(nonatomic,strong)UILabel *companyLB; // 公司
+@property(nonatomic,strong)UIImageView *medicineImg;
+@property(nonatomic,strong)UILabel *medicineNameLb;  //名称
+@property(nonatomic,strong)UILabel *specificationLb; // 规格
+@property(nonatomic, strong)UILabel *produceAreaLb; // 产地
+@property(nonatomic, strong)UILabel *suppliersLb; // 供应商
 
-@property(nonatomic,strong)UILabel *priceLB;   //价格
-@property(nonatomic,strong)UILabel *countLB;  //数量
+@property(nonatomic,strong)UILabel *companyLb; // 公司
+
+@property(nonatomic,strong)UILabel *priceLb;   //价格
+@property(nonatomic,strong)UILabel *countLb;  //数量
 
 @property(nonatomic,strong)UIImageView *footerLine;
-@property(nonatomic,strong)UILabel *totalLB;  //数量
+
+@property(nonatomic,strong)UILabel *orderTimeLb;  //数量
+@property(nonatomic,strong)UILabel *integralLb;  //数量
+@property(nonatomic,strong)UILabel *totalLb;  //数量
 
 @end
 
@@ -45,19 +51,24 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self bgView];
-        [self orderNumLB];
-        [self headerLine];
+        [self orderNumLb];
+//        [self headerLine];
         
-        [self medicineIMG];
-        [self medicineNameLB];
-        [self specificationLB];
-        [self companyLB];
+        [self medicineImg];
+        [self medicineNameLb];
+        [self specificationLb];
+        [self produceAreaLb];
+        [self suppliersLb];
+
+        [self companyLb];
         
-        [self priceLB];
-        [self countLB];
+        [self priceLb];
+        [self countLb];
         
         [self footerLine];
-        [self totalLB];
+        [self orderTimeLb];
+        [self integralLb];
+        [self totalLb];
 
     }
     return self;
@@ -70,108 +81,120 @@
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(10), kScreenWidth - WidthXiShu(20), HeightXiShu(158))];
         bgView.backgroundColor = [UIColor whiteColor];
         bgView.layer.masksToBounds = YES;
-        bgView.layer.cornerRadius = WidthXiShu(5);
+        bgView.layer.cornerRadius = WidthXiShu(8);
         [self.contentView addSubview:bgView];
         _bgView = bgView;
     }
     return _bgView;
 }
--(UILabel *)orderNumLB{
-    if(!_orderNumLB){
-        UILabel *orderNumLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(7), 0, kScreenWidth - WidthXiShu(20) - WidthXiShu(7), HeightXiShu(32))];
-        orderNumLB.text = @"订单号:2017112014250001";
-        orderNumLB.font = HEITI(HeightXiShu(15));
-        orderNumLB.textColor = TitleColor;
-        [self.bgView addSubview:orderNumLB];
-        _orderNumLB = orderNumLB;
+-(UILabel *)orderNumLb{
+    if(!_orderNumLb){
+        UILabel *orderNumLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(7), 0, kScreenWidth - WidthXiShu(20) - WidthXiShu(7), HeightXiShu(30))];
+        orderNumLb.text = @"订单号:2017112014250001";
+        orderNumLb.font = HEITI(HeightXiShu(14));
+        orderNumLb.textColor = BlackColor;
+        [self.bgView addSubview:orderNumLb];
+        _orderNumLb = orderNumLb;
     }
-    return _orderNumLB;
+    return _orderNumLb;
 }
 
-- (UIImageView *)headerLine{
-    if(!_headerLine){
-        UIImageView *headerLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(32), kScreenWidth - WidthXiShu(20) - WidthXiShu(20), .5)];
-        headerLine.backgroundColor = AllLightGrayColor;
-        [self.bgView addSubview:headerLine];
-        _headerLine = headerLine;
+//- (UIImageView *)headerLine{
+//    if(!_headerLine){
+//        UIImageView *headerLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(32), kScreenWidth - WidthXiShu(20) - WidthXiShu(20), .5)];
+//        headerLine.backgroundColor = AllLightGrayColor;
+//        [self.bgView addSubview:headerLine];
+//        _headerLine = headerLine;
+//    }
+//    return _headerLine;
+//}
+
+-(UIImageView *)medicineImg{
+    if(!_medicineImg){
+        UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(35), WidthXiShu(80), HeightXiShu(80))];
+        medicineImg.layer.masksToBounds = YES;
+        medicineImg.layer.borderWidth = .5;
+        medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
+        medicineImg.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        medicineImg.backgroundColor = [UIColor lightGrayColor];
+        [self.bgView addSubview:medicineImg];
+        _medicineImg = medicineImg;
     }
-    return _headerLine;
+    return _medicineImg;
 }
 
--(UIImageView *)medicineIMG{
-    if(!_medicineIMG){
-        UIImageView *medicineIMG = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(43), WidthXiShu(70), HeightXiShu(70))];
-        medicineIMG.layer.masksToBounds = YES;
-        medicineIMG.layer.borderWidth = .5;
-        medicineIMG.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
-        medicineIMG.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        medicineIMG.backgroundColor = [UIColor lightGrayColor];
-        [self.bgView addSubview:medicineIMG];
-        _medicineIMG = medicineIMG;
+-(UILabel *)medicineNameLb{
+    if(!_medicineNameLb){
+        UILabel *medicineNameLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(30), WidthXiShu(180), HeightXiShu(20))];
+        medicineNameLb.text = @"阿司匹林肠溶片... ...";
+        medicineNameLb.font = HEITI(HeightXiShu(16));
+        medicineNameLb.textColor = BlackColor;
+        [self.bgView addSubview:medicineNameLb];
+        _medicineNameLb = medicineNameLb;
     }
-    return _medicineIMG;
+    return _medicineNameLb;
 }
 
--(UILabel *)medicineNameLB{
-    if(!_medicineNameLB){
-        UILabel *medicineNameLB = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineIMG.maxX + WidthXiShu(5), HeightXiShu(40), WidthXiShu(180), HeightXiShu(20))];
-        medicineNameLB.text = @"阿司匹林肠溶片... ...";
-        medicineNameLB.font = HEITI(HeightXiShu(15));
-        medicineNameLB.textColor = TitleColor;
-        [self.bgView addSubview:medicineNameLB];
-        _medicineNameLB = medicineNameLB;
+-(UILabel *)specificationLb{
+    if(!_specificationLb){
+        UILabel *specificationLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(55), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
+        specificationLb.text = @"规格: 40mg*7s";
+        specificationLb.font = HEITI(HeightXiShu(11));
+        specificationLb.textColor = TitleColor;
+        [self.bgView addSubview:specificationLb];
+        _specificationLb = specificationLb;
     }
-    return _medicineNameLB;
+    return _specificationLb;
 }
 
--(UILabel *)specificationLB{
-    if(!_specificationLB){
-        UILabel *specificationLB = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineIMG.maxX + WidthXiShu(5), HeightXiShu(65), kScreenWidth - WidthXiShu(120), HeightXiShu(25))];
-        specificationLB.text = @"40mg*7s";
-        specificationLB.font = HEITI(HeightXiShu(14));
-        specificationLB.textColor = TitleColor;
-        [self.bgView addSubview:specificationLB];
-        _specificationLB = specificationLB;
+-(UILabel *)produceAreaLb{
+    if(!_produceAreaLb){
+        UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(75), WidthXiShu(200), HeightXiShu(20))];
+        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.font = HEITI(HeightXiShu(11));
+        produceAreaLb.textColor = TitleColor;
+        [self.bgView addSubview:produceAreaLb];
+        _produceAreaLb = produceAreaLb;
     }
-    return _specificationLB;
+    return _produceAreaLb;
 }
 
--(UILabel *)companyLB{
-    if(!_companyLB){
-        UILabel *companyLB = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineIMG.maxX + WidthXiShu(5), HeightXiShu(90), kScreenWidth - WidthXiShu(120), HeightXiShu(25))];
-        companyLB.text = @"杭州中美华东制药有限公司";
-        companyLB.font = HEITI(HeightXiShu(14));
-        companyLB.textColor = TitleColor;
-        [self.bgView addSubview:companyLB];
-        _companyLB = companyLB;
+-(UILabel *)suppliersLb{
+    if(!_suppliersLb){
+        UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(95), WidthXiShu(200), HeightXiShu(20))];
+        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.font = HEITI(HeightXiShu(11));
+        suppliersLb.textColor = TitleColor;
+        [self.bgView addSubview:suppliersLb];
+        _suppliersLb = suppliersLb;
     }
-    return _companyLB;
+    return _suppliersLb;
 }
 
 
--(UILabel *)priceLB{
-    if(!_priceLB){
-        UILabel *priceLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(293), HeightXiShu(40), kScreenWidth - WidthXiShu(20) - WidthXiShu(293), HeightXiShu(20))];
-        priceLB.text = @"$14.29";
-        priceLB.font = HEITI(HeightXiShu(16));
-        priceLB.textColor = TitleColor;
-        [self.bgView addSubview:priceLB];
-        _priceLB = priceLB;
+-(UILabel *)priceLb{
+    if(!_priceLb){
+        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(293), HeightXiShu(40), kScreenWidth - WidthXiShu(20) - WidthXiShu(293), HeightXiShu(20))];
+        priceLb.text = @"$14.29";
+        priceLb.font = HEITI(HeightXiShu(16));
+        priceLb.textColor = TitleColor;
+        [self.bgView addSubview:priceLb];
+        _priceLb = priceLb;
     }
-    return _priceLB;
+    return _priceLb;
 }
 
--(UILabel *)countLB{
-    if(!_countLB){
-        UILabel *countLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(293), HeightXiShu(65), kScreenWidth - WidthXiShu(20) - WidthXiShu(293) - WidthXiShu(10), HeightXiShu(25))];
-        countLB.text = @"x8";
-        countLB.textAlignment = NSTextAlignmentRight;
-        countLB.font = HEITI(HeightXiShu(16));
-        countLB.textColor = TitleColor;
-        [self.bgView addSubview:countLB];
-        _countLB = countLB;
+-(UILabel *)countLb{
+    if(!_countLb){
+        UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(293), HeightXiShu(65), kScreenWidth - WidthXiShu(20) - WidthXiShu(293) - WidthXiShu(10), HeightXiShu(25))];
+        countLb.text = @"X8";
+        countLb.textAlignment = NSTextAlignmentRight;
+        countLb.font = HEITI(HeightXiShu(16));
+        countLb.textColor = TitleColor;
+        [self.bgView addSubview:countLb];
+        _countLb = countLb;
     }
-    return _countLB;
+    return _countLb;
 }
 
 - (UIImageView *)footerLine{
@@ -184,16 +207,38 @@
     return _footerLine;
 }
 
--(UILabel *)totalLB{
-    if(!_totalLB){
-        UILabel *totalLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5), HeightXiShu(123), kScreenWidth - WidthXiShu(20) - WidthXiShu(15), HeightXiShu(35))];
-        totalLB.font = HEITI(HeightXiShu(15));
-        totalLB.textColor = TitleColor;
-        totalLB.textAlignment = NSTextAlignmentRight;
-        [self.bgView addSubview:totalLB];
-        _totalLB = totalLB;
+-(UILabel *)orderTimeLb{
+    if(!_orderTimeLb){
+        UILabel *orderTimeLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(122), WidthXiShu(155), HeightXiShu(35))];
+        orderTimeLb.text = @"订单时间: 2017/02/10 08:14";
+        orderTimeLb.font = HEITI(HeightXiShu(11));
+        orderTimeLb.textColor = [UIColor lightGrayColor];
+        [self.bgView addSubview:orderTimeLb];
+        _orderTimeLb = orderTimeLb;
     }
-    return _totalLB;
+    return _orderTimeLb;
+}
+
+-(UILabel *)integralLb{
+    if(!_integralLb){
+        UILabel *integralLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(170), HeightXiShu(122), WidthXiShu(70), HeightXiShu(35))];
+        integralLb.font = HEITI(HeightXiShu(15));
+        integralLb.textColor = TitleColor;
+        [self.bgView addSubview:integralLb];
+        _integralLb = integralLb;
+    }
+    return _integralLb;
+}
+-(UILabel *)totalLb{
+    if(!_totalLb){
+        UILabel *totalLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5), HeightXiShu(122), kScreenWidth - WidthXiShu(20) - WidthXiShu(15), HeightXiShu(35))];
+        totalLb.font = HEITI(HeightXiShu(15));
+        totalLb.textColor = TitleColor;
+        totalLb.textAlignment = NSTextAlignmentRight;
+        [self.bgView addSubview:totalLb];
+        _totalLb = totalLb;
+    }
+    return _totalLb;
 }
 
 
@@ -205,7 +250,15 @@
     NSMutableAttributedString *priceAttStr = [[NSMutableAttributedString alloc] initWithString:priceText];
     [priceAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:HeightXiShu(18)] range:NSMakeRange(3, priceText.length - 3)];
     [priceAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(3, priceText.length - 3)];
-    self.totalLB.attributedText = priceAttStr;
+    self.totalLb.attributedText = priceAttStr;
+    
+    
+    NSString *integralText = @"积分 2";
+    NSMutableAttributedString *integralAttStr = [[NSMutableAttributedString alloc] initWithString:integralText];
+    [integralAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:HeightXiShu(18)] range:NSMakeRange(3, integralText.length - 3)];
+    [integralAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(3, integralText.length - 3)];
+    self.integralLb.attributedText = integralAttStr;
+    
 }
 
 @end
