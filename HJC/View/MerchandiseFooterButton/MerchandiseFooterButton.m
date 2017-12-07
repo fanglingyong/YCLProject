@@ -19,115 +19,67 @@
 
 - (void)loadContantView {
     
-    self.oftenBuyListIMG = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(25), HeightXiShu(5), WidthXiShu(30), HeightXiShu(30))];
-    self.oftenBuyListIMG.image = [GetImagePath getImagePath:@"tabbar_myCenter_gray"];
-    [self addSubview:self.oftenBuyListIMG];
+    self.lineHView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth - WidthXiShu(160), .5)];
+    self.lineHView.backgroundColor = AllLightGrayColor;
+    [self addSubview:self.lineHView];
+    
+    self.totalLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5), 0, WidthXiShu(150), HeightXiShu(50))];
+    self.totalLB.text = @"总计:$39.00";
+    self.totalLB.textColor = BlackColor;
+    self.totalLB.font = HEITI(HeightXiShu(15));
+    [self addSubview: self.totalLB];
+    
+    self.lineZView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(156), 0, 1, HeightXiShu(50))];
+    self.lineZView.backgroundColor = AllLightGrayColor;
+    [self addSubview:self.lineZView];
+    
+    self.collectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(183) - WidthXiShu(10), HeightXiShu(15), WidthXiShu(20), HeightXiShu(20))];
+    self.collectImg.image = [GetImagePath getImagePath:@"detail_collect"];
+    [self addSubview:self.collectImg];
 
-    self.oftenBuyListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.oftenBuyListBtn.frame = CGRectMake(0, 0, WidthXiShu(80), HeightXiShu(55));
-    self.oftenBuyListBtn.backgroundColor = [UIColor clearColor];
-    [self.oftenBuyListBtn addTarget:self action:@selector(oftenBuyListBtnPressed:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.oftenBuyListBtn];
+    self.collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.collectBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(160) - WidthXiShu(50), 0, WidthXiShu(50), HeightXiShu(50));
+    self.collectBtn.backgroundColor = [UIColor clearColor];
+    [self.collectBtn addTarget:self action:@selector(collectBtnPressed:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.collectBtn];
     
-    self.oftenBuyListLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(80), HeightXiShu(15))];
-    self.oftenBuyListLB.text = @"加常购清单";
-    self.oftenBuyListLB.textAlignment = NSTextAlignmentCenter;
-    self.oftenBuyListLB.textColor = [UIColor blackColor];
-    self.oftenBuyListLB.font = HEITI(HeightXiShu(12));
-    [self addSubview: self.oftenBuyListLB];
+    self.addShopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addShopCartBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(160), 0, WidthXiShu(80), HeightXiShu(50));
+    self.addShopCartBtn.backgroundColor = [UIColor colorFromHexCode:@"#98999a"];
+    [self.addShopCartBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [self.addShopCartBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addShopCartBtn.titleLabel.font = HEITI(HeightXiShu(14));
+    [self.addShopCartBtn addTarget:self action:@selector(addShopCartBtnPressed:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.addShopCartBtn];
     
+    self.procurementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.procurementBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(80), 0, WidthXiShu(80), HeightXiShu(50));
+    self.procurementBtn.backgroundColor = [UIColor colorFromHexCode:@"#4172e4"];
+    [self.procurementBtn setTitle:@"立即采购" forState:UIControlStateNormal];
+    [self.procurementBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.procurementBtn.titleLabel.font = HEITI(HeightXiShu(14));
+    [self.procurementBtn addTarget:self action:@selector(procurementBtnPressed:) forControlEvents:UIControlEventTouchDown];
+    [self addSubview:self.procurementBtn];
     
-    self.customerServiceIMG = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(5), WidthXiShu(30), HeightXiShu(30))];
-    self.customerServiceIMG.image = [GetImagePath getImagePath:@"tabbar_myCenter_gray"];
-    [self addSubview:self.customerServiceIMG];
-    
-    self.customerServiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.customerServiceBtn.frame = CGRectMake(WidthXiShu(80), 0, WidthXiShu(75), HeightXiShu(55));
-    self.customerServiceBtn.backgroundColor = [UIColor clearColor];
-    [self.customerServiceBtn addTarget:self action:@selector(customerServiceBtnPressed:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.customerServiceBtn];
-    
-    self.customerServiceLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(80), HeightXiShu(40), WidthXiShu(75), HeightXiShu(15))];
-    self.customerServiceLB.text = @"联系客服";
-    self.customerServiceLB.textAlignment = NSTextAlignmentCenter;
-    self.customerServiceLB.textColor = [UIColor blackColor];
-    self.customerServiceLB.font = HEITI(HeightXiShu(12));
-    [self addSubview: self.customerServiceLB];
-    
-    self.shoppingCartIMG = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(175), HeightXiShu(5), WidthXiShu(30), HeightXiShu(30))];
-    self.shoppingCartIMG.image = [GetImagePath getImagePath:@"tabbar_myCenter_gray"];
-    [self addSubview:self.shoppingCartIMG];
-    
-    self.shoppingCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.shoppingCartBtn.frame = CGRectMake(WidthXiShu(155), 0, WidthXiShu(80), HeightXiShu(55));
-    self.shoppingCartBtn.backgroundColor = [UIColor clearColor];
-    [self.shoppingCartBtn addTarget:self action:@selector(shoppingCartBtnPressed:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.shoppingCartBtn];
-    
-    self.shoppingCartLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(150), HeightXiShu(40), WidthXiShu(80), HeightXiShu(15))];
-    self.shoppingCartLB.text = @"购物车";
-    self.shoppingCartLB.textAlignment = NSTextAlignmentCenter;
-    self.shoppingCartLB.textColor = [UIColor blackColor];
-    self.shoppingCartLB.font = HEITI(HeightXiShu(12));
-    [self addSubview: self.shoppingCartLB];
-    
-    self.shoppingCartCornerLB = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(205), 0, WidthXiShu(16), HeightXiShu(16))];
-    self.shoppingCartCornerLB.text = @"4";
-    self.shoppingCartCornerLB.layer.masksToBounds = YES;
-    self.shoppingCartCornerLB.layer.cornerRadius = HeightXiShu(8);
-    self.shoppingCartCornerLB.layer.borderWidth = HeightXiShu(1);
-    self.shoppingCartCornerLB.layer.borderColor = AllRedColor.CGColor;
-    self.shoppingCartCornerLB.textAlignment = NSTextAlignmentCenter;
-    self.shoppingCartCornerLB.textColor = [UIColor blackColor];
-    self.shoppingCartCornerLB.font = HEITI(HeightXiShu(9));
-    [self addSubview: self.shoppingCartCornerLB];
-    
-    self.addShoppingCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addShoppingCartBtn.frame = CGRectMake(WidthXiShu(235), 0, kScreenWidth - WidthXiShu(235), HeightXiShu(55));
-    [self.addShoppingCartBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
-    [self.addShoppingCartBtn setTitleColor:[UIColor whiteColor] forState:(UIControlState)UIControlStateNormal];
-    self.addShoppingCartBtn.backgroundColor = AllRedColor;
-    [self.addShoppingCartBtn addTarget:self action:@selector(addShoppingCartBtnPressed:) forControlEvents:UIControlEventTouchDown];
-    [self addSubview:self.addShoppingCartBtn];
+
     
 }
 
-- (void)setOftenBuyListTitle:(NSString *)oftenBuyListTitle {
-    _oftenBuyListTitle = oftenBuyListTitle;
-    if (oftenBuyListTitle) {
-        self.oftenBuyListLB.text = oftenBuyListTitle;
+- (void)collectBtnPressed:(UIButton *)sender{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didCollectBtn:)]) {
+        [self.delegate didCollectBtn:sender];
     }
 }
 
-- (void)setShoppingCartCornerTitle:(NSString *)shoppingCartCornerTitle {
-    _shoppingCartCornerTitle = shoppingCartCornerTitle;
-    if (shoppingCartCornerTitle) {
-        self.shoppingCartCornerLB.text = shoppingCartCornerTitle;
-    }
-    
-}
-
-- (void)oftenBuyListBtnPressed:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didOftenBuyListButton:)]) {
-        [self.delegate didOftenBuyListButton:sender];
+- (void)addShopCartBtnPressed:(UIButton *)sender{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didAddShopCartBtn:)]) {
+        [self.delegate didAddShopCartBtn:sender];
     }
 }
 
-- (void)customerServiceBtnPressed:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didCustomerServiceButton:)]) {
-        [self.delegate didCustomerServiceButton:sender];
-    }
-}
-
-- (void)shoppingCartBtnPressed:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didShoppingCartButton:)]) {
-        [self.delegate didShoppingCartButton:sender];
-    }
-}
-
-- (void)addShoppingCartBtnPressed:(UIButton *)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didAddShoppingCartButton:)]) {
-        [self.delegate didAddShoppingCartButton:sender];
+- (void)procurementBtnPressed:(UIButton *)sender{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didProcurementBtn:)]) {
+        [self.delegate didProcurementBtn:sender];
     }
 }
 

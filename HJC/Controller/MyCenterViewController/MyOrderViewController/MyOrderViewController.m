@@ -70,7 +70,7 @@
     
     [self addNoDataView];
     
-    [self.orderStatusArray addObject:@"订单状态"];
+    [self.orderStatusArray addObject:@"订单状态0"];
     [self.orderStatusArray addObject:@"订单状态1"];
     [self.orderStatusArray addObject:@"订单状态2"];
     
@@ -157,10 +157,6 @@
         navView.titleLabel.text = @"我的订单";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         
-        [navView.rightBtn setImage:[GetImagePath getImagePath:@"orderSearch"] forState:UIControlStateNormal];
-        navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, WidthXiShu(30), 0, 0);
-        [navView.rightBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
-        
         _navView = navView;
         [self.view addSubview:_navView];
     }
@@ -228,8 +224,7 @@
     
     self.orderSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.orderSearchBtn.frame = CGRectMake(WidthXiShu(345), HeightXiShu(12), WidthXiShu(20), HeightXiShu(20));
-    [self.orderSearchBtn setImage:[GetImagePath getImagePath:@""] forState:UIControlStateNormal];
-    self.orderSearchBtn.backgroundColor = AllBackLightGratColor;
+    [self.orderSearchBtn setImage:[GetImagePath getImagePath:@"search"] forState:UIControlStateNormal];
     [self.headerView addSubview:self.orderSearchBtn];
     
     self.dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, 64 + HeightXiShu(44), kScreenWidth, kScreenHeight - HeightXiShu(44))];

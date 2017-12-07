@@ -14,6 +14,7 @@
 #import "ProcurementModel.h"
 #import "ProcurementCell.h"
 #import "MJRefresh.h"
+#import "MedicineDetailViewController.h"
 
 @interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate>
 
@@ -82,17 +83,17 @@
     [self addNoDataView];
     
     
-    [self.allClassArray addObject:@"全部分类"];
+    [self.allClassArray addObject:@"全部分类0"];
     [self.allClassArray addObject:@"全部分类1"];
     [self.allClassArray addObject:@"全部分类2"];
 
-    [self.suppliersArray addObject:@"全部分类"];
-    [self.suppliersArray addObject:@"全部分类"];
-    [self.suppliersArray addObject:@"全部分类"];
+    [self.suppliersArray addObject:@"供应商0"];
+    [self.suppliersArray addObject:@"供应商1"];
+    [self.suppliersArray addObject:@"供应商2"];
     
-    [self.promotionsArray addObject:@"全部分类"];
-    [self.promotionsArray addObject:@"全部分类"];
-    [self.promotionsArray addObject:@"全部分类"];
+    [self.promotionsArray addObject:@"促销0"];
+    [self.promotionsArray addObject:@"促销1"];
+    [self.promotionsArray addObject:@"促销2"];
 
    
     
@@ -162,19 +163,19 @@
         [dic setObject:@"3" forKey:@"status"];
     }
     
-    // 车辆类型
+    // 供应商
     if (self.procurement.suppliers == 0) {
-        [dic setObject:@"0" forKey:@"is_fullmoney"]; 
+        [dic setObject:@"0" forKey:@""];
         
     } else if (self.procurement.suppliers == 1) {
-        [dic setObject:@"1" forKey:@"is_fullmoney"]; 
+        [dic setObject:@"1" forKey:@""];
     } else {
-        [dic setObject:@"2" forKey:@"is_fullmoney"]; 
+        [dic setObject:@"2" forKey:@""];
     }
     
-    // 车辆类型
+    // 促销
     if (self.procurement.promotions == 0) {
-        [dic setObject:@"" forKey:@"jobs"];
+        [dic setObject:@"" forKey:@""];
     } else {
     }
     
@@ -274,31 +275,15 @@
         NavView *navView = [NavView initNavView];
         navView.minY = 20;
         navView.backgroundColor = NavColor;
-        //        navView.titleLabel.text = @"定位中";
+        navView.titleLabel.text = @"采购";
+        navView.leftBtn.hidden = YES;
         
-        UIImageView *boxImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 75, 10, 150, 24)];
-        boxImageView.image = [GetImagePath getImagePath:@"Agent_cityChoose_box"];
-        navView.titleLabel.userInteractionEnabled = YES;
-        [navView.titleLabel addSubview:boxImageView];
-        
-        UIImageView *localImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 5, 12, 14)];
-        localImageView.image = [GetImagePath getImagePath:@"Agent_cityChoose_local"];
-        [boxImageView addSubview:localImageView];
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector (localAction:)];
-        [navView.titleLabel addGestureRecognizer:tap];
-        
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 7, 7, 10)];
-        arrowImageView.image = [GetImagePath getImagePath:@"Agent_cityChoose_arrow"];
-        [boxImageView addSubview:arrowImageView];
-        
-        [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        [navView.rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
-        [navView.rightBtn addTarget:self action:@selector(goJiltAction) forControlEvents:UIControlEventTouchUpInside];
+        navView.rightBtn.hidden = NO;
+        [navView.rightBtn setImage:[GetImagePath getImagePath:@"search"] forState:UIControlStateNormal];
+        navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, WidthXiShu(30), 0, 0);
+        [navView.rightBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
         
         _navView = navView;
-        //        _cityButton = button;
         [self.view addSubview:_navView];
     }
     return _navView;
@@ -345,19 +330,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-   
-    
-    
-    
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark - 事件
-- (void)backAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
+- (void)searchClick {
+    
+    
+}
 
 - (void)deselectButtons {
     self.allClassButton.selected = NO;

@@ -7,11 +7,13 @@
 //
 
 #import "MyCenterViewController.h"
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
 #import "NavView.h"
 #import "MyOrderViewController.h"
 #import "RegisterClinicViewController.h"
-#import "LoginViewController.h"
-#import "BaseNavigationController.h"
+#import "MyCollectViewController.h"
+#import "ReceiveAddressViewController.h"
 
 @interface MyCenterViewController ()
 @property(nonatomic,strong)NavView *navView;
@@ -87,7 +89,7 @@
     if(indexPath.section == 0){
         
         UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76))];
-        integralImg.image = [GetImagePath getImagePath:@"integral"];
+        integralImg.image = [GetImagePath getImagePath:@"integral_bg"];
         [cell.contentView addSubview:integralImg];
         
         UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(30))];
@@ -178,6 +180,8 @@
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         NSLog(@"我的收藏");
+        MyCollectViewController * VC = [[MyCollectViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 2 && indexPath.row == 0) {
         NSLog(@"我的诊所");
         RegisterClinicViewController * VC = [[RegisterClinicViewController alloc] init];
@@ -185,6 +189,8 @@
 
     } else if (indexPath.section == 2 && indexPath.row == 1) {
         NSLog(@"我的地址");
+        ReceiveAddressViewController * VC = [[ReceiveAddressViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 3) {
         NSLog(@"联系客服");
     }
@@ -197,7 +203,7 @@
         navView.minY = 20;
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
-        [navView.leftBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
+        navView.leftBtn.hidden = YES;
         _navView = navView;
         [self.view addSubview:_navView];
     }

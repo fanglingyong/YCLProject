@@ -9,12 +9,19 @@
 #import "MedicineDetailCell.h"
 @interface MedicineDetailCell()
 
-@property(nonatomic,strong)UILabel *nameLabel;  //名称
-@property(nonatomic,strong)UILabel *specificationsLabel; // 规格包装
-@property(nonatomic,strong)UILabel *productionLabel;   //生产厂家
-@property(nonatomic,strong)UILabel *approveLabel;  //批准文号
-@property(nonatomic,strong)UILabel *validityLabel;  //有效期
+@property(nonatomic,strong)UILabel *nameLb;  //名称
+@property(nonatomic,strong)UILabel *originalPriceLb;  //原价
+@property(nonatomic,strong)UILabel *currentPriceLb;  //现价
 
+@property(nonatomic,strong)UILabel *specificationLb; // 规格
+@property(nonatomic, strong)UILabel *produceAreaLb; // 产地
+@property(nonatomic, strong)UILabel *suppliersLb; // 供应商
+
+@property(nonatomic, strong)UIImageView *integralImg;   //积分图片
+@property(nonatomic, strong)UILabel *integralCountLb;   //积分数量
+@property(nonatomic, strong)UIButton *subtractionBtn; // 减
+@property(nonatomic, strong)UIButton *additionBtn;    // 加
+@property(nonatomic, strong)UILabel *countLb;   //个数
 
 @end
 
@@ -36,77 +43,160 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        [self nameLabel];
-        [self specificationsLabel];
-        [self productionLabel];
-        [self approveLabel];
-        [self validityLabel];
+        [self nameLb];
+        [self originalPriceLb];
+        [self currentPriceLb];
         
+        [self specificationLb];
+        [self produceAreaLb];
+        [self suppliersLb];
+
+        [self integralImg];
+        [self integralCountLb];
+        [self subtractionBtn];
+        [self additionBtn];
+        [self countLb];
     }
     return self;
 }
 
 #pragma mark - 页面元素
 
--(UILabel *)nameLabel{
-    if(!_nameLabel){
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(5), kScreenWidth - WidthXiShu(10), HeightXiShu(20))];
-        nameLabel.text = @"商品名称:  999感冒灵颗粒 10g*9袋";
-        nameLabel.font = HEITI(HeightXiShu(13));
-        nameLabel.textColor = TitleColor;
-        [self.contentView addSubview:nameLabel];
-        _nameLabel = nameLabel;
+- (UILabel *)nameLb{
+    if(!_nameLb){
+        UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, kScreenWidth - WidthXiShu(15), HeightXiShu(40))];
+        nameLb.text = @"商品名称:999感冒灵颗粒";
+        nameLb.font = HEITI(HeightXiShu(20));
+        nameLb.textColor = BlackColor;
+        [self.contentView addSubview:nameLb];
+        _nameLb = nameLb;
     }
-    return _nameLabel;
+    return _nameLb;
+}
+- (UILabel *)originalPriceLb{
+    if(!_originalPriceLb){
+        UILabel *originalPriceLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(40), WidthXiShu(70), HeightXiShu(25))];
+        originalPriceLb.text = @"$43.00/盒";
+        originalPriceLb.font = HEITI(HeightXiShu(12));
+        originalPriceLb.textColor = TitleColor;
+        [self.contentView addSubview:originalPriceLb];
+        _originalPriceLb = originalPriceLb;
+    }
+    return _originalPriceLb;
 }
 
--(UILabel *)specificationsLabel{
-    if(!_specificationsLabel){
-        UILabel *specificationsLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(25), kScreenWidth - WidthXiShu(10), HeightXiShu(20))];
-        specificationsLabel.text = @"规格包装:  10g*9袋/盒";
-        specificationsLabel.font = HEITI(HeightXiShu(13));
-        specificationsLabel.textColor = TitleColor;
-        [self.contentView addSubview:specificationsLabel];
-        _specificationsLabel = specificationsLabel;
+- (UILabel *)currentPriceLb{
+    if(!_currentPriceLb){
+        UILabel *currentPriceLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(82), HeightXiShu(40), kScreenWidth - WidthXiShu(100), HeightXiShu(25))];
+        currentPriceLb.text = @"$38.00/盒";
+        currentPriceLb.font = HEITI(HeightXiShu(18));
+        currentPriceLb.textColor = [UIColor colorFromHexCode:@"#f4b842"];
+        [self.contentView addSubview:currentPriceLb];
+        _currentPriceLb = currentPriceLb;
     }
-    return _specificationsLabel;
+    return _currentPriceLb;
 }
 
--(UILabel *)productionLabel{
-    if(!_productionLabel){
-        UILabel *productionLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(45), kScreenWidth - WidthXiShu(10), HeightXiShu(20))];
-        productionLabel.text = @"生产厂家:  华润三九医药股份有限公司";
-        productionLabel.font = HEITI(HeightXiShu(13));
-        productionLabel.textColor = TitleColor;
-        [self.contentView addSubview:productionLabel];
-        _productionLabel = productionLabel;
+- (UILabel *)specificationLb{
+    if(!_specificationLb){
+        UILabel *specificationLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(65), kScreenWidth - WidthXiShu(15), HeightXiShu(25))];
+        specificationLb.text = @"规格: 10g*9袋/盒";
+        specificationLb.font = HEITI(HeightXiShu(14));
+        specificationLb.textColor = TitleColor;
+        [self.contentView addSubview:specificationLb];
+        _specificationLb = specificationLb;
     }
-    return _productionLabel;
+    return _specificationLb;
 }
 
--(UILabel *)approveLabel{
-    if(!_approveLabel){
-        UILabel *approveLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(65), kScreenWidth - WidthXiShu(10), HeightXiShu(20))];
-        approveLabel.text = @"批准文号:  国药准字Z44445454454";
-        approveLabel.font = HEITI(HeightXiShu(13));
-        approveLabel.textColor = TitleColor;
-        [self.contentView addSubview:approveLabel];
-        _approveLabel = approveLabel;
+- (UILabel *)produceAreaLb{
+    if(!_produceAreaLb){
+        UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(90), kScreenWidth - WidthXiShu(15), HeightXiShu(25))];
+        produceAreaLb.text = @"产地: 华润三九医药股份有限公司";
+        produceAreaLb.font = HEITI(HeightXiShu(14));
+        produceAreaLb.textColor = TitleColor;
+        [self.contentView addSubview:produceAreaLb];
+        _produceAreaLb = produceAreaLb;
     }
-    return _approveLabel;
+    return _produceAreaLb;
 }
 
--(UILabel *)validityLabel{
-    if(!_validityLabel){
-        UILabel *validityLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(85), kScreenWidth - WidthXiShu(10), HeightXiShu(20))];
-        validityLabel.text = @"有效期至:  2019-07-02";
-        validityLabel.font = HEITI(HeightXiShu(13));
-        validityLabel.textColor = TitleColor;
-        [self.contentView addSubview:validityLabel];
-        _validityLabel = validityLabel;
+- (UILabel *)suppliersLb{
+    if(!_suppliersLb){
+        UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(115), kScreenWidth - WidthXiShu(15), HeightXiShu(25))];
+        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.font = HEITI(HeightXiShu(14));
+        suppliersLb.textColor = TitleColor;
+        [self.contentView addSubview:suppliersLb];
+        _suppliersLb = suppliersLb;
     }
-    return _validityLabel;
+    return _suppliersLb;
 }
+
+- (UIImageView *)integralImg{
+    if(!_integralImg){
+        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(110), HeightXiShu(158), WidthXiShu(21), WidthXiShu(21))];
+        integralImg.image = [GetImagePath getImagePath:@"detail_integral"];
+        [self.contentView addSubview:integralImg];
+        _integralImg = integralImg;
+    }
+    return _integralImg;
+}
+
+- (UILabel *)integralCountLb{
+    if(!_integralCountLb){
+        UILabel *integralCountLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(140), HeightXiShu(152), WidthXiShu(110), HeightXiShu(35))];
+        integralCountLb.text = @"积分数量: 1分";
+        integralCountLb.font = HEITI(HeightXiShu(14));
+        integralCountLb.textColor = TitleColor;
+        [self.contentView addSubview:integralCountLb];
+        _integralCountLb = integralCountLb;
+    }
+    return _integralCountLb;
+}
+
+- (UIButton *)subtractionBtn {
+    if (!_subtractionBtn) {
+        UIButton *subtractionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        subtractionBtn.frame = CGRectMake(WidthXiShu(258), HeightXiShu(153), WidthXiShu(25), HeightXiShu(25));
+        [subtractionBtn addTarget:self action:@selector(subtractionBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [subtractionBtn setTitleColor:TitleColor forState:UIControlStateNormal];
+        [subtractionBtn setBackgroundImage:[GetImagePath getImagePath:@"reduce_S"] forState:UIControlStateNormal];
+        [self.contentView addSubview:subtractionBtn];
+        
+    }
+    return _subtractionBtn;
+}
+
+- (UIButton *)additionBtn {
+    if (!_additionBtn) {
+        UIButton *additionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        additionBtn.frame = CGRectMake(WidthXiShu(326), HeightXiShu(153), WidthXiShu(25), HeightXiShu(25));
+        [additionBtn addTarget:self action:@selector(additionBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [additionBtn setBackgroundImage:[GetImagePath getImagePath:@"add_S"] forState:UIControlStateNormal];
+        [additionBtn setTitleColor:TitleColor forState:UIControlStateNormal];
+        [self.contentView addSubview:additionBtn];
+        _additionBtn = additionBtn;
+    }
+    return _additionBtn;
+    
+}
+
+- (UILabel *)countLb{
+    if(!_countLb){
+        UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(284), HeightXiShu(153), HeightXiShu(40), HeightXiShu(25))];
+        countLb.layer.borderColor = TitleColor.CGColor;
+        countLb.layer.borderWidth = HeightXiShu(.5);
+        countLb.text = @"1";
+        countLb.textAlignment = NSTextAlignmentCenter;
+        countLb.font = HEITI(HeightXiShu(12));
+        countLb.textColor = TitleColor;
+        [self.contentView addSubview:countLb];
+        _countLb = countLb;
+    }
+    return _countLb;
+}
+
 
 #pragma mark - setter
 

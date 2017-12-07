@@ -10,30 +10,24 @@
 @class MerchandiseFooterButton;
 
 @protocol MerchandiseFooterButtonDelegate <NSObject>
-- (void)didOftenBuyListButton:(UIButton *)button;
-- (void)didCustomerServiceButton:(UIButton *)button;
-- (void)didShoppingCartButton:(UIButton *)button;
-- (void)didAddShoppingCartButton:(UIButton *)button;
+- (void)didCollectBtn:(UIButton *)button;
+- (void)didAddShopCartBtn:(UIButton *)button;
+- (void)didProcurementBtn:(UIButton *)button;
 @end
 
 @interface MerchandiseFooterButton : UIView
 
-@property (nonatomic, retain)UIImageView *oftenBuyListIMG;
-@property (nonatomic, retain)UIButton *oftenBuyListBtn;
-@property (nonatomic, retain)UILabel *oftenBuyListLB;
-@property (nonatomic, retain)NSString *oftenBuyListTitle;
+@property (nonatomic, retain)UILabel *totalLB;
 
-@property (nonatomic, retain)UIImageView *customerServiceIMG;
-@property (nonatomic, retain)UIButton *customerServiceBtn;
-@property (nonatomic, retain)UILabel *customerServiceLB;
+@property (nonatomic, retain)UIImageView *lineHView;
+@property (nonatomic, retain)UIImageView *lineZView;
 
-@property (nonatomic, retain)UIImageView *shoppingCartIMG;
-@property (nonatomic, retain)UIButton *shoppingCartBtn;
-@property (nonatomic, retain)UILabel *shoppingCartLB;
-@property (nonatomic, retain)UILabel *shoppingCartCornerLB;
-@property (nonatomic, retain)NSString *shoppingCartCornerTitle;
+@property (nonatomic, retain)UIImageView *collectImg;
 
-@property (nonatomic, retain)UIButton *addShoppingCartBtn;
+@property (nonatomic, retain)UIButton *collectBtn;
+@property (nonatomic, retain)UIButton *addShopCartBtn;
+@property (nonatomic, retain)UIButton *procurementBtn;
+
 
 @property (nonatomic, assign) id <MerchandiseFooterButtonDelegate>delegate;
 

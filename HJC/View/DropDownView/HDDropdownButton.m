@@ -26,7 +26,7 @@
     lbl.tag = 1;
     [self addSubview: lbl];
     
-    _iconName = @"Agent_DropDownBurron_defalut";
+    _iconName = @"procure_arrowDefault.png";
 
     
     UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: _iconName]];
@@ -103,16 +103,9 @@
 -(void)setTitle:(NSString *)title{
     _title = title;
     if (title) {
-        
-//        CGSize size= [Utilities getTextSize:title withFont: [UIFont systemFontOfSize:13] andConstrainedToSize:self.frame.size];
         UILabel *lbl = (UILabel *)[self viewWithTag:1];
         lbl.text = title;
-//        [lbl sizeToFit];
-//        lbl.bounds = CGRectMake(0, 0, kScreenWidth / 4 * 3 / 5 - 2, 30);
         lbl.font = HEITI(HeightXiShu(14));
-        if ([self.iconName isEqualToString:@"ico_down1.png"]) {
-            self.frame = CGRectMake(0, 0, WidthXiShu(120), 30);
-        }
     }
 }
 
@@ -138,7 +131,7 @@
     titleLabel.textColor = selected ? TitleColor : TitleColor;
     
     UIImageView *arrowImageView = (UIImageView *)[self viewWithTag:2];
-   arrowImageView.image = selected ? [UIImage imageNamed:@"Agent_DropDownBurron_selected"] : [UIImage imageNamed: self.iconName];
+   arrowImageView.image = selected ? [UIImage imageNamed:@"procure_arrowSelet.png"] : [UIImage imageNamed: self.iconName];
 
 }
 /*
