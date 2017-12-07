@@ -64,11 +64,13 @@
     [self.view addSubview:_businessLicense];
     
     UIButton * blBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    blBtn.frame = CGRectMake(8, _businessLicense.maxY+8, imgSize, 44);
+    blBtn.frame = CGRectMake(20, _businessLicense.maxY+8, imgSize, 44);
     [blBtn setTitle:@"营业执照(必需)\n点击上传图片" forState:UIControlStateNormal];
     [blBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     blBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     blBtn.titleLabel.numberOfLines = 2;
+    blBtn.clipsToBounds = YES;
+    blBtn.layer.borderWidth = 1;
     [blBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blBtn];
     //GSP证书
@@ -77,11 +79,13 @@
     [self.view addSubview:_gspLicense];
     
     UIButton * gspBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    gspBtn.frame = CGRectMake(kScreenWidth/2+8, _gspLicense.maxY+8, imgSize, 44);
+    gspBtn.frame = CGRectMake(kScreenWidth/2+10, _gspLicense.maxY+8, imgSize, 44);
     [gspBtn setTitle:@"GSP证\n点击上传图片" forState:UIControlStateNormal];
     [gspBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     gspBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     gspBtn.titleLabel.numberOfLines = 2;
+    gspBtn.clipsToBounds = YES;
+    gspBtn.layer.borderWidth = 1;
     [gspBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:gspBtn];
     //药品经营许可证
@@ -90,11 +94,13 @@
     [self.view addSubview:_ptLicense];
     
     UIButton * ptBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    ptBtn.frame = CGRectMake(8, _ptLicense.maxY+8, imgSize, 44);
+    ptBtn.frame = CGRectMake(20, _ptLicense.maxY+8, imgSize, 44);
     [ptBtn setTitle:@"药品经营许可证\n点击上传图片" forState:UIControlStateNormal];
     [ptBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     ptBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     ptBtn.titleLabel.numberOfLines = 2;
+    ptBtn.clipsToBounds = YES;
+    ptBtn.layer.borderWidth = 1;
     ptBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [ptBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ptBtn];
@@ -104,11 +110,13 @@
     [self.view addSubview:_mebLicense];
     
     UIButton * mebBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    mebBtn.frame = CGRectMake(kScreenWidth/2+8, _mebLicense.maxY+8, imgSize, 44);
+    mebBtn.frame = CGRectMake(kScreenWidth/2+10, _mebLicense.maxY+8, imgSize, 44);
     [mebBtn setTitle:@"医疗器械经营许可证\n点击上传图片" forState:UIControlStateNormal];
     [mebBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     mebBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     mebBtn.titleLabel.numberOfLines = 2;
+    mebBtn.clipsToBounds = YES;
+    mebBtn.layer.borderWidth = 1;
     mebBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [mebBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mebBtn];
@@ -120,7 +128,7 @@
     _mebLicense.image = [UIImage imageNamed:@"sysIcon1.jpg"];
 }
 -(void)uploadImage{
-    NSLog(@"请别点击了");
+    NSLog(@"这是需要调用图片选择和拍照的方法");
 }
 -(void)tabbarView{
     UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49)];
