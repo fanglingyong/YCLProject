@@ -10,21 +10,22 @@
 
 @interface ShoppingCartCell()
 
-@property(nonatomic, strong)UIImageView *selectImage; //选择小图标
+@property(nonatomic, strong)UIImageView *selectImg; //选择小图标
+@property(nonatomic, strong)UIButton *selectBtn; //选择小图标
 
-@property(nonatomic, strong)UIImageView *medicineImageView; //药品图片
-@property(nonatomic, strong)UILabel *medicineNameLabel;  //名称
-@property(nonatomic, strong)UILabel *companyLabel; // 公司
-@property(nonatomic, strong)UILabel *specificationLabel; // 规格
-@property(nonatomic, strong)UILabel *validityPeriodLabel; // 有效期
-@property(nonatomic, strong)UILabel *priceLabel;   //价格
+@property(nonatomic, strong)UIImageView *medicineImg; //药品图片
+@property(nonatomic, strong)UILabel *nameLb;  //名称
+@property(nonatomic, strong)UILabel *specificationLb; // 规格
+@property(nonatomic, strong)UILabel *produceAreaLb; // 产地
+@property(nonatomic, strong)UILabel *suppliersLb; // 供应商
 
-@property(nonatomic, strong)UILabel *priceMeterLabel;   //价格小计
-@property(nonatomic, strong)UILabel *integralMeterLabel;   //价格小计
+@property(nonatomic, strong)UIImageView *integralImg; //积分图片
+@property(nonatomic, strong)UILabel *priceLb;   //价格
+@property(nonatomic, strong)UILabel *countLb;   //个数
 
-@property(nonatomic, strong)UIButton *subtractionBtn; // 减
-@property(nonatomic, strong)UIButton *additionBtn;    // 加
-@property(nonatomic, strong)UILabel *countLabel;   //个数
+@property(nonatomic, strong)UIButton *editBtn; // 编辑
+@property(nonatomic, strong)UIButton *deleteBtn;    // 删除
+
 @property(nonatomic, strong)UIImageView *lineView;
 
 @end
@@ -46,20 +47,20 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self footerView];
-        [self selectImage];
-        [self medicineImageView];
-        [self medicineNameLabel];
-        [self companyLabel];
-        [self specificationLabel];
-        [self validityPeriodLabel];
-        [self priceLabel];
+        [self selectImg];
+        [self selectBtn];
         
-        [self priceMeterLabel];
-        [self integralMeterLabel];
-        [self subtractionBtn];
-        [self additionBtn];
-        [self countLabel];
+        [self medicineImg];
+        [self nameLb];
+        [self specificationLb];
+        [self produceAreaLb];
+        [self suppliersLb];
+        
+        [self integralImg];
+        [self priceLb];
+        [self countLb];
+        [self editBtn];
+        [self deleteBtn];
 
         [self lineView];
     }
@@ -67,176 +68,153 @@
 }
 
 #pragma mark - 页面元素
-
-- (UIView *)footerView {
-    if (!_footerView) {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, HeightXiShu(120), kScreenWidth, HeightXiShu(50))];
-        footerView.backgroundColor = [UIColor whiteColor];
-        [self.contentView addSubview:footerView];
-        _footerView = footerView;
+- (UIImageView *)selectImg{
+    if(!_selectImg){
+        UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(48) - HeightXiShu(9), WidthXiShu(18), HeightXiShu(18))];
+        selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
+        [self.contentView addSubview:selectImg];
+        _selectImg = selectImg;
     }
-    return _footerView;
-}
-- (UIImageView *)selectImage{
-    if(!_selectImage){
-        UIImageView *selectImage = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(35), WidthXiShu(18), HeightXiShu(18))];
-        selectImage.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        selectImage.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:selectImage];
-        _selectImage = selectImage;
-    }
-    return _selectImage;
+    return _selectImg;
 }
 
-- (UIImageView *)medicineImageView{
-    if(!_medicineImageView){
-        UIImageView *medicineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(32), HeightXiShu(9), WidthXiShu(80), HeightXiShu(80))];
-        medicineImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        medicineImageView.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:medicineImageView];
-        _medicineImageView = medicineImageView;
+- (UIButton *)selectBtn {
+    if (!_selectBtn) {
+        UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        selectBtn.frame = CGRectMake(0, 0, WidthXiShu(30), HeightXiShu(96));
+        [selectBtn addTarget:self action:@selector(selectBtnBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [self.contentView addSubview:selectBtn];
+        _selectBtn = selectBtn;
     }
-    return _medicineImageView;
+    return _selectBtn;
 }
 
--(UILabel *)medicineNameLabel{
-    if(!_medicineNameLabel){
-        UILabel *medicineNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(5), kScreenWidth - WidthXiShu(125), HeightXiShu(20))];
-        medicineNameLabel.text = @"阿司匹林肠溶片 100mg * 30片";
-        medicineNameLabel.font = HEITI(HeightXiShu(13));
-        medicineNameLabel.textColor = TitleColor;
-        [self.contentView addSubview:medicineNameLabel];
-        _medicineNameLabel = medicineNameLabel;
+- (UIImageView *)medicineImg{
+    if(!_medicineImg){
+        UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(32), HeightXiShu(10), WidthXiShu(76), HeightXiShu(76))];
+        medicineImg.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        medicineImg.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:medicineImg];
+        _medicineImg = medicineImg;
     }
-    return _medicineNameLabel;
+    return _medicineImg;
 }
 
--(UILabel *)companyLabel{
-    if(!_companyLabel){
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(27), kScreenWidth - WidthXiShu(125), HeightXiShu(20))];
-        companyLabel.text = @"拜耳中医保健有限公司";
-        companyLabel.font = HEITI(HeightXiShu(13));
-        companyLabel.textColor = TitleColor;
-        [self.contentView addSubview:companyLabel];
-        _companyLabel = companyLabel;
+-(UILabel *)nameLb{
+    if(!_nameLb){
+        UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(5), WidthXiShu(170), HeightXiShu(20))];
+        nameLb.text = @"阿司匹林肠溶片";
+        nameLb.font = HEITI(HeightXiShu(15));
+        nameLb.textColor = BlackColor;
+        [self.contentView addSubview:nameLb];
+        _nameLb = nameLb;
     }
-    return _companyLabel;
+    return _nameLb;
 }
 
--(UILabel *)specificationLabel{
-    if(!_specificationLabel){
-        UILabel *specificationLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(47), kScreenWidth - WidthXiShu(125), HeightXiShu(15))];
-        specificationLabel.text = @"规格: 100ml*30片";
-        specificationLabel.font = HEITI(HeightXiShu(13));
-        specificationLabel.textColor = TitleColor;
-        [self.contentView addSubview:specificationLabel];
-        _specificationLabel = specificationLabel;
+-(UILabel *)specificationLb{
+    if(!_specificationLb){
+        UILabel *specificationLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(30), WidthXiShu(170), HeightXiShu(20))];
+        specificationLb.text = @"规格: 40mg*6s";
+        specificationLb.font = HEITI(HeightXiShu(11));
+        specificationLb.textColor = TitleColor;
+        [self.contentView addSubview:specificationLb];
+        _specificationLb = specificationLb;
     }
-    return _specificationLabel;
+    return _specificationLb;
 }
 
--(UILabel *)validityPeriodLabel{
-    if(!_validityPeriodLabel){
-        UILabel *validityPeriodLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(62), kScreenWidth - WidthXiShu(125), HeightXiShu(15))];
-        validityPeriodLabel.text = @"效期: 2019-7-28";
-        validityPeriodLabel.font = HEITI(HeightXiShu(13));
-        validityPeriodLabel.textColor = TitleColor;
-        [self.contentView addSubview:validityPeriodLabel];
-        _validityPeriodLabel = validityPeriodLabel;
+-(UILabel *)produceAreaLb{
+    if(!_produceAreaLb){
+        UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(50), WidthXiShu(170), HeightXiShu(20))];
+        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.font = HEITI(HeightXiShu(11));
+        produceAreaLb.textColor = TitleColor;
+        [self.contentView addSubview:produceAreaLb];
+        _produceAreaLb = produceAreaLb;
     }
-    return _validityPeriodLabel;
+    return _produceAreaLb;
+}
+
+-(UILabel *)suppliersLb{
+    if(!_suppliersLb){
+        UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(70), WidthXiShu(170), HeightXiShu(20))];
+        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.font = HEITI(HeightXiShu(11));
+        suppliersLb.textColor = TitleColor;
+        [self.contentView addSubview:suppliersLb];
+        _suppliersLb = suppliersLb;
+    }
+    return _suppliersLb;
+}
+
+- (UIImageView *)integralImg{
+    if(!_integralImg){
+        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(5), WidthXiShu(20), HeightXiShu(20))];
+        integralImg.image = [GetImagePath getImagePath:@"procureIntegral"];
+        [self.contentView addSubview:integralImg];
+        _integralImg = integralImg;
+    }
+    return _integralImg;
+}
+
+-(UILabel *)priceLb{
+    if(!_priceLb){
+        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(85), HeightXiShu(30), WidthXiShu(80), HeightXiShu(20))];
+        priceLb.text = @"￥6.39/盒";
+        priceLb.textAlignment = NSTextAlignmentRight;
+        priceLb.font = HEITI(HeightXiShu(13));
+        priceLb.textColor = BlackColor;
+        [self.contentView addSubview:priceLb];
+        _priceLb = priceLb;
+    }
+    return _priceLb;
 }
 
 
--(UILabel *)priceLabel{
-    if(!_priceLabel){
-        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(80), kScreenWidth - WidthXiShu(125), HeightXiShu(25))];
-        priceLabel.text = @"￥6.39";
-        priceLabel.font = HEITI(HeightXiShu(20));
-        priceLabel.textColor = AllRedColor;
-        [self.contentView addSubview:priceLabel];
-        _priceLabel = priceLabel;
+-(UILabel *)countLb{
+    if(!_countLb){
+        UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(85), HeightXiShu(50), WidthXiShu(80), HeightXiShu(20))];
+        countLb.text = @"X1";
+        countLb.textAlignment = NSTextAlignmentRight;
+        countLb.font = HEITI(HeightXiShu(13));
+        countLb.textColor = TitleColor;
+        [self.contentView addSubview:countLb];
+        _countLb = countLb;
     }
-    return _priceLabel;
+    return _countLb;
 }
 
 
--(UILabel *)priceMeterLabel{
-    if(!_priceMeterLabel){
-        UILabel *priceMeterLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), 0, WidthXiShu(160), HeightXiShu(20))];
-        priceMeterLabel.text = @"价格小计 ￥14.29";
-        priceMeterLabel.font = HEITI(HeightXiShu(13));
-        priceMeterLabel.textColor = TitleColor;
-        [self.footerView addSubview:priceMeterLabel];
-        _priceMeterLabel = priceMeterLabel;
+- (UIButton *)editBtn {
+    if (!_editBtn) {
+        UIButton *editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        editBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(55), HeightXiShu(70), WidthXiShu(20), HeightXiShu(20));
+        [editBtn setImage:[GetImagePath getImagePath:@"edit"] forState:UIControlStateNormal];
+        [editBtn addTarget:self action:@selector(editBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [editBtn setTitleColor:TitleColor forState:UIControlStateNormal];
+        [self.contentView addSubview:editBtn];
+        _editBtn = editBtn;
     }
-    return _priceMeterLabel;
+    return _editBtn;
 }
 
--(UILabel *)integralMeterLabel{
-    if(!_integralMeterLabel){
-        UILabel *integralMeterLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(20), WidthXiShu(180), HeightXiShu(20))];
-        integralMeterLabel.text = @"积分小计 ￥1.429";
-        integralMeterLabel.font = HEITI(HeightXiShu(13));
-        integralMeterLabel.textColor = TitleColor;
-        [self.footerView addSubview:integralMeterLabel];
-        _integralMeterLabel = integralMeterLabel;
+- (UIButton *)deleteBtn {
+    if (!_deleteBtn) {
+        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(25), HeightXiShu(70), WidthXiShu(20), HeightXiShu(20));
+        [deleteBtn setImage:[GetImagePath getImagePath:@"delete"] forState:UIControlStateNormal];
+        [deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchDown];
+        [deleteBtn setTitleColor:TitleColor forState:UIControlStateNormal];
+        [self.contentView addSubview:deleteBtn];
+        _deleteBtn = deleteBtn;
     }
-    return _integralMeterLabel;
-}
-
-- (UIButton *)subtractionBtn {
-    if (!_subtractionBtn) {
-        UIButton *subtractionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        subtractionBtn.layer.masksToBounds = YES;
-        subtractionBtn.layer.cornerRadius = WidthXiShu(4);
-        subtractionBtn.layer.borderColor = TitleColor.CGColor;
-        subtractionBtn.layer.borderWidth = HeightXiShu(.5);
-        subtractionBtn.frame = CGRectMake(WidthXiShu(245), HeightXiShu(80), WidthXiShu(30), HeightXiShu(30));
-        [subtractionBtn addTarget:self action:@selector(subtractionBtnClick:) forControlEvents:UIControlEventTouchDown];
-        [subtractionBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [subtractionBtn setTitle:@"-" forState:UIControlStateNormal];
-        [self.contentView addSubview:subtractionBtn];
-        _subtractionBtn = subtractionBtn;
-    }
-    return _subtractionBtn;
-}
-
-- (UIButton *)additionBtn {
-    if (!_additionBtn) {
-        UIButton *additionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        additionBtn.layer.cornerRadius = WidthXiShu(4);
-        additionBtn.layer.borderColor = TitleColor.CGColor;
-        additionBtn.layer.borderWidth = HeightXiShu(.5);
-        additionBtn.frame = CGRectMake(WidthXiShu(314), HeightXiShu(80), WidthXiShu(30), HeightXiShu(30));
-        [additionBtn addTarget:self action:@selector(additionBtnClick:) forControlEvents:UIControlEventTouchDown];
-        [additionBtn setTitle:@"+" forState:UIControlStateNormal];
-        [additionBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [self.contentView addSubview:additionBtn];
-        _additionBtn = additionBtn;
-    }
-    return _additionBtn;
+    return _deleteBtn;
     
 }
-
--(UILabel *)countLabel{
-    if(!_countLabel){
-        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(277), HeightXiShu(80), HeightXiShu(35), HeightXiShu(30))];
-        countLabel.layer.borderColor = TitleColor.CGColor;
-        countLabel.layer.borderWidth = HeightXiShu(.5);
-        countLabel.text = @"1";
-        countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.font = HEITI(HeightXiShu(12));
-        countLabel.textColor = TitleColor;
-        [self.contentView addSubview:countLabel];
-        _countLabel = countLabel;
-    }
-    return _countLabel;
-}
-
 - (UIImageView *)lineView{
     if(!_lineView){
-        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(169), kScreenWidth, .5)];
+        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(96), kScreenWidth, .5)];
         lineView.backgroundColor = AllLightGrayColor;
         [self.contentView addSubview:lineView];
         _lineView = lineView;
@@ -244,11 +222,15 @@
     return _lineView;
 }
 #pragma mark - 事件
-- (void)subtractionBtnClick:(UIButton *)sender {
+- (void)selectBtnBtnClick:(UIButton *)sender {
     
 }
 
-- (void)additionBtnClick:(UIButton *)sender {
+- (void)editBtnClick:(UIButton *)sender {
+    
+}
+
+- (void)deleteBtnClick:(UIButton *)sender {
     
 }
 

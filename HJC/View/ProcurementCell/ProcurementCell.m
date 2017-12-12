@@ -22,7 +22,7 @@
 
 @property(nonatomic, strong)UIButton *subtractionBtn; // 减
 @property(nonatomic, strong)UIButton *additionBtn;    // 加
-@property(nonatomic, strong)UILabel *countLabel;   //个数
+@property(nonatomic, strong)UITextField *countLabel;   //个数
 @property(nonatomic, strong)UIImageView *shoppCartImg; //积分图片
 
 @property(nonatomic, strong)UIImageView *lineView;
@@ -196,11 +196,9 @@
     
 }
 
--(UILabel *)countLabel{
+-(UITextField *)countLabel{
     if(!_countLabel){
-        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(164), HeightXiShu(105), HeightXiShu(25), HeightXiShu(15))];
-        countLabel.layer.borderColor = TitleColor.CGColor;
-        countLabel.layer.borderWidth = HeightXiShu(.5);
+        UITextField *countLabel = [[UITextField alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(164), HeightXiShu(105), HeightXiShu(25), HeightXiShu(15))];
         countLabel.text = @"1";
         countLabel.textAlignment = NSTextAlignmentCenter;
         countLabel.font = HEITI(HeightXiShu(12));

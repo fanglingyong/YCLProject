@@ -11,7 +11,6 @@
 
 @interface ShoppingCartCell : UITableViewCell
 
-@property (nonatomic, retain)UIView *footerView;
 @property(nonatomic,strong)ShoppingCartModel *model;
 
 @end

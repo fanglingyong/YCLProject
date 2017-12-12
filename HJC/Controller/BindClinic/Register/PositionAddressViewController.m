@@ -11,7 +11,7 @@
 #import "CompletionInfoViewController.h"
 #import "AssoSuccessViewController.h"
 
-@interface PositionAddressViewController ()
+@interface PositionAddressViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,strong) NavView *navView;
 @property (nonatomic,strong) UIImageView *businessLicense;
@@ -69,7 +69,7 @@
     [blBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     blBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     blBtn.titleLabel.numberOfLines = 2;
-    [blBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
+    [blBtn addTarget:self action:@selector(uploadImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:blBtn];
     //GSP证书
     self.gspLicense = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, _navView.maxY+20, imgSize, imgSize)];
@@ -82,7 +82,7 @@
     [gspBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     gspBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     gspBtn.titleLabel.numberOfLines = 2;
-    [gspBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
+    [gspBtn addTarget:self action:@selector(uploadImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:gspBtn];
     //药品经营许可证
     self.ptLicense = [[UIImageView alloc]initWithFrame:CGRectMake(20, blBtn.maxY+20, imgSize, imgSize)];
@@ -96,7 +96,7 @@
     ptBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     ptBtn.titleLabel.numberOfLines = 2;
     ptBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [ptBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
+    [ptBtn addTarget:self action:@selector(uploadImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ptBtn];
     //医疗器械经营许可证
     self.mebLicense = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, gspBtn.maxY+20, imgSize, imgSize)];
@@ -110,7 +110,7 @@
     mebBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     mebBtn.titleLabel.numberOfLines = 2;
     mebBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [mebBtn addTarget:self action:@selector(uploadImage) forControlEvents:UIControlEventTouchUpInside];
+    [mebBtn addTarget:self action:@selector(uploadImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mebBtn];
     //假数据
     UIImage *img = [UIImage imageNamed:@"sysIcon1.jpg"];
@@ -119,8 +119,22 @@
     _ptLicense.image = [UIImage imageNamed:@"sysIcon3.jpg"];
     _mebLicense.image = [UIImage imageNamed:@"sysIcon1.jpg"];
 }
--(void)uploadImage{
+- (void)uploadImage:(UIButton *)sender{
     NSLog(@"请别点击了");
+    __block typeof(self)wSelf = self;
+    UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *loaclAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [wSelf localPhoto];
+    }];
+    UIAlertAction *takeAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [wSelf takePhoto];
+    }];
+    [alertControl addAction:cancelAction];
+    [alertControl addAction:loaclAction];
+    [alertControl addAction:takeAction];
+    [self presentViewController:alertControl animated:YES completion:nil];
+    
 }
 -(void)tabbarView{
     UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49)];
@@ -155,6 +169,54 @@
     [self.navigationController pushViewController:comInfo animated:YES];
 }
 #pragma mark - 选照片
+#pragma mark - head的delegate
+
+
+#pragma mark - 选照片
+//打开本地相册
+-(void)localPhoto{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    //设置选择后的图片可被编辑
+    picker.allowsEditing = YES;
+    [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+}
+
+//开始拍照
+-(void)takePhoto{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+    }else{
+        NSLog(@"模拟其中无法打开照相机,请在真机中使用");
+    }
+}
+
+
+#pragma mark - UIImagePickerDelegate
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    NSLog(@"%@", imageData);
+    
+    [self.businessLicense setImage:image];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    NSLog(@"您取消了选择图片");
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 #pragma mark - memoryWarning

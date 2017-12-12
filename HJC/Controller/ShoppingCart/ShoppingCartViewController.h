@@ -6,8 +6,8 @@
 //  Copyright © 2017年 EastChina. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseViewController.h"
 
-@interface ShoppingCartViewController : BaseTableViewController
+@interface ShoppingCartViewController : BaseViewController
 
 @end

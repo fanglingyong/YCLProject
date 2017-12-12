@@ -14,6 +14,7 @@
 #import "RegisterClinicViewController.h"
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
+#import "PositionAddressViewController.h"
 
 @interface MyCenterViewController ()
 @property(nonatomic,strong)NavView *navView;
@@ -58,7 +59,7 @@
     }else if(section == 2){
         return 2;
     }else {
-        return 1;
+        return 2;
     }
 }
 
@@ -161,7 +162,7 @@
         }
     } else {
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
-        titleLabel.text = @[@"联系客服"][indexPath.row];
+        titleLabel.text = @[@"联系客服", @"退出登录"][indexPath.row];
         titleLabel.textColor = TitleColor;
         titleLabel.font = HEITI(HeightXiShu(15));
         [cell.contentView addSubview:titleLabel];
@@ -169,6 +170,12 @@
         UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
         arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
         [cell.contentView addSubview:arrowImgView];
+        
+        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
+        cutLine.backgroundColor = AllLightGrayColor;
+        if (indexPath.row == 0) {
+            [cell.contentView addSubview:cutLine];
+        }
         
     }
     return cell;
@@ -193,6 +200,8 @@
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 3) {
         NSLog(@"联系客服");
+        PositionAddressViewController * pa = [[PositionAddressViewController alloc] init];
+        [self.navigationController pushViewController:pa animated:YES];
     }
     
 }

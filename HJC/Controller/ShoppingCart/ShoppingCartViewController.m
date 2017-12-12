@@ -10,9 +10,12 @@
 #import "NavView.h"
 #import "ShoppingCartModel.h"
 #import "ShoppingCartCell.h"
-@interface ShoppingCartViewController ()
-
+@interface ShoppingCartViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic,strong)NavView *navView;
+
+@property (nonatomic, retain)UITableView *headTableView;
+@property (nonatomic, retain)UITableView *footTableView;
+
 @property(nonatomic,strong)NSMutableArray *modelArr;
 
 @end
@@ -25,9 +28,21 @@
     [self statusBar];
     [self navView];
     
-    [self.tableView setMinY:64 maxY:kScreenHeight - 49 - HeightXiShu(45)];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = AllBackLightGratColor;
+    self.headTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 49) style:UITableViewStyleGrouped];
+    [self.headTableView setMinY:64 maxY:kScreenHeight - 49];
+    self.headTableView.delegate = self;
+    self.headTableView.dataSource = self;
+    self.headTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.headTableView.backgroundColor = AllBackLightGratColor;
+    [self.view addSubview:self.headTableView];
+    
+    self.footTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(160), kScreenWidth, HeightXiShu(160)) style:UITableViewStyleGrouped];
+    self.footTableView.delegate = self;
+    self.footTableView.dataSource = self;
+    self.footTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.footTableView.backgroundColor = AllBackLightGratColor;
+//    [self.view addSubview:self.footTableView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,66 +72,91 @@
 
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (tableView == self.headTableView) {
+        return 1;
+    }
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 2;
+    if (tableView == self.headTableView) {
+        return 10;
     }
-    return 1;
+    if (section == 0) {
+        return 3;
+    }
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeightXiShu(25);
+    if (tableView == self.headTableView) {
+        return HeightXiShu(10);
+    }
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (tableView == self.headTableView) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
+        view.backgroundColor = AllLightGrayColor;
+        return view;
+    }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(50))];
+    view.backgroundColor = [UIColor whiteColor];
+    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(18))];
+    selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
+    [view addSubview:selectImg];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(25))];
-    view.backgroundColor = AllLightGrayColor;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(60), 0, WidthXiShu(160), HeightXiShu(50))];
+    label.text = @"总计: 43.00";
+    label.textColor = BlackColor;
+    label.font = HEITI(HeightXiShu(16));
+    [view addSubview:label];
     
-    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, kScreenWidth / 2, HeightXiShu(25))];
-    integralLabel.text = @[@"积分专区(￥199.86)", @"正常品种(￥122.17)"][section];
-    integralLabel.textColor = TitleColor;
-    integralLabel.font = HEITI(HeightXiShu(13));
-    [view addSubview:integralLabel];
-
-    UILabel *canUseLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(160), 0, WidthXiShu(150), HeightXiShu(25))];
-    canUseLabel.text = @[@"可用积分：209", @""][section];
-    canUseLabel.textAlignment = NSTextAlignmentRight;
-    canUseLabel.textColor = TitleColor;
-    canUseLabel.font = HEITI(HeightXiShu(13));
-    [view addSubview:canUseLabel];
-    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(kScreenWidth - WidthXiShu(125), 0, WidthXiShu(125), HeightXiShu(50));
+    [button setTitle:@"生成订单" forState:UIControlStateNormal];
+    button.titleLabel.textColor = [UIColor whiteColor];
+    button.backgroundColor = [UIColor blueColor];
+    [view addSubview:button];
     return view;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return HeightXiShu(170);
+    if (tableView == self.headTableView) {
+        return HeightXiShu(96);
     }
-    return HeightXiShu(125);
+    if (indexPath.section == 0) {
+        return 0;
+    }
+    return HeightXiShu(110);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ShoppingCartModel *model = [[ShoppingCartModel alloc] init];
-    if (self.modelArr.count > 0) {
-        model = self.modelArr[indexPath.row];
+    if (tableView == self.headTableView) {
+        ShoppingCartModel *model = [[ShoppingCartModel alloc] init];
+        if (self.modelArr.count > 0) {
+            model = self.modelArr[indexPath.row];
+        }
+        static NSString* const identifier = @"ShoppingCartCell";
+        ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[ShoppingCartCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.model = model;
+        return cell;
     }
-    static NSString* const identifier = @"ShoppingCartCell";
-    ShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    static NSString* const identifier = @"cell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[ShoppingCartCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.model = model;
-    if (indexPath.section == 0) {
-        cell.footerView.hidden = NO;
-    } else {
-        cell.footerView.hidden = YES;
-    }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     return cell;
 }
 
