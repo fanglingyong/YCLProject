@@ -54,7 +54,6 @@
     //名称、联系人、地址
     //发票抬头、税号、开户银行
     //营业执照（必须）、GSP证、药品经营许可证、医疗器械经营许可证
-    self.view.backgroundColor = [UIColor colorFromHexCode:@"#d6d6d6"];
     
     UIView * reg = [[UIView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, 200)];
     reg.backgroundColor = [UIColor whiteColor];

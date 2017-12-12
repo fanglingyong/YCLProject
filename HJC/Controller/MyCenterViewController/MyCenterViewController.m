@@ -11,7 +11,7 @@
 #import "BaseNavigationController.h"
 #import "NavView.h"
 #import "MyOrderViewController.h"
-#import "RegisterClinicViewController.h"
+#import "BindClinicViewController.h"
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
 #import "PositionAddressViewController.h"
@@ -191,7 +191,8 @@
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 2 && indexPath.row == 0) {
         NSLog(@"我的诊所");
-        RegisterClinicViewController * VC = [[RegisterClinicViewController alloc] init];
+        BindClinicViewController * VC = [[BindClinicViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
 
     } else if (indexPath.section == 2 && indexPath.row == 1) {

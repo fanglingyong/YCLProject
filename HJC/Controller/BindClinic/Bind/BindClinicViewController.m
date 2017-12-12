@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self statusBar];
     [self.view addSubview:self.navView];
     [self loadUI];
     // Do any additional setup after loading the view.
