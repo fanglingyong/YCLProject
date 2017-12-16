@@ -14,11 +14,12 @@
 #import "BindClinicViewController.h"
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
-#import "PositionAddressViewController.h"
+#import "BusinessLicenseViewController.h"
+#import "AuditClinicViewController.h"
 
 @interface MyCenterViewController ()
 @property(nonatomic,strong)NavView *navView;
-
+@property(nonatomic,strong)UIButton *sh;
 @end
 
 @implementation MyCenterViewController
@@ -199,10 +200,25 @@
         NSLog(@"我的地址");
         ReceiveAddressViewController * VC = [[ReceiveAddressViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 3 && indexPath.row == 0) {
         NSLog(@"联系客服");
-        PositionAddressViewController * pa = [[PositionAddressViewController alloc] init];
-        [self.navigationController pushViewController:pa animated:YES];
+        BusinessLicenseViewController * businessLicense = [[BusinessLicenseViewController alloc] init];
+        businessLicense.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:businessLicense animated:YES];
+    } else if (indexPath.section == 3 && indexPath.row == 1){
+        NSLog(@"退出登录");
+        UIAlertController *alet = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+           //取消
+        }];
+        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alet addAction:cancle];
+        [alet addAction:sure];
+        [self presentViewController:alet animated:YES completion:^{
+           //弹出提示框完成后TODO
+        }];
     }
     
 }
@@ -214,10 +230,26 @@
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
         navView.leftBtn.hidden = YES;
+        self.sh = [UIButton buttonWithType:UIButtonTypeCustom];
+        _sh.frame = CGRectMake(0, 4, 68, 36);
+        [_sh setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_sh setTitle:@"诊所审核" forState:UIControlStateNormal];
+        _sh.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_sh addTarget:self action:@selector(jumpToSomething) forControlEvents:UIControlEventTouchUpInside];
+        [navView addSubview:_sh];
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
+}
+-(void)auditClinic{
+    _sh.hidden = YES;
+}
+-(void)jumpToSomething{
+    //诊所审核
+    AuditClinicViewController *audit = [[AuditClinicViewController alloc] init];
+    audit.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:audit animated:YES];
 }
 #pragma mark - 事件
 -(void)loginAction{

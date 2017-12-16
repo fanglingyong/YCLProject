@@ -8,7 +8,7 @@
 
 #import "RegisterClinicViewController.h"
 #import "NavView.h"
-#import "PositionAddressViewController.h"
+#import "BusinessLicenseViewController.h"
 
 @interface RegisterClinicViewController ()<UITextViewDelegate>
 
@@ -140,7 +140,7 @@
 
 // last / next button menthod
 -(void)jumpToPositAddress:(UIButton*)sender{
-    PositionAddressViewController * pa = [[PositionAddressViewController alloc] init];
+    BusinessLicenseViewController * pa = [[BusinessLicenseViewController alloc] init];
     [self.navigationController pushViewController:pa animated:YES];
 }
 

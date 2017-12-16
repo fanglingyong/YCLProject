@@ -12,7 +12,7 @@
 #import "ForgetPasswordViewController.h"
 #import "RegisterUserViewController.h"
 #import "TextFiledView.h"
-
+#import "EncrtDecrt.h"
 
 @interface LoginViewController ()
 
@@ -72,15 +72,38 @@
  @param sender sure button
  */
 - (void)sureForLoginActionMenthod:(UIButton *)sender{
-    /** jumpMain
-     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-     [appDelegate jumpMain];
-     */
-    /**jump bind clinic
-     
-     */
-    BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
-    [self.navigationController pushViewController:bindClinic animated:YES];
+    NSString * account = _accountView.textField.text;
+    NSString * password =_passwordView.textField.text;
+    if (![AnimaDefaultUtil isNotNull:account]) {
+        [AnimaDefaultUtil alertUtil:self message:@"请输入账号"];
+    }else if (![AnimaDefaultUtil isNotNull:password]){
+        [AnimaDefaultUtil alertUtil:self message:@"请输入密码"];
+    }else{
+        NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+        [pargams setObject:account forKey:@"user"];
+        [pargams setObject:[EncrtDecrt md5:password] forKey:@"password"];
+        [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
+            if (error) {
+                [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
+                NSLog(@"error--%@",error);
+            }else if ([[dict objectForKey:@"code"] intValue] != 1) {
+                [AnimaDefaultUtil alertUtil:self message:dict[@"message"]];
+            }else{
+                //解析数据
+                /** jumpMain
+                 AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                 [appDelegate jumpMain];
+                 */
+                /**jump bind clinic
+                 BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
+                 [self.navigationController pushViewController:bindClinic animated:YES];
+                 */
+            }
+        } dic:pargams noNetWork:^{
+            [AnimaDefaultUtil alertUtil:self message:@"请检查网络"];
+        }];
+    }
+    
 }
 
 /**
