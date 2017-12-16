@@ -11,8 +11,20 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef DEBUG
+#define NSLog(fmt, ...) NSLog((@"\n [文件名:%s]\n" "[函数名:%s]\n" "[行号:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+//#define DeBugLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+//#define DogLog(...) NSLog(__VA_ARGS__);
+//#define MyNSLog(FORMAT, ...) fprintf(stderr,"[%s]:[line %d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define DogLog(...)
+//#define DeBugLog(...)
+//#define NSLog(...)
+//#define MyNSLog(FORMAT, ...)
+#endif
 
 #ifdef __OBJC__
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
@@ -28,14 +40,12 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "UIColor+AddColor.h"
-
+#import "HUDUtil.h"
 #import "UIView+Common.h"
 #import "AnimaDefaultUtil.h"
 
 #import "UserModel.h"
 
-#endif /* HJC_PrefixHeader_pch */
-#endif
 
 #define APPVER @"1.0"
 
@@ -85,3 +95,6 @@
 
 #define sysBlue [UIColor colorFromHexCode:@"#3975e2"]
 
+
+#endif /* HJC_PrefixHeader_pch */
+#endif

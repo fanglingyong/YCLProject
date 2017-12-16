@@ -75,9 +75,9 @@
     NSString * account = _accountView.textField.text;
     NSString * password =_passwordView.textField.text;
     if (![AnimaDefaultUtil isNotNull:account]) {
-        [AnimaDefaultUtil alertUtil:self message:@"请输入账号"];
+        [HUDUtil Hud_message:@"请输入账号" view:self.view];
     }else if (![AnimaDefaultUtil isNotNull:password]){
-        [AnimaDefaultUtil alertUtil:self message:@"请输入密码"];
+        [HUDUtil Hud_message:@"请输入密码" view:self.view];
     }else{
         NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
         [pargams setObject:account forKey:@"Username"];
@@ -106,7 +106,7 @@
                 }
             }
         } dic:pargams noNetWork:^{
-            [AnimaDefaultUtil alertUtil:self message:@"请检查网络"];
+            [HUDUtil Hud_message:@"请检查网络" view:self.view];
         }];
     }
     

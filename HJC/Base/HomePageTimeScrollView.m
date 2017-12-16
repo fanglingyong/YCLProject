@@ -84,12 +84,10 @@
 
 -(void)createAnimation
 {
-    //    NSLog(@"%lu", (unsigned long)self.statementArr.count);
     [UIView animateWithDuration:0.5 animations:^{
         self.showAwardScrollView.contentOffset = CGPointMake(0, self.showAwardScrollView.contentOffset.y + self.showAwardScrollView.frame.size.height);
     } completion:^(BOOL finished) {
-//                NSLog(@"%f", self.showAwardScrollView.contentOffset.y);
-//                NSLog(@"%f", (self.statementArr.count - 1) * self.showAwardScrollView.frame.size.height);
+
         
         if(self.showAwardScrollView.contentOffset.y == (self.statementArr.count - 1) * self.showAwardScrollView.frame.size.height) {
             self. showAwardScrollView.contentOffset = CGPointMake(0, 0);
@@ -103,19 +101,18 @@
 }
 
 -(void)leftButtonClick:(UIButton*)button {
-    NSLog(@"zuo");
+    NSLog(@"左")
 //    self.block(100);
 }
 
 -(void)rightButtonClick:(UIButton*)button {
-    NSLog(@"you");
+    NSLog(@"右");
 //    self.block(101);
 }
 
 -(void)selectAdClick:(id)sender{
-//    NSLog(@"选择广告");
+
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-//    NSLog(@"___%ld",[tap view].tag);
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didhomePageTimeScrollView:)]) {
         [self.delegate didhomePageTimeScrollView:[tap view].tag];

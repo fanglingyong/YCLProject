@@ -101,8 +101,7 @@
 //    NSLog(@"===>%@",error.domain);
 //    NSLog(@"%ld",(long)error.code);
 //    NSLog(@"===>%@",error.userInfo);
-    [WebService AddAlertView:error.domain];
-
+//    [WebService AddAlertView:error.domain];
     
     if(failure){
         failure(error);

@@ -16,6 +16,7 @@
 
 @property (nonatomic,strong) UITextField *tfName;
 @property (nonatomic,strong) UITextField *tfLeader;
+@property (nonatomic,strong) UITextField *tfLink;
 @property (nonatomic,strong) UITextView *tfAddress;
 @property (nonatomic,strong) UILabel *tfAddressPlaceholder;
 
@@ -51,11 +52,11 @@
 
 
 - (void)viewCrateUI{
-    //名称、联系人、地址
+    //名称、法人、联系方式、地址
     //发票抬头、税号、开户银行
     //营业执照（必须）、GSP证、药品经营许可证、医疗器械经营许可证
     
-    UIView * reg = [[UIView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, 200)];
+    UIView * reg = [[UIView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, 250)];
     reg.backgroundColor = [UIColor whiteColor];
     
     UILabel * clinicNmae = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 68, 22)];
@@ -73,25 +74,39 @@
     [reg addSubview:fg_1];
     
     UILabel * clinicLeader = [[UILabel alloc] initWithFrame:CGRectMake(20, fg_1.maxY+10, 68, 22)];
-    clinicLeader.text = @"联系人";
+    clinicLeader.text = @"法人姓名";
     clinicLeader.font = [UIFont systemFontOfSize:15];
     [reg addSubview:clinicLeader];
     
     self.tfLeader = [[UITextField alloc] initWithFrame:CGRectMake(96, fg_1.maxY+6, reg.maxX-116, 30)];
     _tfLeader.font = [UIFont systemFontOfSize:15];
-    _tfLeader.placeholder = @"请填写联系人姓名";
+    _tfLeader.placeholder = @"请填写法人姓名";
     [reg addSubview:_tfLeader];
     
     UIView *fg_2 = [[UIView alloc] initWithFrame:CGRectMake(10, clinicLeader.maxY+10, kScreenWidth-20, 2)];
     fg_2.backgroundColor = [UIColor colorFromHexCode:@"dfdfdd"];
     [reg addSubview:fg_2];
     
-    UILabel * clinicAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, fg_2.maxY+10, 68, 22)];
+    UILabel * clinicLink = [[UILabel alloc] initWithFrame:CGRectMake(20, fg_2.maxY+10, 68, 22)];
+    clinicLink.text = @"联系方式";
+    clinicLink.font = [UIFont systemFontOfSize:15];
+    [reg addSubview:clinicLink];
+    
+    self.tfLink = [[UITextField alloc] initWithFrame:CGRectMake(96, fg_2.maxY+6, reg.maxX-116, 30)];
+    _tfLink.font = [UIFont systemFontOfSize:15];
+    _tfLink.placeholder = @"请填写联系方式";
+    [reg addSubview:_tfLink];
+    
+    UIView *fg_3 = [[UIView alloc] initWithFrame:CGRectMake(10, clinicLink.maxY+10, kScreenWidth-20, 2)];
+    fg_3.backgroundColor = [UIColor colorFromHexCode:@"dfdfdd"];
+    [reg addSubview:fg_3];
+    
+    UILabel * clinicAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, fg_3.maxY+10, 68, 22)];
     clinicAddress.text = @"诊所地址";
     clinicAddress.font = [UIFont systemFontOfSize:15];
     [reg addSubview:clinicAddress];
     
-    self.tfAddress = [[UITextView alloc] initWithFrame:CGRectMake(93, fg_2.maxY+6, reg.maxX-116, 80)];
+    self.tfAddress = [[UITextView alloc] initWithFrame:CGRectMake(93, fg_3.maxY+6, reg.maxX-116, 80)];
     _tfAddress.font = [UIFont systemFontOfSize:15];
     _tfAddress.text = @"请填写详细地址";
     _tfAddress.textColor = [UIColor colorFromHexCode:@"#c0c0c0"];
