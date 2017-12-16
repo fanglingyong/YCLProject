@@ -285,6 +285,7 @@
 		457D797E1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D797D1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m */; };
 		457D79821FE514460077F462 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79811FE514460077F462 /* UserModel.m */; };
 		457D79861FE529220077F462 /* CustomServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79851FE529220077F462 /* CustomServiceViewController.m */; };
+		457D798A1FE53ED50077F462 /* IntegralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79891FE53ED50077F462 /* IntegralDetailViewController.m */; };
 		45BDBE281FB293BE001B9581 /* SelectBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BDBE271FB293BE001B9581 /* SelectBoxView.m */; };
 		45BDBE301FB2A323001B9581 /* select_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2A1FB2A323001B9581 /* select_up@3x.png */; };
 		45BDBE311FB2A323001B9581 /* select_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2B1FB2A323001B9581 /* select_down.png */; };
@@ -740,6 +741,8 @@
 		457D79811FE514460077F462 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		457D79841FE529220077F462 /* CustomServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomServiceViewController.h; sourceTree = "<group>"; };
 		457D79851FE529220077F462 /* CustomServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomServiceViewController.m; sourceTree = "<group>"; };
+		457D79881FE53ED50077F462 /* IntegralDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralDetailViewController.h; sourceTree = "<group>"; };
+		457D79891FE53ED50077F462 /* IntegralDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailViewController.m; sourceTree = "<group>"; };
 		45BDBE261FB293BE001B9581 /* SelectBoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBoxView.h; sourceTree = "<group>"; };
 		45BDBE271FB293BE001B9581 /* SelectBoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBoxView.m; sourceTree = "<group>"; };
 		45BDBE2A1FB2A323001B9581 /* select_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_up@3x.png"; sourceTree = "<group>"; };
@@ -1455,6 +1458,7 @@
 		3696FF311F95DC87000B9172 /* MyCenterViewController */ = {
 			isa = PBXGroup;
 			children = (
+				457D79871FE53EBC0077F462 /* IntegralDetailController */,
 				457D79831FE528D50077F462 /* CustomServiceController */,
 				368DBF731FD7CCAF00987776 /* ReceivingAddressViewController */,
 				363BB5581FD6A4C7004DBA4A /* MyCollectViewController */,
@@ -1769,6 +1773,15 @@
 				457D79851FE529220077F462 /* CustomServiceViewController.m */,
 			);
 			path = CustomServiceController;
+			sourceTree = "<group>";
+		};
+		457D79871FE53EBC0077F462 /* IntegralDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				457D79881FE53ED50077F462 /* IntegralDetailViewController.h */,
+				457D79891FE53ED50077F462 /* IntegralDetailViewController.m */,
+			);
+			path = IntegralDetailController;
 			sourceTree = "<group>";
 		};
 		45BDBE291FB2A2EA001B9581 /* SelectBox */ = {
@@ -2086,6 +2099,7 @@
 				3616EB161FB3063400CEF075 /* MerchandiseFooterButton.m in Sources */,
 				455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */,
 				36624ED11FA9BDD300F58A94 /* MyCenterHead.m in Sources */,
+				457D798A1FE53ED50077F462 /* IntegralDetailViewController.m in Sources */,
 				336FDB881FD11EFD00AFC918 /* ProcurementViewController.m in Sources */,
 				36430BBC1F9DBF8F001709DD /* UIButton+WebCache.m in Sources */,
 				3675BBE91FB57FEE0030F914 /* ShoppingCartModel.m in Sources */,

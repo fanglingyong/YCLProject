@@ -85,6 +85,10 @@
     NSData *data = [defaults objectForKey:@"AnimaUserModel"];
     return [NSData unarchiveObjectWithData:data];
 }
++(void)initModel{
+    UserModel *model = [[UserModel alloc] init];
+    [UserModel saveModel:model];
+}
 
 @end
 

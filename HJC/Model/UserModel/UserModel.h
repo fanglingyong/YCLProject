@@ -76,7 +76,9 @@
 +(void)saveModel:(UserModel *)model;
 
 /**
- *  如果是init初始化，是没有读取数据的
+ *  初始化model 即删除数据
  */
++(void)initModel;
+
 @end
 

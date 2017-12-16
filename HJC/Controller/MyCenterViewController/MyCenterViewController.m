@@ -17,11 +17,13 @@
 #import "BusinessLicenseViewController.h"
 #import "ClinicRegisterInfoListViewController.h"
 #import "CustomServiceViewController.h"
+#import "IntegralDetailViewController.h"
 
-@interface MyCenterViewController ()
+@interface MyCenterViewController ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NavView *navView;
 @property(nonatomic,strong)UIButton *sh;
 @property(nonatomic,strong)NSArray *tableViewData;
+@property(nonatomic,strong)UIAlertController *alert;
 @end
 
 @implementation MyCenterViewController
@@ -31,9 +33,9 @@
     [self statusBar];
     [self navView];
     // Do any additional setup after loading the view.
-    [self auditClinic];
+    [self initClinic];
     [self setUpHeaderRefresh:NO footerRefresh:NO];
-    [self.tableView setMinY:64 maxY:kScreenHeight - 44];
+    [self.tableView setMinY:_navView.maxY maxY:kScreenHeight -49];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
 }
@@ -59,12 +61,17 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(8))];
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(5))];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeightXiShu(10);
+    return HeightXiShu(5);
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return HeightXiShu(5);
+}
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(5))];
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* const identifier = @"cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -147,17 +154,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_tableViewData.count == 2 && indexPath.section == 1 && indexPath.row == 0) {
-        CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:VC animated:YES];
-        return;
-    }
     if (indexPath.section == 1 && indexPath.row == 0) {
         //--@"我的订单");
-        MyOrderViewController *VC = [[MyOrderViewController alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:VC animated:YES];
+        if (_tableViewData.count == 2 ) {
+            CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }else{
+            MyOrderViewController *VC = [[MyOrderViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         //--@"我的收藏");
         MyCollectViewController * VC = [[MyCollectViewController alloc] init];
@@ -175,25 +182,47 @@
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 3 && indexPath.row == 0) {
+        //--积分明细
+        IntegralDetailViewController * VC = [[IntegralDetailViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.section == 3 && indexPath.row == 1){
         //--联系客服
         CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
-    } else if (indexPath.section == 3 && indexPath.row == 1){
+    }if (indexPath.section == 4 && indexPath.row == 0){
         //--退出登录");
-        UIAlertController *alet = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
+//        [self presentViewController:self.alert animated:YES completion:nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定退出登陆？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [UserModel initModel];
+        [self initClinic];
+        [self.tableView reloadData];
+    }
+}
+//-- 这个在这里有点卡，不是很好。
+-(UIAlertController*)alert{
+    if (!_alert) {
+        _alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-           //取消
+            //取消
         }];
+        __block typeof(self) wself = self;
         UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             //删除相关信息
+            [UserModel initModel];
+            [wself initClinic];
+            [wself.tableView reloadData];
         }];
-        [alet addAction:cancle];
-        [alet addAction:sure];
-        [self presentViewController:alet animated:YES completion:^{
-           //弹出提示框完成后TODO
-        }];
+        [_alert addAction:cancle];
+        [_alert addAction:sure];
     }
+    return _alert;
 }
 #pragma mark - 页面元素
 - (NavView *)navView{
@@ -217,7 +246,7 @@
 }
 #pragma mark - 事件
 //隐藏诊所审核 只有管理员才有此权限
--(void)auditClinic{
+-(void)initClinic{
     UserModel *model = [[UserModel alloc] init];
     model = [UserModel getUserModel];
     if ([model.P_LEVER isEqualToString:@"1"]) {
@@ -226,7 +255,7 @@
         _sh.hidden = YES;
     }
     if([model.P_LSM intValue] > 0){
-        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"联系客服",@"退出登录"], nil];
+        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
     }else{
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服"], nil];
     }
@@ -243,7 +272,7 @@
     LoginViewController *login = [[LoginViewController alloc] init];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:login];
     login.refeshBlock = ^{
-        [self auditClinic];
+        [self initClinic];
         [self.tableView reloadData];
     };
     [self presentViewController:nav animated:YES completion:^{
