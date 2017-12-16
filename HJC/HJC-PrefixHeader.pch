@@ -32,6 +32,8 @@
 #import "UIView+Common.h"
 #import "AnimaDefaultUtil.h"
 
+#import "UserModel.h"
+
 #endif /* HJC_PrefixHeader_pch */
 #endif
 

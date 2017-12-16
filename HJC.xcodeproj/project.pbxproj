@@ -282,6 +282,9 @@
 		455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */; };
 		455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2E1FAC3EA600805340 /* LoginViewController.m */; };
 		457D797B1FE4B54E0077F462 /* AnimaDefaultUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D797A1FE4B54E0077F462 /* AnimaDefaultUtil.m */; };
+		457D797E1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D797D1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m */; };
+		457D79821FE514460077F462 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79811FE514460077F462 /* UserModel.m */; };
+		457D79861FE529220077F462 /* CustomServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79851FE529220077F462 /* CustomServiceViewController.m */; };
 		45BDBE281FB293BE001B9581 /* SelectBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BDBE271FB293BE001B9581 /* SelectBoxView.m */; };
 		45BDBE301FB2A323001B9581 /* select_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2A1FB2A323001B9581 /* select_up@3x.png */; };
 		45BDBE311FB2A323001B9581 /* select_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2B1FB2A323001B9581 /* select_down.png */; };
@@ -731,6 +734,12 @@
 		455E1F321FAC3EBC00805340 /* NSData+Anima.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Anima.m"; sourceTree = "<group>"; };
 		457D79791FE4B54E0077F462 /* AnimaDefaultUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimaDefaultUtil.h; sourceTree = "<group>"; };
 		457D797A1FE4B54E0077F462 /* AnimaDefaultUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimaDefaultUtil.m; sourceTree = "<group>"; };
+		457D797C1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClinicRegisterInfoListViewController.h; sourceTree = "<group>"; };
+		457D797D1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClinicRegisterInfoListViewController.m; sourceTree = "<group>"; };
+		457D79801FE514460077F462 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		457D79811FE514460077F462 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		457D79841FE529220077F462 /* CustomServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomServiceViewController.h; sourceTree = "<group>"; };
+		457D79851FE529220077F462 /* CustomServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomServiceViewController.m; sourceTree = "<group>"; };
 		45BDBE261FB293BE001B9581 /* SelectBoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBoxView.h; sourceTree = "<group>"; };
 		45BDBE271FB293BE001B9581 /* SelectBoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBoxView.m; sourceTree = "<group>"; };
 		45BDBE2A1FB2A323001B9581 /* select_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_up@3x.png"; sourceTree = "<group>"; };
@@ -1329,6 +1338,7 @@
 		3696FC0A1F95DC86000B9172 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				457D797F1FE514250077F462 /* UserModel */,
 				368DBF7A1FD7CDC100987776 /* ReceiveAddressModel */,
 				363BB55D1FD6A536004DBA4A /* CollectModel */,
 				336FDB961FD3E95A00AFC918 /* Procurement */,
@@ -1445,6 +1455,7 @@
 		3696FF311F95DC87000B9172 /* MyCenterViewController */ = {
 			isa = PBXGroup;
 			children = (
+				457D79831FE528D50077F462 /* CustomServiceController */,
 				368DBF731FD7CCAF00987776 /* ReceivingAddressViewController */,
 				363BB5581FD6A4C7004DBA4A /* MyCollectViewController */,
 				36C1F3511FCC0D240004E7D5 /* MyOrderViewController */,
@@ -1530,6 +1541,8 @@
 			children = (
 				452D645D1FE0D327006E51F5 /* AuditClinicViewController.h */,
 				452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */,
+				457D797C1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.h */,
+				457D797D1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m */,
 			);
 			path = Audit;
 			sourceTree = "<group>";
@@ -1738,6 +1751,24 @@
 				4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */,
 			);
 			path = LoginController;
+			sourceTree = "<group>";
+		};
+		457D797F1FE514250077F462 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				457D79801FE514460077F462 /* UserModel.h */,
+				457D79811FE514460077F462 /* UserModel.m */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		457D79831FE528D50077F462 /* CustomServiceController */ = {
+			isa = PBXGroup;
+			children = (
+				457D79841FE529220077F462 /* CustomServiceViewController.h */,
+				457D79851FE529220077F462 /* CustomServiceViewController.m */,
+			);
+			path = CustomServiceController;
 			sourceTree = "<group>";
 		};
 		45BDBE291FB2A2EA001B9581 /* SelectBox */ = {
@@ -2068,6 +2099,7 @@
 				4559C1A71FCD289C005EC6BA /* ClinicCell.m in Sources */,
 				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,
 				452D64521FE0B79D006E51F5 /* ToolButtonView.m in Sources */,
+				457D79821FE514460077F462 /* UserModel.m in Sources */,
 				36430BC11F9DBF8F001709DD /* UIImageView+WebCache.m in Sources */,
 				36430BC21F9DBF8F001709DD /* UIView+WebCacheOperation.m in Sources */,
 				363BB5261FD51185004DBA4A /* BaseApi.m in Sources */,
@@ -2076,6 +2108,7 @@
 				36430BB91F9DBF74001709DD /* SDWebImageDownloaderOperation.m in Sources */,
 				36C1F3541FCC0D480004E7D5 /* MyOrderViewController.m in Sources */,
 				36430BB81F9DBF6D001709DD /* SDWebImageDownloader.m in Sources */,
+				457D797E1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m in Sources */,
 				36430BB71F9DBF68001709DD /* SDWebImageDecoder.m in Sources */,
 				363BB5421FD66243004DBA4A /* OrderStatus.m in Sources */,
 				36430BB61F9DBF63001709DD /* SDWebImageCompat.m in Sources */,
@@ -2136,6 +2169,7 @@
 				366EAB3D1F9D8BC700A63E83 /* MJRefreshHeader.m in Sources */,
 				452D645F1FE0D327006E51F5 /* AuditClinicViewController.m in Sources */,
 				4559C19D1FCBFF79005EC6BA /* TextFiledView.m in Sources */,
+				457D79861FE529220077F462 /* CustomServiceViewController.m in Sources */,
 				368DBF7D1FD7CDD400987776 /* ReceiveAddressModel.m in Sources */,
 				363BB5631FD6A5EC004DBA4A /* CollectCell.m in Sources */,
 				366EAB3E1F9D8BCE00A63E83 /* MJRefreshConst.m in Sources */,

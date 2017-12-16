@@ -20,7 +20,7 @@
             block(responseDic[@"data"],nil);
         }
     } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
+//        NSLog(@"error===>%@",error);
         if (block) {
             block(nil, error);
         }
@@ -30,14 +30,14 @@
 
 
 + (void)getLoginURLWithBlock:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork {
-    
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", HostPath, LoginURL];
+    NSLog(@"这是参数-------%@-----这是请求地址%@",dic,urlStr);
     [WebService sendRequestWithUrlString:urlStr paramDic:dic success:^(id responseDic) {
         if(block){
-            block(responseDic[@"data"],nil);
+            block(responseDic,nil);
         }
     } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
+//        NSLog(@"error===>%@",error);
         if (block) {
             block(nil, error);
         }
@@ -53,7 +53,7 @@
             block(responseDic[@"data"],nil);
         }
     } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
+//        NSLog(@"error===>%@",error);
         if (block) {
             block(nil, error);
         }

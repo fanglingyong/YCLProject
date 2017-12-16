@@ -47,7 +47,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          [WebService dealSuccessWithreRponseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error ===> %@",error);
+//        NSLog(@"error ===> %@",error);
         [WebService HudFailWithNetWorkErr:error failure:failure];
     }];
 
@@ -62,8 +62,8 @@
 + (void)dealSuccessWithreRponseObject:(id)responseObject
                               success:(void (^)(id responseDic)) success
                               failure:(void(^)(NSError *error)) failure{
-    NSLog(@"responseObject=========%@",[responseObject[@"status"] class]);
-    NSLog(@"responseObject=========%@",responseObject);
+//    NSLog(@"responseObject=========%@",[responseObject[@"status"] class]);
+//    NSLog(@"responseObject=========%@",responseObject);
     if ([responseObject[@"status"] integerValue] == 1 && [responseObject[@"status"] isKindOfClass:[NSNumber class]]) {
         if(success){
             success(responseObject);
@@ -85,9 +85,9 @@
  *  @param error 自定义的NSError
  */
 +(void)HudFailWithNetWorkErr:(NSError *)error failure:(void(^)(NSError *error)) failure{
-    NSLog(@"userInfo-------%@",error.userInfo);
-    NSLog(@"%@",error.userInfo[@"NSLocalizedDescription"]);
-    NSLog(@"%ld",(long)error.code);
+//    NSLog(@"userInfo-------%@",error.userInfo);
+//    NSLog(@"%@",error.userInfo[@"NSLocalizedDescription"]);
+//    NSLog(@"%ld",(long)error.code);
     if(failure){
         failure(error);
     }
@@ -98,9 +98,9 @@
  *  @param error 服务器返回的NSError
  */
 +(void)HudFailWithErrMessage:(NSError *)error failure:(void(^)(NSError *error)) failure{
-    NSLog(@"===>%@",error.domain);
-    NSLog(@"%ld",(long)error.code);
-    NSLog(@"===>%@",error.userInfo);
+//    NSLog(@"===>%@",error.domain);
+//    NSLog(@"%ld",(long)error.code);
+//    NSLog(@"===>%@",error.userInfo);
     [WebService AddAlertView:error.domain];
 
     

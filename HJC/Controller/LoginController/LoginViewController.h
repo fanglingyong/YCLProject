@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
+typedef void(^refreshDataBlock)();
+
 @interface LoginViewController : BaseViewController
+
+@property (nonatomic,copy) refreshDataBlock refeshBlock;
 
 @end

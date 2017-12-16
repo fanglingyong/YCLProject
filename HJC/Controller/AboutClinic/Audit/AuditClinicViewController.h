@@ -10,4 +10,6 @@
 
 @interface AuditClinicViewController : BaseViewController
 
+@property (nonatomic,copy) NSDictionary *clinicInfo;
+
 @end

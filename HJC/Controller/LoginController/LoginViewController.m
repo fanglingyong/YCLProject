@@ -80,24 +80,30 @@
         [AnimaDefaultUtil alertUtil:self message:@"请输入密码"];
     }else{
         NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
-        [pargams setObject:account forKey:@"user"];
-        [pargams setObject:[EncrtDecrt md5:password] forKey:@"password"];
+        [pargams setObject:account forKey:@"Username"];
+        [pargams setObject:[EncrtDecrt md5:password] forKey:@"Password"];
+        __block typeof (self)wself = self;
         [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
             if (error) {
                 [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
                 NSLog(@"error--%@",error);
-            }else if ([[dict objectForKey:@"code"] intValue] != 1) {
+            }else if ([[dict objectForKey:@"status"] intValue] != 1) {
                 [AnimaDefaultUtil alertUtil:self message:dict[@"message"]];
             }else{
                 //解析数据
-                /** jumpMain
-                 AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                 [appDelegate jumpMain];
-                 */
-                /**jump bind clinic
-                 BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
-                 [self.navigationController pushViewController:bindClinic animated:YES];
-                 */
+                NSLog(@"登陆返回数据%@",dict);
+                UserModel *model = [[UserModel alloc] init];
+                [model setValuesForKeysWithDictionary:dict[@"data"][0]];
+                [UserModel saveModel:model];
+                if (model.RID) {
+                    wself.refeshBlock();
+                    [wself dismissViewControllerAnimated:YES completion:nil];
+                }else{
+                    /**jump bind clinic*/
+                     BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
+                     [wself.navigationController pushViewController:bindClinic animated:YES];
+                     
+                }
             }
         } dic:pargams noNetWork:^{
             [AnimaDefaultUtil alertUtil:self message:@"请检查网络"];

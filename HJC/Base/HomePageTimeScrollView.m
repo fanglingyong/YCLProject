@@ -113,9 +113,9 @@
 }
 
 -(void)selectAdClick:(id)sender{
-    NSLog(@"选择广告");
+//    NSLog(@"选择广告");
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
-    NSLog(@"___%ld",[tap view].tag);
+//    NSLog(@"___%ld",[tap view].tag);
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didhomePageTimeScrollView:)]) {
         [self.delegate didhomePageTimeScrollView:[tap view].tag];
