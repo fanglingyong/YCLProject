@@ -154,6 +154,7 @@
 		451068C81FE551680009B113 /* ClinicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068C71FE551680009B113 /* ClinicModel.m */; };
 		451068CC1FE565230009B113 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CA1FE565230009B113 /* MBProgressHUD.m */; };
 		451068CF1FE565710009B113 /* HUDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CE1FE565710009B113 /* HUDUtil.m */; };
+		451068D31FE5FDF20009B113 /* BindClinicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068D21FE5FDF20009B113 /* BindClinicModel.m */; };
 		452D644E1FE0B34D006E51F5 /* BusinessLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D644D1FE0B34D006E51F5 /* BusinessLicenseViewController.m */; };
 		452D64521FE0B79D006E51F5 /* ToolButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D64511FE0B79D006E51F5 /* ToolButtonView.m */; };
 		452D64551FE0C451006E51F5 /* GspLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D64541FE0C451006E51F5 /* GspLicenseViewController.m */; };
@@ -594,6 +595,8 @@
 		451068CB1FE565230009B113 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		451068CD1FE565710009B113 /* HUDUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDUtil.h; sourceTree = "<group>"; };
 		451068CE1FE565710009B113 /* HUDUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HUDUtil.m; sourceTree = "<group>"; };
+		451068D11FE5FDF20009B113 /* BindClinicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindClinicModel.h; sourceTree = "<group>"; };
+		451068D21FE5FDF20009B113 /* BindClinicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindClinicModel.m; sourceTree = "<group>"; };
 		452D644C1FE0B34D006E51F5 /* BusinessLicenseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessLicenseViewController.h; sourceTree = "<group>"; };
 		452D644D1FE0B34D006E51F5 /* BusinessLicenseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessLicenseViewController.m; sourceTree = "<group>"; };
 		452D64501FE0B79D006E51F5 /* ToolButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolButtonView.h; sourceTree = "<group>"; };
@@ -1351,6 +1354,7 @@
 		3696FC0A1F95DC86000B9172 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				451068D01FE5FDC70009B113 /* ClinicModel */,
 				457D797F1FE514250077F462 /* UserModel */,
 				368DBF7A1FD7CDC100987776 /* ReceiveAddressModel */,
 				363BB55D1FD6A536004DBA4A /* CollectModel */,
@@ -1550,6 +1554,15 @@
 				451068CE1FE565710009B113 /* HUDUtil.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		451068D01FE5FDC70009B113 /* ClinicModel */ = {
+			isa = PBXGroup;
+			children = (
+				451068D11FE5FDF20009B113 /* BindClinicModel.h */,
+				451068D21FE5FDF20009B113 /* BindClinicModel.m */,
+			);
+			path = ClinicModel;
 			sourceTree = "<group>";
 		};
 		452D644F1FE0B775006E51F5 /* ToolViewButton */ = {
@@ -2180,6 +2193,7 @@
 				36430B401F9DB122001709DD /* UIColor+AddColor.m in Sources */,
 				36430B3F1F9DB11B001709DD /* NSString+StringKit.m in Sources */,
 				36430BCA1F9DD7DD001709DD /* MedicineBreesModel.m in Sources */,
+				451068D31FE5FDF20009B113 /* BindClinicModel.m in Sources */,
 				36430B3E1F9DB115001709DD /* NSString+LabelKit.m in Sources */,
 				366EAB451F9D8F0400A63E83 /* GetImagePath.m in Sources */,
 				452D644E1FE0B34D006E51F5 /* BusinessLicenseViewController.m in Sources */,

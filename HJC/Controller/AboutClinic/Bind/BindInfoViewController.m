@@ -11,19 +11,23 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AssoSuccessViewController.h"
 #import "ClinicCell.h"
+#import "BindClinicModel.h"
+#import "MJRefresh.h"
 
 @interface BindInfoViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NavView * navView;
 @property (nonatomic,strong) UISearchBar * searchBar;
 @property (nonatomic,strong) UITableView * tableView;
-
+@property (nonatomic,strong) NSMutableArray *dataList;
+@property (nonatomic,assign) int page;
+@property (nonatomic,strong) NSMutableDictionary *pargams;
 @end
 
 @implementation BindInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self statusBar];
     [self.view addSubview:self.navView];
     [self searchBarView];
     [self.view addSubview:self.tableView];
@@ -47,20 +51,75 @@
 }
 
 - (void)searchBarView{
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, _navView.maxY+8, kScreenWidth-42, 40)];
+    UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(0, _navView.maxY, kScreenWidth, 48)];
+    searchView.backgroundColor = [UIColor whiteColor];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2, 4, kScreenWidth-42, 40)];
     _searchBar.placeholder = @"请输入诊所名称的关键词";
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.delegate = self;
-    [self.view addSubview:_searchBar];
+    [searchView addSubview:_searchBar];
     
-    UIButton * searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton * searchBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
-    searchBtn.frame = CGRectMake(kScreenWidth-40, _navView.maxY+11, 35, 35);
+    searchBtn.frame = CGRectMake(kScreenWidth-40, 7, 35, 35);
     [searchBtn addTarget:self action:@selector(searchResult:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:searchBtn];
+    [searchView addSubview:searchBtn];
+    
+    [self.view addSubview:searchView];
 }
 -(void)searchResult:(UIButton*)sender{
     NSLog(@"开始搜索了");
+    
+    _page = 1;
+    NSString *searchText =_searchBar.text;
+    self.pargams = [NSMutableDictionary dictionary];
+    [_pargams setObject:searchText forKey:@"Parastr"];
+    [_pargams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [self net_work];
+}
+-(void)net_work{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [_pargams setObject:[NSString stringWithFormat:@",10,%d",_page] forKey:@"WebPara"];
+    //做点什么...
+    [BaseApi getMenthodWithUrl:GetClinicList block:^(NSDictionary *dict, NSError *error) {
+        if(dict){
+            if ([dict[@"status"] intValue] == 1) {
+                //                NSLog(@"搜索诊所————数组%@",dict[@"data"]);
+                
+                if (_page == 1){
+                    if (_dataList.count>0&&_dataList.count%10!=0){
+                        
+                    }
+                    [_tableView.mj_footer resetNoMoreData];
+                    self.dataList = [NSMutableArray array];
+                }
+                for (NSDictionary*dic in dict[@"data"]) {
+                    BindClinicModel *model = [[BindClinicModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [_dataList addObject:model];
+                }
+                dispatch_async(dispatch_get_main_queue(),^ {
+                    if ([dict[@"data"] count] < 10) {
+                        [_tableView.mj_footer endRefreshingWithNoMoreData];
+                    }
+                    [_tableView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES ];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(),^ {
+                    [MBProgressHUD hideHUDForView:self.view animated:NO ];
+                    [HUDUtil Hud_message:dict[@"message"] view:self.view];
+                });
+            }
+        }
+    } dic:_pargams noNetWork:nil];
+}
+-(void)nextData{
+    if (_dataList.count != 0 && _dataList.count % 10 == 0) {
+        _page+=1;
+        [self net_work];
+    }
 }
 
 -(UITableView*)tableView{
@@ -70,11 +129,12 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextData)];
     }
     return _tableView;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return _dataList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 170.0;
@@ -84,19 +144,34 @@
     if (!cell) {
         cell = [[ClinicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"clinic"];
     }
-    [cell setValuesForClinicName:@"华东医药股份有限公司药品分公司" leader:@"李邦良" address:@"杭州市上城区小营街道清泰街366号北五楼信息中心"];
+    cell.model = _dataList[indexPath.row];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [self jumpToAssoSuccess];
+    BindClinicModel *model = [[BindClinicModel alloc] init];
+    model = _dataList[indexPath.row];
+    [self jumpToAssoSuccess:model.CORPID];
     
 }
 //  is success
--(void)jumpToAssoSuccess{
-    AssoSuccessViewController * asso = [[AssoSuccessViewController alloc] init];
-    asso.assoText = @"关联申请已经提交 请耐心等待审核";
-    [self.navigationController pushViewController:asso animated:YES];
+-(void)jumpToAssoSuccess:(NSString*)corpid{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [BaseApi getMenthodWithUrl:BindClinicURL block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES ];
+                if ([dict[@"status"] integerValue]==1) {
+                    AssoSuccessViewController * asso = [[AssoSuccessViewController alloc] init];
+                    asso.assoText = @"关联申请已经提交 请耐心等待审核";
+                    [self.navigationController pushViewController:asso animated:YES];
+                }else{
+                    [HUDUtil Hud_message:dict[@"message"] view:self.view];
+                }
+            });
+        }
+    } dic:[NSMutableDictionary dictionaryWithDictionary:@{@"UserID":[UserModel getUserModel].P_LSM,@"Corpid":corpid}] noNetWork:nil];
+    
+    
 }
 
 

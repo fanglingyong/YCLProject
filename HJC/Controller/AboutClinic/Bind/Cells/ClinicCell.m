@@ -14,6 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         self.contentView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 10, kScreenWidth-20, 150)];
         view.backgroundColor = [UIColor whiteColor];
@@ -48,13 +50,14 @@
     return self;
 }
 
--(void)setValuesForClinicName:(NSString*)name leader:(NSString*)leader address:(NSString*)address{
-    _clinicNmae.text = name;
-    _clinicLeader.text = leader;
-    _clinicAddress.text = address;
+-(void)setModel:(BindClinicModel *)model{
+    _clinicNmae.text = model.CORPNAME;
+    _clinicLeader.text = model.LAWMAN;
+    _clinicAddress.text = model.ADDRESS;
     _bindStatus.hidden = NO;
     _noClinic.hidden = YES;
 }
+
 -(void)setNoData{
     _clinicNmae.hidden = YES;
     _clinicLeader.hidden = YES;

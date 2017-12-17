@@ -1,14 +1,14 @@
 //
-//  ReceiveAddressModel.m
+//  BindClinicModel.m
 //  HJC
 //
-//  Created by zhifu360 on 2017/12/6.
+//  Created by 方灵勇 on 2017/12/17.
 //  Copyright © 2017年 EastChina. All rights reserved.
 //
 
-#import "ReceiveAddressModel.h"
+#import "BindClinicModel.h"
 
-@implementation ReceiveAddressModel
+@implementation BindClinicModel
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     

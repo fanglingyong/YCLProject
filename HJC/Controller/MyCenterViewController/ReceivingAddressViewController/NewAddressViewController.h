@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "ReceiveAddressModel.h"
 
 @interface NewAddressViewController : BaseTableViewController
+
+@property (nonatomic,copy) ReceiveAddressModel *model;
 
 @end

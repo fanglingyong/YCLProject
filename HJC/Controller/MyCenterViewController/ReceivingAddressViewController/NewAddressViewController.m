@@ -34,6 +34,13 @@
     }
     return self;
 }
+-(void)setModel:(ReceiveAddressModel *)model{
+    _name = model.POSTCODE;
+    _phone = model.LINK;
+    _address = model.ADDRESS;
+    
+    _isAcquiescence = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -77,6 +84,7 @@
         [sureButton setTitle:@"确定" forState:UIControlStateNormal];
         [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         sureButton.titleLabel.font = HEITI(HeightXiShu(18));
+        [sureButton addTarget:self action:@selector(sureChangeOrAddbuttonMenthod) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:sureButton];
         _sureButton = sureButton;
     }
@@ -193,8 +201,36 @@
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)sureChangeOrAddbuttonMenthod{
+    if (_model) {
+        NSLog(@"修改");
+    }else{
+        NSLog(@"新增");
+    }
+}
 
-
+/**
+ 修改新增 收货地址
+ */
+-(void)network_corpAddress{
+    NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+    [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
+    [pargams setObject:_model.ADDRESSID forKey:@"ADDRESSID"];
+    [pargams setObject:_model.CORPID forKey:@"CORPID"];
+    [pargams setObject:@"" forKey:@"ADDRESS"];
+    [pargams setObject:@"" forKey:@"POSTCODE"];
+    [pargams setObject:@"" forKey:@"LINK"];
+    [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
+    [BaseApi getMenthodWithUrl:UpdateCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            if ([dict[@"status"] isEqualToString:@"1"]) {
+                
+            }else{
+                
+            }
+        }
+    } dic:pargams noNetWork:nil];
+}
 /*
  #pragma mark - Navigation
  

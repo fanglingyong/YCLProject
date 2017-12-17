@@ -186,8 +186,9 @@
 #pragma mark - setter
 
 - (void)setModel:(ReceiveAddressModel *)model {
-    
-    
+    _nameLb.text = model.POSTCODE;
+    _phoneLb.text = model.LINK;
+    _addressLb.text = model.LINK;
 }
 #pragma mark - 事件
 

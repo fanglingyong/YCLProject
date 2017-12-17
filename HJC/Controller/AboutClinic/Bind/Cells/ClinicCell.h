@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BindClinicModel.h"
 
 @interface ClinicCell : UITableViewCell
 
@@ -15,8 +16,8 @@
 @property (nonatomic,strong) UILabel *clinicLeader;
 @property (nonatomic,strong) UILabel *clinicAddress;
 @property (nonatomic,strong) UILabel *noClinic;
+@property (nonatomic,strong) BindClinicModel *model;
 
--(void)setValuesForClinicName:(NSString*)name leader:(NSString*)leader address:(NSString*)address;
 //显示绑定诊所字样页面 只在无绑定诊所时候使用
 -(void)setNoData;
 
