@@ -10,6 +10,7 @@
 #import "NavView.h"
 #import "TextFiledView.h"
 #import "SmsCodeTextField.h"
+#import "BindInfoViewController.h"
 
 @interface RegisterUserViewController ()
 
@@ -126,6 +127,9 @@
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
     NSLog(@"注册成功!!!");
+    BindInfoViewController *vc = [[BindInfoViewController alloc] init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

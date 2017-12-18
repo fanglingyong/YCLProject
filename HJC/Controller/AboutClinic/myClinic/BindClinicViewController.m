@@ -8,8 +8,6 @@
 
 #import "BindClinicViewController.h"
 #import "NavView.h"
-#import "BindInfoViewController.h"
-#import "RegisterClinicViewController.h"
 #import "ClinicCell.h"
 
 @interface BindClinicViewController ()
@@ -62,6 +60,10 @@
         if(dict){
             if ([dict[@"status"] intValue] == 1) {
                 NSLog(@"自己诊所————数组%@",dict[@"data"]);
+                NSDictionary*clinic = dict[@"data"][0];
+                BindClinicModel *model = [[BindClinicModel alloc] init];
+                [model setValuesForKeysWithDictionary:clinic];
+                [self setValuesForClinicModel:model];
             }else{
                 [HUDUtil Hud_message:dict[@"message"] view:self.view];
             }
@@ -69,23 +71,7 @@
     } dic:pargams noNetWork:nil];
 }
 
--(void)showAlertViewController{
-    UIAlertController *alControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [alControl addAction:[UIAlertAction actionWithTitle:@"注册并绑定诊所" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //添加
-        [self jumpToRegisterAccount];
-    }]];
-    [alControl addAction:[UIAlertAction actionWithTitle:@"绑定已有诊所" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //添加
-        [self jumpToBindAccount];
-    }]];
-    [alControl addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        //取消
-    }]];
-    [self presentViewController:alControl animated:YES completion:^{
-        
-    }];
-}
+
 //loadUI
 -(void)loadUI{
     self.clinicView = [[UIView alloc] initWithFrame:CGRectMake(10, _navView.maxY+30, kScreenWidth-20, 150)];
@@ -112,43 +98,15 @@
     _clinicAddress.font = [UIFont systemFontOfSize:14];
     [_clinicView addSubview:_clinicAddress];
     
-    _noClinic = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, _clinicView.maxX-20, 30)];
-    _noClinic.text = @"点击绑定诊所或注册诊所";
-    _noClinic.textAlignment = NSTextAlignmentCenter;
-    _noClinic.textColor = [UIColor grayColor];
-    [_clinicView addSubview:_noClinic];
-    
-    UITapGestureRecognizer *clinicClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAlertViewController)];
-    [_clinicView addGestureRecognizer:clinicClick];
-    
     [self.view addSubview:_clinicView];
-    [self setNoData];
+
 }
--(void)setValuesForClinicName:(NSString*)name leader:(NSString*)leader address:(NSString*)address{
-    _clinicNmae.text = name;
-    _clinicLeader.text = leader;
-    _clinicAddress.text = address;
-    _bindStatus.hidden = NO;
-    _noClinic.hidden = YES;
-    _clinicView.userInteractionEnabled = NO;
+-(void)setValuesForClinicModel:(BindClinicModel*)model{
+    _clinicNmae.text = model.CORPNAME;
+    _clinicLeader.text = model.LAWMAN;
+    _clinicAddress.text = model.ADDRESS;
 }
--(void)setNoData{
-    _clinicNmae.hidden = YES;
-    _clinicLeader.hidden = YES;
-    _clinicAddress.hidden = YES;
-    _bindStatus.hidden = YES;
-    _noClinic.hidden = NO;
-    _clinicView.userInteractionEnabled = YES;
-}
-#pragma mark - other
--(void) jumpToBindAccount{
-    BindInfoViewController *bindinfo = [[BindInfoViewController alloc] init];
-    [self.navigationController pushViewController:bindinfo animated:YES];
-}
--(void) jumpToRegisterAccount{
-    RegisterClinicViewController * reg_clinic = [[RegisterClinicViewController alloc] init];
-    [self.navigationController pushViewController:reg_clinic animated:YES];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

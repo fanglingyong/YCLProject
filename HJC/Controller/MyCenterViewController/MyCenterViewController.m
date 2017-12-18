@@ -11,13 +11,13 @@
 #import "BaseNavigationController.h"
 #import "NavView.h"
 #import "MyOrderViewController.h"
-#import "BindClinicViewController.h"
+#import "BindClinicViewController.h"//my clinic
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
-#import "BusinessLicenseViewController.h"
 #import "ClinicRegisterInfoListViewController.h"
 #import "CustomServiceViewController.h"
 #import "IntegralDetailViewController.h"
+#import "RegisterClinicViewController.h"
 
 @interface MyCenterViewController ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NavView *navView;
@@ -155,21 +155,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {
-        //--@"我的订单");
         if (_tableViewData.count == 2 ) {
+            //客服
             CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
         }else{
+            //--@"我的订单");
             MyOrderViewController *VC = [[MyOrderViewController alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
         }
     } else if (indexPath.section == 1 && indexPath.row == 1) {
-        //--@"我的收藏");
-        MyCollectViewController * VC = [[MyCollectViewController alloc] init];
-        VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:VC animated:YES];
+        if (_tableViewData.count == 2 ) {
+            //注册诊所
+            RegisterClinicViewController * VC = [[RegisterClinicViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }else{
+            //--@"我的收藏");
+            MyCollectViewController * VC = [[MyCollectViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
     } else if (indexPath.section == 2 && indexPath.row == 0) {
         //--@"我的诊所");
         BindClinicViewController * VC = [[BindClinicViewController alloc] init];
@@ -205,25 +213,7 @@
         [self.tableView reloadData];
     }
 }
-//-- 这个在这里有点卡，不是很好。
--(UIAlertController*)alert{
-    if (!_alert) {
-        _alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            //取消
-        }];
-        __block typeof(self) wself = self;
-        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            //删除相关信息
-            [UserModel initModel];
-            [wself initClinic];
-            [wself.tableView reloadData];
-        }];
-        [_alert addAction:cancle];
-        [_alert addAction:sure];
-    }
-    return _alert;
-}
+
 #pragma mark - 页面元素
 - (NavView *)navView{
     if(!_navView){
@@ -257,7 +247,7 @@
     if([model.P_LSM intValue] > 0){
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
     }else{
-        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服"], nil];
+        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服",@"注册诊所"], nil];
     }
     
 }
