@@ -433,7 +433,23 @@
     
     [self deselectButtons];
 }
-
+#pragma mark - net
+-(void)network_procurementList{
+    NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+    [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
+    [pargams setObject:@"" forKey:@"Parastr"];//@"供应商ID,药品名称"
+    [pargams setObject:@",10,1" forKey:@"WebPara"];//@"排序字段,页数,页码"
+    
+    [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            if ([dict[@"status"] isEqualToString:@"1"]) {
+                
+            }else{
+                
+            }
+        }
+    } dic:pargams noNetWork:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

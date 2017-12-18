@@ -63,7 +63,7 @@
     
     for (int i=0; i<self.adDataArray.count; i++) {
         NSURL *url = self.adDataArray[i];
-        NSLog(@"===.%@",url);
+
         UIImageView *adImageView=[[UIImageView alloc]initWithFrame:CGRectMake((i+1)*self.adScrollView.bounds.size.width, 0, self.adScrollView.bounds.size.width,self.adScrollView.bounds.size.height)];
         adImageView.tag=i;
         adImageView.userInteractionEnabled=YES;

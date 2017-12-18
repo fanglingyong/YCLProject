@@ -14,11 +14,16 @@
 #import "BindClinicViewController.h"
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
-#import "PositionAddressViewController.h"
+#import "BusinessLicenseViewController.h"
+#import "ClinicRegisterInfoListViewController.h"
+#import "CustomServiceViewController.h"
+#import "IntegralDetailViewController.h"
 
-@interface MyCenterViewController ()
+@interface MyCenterViewController ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NavView *navView;
-
+@property(nonatomic,strong)UIButton *sh;
+@property(nonatomic,strong)NSArray *tableViewData;
+@property(nonatomic,strong)UIAlertController *alert;
 @end
 
 @implementation MyCenterViewController
@@ -27,58 +32,46 @@
     [super viewDidLoad];
     [self statusBar];
     [self navView];
-
     // Do any additional setup after loading the view.
+    [self initClinic];
     [self setUpHeaderRefresh:NO footerRefresh:NO];
-    [self.tableView setMinY:64 maxY:kScreenHeight - 44];
+    [self.tableView setMinY:_navView.maxY maxY:kScreenHeight -49];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
-
-}
 #pragma mark - tableView delegate dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return _tableViewData.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }else if(section == 1){
-        return 2;
-    }else if(section == 2){
-        return 2;
-    }else {
-        return 2;
-    }
+    return [_tableViewData[section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0){
+    if(indexPath.section == 0)
         return HeightXiShu(250);
-    }
     return HeightXiShu(50);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(8))];
-    return view;
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(5))];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeightXiShu(10);
+    return HeightXiShu(5);
 }
-
-
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return HeightXiShu(5);
+}
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(5))];
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* const identifier = @"cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -88,17 +81,6 @@
     }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if(indexPath.section == 0){
-        
-        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76))];
-        integralImg.image = [GetImagePath getImagePath:@"integral_bg"];
-        [cell.contentView addSubview:integralImg];
-        
-        UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(30))];
-        integralLB.text = @"233分";
-        integralLB.textAlignment = NSTextAlignmentCenter;
-        integralLB.textColor = BlackColor;
-        integralLB.font = HEITI(HeightXiShu(19));
-        [cell.contentView addSubview:integralLB];
         
         UIButton *userImageBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - WidthXiShu(75), HeightXiShu(10), WidthXiShu(150), HeightXiShu(150))];
         userImageBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -111,9 +93,19 @@
         [userImageBtn addTarget:self action:@selector(userImageBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:userImageBtn];
         
+        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(14), WidthXiShu(81), HeightXiShu(76))];
+        integralImg.image = [GetImagePath getImagePath:@"integral_bg"];
+        [cell.contentView addSubview:integralImg];
+        
+        UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(30))];
+        integralLB.text = [NSString stringWithFormat:@"%@分",[UserModel getUserModel].ischoose?[UserModel getUserModel].ischoose:@"0"];
+        integralLB.textAlignment = NSTextAlignmentCenter;
+        integralLB.textColor = BlackColor;
+        integralLB.font = HEITI(HeightXiShu(19));
+        [cell.contentView addSubview:integralLB];
         
         UILabel *userNameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(180), kScreenWidth, HeightXiShu(25))];
-        userNameLB.text = @"王小明123";
+        userNameLB.text = [UserModel getUserModel].P_NAME?[UserModel getUserModel].P_NAME:@"药联采";
         userNameLB.textAlignment = NSTextAlignmentCenter;
         userNameLB.textColor = BlackColor;
         userNameLB.font = HEITI(HeightXiShu(18));
@@ -126,10 +118,24 @@
         clinicLB.font = HEITI(HeightXiShu(14));
         [cell.contentView addSubview:clinicLB];
         
-    } else if(indexPath.section == 1){
+        UIButton *reg_log_btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        reg_log_btn.frame = CGRectMake(kScreenWidth/2-WidthXiShu(75), HeightXiShu(180), WidthXiShu(150), HeightXiShu(40));
+        [reg_log_btn setTitle:@"登陆/注册" forState:UIControlStateNormal];
+        [reg_log_btn addTarget:self action:@selector(reg_log_action) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:reg_log_btn];
+        if (_tableViewData.count > 2) {
+            userNameLB.hidden = NO;
+            clinicLB.hidden = NO;
+            reg_log_btn.hidden = YES;
+        }else{
+            userNameLB.hidden = YES;
+            clinicLB.hidden = YES;
+            reg_log_btn.hidden = NO;
+        }
         
+    } else if(indexPath.section > 0){
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
-        titleLabel.text = @[@"我的订单", @"我的收藏"][indexPath.row];
+        titleLabel.text = _tableViewData[indexPath.section][indexPath.row];
         titleLabel.textColor = TitleColor;
         titleLabel.font = HEITI(HeightXiShu(15));
         [cell.contentView addSubview:titleLabel];
@@ -138,73 +144,85 @@
         arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
         [cell.contentView addSubview:arrowImgView];
         
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
-        cutLine.backgroundColor = AllLightGrayColor;
         if (indexPath.row == 0) {
+            UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
+            cutLine.backgroundColor = AllLightGrayColor;
             [cell.contentView addSubview:cutLine];
         }
-    } else if (indexPath.section == 2){
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
-        titleLabel.text = @[@"我的诊所", @"我的地址"][indexPath.row];
-        titleLabel.textColor = TitleColor;
-        titleLabel.font = HEITI(HeightXiShu(15));
-        [cell.contentView addSubview:titleLabel];
-        
-        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
-        arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
-        [cell.contentView addSubview:arrowImgView];
-        
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
-        cutLine.backgroundColor = AllLightGrayColor;
-        if (indexPath.row == 0) {
-            [cell.contentView addSubview:cutLine];
-        }
-    } else {
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(50))];
-        titleLabel.text = @[@"联系客服", @"退出登录"][indexPath.row];
-        titleLabel.textColor = TitleColor;
-        titleLabel.font = HEITI(HeightXiShu(15));
-        [cell.contentView addSubview:titleLabel];
-        
-        UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(17), WidthXiShu(15), HeightXiShu(16))];
-        arrowImgView.image = [GetImagePath getImagePath:@"right_arrow"];
-        [cell.contentView addSubview:arrowImgView];
-        
-        UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
-        cutLine.backgroundColor = AllLightGrayColor;
-        if (indexPath.row == 0) {
-            [cell.contentView addSubview:cutLine];
-        }
-        
     }
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {
-        NSLog(@"我的订单");
-        MyOrderViewController *VC = [[MyOrderViewController alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
+        //--@"我的订单");
+        if (_tableViewData.count == 2 ) {
+            CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }else{
+            MyOrderViewController *VC = [[MyOrderViewController alloc] init];
+            VC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
     } else if (indexPath.section == 1 && indexPath.row == 1) {
-        NSLog(@"我的收藏");
+        //--@"我的收藏");
         MyCollectViewController * VC = [[MyCollectViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
     } else if (indexPath.section == 2 && indexPath.row == 0) {
-        NSLog(@"我的诊所");
+        //--@"我的诊所");
         BindClinicViewController * VC = [[BindClinicViewController alloc] init];
         VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
 
     } else if (indexPath.section == 2 && indexPath.row == 1) {
-        NSLog(@"我的地址");
+        //--我的地址");
         ReceiveAddressViewController * VC = [[ReceiveAddressViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
-    } else if (indexPath.section == 3) {
-        NSLog(@"联系客服");
-        PositionAddressViewController * pa = [[PositionAddressViewController alloc] init];
-        [self.navigationController pushViewController:pa animated:YES];
+    } else if (indexPath.section == 3 && indexPath.row == 0) {
+        //--积分明细
+        IntegralDetailViewController * VC = [[IntegralDetailViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.section == 3 && indexPath.row == 1){
+        //--联系客服
+        CustomServiceViewController * VC = [[CustomServiceViewController alloc] init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+    }if (indexPath.section == 4 && indexPath.row == 0){
+        //--退出登录");
+//        [self presentViewController:self.alert animated:YES completion:nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定退出登陆？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
     }
-    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [UserModel initModel];
+        [self initClinic];
+        [self.tableView reloadData];
+    }
+}
+//-- 这个在这里有点卡，不是很好。
+-(UIAlertController*)alert{
+    if (!_alert) {
+        _alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            //取消
+        }];
+        __block typeof(self) wself = self;
+        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //删除相关信息
+            [UserModel initModel];
+            [wself initClinic];
+            [wself.tableView reloadData];
+        }];
+        [_alert addAction:cancle];
+        [_alert addAction:sure];
+    }
+    return _alert;
 }
 #pragma mark - 页面元素
 - (NavView *)navView{
@@ -214,23 +232,58 @@
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
         navView.leftBtn.hidden = YES;
+        self.sh = [UIButton buttonWithType:UIButtonTypeCustom];
+        _sh.frame = CGRectMake(0, 4, 68, 36);
+        [_sh setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_sh setTitle:@"诊所审核" forState:UIControlStateNormal];
+        _sh.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_sh addTarget:self action:@selector(jumpToSomething) forControlEvents:UIControlEventTouchUpInside];
+        [navView addSubview:_sh];
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
 #pragma mark - 事件
--(void)loginAction{
+//隐藏诊所审核 只有管理员才有此权限
+-(void)initClinic{
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+    if ([model.P_LEVER isEqualToString:@"1"]) {
+        _sh.hidden = NO;
+    }else{
+        _sh.hidden = YES;
+    }
+    if([model.P_LSM intValue] > 0){
+        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
+    }else{
+        self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服"], nil];
+    }
+    
+}
+//诊所审核
+-(void)jumpToSomething{
+    ClinicRegisterInfoListViewController *audit = [[ClinicRegisterInfoListViewController alloc] init];
+    audit.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:audit animated:YES];
+}
+//登录注册按钮 在用户没有登录的时候起到作用
+-(void)reg_log_action{
     LoginViewController *login = [[LoginViewController alloc] init];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:login];
+    login.refeshBlock = ^{
+        [self initClinic];
+        [self.tableView reloadData];
+    };
     [self presentViewController:nav animated:YES completion:^{
         
     }];
 }
+//
 - (void)integralBtnAction {
     
 }
-
+//头像点击方法
 - (void)userImageBtnAction {
     
 }

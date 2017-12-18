@@ -23,7 +23,7 @@
 }
 
 -(void)setPlaceholderStr:(NSString *)placeholderStr{
-    NSLog(@"==>%@",placeholderStr);
+//    DLog(@"==>%@",placeholderStr);
     [super setPlaceholder:placeholderStr];
     [self setValue:self.placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
 }

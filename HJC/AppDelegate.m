@@ -31,25 +31,6 @@
     // Override point for customization after application launch.
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [BaseApi getProducerWithBlock:^(NSDictionary *dict, NSError *error) {
-        if (!error) {
-            NSLog(@"dict%@", dict);
-        }
-    } dic:nil noNetWork:nil];
-    
-    
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setObject:@"" forKey:@""];
-    [param setObject:@"" forKey:@""];
-
-    [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
-        if (!error) {
-            NSLog(@"dict%@", dict);
-        }
-    } dic:nil noNetWork:nil];
-    [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
-        
-    } dic:param noNetWork:nil];
     
     [self jumpMain];
 

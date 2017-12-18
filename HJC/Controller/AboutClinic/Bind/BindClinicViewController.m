@@ -31,6 +31,7 @@
     [super viewDidLoad];
     [self statusBar];
     [self.view addSubview:self.navView];
+    [self networkForClinicInfo];
     [self loadUI];
     // Do any additional setup after loading the view.
 }
@@ -51,6 +52,23 @@
 -(void)back_lastController{
     [self.navigationController popViewControllerAnimated:YES];
 }
+#pragma mark - network
+-(void)networkForClinicInfo{
+    NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+    [pargams setObject:@"1" forKey:@"UserID"];
+    [pargams setObject:@"1" forKey:@"Parastr"];
+    [pargams setObject:@",10,1" forKey:@"WebPara"];
+    [BaseApi getMenthodWithUrl:GetClinicList block:^(NSDictionary *dict, NSError *error) {
+        if(dict){
+            if ([dict[@"status"] intValue] == 1) {
+                NSLog(@"自己诊所————数组%@",dict[@"data"]);
+            }else{
+                [HUDUtil Hud_message:dict[@"message"] view:self.view];
+            }
+        }
+    } dic:pargams noNetWork:nil];
+}
+
 -(void)showAlertViewController{
     UIAlertController *alControl = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alControl addAction:[UIAlertAction actionWithTitle:@"注册并绑定诊所" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

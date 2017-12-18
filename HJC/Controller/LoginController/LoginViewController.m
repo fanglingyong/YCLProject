@@ -12,7 +12,7 @@
 #import "ForgetPasswordViewController.h"
 #import "RegisterUserViewController.h"
 #import "TextFiledView.h"
-
+#import "EncrtDecrt.h"
 
 @interface LoginViewController ()
 
@@ -72,15 +72,44 @@
  @param sender sure button
  */
 - (void)sureForLoginActionMenthod:(UIButton *)sender{
-    /** jumpMain
-     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-     [appDelegate jumpMain];
-     */
-    /**jump bind clinic
-     
-     */
-    BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
-    [self.navigationController pushViewController:bindClinic animated:YES];
+    NSString * account = _accountView.textField.text;
+    NSString * password =_passwordView.textField.text;
+    if (![AnimaDefaultUtil isNotNull:account]) {
+        [HUDUtil Hud_message:@"请输入账号" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:password]){
+        [HUDUtil Hud_message:@"请输入密码" view:self.view];
+    }else{
+        NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+        [pargams setObject:account forKey:@"Username"];
+        [pargams setObject:[EncrtDecrt md5:password] forKey:@"Password"];
+        __block typeof (self)wself = self;
+        [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
+            if (error) {
+                [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
+                NSLog(@"error--%@",error);
+            }else if ([[dict objectForKey:@"status"] intValue] != 1) {
+                [AnimaDefaultUtil alertUtil:self message:dict[@"message"]];
+            }else{
+                //解析数据
+                NSLog(@"登陆返回数据%@",dict);
+                UserModel *model = [[UserModel alloc] init];
+                [model setValuesForKeysWithDictionary:dict[@"data"][0]];
+                [UserModel saveModel:model];
+                if (model.RID) {
+                    wself.refeshBlock();
+                    [wself dismissViewControllerAnimated:YES completion:nil];
+                }else{
+                    /**jump bind clinic*/
+                     BindClinicViewController * bindClinic = [[BindClinicViewController alloc] init];
+                     [wself.navigationController pushViewController:bindClinic animated:YES];
+                     
+                }
+            }
+        } dic:pargams noNetWork:^{
+            [HUDUtil Hud_message:@"请检查网络" view:self.view];
+        }];
+    }
+    
 }
 
 /**

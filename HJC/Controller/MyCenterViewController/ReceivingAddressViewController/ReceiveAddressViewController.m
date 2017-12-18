@@ -30,17 +30,12 @@
     [self.tableView setMinY:64 maxY:kScreenHeight - HeightXiShu(50) - HeightXiShu(5)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
-    
+    [self net_work];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;
 }
 
 #pragma mark - 页面元素
@@ -77,7 +72,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return _modelArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,7 +105,32 @@
     NewAddressViewController * VC = [[NewAddressViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
 }
-
+#pragma mark - requet
+-(void)net_work{
+    NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
+    [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [BaseApi getMenthodWithUrl:GetCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            if ([dict[@"status"] intValue] == 1) {
+                _modelArr = [NSMutableArray array];
+                for (NSDictionary*modelDic in dict[@"data"]) {
+                    ReceiveAddressModel*model = [[ReceiveAddressModel alloc]init];
+                    [model setValuesForKeysWithDictionary:modelDic];
+                    [_modelArr addObject:model];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [HUDUtil Hud_message:dict[@"message"] view:self.view];
+                });
+            }
+        }
+    } dic:pargams noNetWork:nil];
+}
 /*
 #pragma mark - Navigation
 

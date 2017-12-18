@@ -62,7 +62,7 @@
 
 - (void)createAdScrollView {
     
-    NSLog(@"%@", self.bannerArray);
+//    NSLog(@"%@", self.bannerArray);
     
     if (self.bannerArray.count == 1) {
         self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180)) animationDuration:10000 andIsSingle:true];
@@ -71,7 +71,7 @@
     } else {
         return;
     }
-    NSLog(@"创建banner");
+//    NSLog(@"创建banner");
     
     self.adScrollView.backgroundColor = [UIColor whiteColor];
     [self.headerView addSubview:self.adScrollView];
@@ -94,8 +94,8 @@
     
     if (self.bannerArray.count != 0) {
         
-        NSLog(@"%@", self.bannerArray);
-        NSLog(@"创建banner图片");
+//        NSLog(@"%@", self.bannerArray);
+//        NSLog(@"创建banner图片");
         
         __weak typeof(MainViewController) *weakSelf = self;
         self.pageControl.numberOfPages = self.bannerArray.count;
@@ -103,7 +103,7 @@
         self.adScrollView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
             NSString *url = weakSelf.bannerArray[pageIndex];
-            NSLog(@"%@", url);
+//            NSLog(@"%@", url);
             [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
             return imageView;
         };

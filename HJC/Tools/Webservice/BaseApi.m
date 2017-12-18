@@ -11,55 +11,22 @@
 
 @implementation BaseApi
 
-+ (void)getRegisterURLWithBlock:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", HostPath, RegisterURL];
-    
++(void)getMenthodWithUrl:(NSString*)url block:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", HostPath, url];
     [WebService sendRequestWithUrlString:urlStr paramDic:dic success:^(id responseDic) {
-        if(block){
-            block(responseDic[@"data"],nil);
-        }
+        if(block)
+            block(responseDic,nil);
     } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
-        if (block) {
+        NSLog(@"%@请求错误%@",urlStr,error);
+        if (block)
             block(nil, error);
-        }
     } noNetWork:nil];
     
 }
 
+/*************************************************************************************/
 
-+ (void)getLoginURLWithBlock:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", HostPath, LoginURL];
-    [WebService sendRequestWithUrlString:urlStr paramDic:dic success:^(id responseDic) {
-        if(block){
-            block(responseDic[@"data"],nil);
-        }
-    } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
-        if (block) {
-            block(nil, error);
-        }
-    } noNetWork:nil];
-    
-}
 
-+ (void)getProducerWithBlock:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork {
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", HostPath, GetHostInfo];
-    [WebService sendRequestWithUrlString:urlStr paramDic:dic success:^(id responseDic) {
-        if(block){
-            block(responseDic[@"data"],nil);
-        }
-    } failure:^(NSError *error) {
-        NSLog(@"error===>%@",error);
-        if (block) {
-            block(nil, error);
-        }
-    } noNetWork:nil];
-    
-}
 
 
 @end

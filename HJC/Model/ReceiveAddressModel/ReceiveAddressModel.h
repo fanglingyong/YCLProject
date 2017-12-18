@@ -10,4 +10,11 @@
 
 @interface ReceiveAddressModel : NSObject
 
+@property (nonatomic,strong) NSString*Sortid;
+@property (nonatomic,strong) NSString*CORPID;
+@property (nonatomic,strong) NSString*ADDRESS;
+@property (nonatomic,strong) NSString*POSTCODE;
+@property (nonatomic,strong) NSString*LINK;
+@property (nonatomic,strong) NSString*ADDRESSID;
+
 @end

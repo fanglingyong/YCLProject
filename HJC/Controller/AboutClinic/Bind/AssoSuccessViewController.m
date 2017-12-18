@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self statusBar];
     [self.view addSubview:self.navView];
     [self loadSomeView];
     // Do any additional setup after loading the view.
@@ -57,7 +58,7 @@
     jumpBtn.layer.borderColor = [[UIColor colorFromHexCode:@"#b3b3b3"] CGColor];
     jumpBtn.layer.cornerRadius = 3;
     jumpBtn.clipsToBounds = YES;
-    [jumpBtn setTitle:@"进入产品页" forState:UIControlStateNormal];
+    [jumpBtn setTitle:@"返回到个人中心" forState:UIControlStateNormal];
     jumpBtn.backgroundColor = [UIColor colorFromHexCode:@"#4399e9"];
     [jumpBtn setTitleColor:[UIColor colorFromHexCode:@"#ffffff"] forState:UIControlStateNormal];
     [jumpBtn addTarget:self action:@selector(jumpProcutPage:) forControlEvents:UIControlEventTouchUpInside];
@@ -66,8 +67,7 @@
     [self.view addSubview:dView];
 }
 -(void)jumpProcutPage:(UIButton*)sender{
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate jumpMain];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 // 导航栏
 -(NavView *)navView{
