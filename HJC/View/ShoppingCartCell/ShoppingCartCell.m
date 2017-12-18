@@ -214,7 +214,7 @@
 }
 - (UIImageView *)lineView{
     if(!_lineView){
-        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(96), kScreenWidth, .5)];
+        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(95), kScreenWidth, .5)];
         lineView.backgroundColor = AllLightGrayColor;
         [self.contentView addSubview:lineView];
         _lineView = lineView;
