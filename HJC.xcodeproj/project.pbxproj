@@ -1510,8 +1510,6 @@
 			isa = PBXGroup;
 			children = (
 				4559C1A41FCD2871005EC6BA /* Cells */,
-				455E1F281FAC3EA500805340 /* BindClinicViewController.h */,
-				455E1F291FAC3EA500805340 /* BindClinicViewController.m */,
 				4500A46E1FAF4CDE002AEC90 /* BindInfoViewController.h */,
 				4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */,
 				4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */,
@@ -1771,6 +1769,7 @@
 		455E1F271FAC3EA500805340 /* AboutClinic */ = {
 			isa = PBXGroup;
 			children = (
+				45F7A9DF1FE6B8C2005DE6A3 /* myClinic */,
 				452D645C1FE0D304006E51F5 /* Audit */,
 				4500A4781FB0AF9D002AEC90 /* Register */,
 				4500A4771FB0AF8B002AEC90 /* Bind */,
@@ -1851,6 +1850,15 @@
 				45BDBE461FB33432001B9581 /* success@3x.png */,
 			);
 			path = AssoSuccess;
+			sourceTree = "<group>";
+		};
+		45F7A9DF1FE6B8C2005DE6A3 /* myClinic */ = {
+			isa = PBXGroup;
+			children = (
+				455E1F281FAC3EA500805340 /* BindClinicViewController.h */,
+				455E1F291FAC3EA500805340 /* BindClinicViewController.m */,
+			);
+			path = myClinic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

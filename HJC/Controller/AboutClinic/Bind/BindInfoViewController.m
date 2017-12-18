@@ -13,6 +13,8 @@
 #import "ClinicCell.h"
 #import "BindClinicModel.h"
 #import "MJRefresh.h"
+#import "RegisterClinicViewController.h"
+#import "ToolButtonView.h"
 
 @interface BindInfoViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NavView * navView;
@@ -21,6 +23,7 @@
 @property (nonatomic,strong) NSMutableArray *dataList;
 @property (nonatomic,assign) int page;
 @property (nonatomic,strong) NSMutableDictionary *pargams;
+
 @end
 
 @implementation BindInfoViewController
@@ -68,6 +71,14 @@
     
     [self.view addSubview:searchView];
 }
+-(void)toolViewCreate{
+    ToolButtonView *tool = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49) button:@"未找到,去注册诊所"];
+    [tool addToolTarget:self action:@selector(jumpToRegister) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)jumpToRegister{
+    RegisterClinicViewController*vc = [[RegisterClinicViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(void)searchResult:(UIButton*)sender{
     NSLog(@"开始搜索了");
     
@@ -79,19 +90,14 @@
     [self net_work];
 }
 -(void)net_work{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [_pargams setObject:[NSString stringWithFormat:@",10,%d",_page] forKey:@"WebPara"];
     //做点什么...
+    NSLog(@"参数%@",_pargams);
     [BaseApi getMenthodWithUrl:GetClinicList block:^(NSDictionary *dict, NSError *error) {
         if(dict){
             if ([dict[@"status"] intValue] == 1) {
-                //                NSLog(@"搜索诊所————数组%@",dict[@"data"]);
-                
                 if (_page == 1){
-                    if (_dataList.count>0&&_dataList.count%10!=0){
-                        
-                    }
-                    [_tableView.mj_footer resetNoMoreData];
                     self.dataList = [NSMutableArray array];
                 }
                 for (NSDictionary*dic in dict[@"data"]) {
@@ -102,13 +108,14 @@
                 dispatch_async(dispatch_get_main_queue(),^ {
                     if ([dict[@"data"] count] < 10) {
                         [_tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [_tableView.mj_footer resetNoMoreData];
                     }
                     [_tableView reloadData];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES ];
+                    
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(),^ {
-                    [MBProgressHUD hideHUDForView:self.view animated:NO ];
                     [HUDUtil Hud_message:dict[@"message"] view:self.view];
                 });
             }
@@ -119,12 +126,14 @@
     if (_dataList.count != 0 && _dataList.count % 10 == 0) {
         _page+=1;
         [self net_work];
+    }else{
+        NSLog(@"不加载了");
     }
 }
 
 -(UITableView*)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+48, kScreenWidth, kScreenHeight-_navView.maxY-48) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+48, kScreenWidth, kScreenHeight-_navView.maxY-48-49) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor colorFromHexCode:@"#f2f2f2"];
@@ -170,8 +179,6 @@
             });
         }
     } dic:[NSMutableDictionary dictionaryWithDictionary:@{@"UserID":[UserModel getUserModel].P_LSM,@"Corpid":corpid}] noNetWork:nil];
-    
-    
 }
 
 

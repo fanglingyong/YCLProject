@@ -83,7 +83,7 @@
         [pargams setObject:account forKey:@"Username"];
         [pargams setObject:[EncrtDecrt md5:password] forKey:@"Password"];
         __block typeof (self)wself = self;
-        [BaseApi getLoginURLWithBlock:^(NSDictionary *dict, NSError *error) {
+        [BaseApi getMenthodWithUrl:LoginURL block:^(NSDictionary *dict, NSError *error) {
             if (error) {
                 [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
                 NSLog(@"error--%@",error);

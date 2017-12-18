@@ -54,7 +54,7 @@
     _clinicNmae.text = model.CORPNAME;
     _clinicLeader.text = model.LAWMAN;
     _clinicAddress.text = model.ADDRESS;
-    _bindStatus.hidden = NO;
+    _bindStatus.hidden = YES;
     _noClinic.hidden = YES;
 }
 
