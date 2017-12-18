@@ -10,7 +10,8 @@
 #import "BindClinicViewController.h"
 #import "AppDelegate.h"
 #import "ForgetPasswordViewController.h"
-#import "RegisterUserViewController.h"
+//#import "RegisterUserViewController.h"
+#import "BindInfoViewController.h"
 #import "TextFiledView.h"
 #import "EncrtDecrt.h"
 
@@ -60,7 +61,7 @@
      */
 }
 -(void) registerNewUserController:(UIButton*)sender{
-    RegisterUserViewController * rgUser = [[RegisterUserViewController alloc] init];
+    BindInfoViewController * rgUser = [[BindInfoViewController alloc] init];
     [self.navigationController pushViewController:rgUser animated:YES
      ];
 }

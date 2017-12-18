@@ -10,4 +10,6 @@
 
 @interface RegisterUserViewController : BaseViewController
 
+@property (nonatomic,copy) NSString *corpId;
+
 @end

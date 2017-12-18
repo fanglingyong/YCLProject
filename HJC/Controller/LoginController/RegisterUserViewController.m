@@ -10,9 +10,8 @@
 #import "NavView.h"
 #import "TextFiledView.h"
 #import "SmsCodeTextField.h"
-#import "BindInfoViewController.h"
 
-@interface RegisterUserViewController ()
+@interface RegisterUserViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) NavView *navView;
 @property (nonatomic,strong) TextFiledView *account;
@@ -56,6 +55,7 @@
     
     self.account = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _navView.maxY+40, kScreenWidth-50, 35)];
     _account.textField.placeholder = @"请输入账号";
+    _account.textField.delegate = self;
     _account.leftView.image = [UIImage imageNamed:@"user_25_25"];
     
     self.password = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _account.maxY+10, kScreenWidth-50, 35)];
@@ -70,10 +70,12 @@
     
     self.phonenumber = [[TextFiledView alloc] initWithFrame:CGRectMake(25, _againpswd.maxY+10, kScreenWidth-50, 35)];
     _phonenumber.textField.placeholder = @"请输入手机号";
+    _phonenumber.textField.delegate = self;
     _phonenumber.leftView.image = [UIImage imageNamed:@"code_25_25"];
     
     self.smsCode = [[SmsCodeTextField alloc] initWithFrame:CGRectMake(25, _phonenumber.maxY+10, kScreenWidth-50, 35)];
     _smsCode.textField.placeholder = @"请输入短信验证码";
+    _smsCode.textField.delegate = self;
     _smsCode.leftView.image = [UIImage imageNamed:@"code_25_25"];
     
     [self.view addSubview:_account];
@@ -127,9 +129,30 @@
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
     NSLog(@"注册成功!!!");
-    BindInfoViewController *vc = [[BindInfoViewController alloc] init];
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    NSString * account = _account.textField.text;
+    NSString * password1 = _password.textField.text;
+    NSString * password2 = _againpswd.textField.text;
+    NSString * phone = _phonenumber.textField.text;
+    NSString * smsCode = _smsCode.textField.text;
+    if (![AnimaDefaultUtil isNotNull:account]) {
+        [HUDUtil Hud_message:@"账号不能为空" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:password1]){
+        [HUDUtil Hud_message:@"密码不能为空" view:self.view];
+    }else if (![password1 isEqualToString:password2]){
+        [HUDUtil Hud_message:@"两次密码不相同" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:phone]){
+        [HUDUtil Hud_message:@"手机号不能为空" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:smsCode]){
+        [HUDUtil Hud_message:@"验证码不能为空" view:self.view];
+    }else{
+        /* 网络请求
+        NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+        
+        [BaseApi getMenthodWithUrl:RegisterURL block:^(NSDictionary *dict, NSError *error) {
+            
+        } dic:pargrams noNetWork:nil];
+         */
+    }
 }
 
 - (void)didReceiveMemoryWarning {

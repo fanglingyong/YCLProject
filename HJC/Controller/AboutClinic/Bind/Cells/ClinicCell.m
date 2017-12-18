@@ -22,8 +22,13 @@
         view.clipsToBounds = YES;
         view.layer.cornerRadius = 5;
         
-        _bindStatus = [[UIImageView alloc] initWithFrame:CGRectMake(view.maxX-60, 10, 37, 16)];
-        _bindStatus.image = [UIImage imageNamed:@"didBin"];
+        _bindStatus = [[UILabel alloc] initWithFrame:CGRectMake(view.maxX-85, 5, 70, 24)];
+        _bindStatus.text = @"点击绑定";
+        _bindStatus.textColor = [UIColor redColor];
+        _bindStatus.font = [UIFont systemFontOfSize:15];
+        _bindStatus.textAlignment = NSTextAlignmentCenter;
+        _bindStatus.layer.borderWidth = 1;
+        _bindStatus.layer.borderColor = [[UIColor redColor] CGColor];
         [view addSubview:_bindStatus];
         
         _clinicNmae = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, view.maxX-20, 30)];
@@ -54,7 +59,7 @@
     _clinicNmae.text = model.CORPNAME;
     _clinicLeader.text = model.LAWMAN;
     _clinicAddress.text = model.ADDRESS;
-    _bindStatus.hidden = YES;
+    _bindStatus.hidden = NO;
     _noClinic.hidden = YES;
 }
 
