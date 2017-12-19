@@ -64,13 +64,13 @@
                               failure:(void(^)(NSError *error)) failure{
 //    NSLog(@"responseObject=========%@",[responseObject[@"status"] class]);
 //    NSLog(@"responseObject=========%@",responseObject);
-    if ([responseObject[@"status"] integerValue] == 1 && [responseObject[@"status"] isKindOfClass:[NSNumber class]]) {
+    if ([responseObject[@"status"] integerValue] == 1) {
         if(success){
             success(responseObject);
         }
     }else{
         NSString *err=[NSString stringWithFormat:@"%@",responseObject[@"message"]];
-        NSString *errCode=[NSString stringWithFormat:@"%@",responseObject[@"message"]];
+        NSString *errCode=[NSString stringWithFormat:@"%@",responseObject[@"status"]];
         NSError *error=[NSError errorWithDomain:err code:[errCode integerValue] userInfo:@{@"status":errCode}];
         [WebService HudFailWithErrMessage:error failure:failure];
         if(failure){

@@ -13,7 +13,8 @@
 #import "ClinicCell.h"
 #import "BindClinicModel.h"
 #import "MJRefresh.h"
-#import "RegisterClinicViewController.h"
+#import "RegisterClinicViewController.h"//--
+#import "RegisterUserViewController.h"
 #import "ToolButtonView.h"
 
 @interface BindInfoViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -86,7 +87,7 @@
     NSString *searchText =_searchBar.text;
     self.pargams = [NSMutableDictionary dictionary];
     [_pargams setObject:searchText forKey:@"Parastr"];
-    [_pargams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [_pargams setObject:@"0" forKey:@"UserID"];
     [self net_work];
 }
 -(void)net_work{
@@ -164,7 +165,11 @@
 }
 //  is success
 -(void)jumpToAssoSuccess:(NSString*)corpid{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    RegisterUserViewController*user = [[RegisterUserViewController alloc] init];
+    user.corpId = corpid;
+    [self.navigationController pushViewController:user animated:YES];
+    /*
+     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [BaseApi getMenthodWithUrl:BindClinicURL block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -178,7 +183,8 @@
                 }
             });
         }
-    } dic:[NSMutableDictionary dictionaryWithDictionary:@{@"UserID":[UserModel getUserModel].P_LSM,@"Corpid":corpid}] noNetWork:nil];
+    } dic:[NSMutableDictionary dictionaryWithDictionary:@{@"UserID":@"0",@"Corpid":corpid}] noNetWork:nil];
+     */
 }
 
 

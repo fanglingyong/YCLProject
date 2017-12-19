@@ -10,7 +10,8 @@
 #import "BindClinicViewController.h"
 #import "AppDelegate.h"
 #import "ForgetPasswordViewController.h"
-#import "RegisterUserViewController.h"
+//#import "RegisterUserViewController.h"
+#import "BindInfoViewController.h"
 #import "TextFiledView.h"
 #import "EncrtDecrt.h"
 
@@ -60,7 +61,7 @@
      */
 }
 -(void) registerNewUserController:(UIButton*)sender{
-    RegisterUserViewController * rgUser = [[RegisterUserViewController alloc] init];
+    BindInfoViewController * rgUser = [[BindInfoViewController alloc] init];
     [self.navigationController pushViewController:rgUser animated:YES
      ];
 }
@@ -87,8 +88,6 @@
             if (error) {
                 [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
                 NSLog(@"error--%@",error);
-            }else if ([[dict objectForKey:@"status"] intValue] != 1) {
-                [AnimaDefaultUtil alertUtil:self message:dict[@"message"]];
             }else{
                 //解析数据
                 NSLog(@"登陆返回数据%@",dict);

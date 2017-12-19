@@ -53,20 +53,18 @@
 #pragma mark - network
 -(void)networkForClinicInfo{
     NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
-    [pargams setObject:@"1" forKey:@"UserID"];
-    [pargams setObject:@"1" forKey:@"Parastr"];
+    [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargams setObject:[UserModel getUserModel].RID forKey:@"Parastr"];
     [pargams setObject:@",10,1" forKey:@"WebPara"];
     [BaseApi getMenthodWithUrl:GetClinicList block:^(NSDictionary *dict, NSError *error) {
         if(dict){
-            if ([dict[@"status"] intValue] == 1) {
-                NSLog(@"自己诊所————数组%@",dict[@"data"]);
-                NSDictionary*clinic = dict[@"data"][0];
-                BindClinicModel *model = [[BindClinicModel alloc] init];
-                [model setValuesForKeysWithDictionary:clinic];
-                [self setValuesForClinicModel:model];
-            }else{
-                [HUDUtil Hud_message:dict[@"message"] view:self.view];
-            }
+            NSLog(@"自己诊所————数组%@",dict[@"data"]);
+            NSDictionary*clinic = dict[@"data"][0];
+            BindClinicModel *model = [[BindClinicModel alloc] init];
+            [model setValuesForKeysWithDictionary:clinic];
+            [self setValuesForClinicModel:model];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
         }
     } dic:pargams noNetWork:nil];
 }

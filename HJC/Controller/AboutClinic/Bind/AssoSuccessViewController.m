@@ -58,7 +58,7 @@
     jumpBtn.layer.borderColor = [[UIColor colorFromHexCode:@"#b3b3b3"] CGColor];
     jumpBtn.layer.cornerRadius = 3;
     jumpBtn.clipsToBounds = YES;
-    [jumpBtn setTitle:@"返回到个人中心" forState:UIControlStateNormal];
+    [jumpBtn setTitle:@"完成" forState:UIControlStateNormal];
     jumpBtn.backgroundColor = [UIColor colorFromHexCode:@"#4399e9"];
     [jumpBtn setTitleColor:[UIColor colorFromHexCode:@"#ffffff"] forState:UIControlStateNormal];
     [jumpBtn addTarget:self action:@selector(jumpProcutPage:) forControlEvents:UIControlEventTouchUpInside];

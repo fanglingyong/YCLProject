@@ -158,6 +158,10 @@
 		4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */; };
 		4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */; };
 		4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */; };
+		450BF3FA1FE8EF9A00A90704 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F51FCBE865005EC6BA /* search.png */; };
+		450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F61FCBE865005EC6BA /* search@2x.png */; };
+		450BF3FC1FE8EF9A00A90704 /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F71FCBE865005EC6BA /* search@3x.png */; };
+		450BF3FD1FE8EF9A00A90704 /* right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1111FCBE865005EC6BA /* right_arrow@2x.png */; };
 		451068C81FE551680009B113 /* ClinicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068C71FE551680009B113 /* ClinicModel.m */; };
 		451068CC1FE565230009B113 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CA1FE565230009B113 /* MBProgressHUD.m */; };
 		451068CF1FE565710009B113 /* HUDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CE1FE565710009B113 /* HUDUtil.m */; };
@@ -1954,6 +1958,10 @@
 				36FD7A4D1FE90EE3002315E5 /* search@2x.png in Resources */,
 				36FD7A4E1FE90EE3002315E5 /* search@3x.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
+				450BF3FA1FE8EF9A00A90704 /* search.png in Resources */,
+				450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */,
+				450BF3FC1FE8EF9A00A90704 /* search@3x.png in Resources */,
+				450BF3FD1FE8EF9A00A90704 /* right_arrow@2x.png in Resources */,
 				36FD7A3D1FD93C05002315E5 /* procure_arrowDefault.png in Resources */,
 				36FD7A3E1FD93C05002315E5 /* procure_arrowDefault@2x.png in Resources */,
 				36FD7A3F1FD93C05002315E5 /* procure_arrowDefault@3x.png in Resources */,

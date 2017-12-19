@@ -11,7 +11,7 @@
 
 @interface ClinicCell : UITableViewCell
 
-@property (nonatomic,strong) UIImageView *bindStatus;
+@property (nonatomic,strong) UILabel *bindStatus;
 @property (nonatomic,strong) UILabel *clinicNmae;
 @property (nonatomic,strong) UILabel *clinicLeader;
 @property (nonatomic,strong) UILabel *clinicAddress;
