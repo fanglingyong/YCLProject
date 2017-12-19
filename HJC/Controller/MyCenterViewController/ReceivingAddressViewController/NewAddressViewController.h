@@ -11,6 +11,5 @@
 
 @interface NewAddressViewController : BaseTableViewController
 
-@property (nonatomic,copy) ReceiveAddressModel *model;
 
 @end

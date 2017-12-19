@@ -111,23 +111,21 @@
     [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
     [BaseApi getMenthodWithUrl:GetCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
-            if ([dict[@"status"] intValue] == 1) {
-                _modelArr = [NSMutableArray array];
-                for (NSDictionary*modelDic in dict[@"data"]) {
-                    ReceiveAddressModel*model = [[ReceiveAddressModel alloc]init];
-                    [model setValuesForKeysWithDictionary:modelDic];
-                    [_modelArr addObject:model];
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-            }else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    [HUDUtil Hud_message:dict[@"message"] view:self.view];
-                });
+            _modelArr = [NSMutableArray array];
+            for (NSDictionary*modelDic in dict[@"data"]) {
+                ReceiveAddressModel*model = [[ReceiveAddressModel alloc]init];
+                [model setValuesForKeysWithDictionary:modelDic];
+                [_modelArr addObject:model];
             }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [HUDUtil Hud_message:error.domain view:self.view];
+            });
         }
     } dic:pargams noNetWork:nil];
 }

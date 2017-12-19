@@ -10,6 +10,7 @@
 #import "NavView.h"
 #import "ToolButtonView.h"
 #import "GspLicenseViewController.h"
+#import "AFNetworking.h"
 
 @interface BusinessLicenseViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -88,9 +89,30 @@
     if (!_businessLicense.image) {
         
 //        return;
+    }else{
+        [self uploadImageToService];
     }
-    GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
-    [self.navigationController pushViewController:gsp animated:YES];
+//    GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
+//    [self.navigationController pushViewController:gsp animated:YES];
+}
+
+-(void)uploadImageToService{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+//    [UserModel getUserModel].RID
+    [pargrams setObject:@"2255" forKey:@"CorpId"];
+    [pargrams setObject:@"1" forKey:@"L_type"];
+    [BaseApi postMenthodWirhUrlString:@"http://120.26.97.79:8080/WebApi/api/UpLoad" paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
+        
+    } block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            NSLog(@"success");
+            [HUDUtil Hud_message:@"successful" view:self.view];
+        }else{
+            NSLog(@"%@",error);
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    }];
+    
 }
 
 #pragma mark - photo
