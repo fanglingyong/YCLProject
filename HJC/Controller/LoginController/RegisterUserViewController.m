@@ -10,6 +10,8 @@
 #import "NavView.h"
 #import "TextFiledView.h"
 #import "SmsCodeTextField.h"
+#import "AssoSuccessViewController.h"
+#import "EncrtDecrt.h"
 
 @interface RegisterUserViewController ()<UITextFieldDelegate>
 
@@ -145,13 +147,24 @@
     }else if (![AnimaDefaultUtil isNotNull:smsCode]){
         [HUDUtil Hud_message:@"验证码不能为空" view:self.view];
     }else{
-        /* 网络请求
+        [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
         NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-        
+        [pargrams setObject:account forKey:@"Username"];
+        [pargrams setObject:[EncrtDecrt md5:password1] forKey:@"Password"];
+        [pargrams setObject:phone forKey:@"HandPhone"];
+        [pargrams setObject:_corpId forKey:@"RID"];
+//        [pargrams setObject:_smsCode forKey:@"smscode"];
         [BaseApi getMenthodWithUrl:RegisterURL block:^(NSDictionary *dict, NSError *error) {
-            
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (dict) {
+                    AssoSuccessViewController *asso = [[AssoSuccessViewController alloc] init];
+                    asso.assoText = @"注册账号提交成功";
+                    [self.navigationController pushViewController:asso animated:YES];
+                }else{
+                    [HUDUtil Hud_message:dict[@"message"] view:self.view];
+                }
         } dic:pargrams noNetWork:nil];
-         */
+        
     }
 }
 

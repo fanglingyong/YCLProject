@@ -88,8 +88,6 @@
             if (error) {
                 [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
                 NSLog(@"error--%@",error);
-            }else if ([[dict objectForKey:@"status"] intValue] != 1) {
-                [AnimaDefaultUtil alertUtil:self message:dict[@"message"]];
             }else{
                 //解析数据
                 NSLog(@"登陆返回数据%@",dict);

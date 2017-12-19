@@ -22,6 +22,7 @@
     [super viewDidLoad];
     [self statusBar];
     [self.view addSubview:self.navView];
+    [self todoloadingUI];
     // Do any additional setup after loading the view.
 }
 -(NavView *)navView{
@@ -41,6 +42,14 @@
 }
 -(void)backLastController_menthod{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)todoloadingUI{
+    UILabel *someLable = [[UILabel alloc] initWithFrame:CGRectMake(10, _navView.maxY+50, kScreenWidth-20, 60)];
+    someLable.textAlignment = NSTextAlignmentCenter;
+    someLable.text = @"此页面暂未设计,请设计师设计后,工程师大大将即时进行修改!";
+    someLable.numberOfLines = 2;
+    [self.view addSubview:someLable];
 }
 
 - (void)didReceiveMemoryWarning {
