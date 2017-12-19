@@ -54,6 +54,52 @@
     
 }
 
+
++ (void)sendRequestWithUrlString :(NSString*)urlString
+                         paramDic:(NSMutableDictionary *)paramDic
+                            image:(UIImage*)image
+                         progress:(void (^)(NSProgress * ))uploadProgress
+                          success:(void (^)(id responseDic)) success
+                          failure:(void(^)(NSError *error)) failure{
+    
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == -1){
+            NSLog(@"未知网络");
+        }else if(status == 0){
+            NSLog(@"没有网络(断网)");
+        }else if(status == 1){
+            NSLog(@"手机自带网络");
+        }else if(status == 2){
+            NSLog(@"WIFI");
+        }
+        
+    }];
+    [mgr startMonitoring];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 60;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json", @"text/json", @"text/javascript", @"text/html"]];
+    
+    //将字典改为json再发送
+    [manager POST:urlString parameters:paramDic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSData *data = UIImageJPEGRepresentation(image, 0.7);
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+        [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/jpg"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WebService dealSuccessWithreRponseObject:responseObject success:success failure:failure];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WebService HudFailWithNetWorkErr:error failure:failure];
+    }];
+}
 /**
  *  处理获取服务器返回成功的数据
  *

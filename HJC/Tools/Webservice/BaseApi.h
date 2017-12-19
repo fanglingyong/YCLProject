@@ -21,7 +21,20 @@
  */
 +(void)getMenthodWithUrl:(NSString*)url block:(void (^)(NSDictionary *dict, NSError *error))block dic:(NSMutableDictionary *)dic noNetWork:(void(^)())noNetWork;
 
+/**
+ net work fanglingyong
 
+ @param urlString request in header.h
+ @param paramDic
+ @param image
+ @param uploadProgress
+ @param block 
+ */
++(void)postMenthodWirhUrlString :(NSString*)urlString
+                        paramDic:(NSMutableDictionary *)paramDic
+                           image:(UIImage*)image
+                        progress:(void (^)(NSProgress * ))uploadProgress
+                           block:(void (^)(NSDictionary *dict, NSError *error))block;
 
 
 @end

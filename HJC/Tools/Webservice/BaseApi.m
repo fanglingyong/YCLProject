@@ -23,7 +23,20 @@
     } noNetWork:nil];
     
 }
-
++(void)postMenthodWirhUrlString :(NSString*)urlString
+                        paramDic:(NSMutableDictionary *)paramDic
+                           image:(UIImage*)image
+                        progress:(void (^)(NSProgress * _Nonnull))uploadProgress
+                           block:(void (^)(NSDictionary *dict, NSError *error))block{
+    [WebService sendRequestWithUrlString:urlString paramDic:paramDic image:image progress:uploadProgress success:^(id responseDic) {
+        if(block)
+            block(responseDic,nil);
+    } failure:^(NSError *error) {
+        NSLog(@"%@请求错误%@",urlString,error);
+        if (block)
+            block(nil, error);
+    }];
+}
 /*************************************************************************************/
 
 

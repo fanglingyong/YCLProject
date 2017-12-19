@@ -202,11 +202,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureChangeOrAddbuttonMenthod{
-    if (_model) {
-        NSLog(@"修改");
-    }else{
-        NSLog(@"新增");
-    }
+   
 }
 
 /**
@@ -215,8 +211,8 @@
 -(void)network_corpAddress{
     NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
     [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargams setObject:_model.ADDRESSID forKey:@"ADDRESSID"];
-    [pargams setObject:_model.CORPID forKey:@"CORPID"];
+    [pargams setObject:@"0" forKey:@"ADDRESSID"];
+    [pargams setObject:[UserModel getUserModel].RID forKey:@"CORPID"];
     [pargams setObject:@"" forKey:@"ADDRESS"];
     [pargams setObject:@"" forKey:@"POSTCODE"];
     [pargams setObject:@"" forKey:@"LINK"];
