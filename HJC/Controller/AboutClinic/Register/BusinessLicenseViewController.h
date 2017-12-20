@@ -10,4 +10,6 @@
 
 @interface BusinessLicenseViewController : BaseViewController
 
+@property (nonatomic,copy) NSString* corpid;
+
 @end

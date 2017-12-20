@@ -128,7 +128,7 @@
     nextBtn.layer.borderColor = [[UIColor colorFromHexCode:@"#b3b3b3"] CGColor];
     nextBtn.layer.cornerRadius = 3;
     nextBtn.clipsToBounds = YES;
-    [nextBtn setTitle:@"上传证书" forState:UIControlStateNormal];
+    [nextBtn setTitle:@"注册并上传证书" forState:UIControlStateNormal];
     nextBtn.backgroundColor = [UIColor colorFromHexCode:@"#4399e9"];
     [nextBtn setTitleColor:[UIColor colorFromHexCode:@"#ffffff"] forState:UIControlStateNormal];
     [nextBtn addTarget:self action:@selector(jumpToPositAddress:) forControlEvents:UIControlEventTouchUpInside];
@@ -155,8 +155,37 @@
 
 // last / next button menthod
 -(void)jumpToPositAddress:(UIButton*)sender{
-    BusinessLicenseViewController * pa = [[BusinessLicenseViewController alloc] init];
-    [self.navigationController pushViewController:pa animated:YES];
+    NSString *clinicname = _tfName.text;
+    NSString *personname = _tfLeader.text;
+    NSString *personphone = _tfLink.text;
+    NSString *clinicAddress =_tfAddress.text;
+    if ([AnimaDefaultUtil isNotNull:clinicname] && [AnimaDefaultUtil isNotNull:personname] && [AnimaDefaultUtil isNotNull:personphone] && [AnimaDefaultUtil isNotNull:clinicAddress]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+        [pargrams setObject:clinicname forKey:@"CORPNAME"];
+        [pargrams setObject:personname forKey:@"LAWMAN"];
+        [pargrams setObject:personphone forKey:@"LINK"];
+        [pargrams setObject:clinicAddress forKey:@"ADDRESS"];
+        [pargrams setObject:@"0" forKey:@"UserID"];
+        [BaseApi getMenthodWithUrl:RegClinicURL block:^(NSDictionary *dict, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if (dict) {
+                    NSLog(@"诊所id %@",dict[@"data"][0][@"corpid"]);
+                    BusinessLicenseViewController * pa = [[BusinessLicenseViewController alloc] init];
+                    pa.corpid = dict[@"data"][0][@"corpid"];
+                    [self.navigationController pushViewController:pa animated:YES];
+                }else{
+                    [HUDUtil Hud_message:error.domain view:self.view];
+                }
+            });
+        } dic:pargrams noNetWork:nil];
+    }else{
+        [HUDUtil Hud_message:@"请完善信息后再提交" view:self.view];
+    }
+    
+    
+    
 }
 
 

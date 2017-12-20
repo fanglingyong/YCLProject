@@ -36,7 +36,8 @@
 #define GetHostInfo @"/Producer"
 //获取诊所列表
 #define GetClinicList @"/Custom"
-
+//上传文件
+#define UploadClinicImages @"/File"
 
 #endif /* Header_h */
 
