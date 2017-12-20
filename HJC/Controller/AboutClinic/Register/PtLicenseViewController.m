@@ -101,8 +101,20 @@
         }];
         return;
     }
-    MebLicenseViewController *ptL = [[MebLicenseViewController alloc] init];
-    [self.navigationController pushViewController:ptL animated:YES];
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [BaseApi postMenthodWirhUrlString:[NSString stringWithFormat:@"%@%@?Corpid=%@&P_type=%@",HostPath,UploadClinicImages,self.corpid,@"3"] paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
+        
+    } block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            NSLog(@"success 3");
+            MebLicenseViewController *ptL = [[MebLicenseViewController alloc] init];
+            ptL.corpid = _corpid;
+            [self.navigationController pushViewController:ptL animated:YES];
+        }else{
+            NSLog(@"%@",error);
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    }];
 }
 
 #pragma mark - photo

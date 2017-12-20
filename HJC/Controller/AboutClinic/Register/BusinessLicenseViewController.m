@@ -86,26 +86,24 @@
 }
 
 -(void)toolButtonAction:(UIButton*)sender{
-    if (!_businessLicense.image) {
-        
-//        return;
-    }else{
+    if (_businessLicense.image) {
         [self uploadImageToService];
+    }else{
+        [HUDUtil Hud_message:@"请先选择营业执照" view:self.view];
     }
-//    GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
-//    [self.navigationController pushViewController:gsp animated:YES];
 }
 
 -(void)uploadImageToService{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:self.corpid forKey:@"CorpId"];
-    [pargrams setObject:@"1" forKey:@"L_type"];
-    [BaseApi postMenthodWirhUrlString:[NSString stringWithFormat:@"%@%@",HostPath,UploadClinicImages] paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
+//    [pargrams setObject:self.corpid forKey:@"CorpId"];
+//    [pargrams setObject:@"1" forKey:@"L_type"];
+    [BaseApi postMenthodWirhUrlString:[NSString stringWithFormat:@"%@%@?Corpid=%@&P_type=%@",HostPath,UploadClinicImages,self.corpid,@"1"] paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
         
     } block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
             NSLog(@"success");
-            [HUDUtil Hud_message:@"successful" view:self.view];
+            GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
+            [self.navigationController pushViewController:gsp animated:YES];
         }else{
             NSLog(@"%@",error);
             [HUDUtil Hud_message:error.domain view:self.view];

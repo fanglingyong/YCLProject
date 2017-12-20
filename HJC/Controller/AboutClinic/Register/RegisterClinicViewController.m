@@ -183,9 +183,6 @@
     }else{
         [HUDUtil Hud_message:@"请完善信息后再提交" view:self.view];
     }
-    
-    
-    
 }
 
 

@@ -103,6 +103,10 @@
 }
 - (void)addButtonPress {
     NewAddressViewController * VC = [[NewAddressViewController alloc] init];
+    __block typeof(self) wself = self;
+    VC.block = ^{
+        [wself net_work];//--update this page ui
+    };
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - requet
