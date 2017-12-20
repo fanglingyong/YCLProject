@@ -98,10 +98,9 @@
 
 -(void)uploadImageToService{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-//    [UserModel getUserModel].RID
-    [pargrams setObject:@"2255" forKey:@"CorpId"];
+    [pargrams setObject:self.corpid forKey:@"CorpId"];
     [pargrams setObject:@"1" forKey:@"L_type"];
-    [BaseApi postMenthodWirhUrlString:@"http://120.26.97.79:8080/WebApi/api/UpLoad" paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
+    [BaseApi postMenthodWirhUrlString:[NSString stringWithFormat:@"%@%@",HostPath,UploadClinicImages] paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
         
     } block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
