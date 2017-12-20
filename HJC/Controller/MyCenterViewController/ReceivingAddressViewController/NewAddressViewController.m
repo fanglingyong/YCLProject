@@ -17,7 +17,7 @@
 @property (nonatomic, retain)NSString *phone;
 @property (nonatomic, retain)NSString *address;
 @property (nonatomic, assign)BOOL isAcquiescence;
-
+@property (nonatomic, retain)ReceiveAddressModel *model;
 
 @end
 

@@ -28,8 +28,7 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
-    [self headerView];
-    [self footerView];
+
     
     self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 49) style:UITableViewStyleGrouped];
     [self.mainTableView setMinY:64 maxY:kScreenHeight - 49];
@@ -40,13 +39,15 @@
     [self.view addSubview:self.mainTableView];
     
     
-    self.addressTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(160), kScreenWidth, HeightXiShu(160)) style:UITableViewStyleGrouped];
+    self.addressTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(110) - HeightXiShu(45) * 3, kScreenWidth, HeightXiShu(45) * 3) style:UITableViewStylePlain];
     self.addressTableView.delegate = self;
     self.addressTableView.dataSource = self;
     self.addressTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.addressTableView.backgroundColor = AllBackLightGratColor;
-//    [self.view addSubview:self.footTableView];
+    [self.view addSubview:self.addressTableView];
     
+    [self headerView];
+    [self footerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,16 +76,16 @@
 }
 - (UIView *)headerView {
     if (!_headerView) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(110) - HeightXiShu(50), kScreenWidth, HeightXiShu(50))];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(110) - HeightXiShu(45) * 3 - HeightXiShu(50), kScreenWidth, HeightXiShu(50))];
         headerView.backgroundColor = [UIColor whiteColor];
-        UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(18))];
+        UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(15))];
         selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
         [headerView addSubview:selectImg];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(60), 0, WidthXiShu(160), HeightXiShu(50))];
         label.text = @"总计: 43.00";
         label.textColor = BlackColor;
-        label.font = HEITI(HeightXiShu(16));
+        label.font = HEITI(HeightXiShu(15));
         [headerView addSubview:label];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -121,14 +122,14 @@
         UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(150), HeightXiShu(5), WidthXiShu(100), HeightXiShu(25))];
         phoneLabel.text = @"15998568988";
         phoneLabel.textColor = TitleColor;
-        phoneLabel.font = HEITI(HeightXiShu(12));
+        phoneLabel.font = HEITI(HeightXiShu(10));
         [footerView addSubview:phoneLabel];
         
         UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(30), WidthXiShu(180), HeightXiShu(30))];
         addressLabel.text = @"浙江省杭州市下城区延安路168号外经贸B座9楼";
         addressLabel.numberOfLines = 2;
         addressLabel.textColor = TitleColor;
-        addressLabel.font = HEITI(HeightXiShu(12));
+        addressLabel.font = HEITI(HeightXiShu(10));
         [footerView addSubview:addressLabel];
         
         
@@ -151,7 +152,7 @@
 }
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-        return 1;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.mainTableView) {
@@ -214,12 +215,24 @@
     nameLb.font = HEITI(HeightXiShu(12));
     [cell.contentView addSubview:nameLb];
     
-    UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(78), 0, WidthXiShu(240), HeightXiShu(45))];
+    UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(78), HeightXiShu(8), WidthXiShu(240), HeightXiShu(14))];
     addressLb.text = @"浙江省杭州市下城区延安路168号外经贸B座9楼";
-    addressLb.numberOfLines = 2;
+    addressLb.numberOfLines = 1;
     addressLb.textColor = TitleColor;
-    addressLb.font = HEITI(HeightXiShu(12));
+    addressLb.font = HEITI(HeightXiShu(10));
     [cell.contentView addSubview:addressLb];
+    
+    UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(78), HeightXiShu(22), WidthXiShu(240), HeightXiShu(14))];
+    phoneLb.text = @"15236554566";
+    phoneLb.numberOfLines = 1;
+    phoneLb.textColor = TitleColor;
+    phoneLb.font = HEITI(HeightXiShu(10));
+    [cell.contentView addSubview:phoneLb];
+    
+    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(44), kScreenWidth, .5)];
+    lineView.backgroundColor = AllLightGrayColor;
+    [cell.contentView addSubview:lineView];
+
     return cell;
 }
 
