@@ -9,7 +9,7 @@
 #import "NewAddressViewController.h"
 #import "NavView.h"
 
-@interface NewAddressViewController ()<UITextFieldDelegate>
+@interface NewAddressViewController ()<UITextFieldDelegate, UITextViewDelegate>
 @property (nonatomic,strong)NavView *navView;
 @property (nonatomic, retain)UIButton *sureButton;
 
@@ -145,6 +145,7 @@
             UITextField *nameTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0, kScreenWidth - WidthXiShu(80), HeightXiShu(55))];
             nameTF.text = self.name;
             nameTF.delegate = self;
+            nameTF.tag = 100;
             nameTF.textColor = BlackColor;
             nameTF.font = HEITI(HeightXiShu(15));
             [cell.contentView addSubview:nameTF];
@@ -162,6 +163,7 @@
             UITextField *phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0, kScreenWidth - WidthXiShu(80), HeightXiShu(50))];
             phoneTF.text = self.phone;
             phoneTF.delegate = self;
+            phoneTF.tag = 101;
             phoneTF.textColor = BlackColor;
             phoneTF.font = HEITI(HeightXiShu(15));
             [cell.contentView addSubview:phoneTF];
@@ -170,14 +172,16 @@
             cutLine.backgroundColor = AllLightGrayColor;
             [cell.contentView addSubview:cutLine];
         } else {
-            UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
-            phoneLb.text = @"地址";
-            phoneLb.textColor = BlackColor;
-            phoneLb.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:phoneLb];
+            UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
+            addressLb.text = @"地址";
+            addressLb.textColor = BlackColor;
+            addressLb.font = HEITI(HeightXiShu(15));
+            [cell.contentView addSubview:addressLb];
             
             UITextView *addressTV = [[UITextView alloc] initWithFrame:CGRectMake(WidthXiShu(80), HeightXiShu(10), kScreenWidth - WidthXiShu(80) - WidthXiShu(10), HeightXiShu(110))];
             addressTV.textColor = BlackColor;
+            addressTV.delegate = self;
+            addressTV.text = self.address;
             addressTV.font = HEITI(HeightXiShu(15));
             [cell.contentView addSubview:addressTV];
         }
@@ -202,7 +206,23 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureChangeOrAddbuttonMenthod{
-   
+    if (_model) {
+        NSLog(@"修改");
+    }else{
+        NSLog(@"新增");
+        [self network_corpAddress];
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.tag == 100) {
+        self.name = textField.text;
+    } else if (textField.tag == 101) {
+        self.phone = textField.text;
+    }
+}
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    self.address = textView.text;
 }
 
 /**
@@ -211,11 +231,11 @@
 -(void)network_corpAddress{
     NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
     [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargams setObject:@"0" forKey:@"ADDRESSID"];
-    [pargams setObject:[UserModel getUserModel].RID forKey:@"CORPID"];
-    [pargams setObject:@"" forKey:@"ADDRESS"];
-    [pargams setObject:@"" forKey:@"POSTCODE"];
-    [pargams setObject:@"" forKey:@"LINK"];
+    [pargams setObject:_model.ADDRESSID forKey:@"ADDRESSID"];
+    [pargams setObject:_model.CORPID forKey:@"CORPID"];
+    [pargams setObject:self.address forKey:@"ADDRESS"];
+    [pargams setObject:self.name forKey:@"POSTCODE"];
+    [pargams setObject:self.phone forKey:@"LINK"];
     [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
     [BaseApi getMenthodWithUrl:UpdateCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
         if (dict) {

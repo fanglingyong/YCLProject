@@ -11,10 +11,11 @@
 #import "ShoppingCartModel.h"
 #import "ShoppingCartCell.h"
 @interface ShoppingCartViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property(nonatomic,strong)NavView *navView;
-
-@property (nonatomic, retain)UITableView *headTableView;
-@property (nonatomic, retain)UITableView *footTableView;
+@property (nonatomic,strong)NavView *navView;
+@property (nonatomic, retain)UIView *headerView;
+@property (nonatomic, retain)UIView *footerView;
+@property (nonatomic, retain)UITableView *mainTableView;
+@property (nonatomic, retain)UITableView *addressTableView;
 
 @property(nonatomic,strong)NSMutableArray *modelArr;
 
@@ -27,20 +28,23 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
+    [self headerView];
+    [self footerView];
     
-    self.headTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 49) style:UITableViewStyleGrouped];
-    [self.headTableView setMinY:64 maxY:kScreenHeight - 49];
-    self.headTableView.delegate = self;
-    self.headTableView.dataSource = self;
-    self.headTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.headTableView.backgroundColor = AllBackLightGratColor;
-    [self.view addSubview:self.headTableView];
+    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 49) style:UITableViewStyleGrouped];
+    [self.mainTableView setMinY:64 maxY:kScreenHeight - 49];
+    self.mainTableView.delegate = self;
+    self.mainTableView.dataSource = self;
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.backgroundColor = AllBackLightGratColor;
+    [self.view addSubview:self.mainTableView];
     
-    self.footTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(160), kScreenWidth, HeightXiShu(160)) style:UITableViewStyleGrouped];
-    self.footTableView.delegate = self;
-    self.footTableView.dataSource = self;
-    self.footTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.footTableView.backgroundColor = AllBackLightGratColor;
+    
+    self.addressTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(160), kScreenWidth, HeightXiShu(160)) style:UITableViewStyleGrouped];
+    self.addressTableView.delegate = self;
+    self.addressTableView.dataSource = self;
+    self.addressTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.addressTableView.backgroundColor = AllBackLightGratColor;
 //    [self.view addSubview:self.footTableView];
     
 }
@@ -69,72 +73,119 @@
     }
     return _navView;
 }
+- (UIView *)headerView {
+    if (!_headerView) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(110) - HeightXiShu(50), kScreenWidth, HeightXiShu(50))];
+        headerView.backgroundColor = [UIColor whiteColor];
+        UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(18))];
+        selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
+        [headerView addSubview:selectImg];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(60), 0, WidthXiShu(160), HeightXiShu(50))];
+        label.text = @"总计: 43.00";
+        label.textColor = BlackColor;
+        label.font = HEITI(HeightXiShu(16));
+        [headerView addSubview:label];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(kScreenWidth - WidthXiShu(125), 0, WidthXiShu(125), HeightXiShu(50));
+        [button setTitle:@"生成订单" forState:UIControlStateNormal];
+        button.titleLabel.textColor = [UIColor whiteColor];
+        button.backgroundColor = [UIColor blueColor];
+        [headerView addSubview:button];
+        
+        [self.view addSubview:headerView];
+        _headerView = headerView;
+    }
+    return _headerView;
+}
 
+- (UIView *)footerView {
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 49 - HeightXiShu(110), kScreenWidth, HeightXiShu(110))];
+        footerView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *addressTitle = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(70), HeightXiShu(60))];
+        addressTitle.text = @"收货地址";
+        addressTitle.textColor = TitleColor;
+        addressTitle.font = HEITI(HeightXiShu(14));
+        [footerView addSubview:addressTitle];
+        
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(5), WidthXiShu(45), HeightXiShu(25))];
+        nameLabel.text = @"王小明";
+        nameLabel.textColor = TitleColor;
+        nameLabel.font = HEITI(HeightXiShu(12));
+        [footerView addSubview:nameLabel];
+        
+        
+        UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(150), HeightXiShu(5), WidthXiShu(100), HeightXiShu(25))];
+        phoneLabel.text = @"15998568988";
+        phoneLabel.textColor = TitleColor;
+        phoneLabel.font = HEITI(HeightXiShu(12));
+        [footerView addSubview:phoneLabel];
+        
+        UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(30), WidthXiShu(180), HeightXiShu(30))];
+        addressLabel.text = @"浙江省杭州市下城区延安路168号外经贸B座9楼";
+        addressLabel.numberOfLines = 2;
+        addressLabel.textColor = TitleColor;
+        addressLabel.font = HEITI(HeightXiShu(12));
+        [footerView addSubview:addressLabel];
+        
+        
+        UILabel *remarkTitle = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(60), WidthXiShu(70), HeightXiShu(50))];
+        remarkTitle.text = @"备注";
+        remarkTitle.textColor = TitleColor;
+        remarkTitle.font = HEITI(HeightXiShu(14));
+        [footerView addSubview:remarkTitle];
+        
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(WidthXiShu(70), HeightXiShu(70), WidthXiShu(180), HeightXiShu(40))];
+        textView.text = @"请填写备注";
+        textView.textColor = TitleColor;
+        [footerView addSubview:textView];
+
+        [self.view addSubview:footerView];
+        _footerView = footerView;
+    }
+    return _footerView;
+    
+}
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.headTableView) {
         return 1;
-    }
-    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.headTableView) {
+    if (tableView == self.mainTableView) {
         return 10;
     }
-    if (section == 0) {
-        return 3;
-    }
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (tableView == self.headTableView) {
+    if (tableView == self.mainTableView) {
         return HeightXiShu(10);
     }
     return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (tableView == self.headTableView) {
+    if (tableView == self.mainTableView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
         view.backgroundColor = AllLightGrayColor;
         return view;
     }
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(50))];
-    view.backgroundColor = [UIColor whiteColor];
-    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(18))];
-    selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
-    [view addSubview:selectImg];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(60), 0, WidthXiShu(160), HeightXiShu(50))];
-    label.text = @"总计: 43.00";
-    label.textColor = BlackColor;
-    label.font = HEITI(HeightXiShu(16));
-    [view addSubview:label];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(kScreenWidth - WidthXiShu(125), 0, WidthXiShu(125), HeightXiShu(50));
-    [button setTitle:@"生成订单" forState:UIControlStateNormal];
-    button.titleLabel.textColor = [UIColor whiteColor];
-    button.backgroundColor = [UIColor blueColor];
-    [view addSubview:button];
-    return view;
-    
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == self.headTableView) {
+    if (tableView == self.mainTableView) {
         return HeightXiShu(96);
     }
-    if (indexPath.section == 0) {
-        return 0;
-    }
-    return HeightXiShu(110);
+    return HeightXiShu(45);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (tableView == self.headTableView) {
+    if (tableView == self.mainTableView) {
         ShoppingCartModel *model = [[ShoppingCartModel alloc] init];
         if (self.modelArr.count > 0) {
             model = self.modelArr[indexPath.row];
@@ -156,7 +207,19 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(25), 0, WidthXiShu(50), HeightXiShu(45))];
+    nameLb.text = @"王小黑";
+    nameLb.textColor = TitleColor;
+    nameLb.font = HEITI(HeightXiShu(12));
+    [cell.contentView addSubview:nameLb];
     
+    UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(78), 0, WidthXiShu(240), HeightXiShu(45))];
+    addressLb.text = @"浙江省杭州市下城区延安路168号外经贸B座9楼";
+    addressLb.numberOfLines = 2;
+    addressLb.textColor = TitleColor;
+    addressLb.font = HEITI(HeightXiShu(12));
+    [cell.contentView addSubview:addressLb];
     return cell;
 }
 
