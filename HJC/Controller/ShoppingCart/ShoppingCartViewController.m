@@ -81,7 +81,6 @@
         UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(16), WidthXiShu(15), HeightXiShu(15))];
         selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
         [headerView addSubview:selectImg];
-        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(60), 0, WidthXiShu(160), HeightXiShu(50))];
         label.text = @"总计: 43.00";
         label.textColor = BlackColor;

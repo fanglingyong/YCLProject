@@ -206,6 +206,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureChangeOrAddbuttonMenthod{
+    [self.tableView endEditing:YES];
     if (_model) {
         NSLog(@"修改");
     }else{
@@ -237,6 +238,7 @@
     [pargams setObject:self.name forKey:@"POSTCODE"];
     [pargams setObject:self.phone forKey:@"LINK"];
     [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
+    NSLog(@"%@", pargams);
     [BaseApi getMenthodWithUrl:UpdateCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
             if ([dict[@"status"] isEqualToString:@"1"]) {
