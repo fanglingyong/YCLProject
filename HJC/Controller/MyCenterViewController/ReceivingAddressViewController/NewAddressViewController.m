@@ -206,6 +206,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureChangeOrAddbuttonMenthod{
+    
     [self.tableView endEditing:YES];
     if (_model) {
         NSLog(@"修改");
@@ -213,6 +214,7 @@
         NSLog(@"新增");
         [self network_corpAddress];
     }
+    [self network_corpAddress];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -232,21 +234,27 @@
 -(void)network_corpAddress{
     NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
     [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargams setObject:_model.ADDRESSID forKey:@"ADDRESSID"];
-    [pargams setObject:_model.CORPID forKey:@"CORPID"];
+    [pargams setObject:@"0" forKey:@"ADDRESSID"];
+    [pargams setObject:[UserModel getUserModel].RID forKey:@"CORPID"];
     [pargams setObject:self.address forKey:@"ADDRESS"];
     [pargams setObject:self.name forKey:@"POSTCODE"];
     [pargams setObject:self.phone forKey:@"LINK"];
     [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
+<<<<<<< HEAD
     NSLog(@"%@", pargams);
+=======
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+>>>>>>> 20a7e7bed09c1c56537d21fe4b69356a60edb34d
     [BaseApi getMenthodWithUrl:UpdateCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
-        if (dict) {
-            if ([dict[@"status"] isEqualToString:@"1"]) {
-                
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (dict) {
+                self.block();
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
-                
+                [HUDUtil Hud_message:error.domain view:self.view];
             }
-        }
+        });
     } dic:pargams noNetWork:nil];
 }
 /*

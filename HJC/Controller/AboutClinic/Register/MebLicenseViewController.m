@@ -100,7 +100,18 @@
         }];
         return;
     }
-    [self jumpAssos];
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [BaseApi postMenthodWirhUrlString:[NSString stringWithFormat:@"%@%@?Corpid=%@&P_type=%@",HostPath,UploadClinicImages,self.corpid,@"4"] paramDic:pargrams image:self.businessLicense.image progress:^(NSProgress * upload) {
+        
+    } block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            NSLog(@"success 4");
+            [self jumpAssos];
+        }else{
+            NSLog(@"%@",error);
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    }];
 }
 -(void)jumpAssos{
     AssoSuccessViewController *asso = [[AssoSuccessViewController alloc]init];

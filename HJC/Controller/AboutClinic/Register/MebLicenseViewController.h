@@ -10,4 +10,6 @@
 
 @interface MebLicenseViewController : BaseViewController
 
+@property (nonatomic,copy) NSString* corpid;
+
 @end

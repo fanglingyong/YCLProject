@@ -10,4 +10,6 @@
 
 @interface PtLicenseViewController : BaseViewController
 
+@property (nonatomic,copy) NSString* corpid;
+
 @end

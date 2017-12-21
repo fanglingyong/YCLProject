@@ -9,7 +9,10 @@
 #import "BaseTableViewController.h"
 #import "ReceiveAddressModel.h"
 
+typedef void(^refreshUIBlock)(void);
+
 @interface NewAddressViewController : BaseTableViewController
 
+@property (nonatomic,copy) refreshUIBlock block;
 
 @end

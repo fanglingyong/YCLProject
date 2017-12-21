@@ -10,4 +10,6 @@
 
 @interface GspLicenseViewController : BaseViewController
 
+@property (nonatomic,copy) NSString* corpid;
+
 @end
