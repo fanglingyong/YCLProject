@@ -188,7 +188,7 @@
 - (void)setModel:(ReceiveAddressModel *)model {
     _nameLb.text = model.POSTCODE;
     _phoneLb.text = model.LINK;
-    _addressLb.text = model.LINK;
+    _addressLb.text = model.ADDRESS;
 }
 #pragma mark - 事件
 

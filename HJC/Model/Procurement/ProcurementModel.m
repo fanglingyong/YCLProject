@@ -7,17 +7,29 @@
 //
 
 #import "ProcurementModel.h"
+#import <objc/runtime.h>
 
 @implementation ProcurementModel
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"id"]) {
-        self.ID = value;
+    
+}
+
+-(NSMutableDictionary *)returnToDictionaryWithModel{
+    NSMutableDictionary *userDic = [NSMutableDictionary dictionary];
+    unsigned int count = 0;
+    objc_property_t *properties = class_copyPropertyList([ProcurementModel class], &count);
+    for (int i = 0; i < count; i++) {
+        const char *name = property_getName(properties[i]);
+        
+        NSString *propertyName = [NSString stringWithUTF8String:name];
+        id propertyValue = [self valueForKey:propertyName];
+        if (propertyValue) {
+            [userDic setObject:propertyValue forKey:propertyName];
+        }
     }
+    free(properties);
+    return userDic;
 }
 
-
--(void)setDict:(NSDictionary *)dict{
-    self.ID = dict[@"id"];
-}
 
 @end

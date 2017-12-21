@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "ProcurementModel.h"
 
 @interface MedicineDetailViewController : BaseTableViewController
+
+@property (nonatomic, strong) ProcurementModel *model;
 
 @end

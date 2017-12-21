@@ -241,7 +241,15 @@
 
 - (void)setModel:(ProcurementModel *)model {
     
+    [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:model.PICNAME] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+    self.nameLb.text = model.goodsname;
+    self.specificationLb.text = model.Spec;
+    self.produceAreaLb.text = model.producer;
+    self.suppliersLb.text = model.CorpName;
+    self.priceLb.text = [NSString stringWithFormat:@"%@/%@",model.arprice,model.useunit];//零售价
+    
 }
+
 
 @end
 

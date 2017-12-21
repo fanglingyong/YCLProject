@@ -836,9 +836,9 @@
 		336FDB961FD3E95A00AFC918 /* Procurement */ = {
 			isa = PBXGroup;
 			children = (
+				363BB5311FD54294004DBA4A /* ProcurementModel.h */,
 				336FDB971FD3E96E00AFC918 /* Procurement.h */,
 				336FDB981FD3E96E00AFC918 /* Procurement.m */,
-				363BB5311FD54294004DBA4A /* ProcurementModel.h */,
 				363BB5321FD54294004DBA4A /* ProcurementModel.m */,
 			);
 			path = Procurement;

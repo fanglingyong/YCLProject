@@ -40,7 +40,7 @@
 @property (nonatomic, assign)NSInteger pageIndex;
 @property (nonatomic, retain)UIView *noDateView;
 
-
+@property (nonatomic, strong) NSMutableDictionary * pargrams;
 
 @end
 
@@ -73,9 +73,9 @@
     [self creatDropDownView];
     
     
-    self.tableView.mj_header = [[MJRefreshNormalHeader alloc] init];
-    [self.tableView.mj_header setRefreshingTarget:self refreshingAction:@selector(headRefresh)];
-    [self.tableView.mj_header beginRefreshing];
+//    self.tableView.mj_header = [[MJRefreshNormalHeader alloc] init];
+//    [self.tableView.mj_header setRefreshingTarget:self refreshingAction:@selector(headRefresh)];
+//    [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
     [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
@@ -100,7 +100,8 @@
     NSArray *array = [NSArray arrayWithObjects:self.allClassArray, self.suppliersArray, self.promotionsArray, nil];
     [self.procurement setupBasicArray:array];
     
-    
+    // 加载数据
+    [self headRefresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -111,13 +112,13 @@
 
 - (void)headRefresh {
     self.pageIndex = 1;
-    [self handleData];
-    
+    self.pargrams = [NSMutableDictionary dictionary];
+    [self network_procurementList];
 }
 
 - (void)footRefresh {
     self.pageIndex += 1;
-    [self handleData];
+    [self network_procurementList];
 }
 
 - (void)addNoDataView {
@@ -125,7 +126,6 @@
     [self.tableView addSubview:self.noDateView];
 }
 - (UIView *)noDateView {
-    
     
     if (!_noDateView) {
         UIView *noDateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64 - HeightXiShu(50))];
@@ -137,80 +137,9 @@
         [noDateView addSubview:label];
         
         _noDateView  = noDateView;
-        
     }
-    
     return _noDateView;
 }
-
-- (void)handleData {
-    
-    
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:@"goldAgent" forKey:@"_cmd_"];
-    [dic setObject:@"orderList" forKey:@"type"];
-    [dic setObject:[NSNumber numberWithInteger:self.pageIndex] forKey:@"page"];
-    
-    [dic setObject:@"10" forKey:@"number"]; // 默认10条
-    
-    // 全部分类
-    if (self.procurement.allClass == 0) {
-        [dic setObject:@"0" forKey:@"status"];
-        
-    } else if (self.procurement.allClass == 1) {
-        [dic setObject:@"2" forKey:@"status"];
-    } else {
-        [dic setObject:@"3" forKey:@"status"];
-    }
-    
-    // 供应商
-    if (self.procurement.suppliers == 0) {
-        [dic setObject:@"0" forKey:@""];
-        
-    } else if (self.procurement.suppliers == 1) {
-        [dic setObject:@"1" forKey:@""];
-    } else {
-        [dic setObject:@"2" forKey:@""];
-    }
-    
-    // 促销
-    if (self.procurement.promotions == 0) {
-        [dic setObject:@"" forKey:@""];
-    } else {
-    }
-    
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
-    NSLog(@"%@", dic);
-    
-//    [JiltOrderApi watchOthersOrderListGoldAgentBlock:^(NSMutableArray *array, NSError *error) {
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshing];
-//        if(!error){
-//            if (self.pageIndex == 1) {
-//                [self.dataArray removeAllObjects];
-//                [self.dataArray addObjectsFromArray:array];
-//            } else {
-//                [self.dataArray addObjectsFromArray:array];
-//            }
-//
-//            if (self.dataArray.count > 0) {
-//                self.noDateView.hidden = YES;
-//            } else {
-//                self.noDateView.hidden = NO;
-//            }
-//
-//            self.tableView.mj_footer.hidden = array.count > 0 ? YES : NO;
-//        }
-//
-//        [self.tableView reloadData];
-//
-//    } dic:dic noNetWork:nil];
-    
-}
-
-
-
 
 - (void)creatDropDownView {
     
@@ -308,8 +237,7 @@
     return HeightXiShu(135);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.dataArray.count;
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -331,6 +259,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    VC.model = _dataArray[indexPath.row];
+    VC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -392,41 +322,26 @@
             self.dropView.hidden = NO;
             NSLog(@"dropView%lu", (unsigned long)self.dropView.selectedIndex);
             NSLog(@"促销");
-            
         }
-        
     }
-    
-    
 }
 
 - (void)didSelectRowOfFilterView:(DropdownView *)filterView {
-    
     if (filterView.tag == 1001) {
-        
         self.procurement.allClass = ((DropdownSimpleView *)filterView).selectedIndex;
         self.allClassButton.title = self.procurement.allClassTitle;
-        
     }
     if (filterView.tag == 1002) {
-        
         self.procurement.suppliers = ((DropdownSimpleView *)filterView).selectedIndex;
         self.suppliersButton.title = self.procurement.suppliersTitle;
-        
     }
     if (filterView.tag == 1003) {
-        
         self.procurement.promotions = ((DropdownSimpleView *)filterView).selectedIndex;
-        
         self.promotionsButton.title = self.procurement.promotionsTitle;
-        
     }
-    
     [self deselectButtons];
     
-    [self.tableView.mj_header beginRefreshing];
-    
-    
+    [self headRefresh];
 }
 
 - (void)didHideFilterView:(DropdownView *)filterView {
@@ -435,20 +350,39 @@
 }
 #pragma mark - net
 -(void)network_procurementList{
-    NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
-    [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargams setObject:@"" forKey:@"Parastr"];//@"供应商ID,药品名称"
-    [pargams setObject:@",10,1" forKey:@"WebPara"];//@"排序字段,页数,页码"
-    
+    [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
+    [_pargrams setObject:[NSString stringWithFormat:@"%@,%@",@"4",@""] forKey:@"Parastr"];// 供应商id,药品名称
+    [_pargrams setObject:@"0" forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+    NSLog(@"pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
-        if (dict) {
-            if ([dict[@"status"] isEqualToString:@"1"]) {
+        [_tableView.mj_footer endRefreshing];
+        if(!error){
+            NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
+            if (self.pageIndex == 1) {
+                [self.dataArray removeAllObjects];
                 
-            }else{
-                
+                if (goodsArr.count > 0)
+                    self.noDateView.hidden = YES;
+                self.noDateView.hidden = NO;
             }
+            for (NSDictionary *dic in goodsArr) {
+                ProcurementModel *model = [[ProcurementModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [self.dataArray addObject:model];
+            }
+            self.tableView.mj_footer.hidden = goodsArr.count == 10 ? NO : YES;
+            [self.tableView reloadData];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
         }
-    } dic:pargams noNetWork:nil];
+    } dic:_pargrams noNetWork:nil];
+}
+- (NSString *)getUserID{
+    if ([UserModel getUserModel].P_LSM) {
+        return [UserModel getUserModel].P_LSM;
+    }else{
+        return @"0";
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

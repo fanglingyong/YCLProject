@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MedicineDetailModel.h"
 @interface MedicineDetailCell : UITableViewCell
+
 @property(nonatomic,strong)MedicineDetailModel *model;
 
 @end

@@ -17,7 +17,7 @@
 @property (nonatomic, retain)NSString *phone;
 @property (nonatomic, retain)NSString *address;
 @property (nonatomic, assign)BOOL isAcquiescence;
-@property (nonatomic, retain)ReceiveAddressModel *model;
+
 
 @end
 
@@ -34,13 +34,7 @@
     }
     return self;
 }
--(void)setModel:(ReceiveAddressModel *)model{
-    _name = model.POSTCODE;
-    _phone = model.LINK;
-    _address = model.ADDRESS;
-    
-    _isAcquiescence = NO;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -208,12 +202,6 @@
 -(void)sureChangeOrAddbuttonMenthod{
     
     [self.tableView endEditing:YES];
-    if (_model) {
-        NSLog(@"修改");
-    }else{
-        NSLog(@"新增");
-        [self network_corpAddress];
-    }
     [self network_corpAddress];
 }
 
