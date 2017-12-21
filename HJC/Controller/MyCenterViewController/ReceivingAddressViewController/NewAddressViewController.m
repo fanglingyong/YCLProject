@@ -240,11 +240,8 @@
     [pargams setObject:self.name forKey:@"POSTCODE"];
     [pargams setObject:self.phone forKey:@"LINK"];
     [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
-<<<<<<< HEAD
     NSLog(@"%@", pargams);
-=======
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
->>>>>>> 20a7e7bed09c1c56537d21fe4b69356a60edb34d
     [BaseApi getMenthodWithUrl:UpdateCorpAddressURL block:^(NSDictionary *dict, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
