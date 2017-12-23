@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingCartModel.h"
 
+@protocol ShopCartCellDelegate <NSObject>
+
+-(void)updateCellForData:(NSInteger)row;
+-(void)deleteThisCell:(NSInteger)row;
+-(void)changeOrderDetail:(NSInteger)row oldCount:(NSString*)oldCount;
+@end
+
 @interface ShoppingCartCell : UITableViewCell
 
 @property(nonatomic,strong)ShoppingCartModel *model;
+@property (nonatomic,weak) id<ShopCartCellDelegate> delegate;
+@property (nonatomic,assign) NSInteger row;
 
 @end

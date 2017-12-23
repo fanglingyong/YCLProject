@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingCartCell.h"
+#import "ShopCartChangeAmout.h"
 
 @interface ShoppingCartCell()
 
@@ -27,6 +28,8 @@
 @property(nonatomic, strong)UIButton *deleteBtn;    // 删除
 
 @property(nonatomic, strong)UIImageView *lineView;
+
+@property (nonatomic,strong) ShopCartChangeAmout *editView;//编辑视图
 
 @end
 
@@ -71,7 +74,7 @@
 - (UIImageView *)selectImg{
     if(!_selectImg){
         UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(8), HeightXiShu(48) - HeightXiShu(9), WidthXiShu(18), HeightXiShu(18))];
-        selectImg.image = [GetImagePath getImagePath:@"cartSelect"];
+        selectImg.image = [GetImagePath getImagePath:@"cartDefault"];
         [self.contentView addSubview:selectImg];
         _selectImg = selectImg;
     }
@@ -160,7 +163,7 @@
 
 -(UILabel *)priceLb{
     if(!_priceLb){
-        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(85), HeightXiShu(30), WidthXiShu(80), HeightXiShu(20))];
+        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(125), HeightXiShu(30), WidthXiShu(120), HeightXiShu(20))];
         priceLb.text = @"￥6.39/盒";
         priceLb.textAlignment = NSTextAlignmentRight;
         priceLb.font = HEITI(HeightXiShu(13));
@@ -175,7 +178,7 @@
 -(UILabel *)countLb{
     if(!_countLb){
         UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(85), HeightXiShu(50), WidthXiShu(80), HeightXiShu(20))];
-        countLb.text = @"X1";
+        countLb.text = @"x 1";
         countLb.textAlignment = NSTextAlignmentRight;
         countLb.font = HEITI(HeightXiShu(13));
         countLb.textColor = TitleColor;
@@ -221,23 +224,69 @@
     }
     return _lineView;
 }
+-(ShopCartChangeAmout*)editView{
+    if (!_editView) {
+        _editView = [[ShopCartChangeAmout alloc] initWithFrame:CGRectMake(_medicineImg.maxX+1, 0, kScreenWidth-_medicineImg.maxX-1, self.contentView.maxY)];
+    }
+    return _editView;
+}
 #pragma mark - 事件
 - (void)selectBtnBtnClick:(UIButton *)sender {
-    
+    sender.userInteractionEnabled = NO;
+    if (_model.isSelect) {
+        _model.isSelect = NO;
+        _selectImg.image = [UIImage imageNamed:@"cartDefault"];
+    }else{
+        _model.isSelect = YES;
+        _selectImg.image = [UIImage imageNamed:@"cartSelect"];
+    }
+    [self updateCell];
+    sender.userInteractionEnabled = YES;
 }
 
 - (void)editBtnClick:(UIButton *)sender {
-    
+    [self.contentView addSubview:self.editView];
+    __block typeof(self) wself = self;
+    [_editView setGoodsInfo:_model.goodsname count:[_model.amount integerValue] block:^(NSInteger amout) {
+        wself.countLb.text = [NSString stringWithFormat:@"x %ld",amout];
+        NSString *oldCount = wself.model.amount;
+        wself.model.amount = [NSString stringWithFormat:@"%ld",amout];
+        if (wself.delegate && [wself.delegate respondsToSelector:@selector(changeOrderDetail:oldCount:)]) {
+            [wself.delegate changeOrderDetail:wself.row oldCount:oldCount];
+        }
+    }];
 }
 
 - (void)deleteBtnClick:(UIButton *)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(deleteThisCell:)]) {
+        [self.delegate deleteThisCell:_row];
+    }
+}
+-(void)updateCell{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateCellForData:)]) {
+        [self.delegate updateCellForData:_row];
+    }
 }
 
 #pragma mark - setter
-
 - (void)setModel:(ShoppingCartModel *)model {
-    
+    _model = model;
+    [self updateinfo];
 }
+-(void)updateinfo{
+    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];//药品图片
+    _nameLb.text = _model.goodsname;
+    _specificationLb.text = [NSString stringWithFormat:@"规格:%@",_model.spec];
+    _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",_model.prodarea];
+    _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",_model.CorpName];
+    _priceLb.text = [NSString stringWithFormat:@"￥%@/%@",_model.sellprice,_model.useunit];
+    _countLb.text = [NSString stringWithFormat:@"x %@",_model.amount];
+    if (_model.isSelect) {
+        _selectImg.image = [UIImage imageNamed:@"cartSelect"];
+    }else{
+        _selectImg.image = [UIImage imageNamed:@"cartDefault"];
+    }
+}
+
 
 @end

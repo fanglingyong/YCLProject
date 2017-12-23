@@ -162,6 +162,11 @@
 		450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F61FCBE865005EC6BA /* search@2x.png */; };
 		450BF3FC1FE8EF9A00A90704 /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F71FCBE865005EC6BA /* search@3x.png */; };
 		450BF3FD1FE8EF9A00A90704 /* right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1111FCBE865005EC6BA /* right_arrow@2x.png */; };
+		450BF4001FECDC6B00A90704 /* ShopCartChangeAmout.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF3FF1FECDC6B00A90704 /* ShopCartChangeAmout.m */; };
+		450BF4041FED0F9000A90704 /* SubmitOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF4031FED0F9000A90704 /* SubmitOrdersViewController.m */; };
+		450BF4081FED1E0500A90704 /* SubmitOrdersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF4071FED1E0500A90704 /* SubmitOrdersCell.m */; };
+		450BF40B1FED358000A90704 /* SubmitAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF40A1FED358000A90704 /* SubmitAddressCell.m */; };
+		450BF40F1FED389500A90704 /* SubmitAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF40E1FED389500A90704 /* SubmitAddressModel.m */; };
 		451068C81FE551680009B113 /* ClinicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068C71FE551680009B113 /* ClinicModel.m */; };
 		451068CC1FE565230009B113 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CA1FE565230009B113 /* MBProgressHUD.m */; };
 		451068CF1FE565710009B113 /* HUDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CE1FE565710009B113 /* HUDUtil.m */; };
@@ -599,6 +604,16 @@
 		4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClinicViewController.m; sourceTree = "<group>"; };
 		4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssoSuccessViewController.h; sourceTree = "<group>"; };
 		4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssoSuccessViewController.m; sourceTree = "<group>"; };
+		450BF3FE1FECDC6B00A90704 /* ShopCartChangeAmout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartChangeAmout.h; sourceTree = "<group>"; };
+		450BF3FF1FECDC6B00A90704 /* ShopCartChangeAmout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartChangeAmout.m; sourceTree = "<group>"; };
+		450BF4021FED0F9000A90704 /* SubmitOrdersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitOrdersViewController.h; sourceTree = "<group>"; };
+		450BF4031FED0F9000A90704 /* SubmitOrdersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitOrdersViewController.m; sourceTree = "<group>"; };
+		450BF4061FED1E0500A90704 /* SubmitOrdersCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitOrdersCell.h; sourceTree = "<group>"; };
+		450BF4071FED1E0500A90704 /* SubmitOrdersCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitOrdersCell.m; sourceTree = "<group>"; };
+		450BF4091FED358000A90704 /* SubmitAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitAddressCell.h; sourceTree = "<group>"; };
+		450BF40A1FED358000A90704 /* SubmitAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitAddressCell.m; sourceTree = "<group>"; };
+		450BF40D1FED389500A90704 /* SubmitAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitAddressModel.h; sourceTree = "<group>"; };
+		450BF40E1FED389500A90704 /* SubmitAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitAddressModel.m; sourceTree = "<group>"; };
 		450EA05C1FD4EC0600BF250C /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		451068C61FE551680009B113 /* ClinicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClinicModel.h; sourceTree = "<group>"; };
 		451068C71FE551680009B113 /* ClinicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClinicModel.m; sourceTree = "<group>"; };
@@ -1186,6 +1201,8 @@
 				3675BBE41FB57E2D0030F914 /* ShoppingCartCell.m */,
 				3675BBEA1FB5974F0030F914 /* ShoppingCartFooterView.h */,
 				3675BBEB1FB5974F0030F914 /* ShoppingCartFooterView.m */,
+				450BF3FE1FECDC6B00A90704 /* ShopCartChangeAmout.h */,
+				450BF3FF1FECDC6B00A90704 /* ShopCartChangeAmout.m */,
 			);
 			path = ShoppingCartCell;
 			sourceTree = "<group>";
@@ -1240,6 +1257,7 @@
 		369600241F95E34F000B9172 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
+				450BF4011FED0F7100A90704 /* SubmitOrders */,
 				369600281F95E44F000B9172 /* ShoppingCartViewController.h */,
 				369600291F95E44F000B9172 /* ShoppingCartViewController.m */,
 			);
@@ -1329,6 +1347,7 @@
 		3696F9901F95DC85000B9172 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				450BF4051FED1D6D00A90704 /* SubmitOrdersCell */,
 				452D644F1FE0B775006E51F5 /* ToolViewButton */,
 				368DBF7E1FD7CDE500987776 /* ReceiveAddressCell */,
 				363BB55C1FD6A527004DBA4A /* CollectCell */,
@@ -1362,6 +1381,7 @@
 		3696FC0A1F95DC86000B9172 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				450BF40C1FED387300A90704 /* SubmitOrdersModel */,
 				451068D01FE5FDC70009B113 /* ClinicModel */,
 				457D797F1FE514250077F462 /* UserModel */,
 				368DBF7A1FD7CDC100987776 /* ReceiveAddressModel */,
@@ -1541,6 +1561,35 @@
 				452D645A1FE0C473006E51F5 /* MebLicenseViewController.m */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		450BF4011FED0F7100A90704 /* SubmitOrders */ = {
+			isa = PBXGroup;
+			children = (
+				450BF4021FED0F9000A90704 /* SubmitOrdersViewController.h */,
+				450BF4031FED0F9000A90704 /* SubmitOrdersViewController.m */,
+			);
+			path = SubmitOrders;
+			sourceTree = "<group>";
+		};
+		450BF4051FED1D6D00A90704 /* SubmitOrdersCell */ = {
+			isa = PBXGroup;
+			children = (
+				450BF4061FED1E0500A90704 /* SubmitOrdersCell.h */,
+				450BF4071FED1E0500A90704 /* SubmitOrdersCell.m */,
+				450BF4091FED358000A90704 /* SubmitAddressCell.h */,
+				450BF40A1FED358000A90704 /* SubmitAddressCell.m */,
+			);
+			path = SubmitOrdersCell;
+			sourceTree = "<group>";
+		};
+		450BF40C1FED387300A90704 /* SubmitOrdersModel */ = {
+			isa = PBXGroup;
+			children = (
+				450BF40D1FED389500A90704 /* SubmitAddressModel.h */,
+				450BF40E1FED389500A90704 /* SubmitAddressModel.m */,
+			);
+			path = SubmitOrdersModel;
 			sourceTree = "<group>";
 		};
 		450EA05B1FD4EBEE00BF250C /* APIManger */ = {
@@ -2175,6 +2224,7 @@
 				4559C1A71FCD289C005EC6BA /* ClinicCell.m in Sources */,
 				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,
 				451068C81FE551680009B113 /* ClinicModel.m in Sources */,
+				450BF4081FED1E0500A90704 /* SubmitOrdersCell.m in Sources */,
 				452D64521FE0B79D006E51F5 /* ToolButtonView.m in Sources */,
 				457D79821FE514460077F462 /* UserModel.m in Sources */,
 				36430BC11F9DBF8F001709DD /* UIImageView+WebCache.m in Sources */,
@@ -2191,6 +2241,7 @@
 				36430BB61F9DBF63001709DD /* SDWebImageCompat.m in Sources */,
 				36430BB51F9DBF5F001709DD /* SDImageCache.m in Sources */,
 				3675BBEC1FB5974F0030F914 /* ShoppingCartFooterView.m in Sources */,
+				450BF4041FED0F9000A90704 /* SubmitOrdersViewController.m in Sources */,
 				36430BB41F9DBF5A001709DD /* NSData+ImageContentType.m in Sources */,
 				36430BB31F9DBEBE001709DD /* MKAnnotationView+WebCache.m in Sources */,
 				36430B901F9DBE57001709DD /* ZWAdView.m in Sources */,
@@ -2205,6 +2256,7 @@
 				36430B801F9DB90B001709DD /* StageChooseView.m in Sources */,
 				363BB5601FD6A5D6004DBA4A /* CollectModel.m in Sources */,
 				361B94D41FAC684200069AAD /* OrderModel.m in Sources */,
+				450BF4001FECDC6B00A90704 /* ShopCartChangeAmout.m in Sources */,
 				36430B7F1F9DB903001709DD /* StageAndNumberView.m in Sources */,
 				36430B441F9DB140001709DD /* UIViewController+UIAlertControllerKit.m in Sources */,
 				361B94D01FAC63B200069AAD /* OrderCell.m in Sources */,
@@ -2213,6 +2265,7 @@
 				36430B421F9DB12F001709DD /* UIView+Common.m in Sources */,
 				36C9E5941FAB0691003A6451 /* MyCenterButton.m in Sources */,
 				36430B411F9DB127001709DD /* UILabel+LabelKit.m in Sources */,
+				450BF40B1FED358000A90704 /* SubmitAddressCell.m in Sources */,
 				3616EB121FB2D9DE00CEF075 /* NSTimer+Addition.m in Sources */,
 				36430B401F9DB122001709DD /* UIColor+AddColor.m in Sources */,
 				36430B3F1F9DB11B001709DD /* NSString+StringKit.m in Sources */,
@@ -2259,6 +2312,7 @@
 				366EAAFF1F9D868100A63E83 /* BaseTableView.m in Sources */,
 				366EAAFE1F9D867A00A63E83 /* BaseNavigationController.m in Sources */,
 				4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */,
+				450BF40F1FED389500A90704 /* SubmitAddressModel.m in Sources */,
 				366EAAFD1F9D867400A63E83 /* BaseCollectionViewCell.m in Sources */,
 				366EAAFC1F9D855500A63E83 /* MyCenterViewController.m in Sources */,
 				366EAAFB1F9D854A00A63E83 /* MainViewController.m in Sources */,

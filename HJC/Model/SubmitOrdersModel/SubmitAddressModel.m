@@ -1,20 +1,20 @@
 //
-//  ShoppingCartModel.m
+//  SubmitAddressModel.m
 //  HJC
 //
-//  Created by zhifu360 on 2017/11/10.
+//  Created by 方灵勇 on 2017/12/22.
 //  Copyright © 2017年 EastChina. All rights reserved.
 //
 
-#import "ShoppingCartModel.h"
+#import "SubmitAddressModel.h"
 
-@implementation ShoppingCartModel
+@implementation SubmitAddressModel
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.isSelect = NO;
+        self.selThis = NO;
     }
     return self;
 }

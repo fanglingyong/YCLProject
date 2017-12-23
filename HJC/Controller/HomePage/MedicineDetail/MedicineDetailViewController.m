@@ -147,21 +147,37 @@
 - (void)moreClick {
     NSLog(@"更多信息");
 }
-#pragma mark - 事件
-- (void)didOftenBuyListButton:(UIButton *)button {
-    NSLog(@"加常购清单");
+#pragma mark - 事件 MerchandiseFooterButtonDelegate
+- (void)didCollectBtn:(UIButton *)button{
+    //收藏
+    
 }
-
-- (void)didCustomerServiceButton:(UIButton *)button {
-    NSLog(@"联系客服");
+- (void)didAddShopCartBtn:(UIButton *)button{
+    //加入购物车
+    MedicineDetailCell *cell = (MedicineDetailCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSString *amout = [NSString stringWithFormat:@"%ld",cell.num];
+    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
+    [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
+    [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
+    [pargrams setObject:_model.asprice forKey:@"SELLPRICE"];//协议价格
+    [pargrams setObject:_model.arprice forKey:@"RETAILPRICE"];//零售价
+    [pargrams setObject:amout forKey:@"AMOUNT"];//数量
+    [pargrams setObject:@"" forKey:@"ORDERMEMO"];
+    NSLog(@"-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:JoinShopCarURL block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",dict);
+            [HUDUtil Hud_message:dict[@"message"] view:_headerView];
+        }else{
+            [HUDUtil Hud_message:error.domain view:_headerView];
+        }
+    } dic:pargrams noNetWork:nil];
 }
-
-- (void)didShoppingCartButton:(UIButton *)button {
-    NSLog(@"购物车");
-}
-
-- (void)didAddShoppingCartButton:(UIButton *)button {
-    NSLog(@"加购物车");
+- (void)didProcurementBtn:(UIButton *)button{
+    //立即采购
+    
 }
 /*
  #pragma mark - Navigation

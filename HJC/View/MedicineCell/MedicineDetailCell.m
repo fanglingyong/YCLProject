@@ -23,6 +23,8 @@
 @property(nonatomic, strong)UIButton *additionBtn;    // 加
 @property(nonatomic, strong)UILabel *countLb;   //个数
 
+
+
 @end
 
 @implementation MedicineDetailCell
@@ -42,7 +44,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self.num = 1;
         [self nameLb];
         [self originalPriceLb];
         [self currentPriceLb];
@@ -187,7 +189,7 @@
         UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(284), HeightXiShu(153), HeightXiShu(40), HeightXiShu(25))];
         countLb.layer.borderColor = TitleColor.CGColor;
         countLb.layer.borderWidth = HeightXiShu(.5);
-        countLb.text = @"1";
+        countLb.text = [NSString stringWithFormat:@"%ld",_num];
         countLb.textAlignment = NSTextAlignmentCenter;
         countLb.font = HEITI(HeightXiShu(12));
         countLb.textColor = TitleColor;
@@ -196,7 +198,21 @@
     }
     return _countLb;
 }
-
+#pragma mark - 事件
+-(void)subtractionBtnClick:(UIButton *)sender{
+    // 减少
+    if (_num > 1) {
+        _num-- ;
+        _countLb.text = [NSString stringWithFormat:@"%ld",_num];
+    }
+}
+-(void)additionBtnClick:(UIButton*)sender{
+    //增加
+    if (_num < 999999) {
+        _num++ ;
+        _countLb.text = [NSString stringWithFormat:@"%ld",_num];
+    }
+}
 
 #pragma mark - setter
 

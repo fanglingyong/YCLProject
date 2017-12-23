@@ -34,6 +34,7 @@
 #import "UIView+ViewKit.h"
 #import "UILabel+LabelKit.h"
 #import "NSString+LabelKit.h"
+#import "NSString+StringKit.h"
 #import "GetImagePath.h"
 #import "UIViewController+UIAlertControllerKit.h"
 #import "SDImageCache.h"

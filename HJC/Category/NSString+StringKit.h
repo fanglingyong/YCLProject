@@ -29,5 +29,6 @@
 - (BOOL)isInStr:(NSString *)str;
 
 - (NSString *)transformFromChineseToAlphabet;
-
+//金额
+- (NSString*)momeyString;
 @end

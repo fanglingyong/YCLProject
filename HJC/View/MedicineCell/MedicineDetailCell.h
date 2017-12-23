@@ -11,5 +11,6 @@
 @interface MedicineDetailCell : UITableViewCell
 
 @property(nonatomic,strong)MedicineDetailModel *model;
+@property (nonatomic,assign) NSInteger num;
 
 @end

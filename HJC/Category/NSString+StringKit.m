@@ -83,4 +83,8 @@
         //    NSLog(@"pinyin = %@<>", pinyin);
         return [[pinyin lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
+- (NSString*)momeyString{
+    double money = [self doubleValue];
+    return [NSString stringWithFormat:@"%.2f",money];
+}
 @end
