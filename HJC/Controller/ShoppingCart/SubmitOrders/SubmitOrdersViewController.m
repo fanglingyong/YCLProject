@@ -195,7 +195,6 @@
 #pragma mark - 事件
 -(void)submitOrders:(UIButton*)sender{
     if ([AnimaDefaultUtil isNotNull:_addressID]) {
-        NSLog(@"提交订单");
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
         [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
@@ -203,6 +202,7 @@
         [pargrams setObject:_orderIDs forKey:@"ORDERID"];
         [pargrams setObject:_addressID forKey:@"AddressID"];
         [pargrams setObject:_remarksTF.text forKey:@"Smemo"];
+        NSLog(@"提交订单:%@",pargrams);
         [BaseApi getMenthodWithUrl:ProOrderURL block:^(NSDictionary *dict, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (!error) {

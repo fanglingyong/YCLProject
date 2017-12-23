@@ -150,7 +150,20 @@
 #pragma mark - 事件 MerchandiseFooterButtonDelegate
 - (void)didCollectBtn:(UIButton *)button{
     //收藏
-    
+    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
+    [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
+    [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
+    NSLog(@"-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:JoinCollect block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",dict);
+            [HUDUtil Hud_message:dict[@"message"] view:_headerView];
+            self.footerView.collectImg.image = [UIImage imageNamed:@"collection"];
+        }else{
+            [HUDUtil Hud_message:error.domain view:_headerView];
+        }
+    } dic:pargrams noNetWork:nil];
 }
 - (void)didAddShopCartBtn:(UIButton *)button{
     //加入购物车

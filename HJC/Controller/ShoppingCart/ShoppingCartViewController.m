@@ -105,16 +105,19 @@
 }
 -(void)submitOrdersAction:(UIButton*)sender{
     if (_modelArr.count >0) {
-        NSMutableArray *tempArr = [NSMutableArray array];
+        NSString *tempOrder = @"{";
         NSString *orderno = @"";
         for (ShoppingCartModel*model in _modelArr) {
-            [tempArr addObject:model.orderid];
-            orderno = model.orderno;
+            if (model.isSelect) {
+                tempOrder = [NSString stringWithFormat:@"%@%@,",tempOrder,model.orderid];
+                orderno = model.orderno;
+            }
         }
+        tempOrder = [tempOrder substringToIndex:tempOrder.length-1];
         NSLog(@"提交订单");
         SubmitOrdersViewController *submitOrder = [[SubmitOrdersViewController alloc]init];
         submitOrder.hidesBottomBarWhenPushed = YES;
-        submitOrder.orderIDs = tempArr;
+        submitOrder.orderIDs = [NSString stringWithFormat:@"%@}",tempOrder];
         submitOrder.orderNo = orderno;
         submitOrder.modelArr = _modelArr;
         submitOrder.totalMoeny = _total;

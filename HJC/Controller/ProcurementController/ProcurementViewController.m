@@ -80,7 +80,7 @@
     self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
     [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
     
-    [self addNoDataView];
+//    [self addNoDataView];
     
     
     [self.allClassArray addObject:@"全部分类0"];

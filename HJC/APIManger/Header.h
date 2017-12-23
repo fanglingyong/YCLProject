@@ -38,6 +38,10 @@
 #define GetClinicList @"/Custom"
 //上传文件
 #define UploadClinicImages @"/File"
+//加入收藏夹
+#define JoinCollect @"/BTN_CORP_BUYGOODS_SAVE"
+//获得收藏夹信息
+#define GetCollect @"/QN_CUSTOMGOODS_FORORDER_STD"
 
 #endif /* Header_h */
 

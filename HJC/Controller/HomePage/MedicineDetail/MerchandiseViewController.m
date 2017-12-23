@@ -46,9 +46,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
    
-
     [self createAdScrollView];
-    [self footerView];
+    [self.view addSubview:self.footerView];
 
 }
 
@@ -147,7 +146,6 @@
         MerchandiseFooterButton *footerView = [[MerchandiseFooterButton alloc] initWithFrame:CGRectMake(0, kScreenHeight - HeightXiShu(104) - HeightXiShu(55), kScreenWidth, HeightXiShu(55))];
         footerView.delegate = self;
         footerView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:footerView];
         _footerView = footerView;
     }
     return _footerView;

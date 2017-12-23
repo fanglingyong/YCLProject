@@ -8,7 +8,7 @@
 
 #import "ProcurementCell.h"
 
-@interface ProcurementCell()
+@interface ProcurementCell()<UITextFieldDelegate>
 
 @property(nonatomic, strong)UIImageView *promotionsImg; //左上角小图标
 @property(nonatomic, strong)UIImageView *medicineImg; //药品图片
@@ -23,7 +23,8 @@
 @property(nonatomic, strong)UIButton *subtractionBtn; // 减
 @property(nonatomic, strong)UIButton *additionBtn;    // 加
 @property(nonatomic, strong)UITextField *countLabel;   //个数
-@property(nonatomic, strong)UIImageView *shoppCartImg; //积分图片
+@property(nonatomic, strong)UIImageView *shoppCartImg; //购物车图片
+@property(nonatomic, strong)UIButton *shoppCartBtn; //加入购物车
 
 @property(nonatomic, strong)UIImageView *lineView;
 
@@ -59,7 +60,8 @@
         [self subtractionBtn];
         [self additionBtn];
         [self countLabel];
-        [self shoppCartImg];
+//        [self shoppCartImg];
+        [self shoppCartBtn];
         
         [self lineView];
     }
@@ -200,6 +202,7 @@
     if(!_countLabel){
         UITextField *countLabel = [[UITextField alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(164), HeightXiShu(105), HeightXiShu(25), HeightXiShu(15))];
         countLabel.text = @"1";
+        countLabel.delegate = self;
         countLabel.textAlignment = NSTextAlignmentCenter;
         countLabel.font = HEITI(HeightXiShu(12));
         countLabel.textColor = TitleColor;
@@ -219,6 +222,18 @@
     return _shoppCartImg;
 }
 
+- (UIButton *)shoppCartBtn {
+    if (!_shoppCartBtn) {
+        UIButton *shopCartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        shopCartBtn.frame = CGRectMake(self.medicineImg.maxX + WidthXiShu(210), HeightXiShu(95), WidthXiShu(30), HeightXiShu(30));
+        [shopCartBtn addTarget:self action:@selector(shoppCartBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [shopCartBtn setBackgroundImage:[GetImagePath getImagePath:@"procureCart"] forState:UIControlStateNormal];
+        [self.contentView addSubview:shopCartBtn];
+        _shoppCartBtn = shopCartBtn;
+    }
+    return _shoppCartBtn;
+}
+
 - (UIImageView *)lineView{
     if(!_lineView){
         UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(135), kScreenWidth, .5)];
@@ -230,17 +245,48 @@
 }
 #pragma mark - 事件
 - (void)subtractionBtnClick:(UIButton *)sender {
-    
+    NSInteger num = [_countLabel.text integerValue];
+    if (num>1) {
+        num-=1;
+        _countLabel.text = [NSString stringWithFormat:@"%ld",num];
+    }
 }
 
 - (void)additionBtnClick:(UIButton *)sender {
-    
+    NSInteger num = [_countLabel.text integerValue];
+    if (num<999999) {
+        num+=1;
+        _countLabel.text = [NSString stringWithFormat:@"%ld",num];
+    }
 }
-
+-(void)shoppCartBtnAction:(UIButton*)sender{
+    NSInteger num = [_countLabel.text integerValue];
+    if (num>1&&num<999999) {
+        NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+        [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+        [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
+        [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
+        [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
+        [pargrams setObject:_model.asprice forKey:@"SELLPRICE"];//协议价格
+        [pargrams setObject:_model.arprice forKey:@"RETAILPRICE"];//零售价
+        [pargrams setObject:_countLabel.text forKey:@"AMOUNT"];//数量
+        [pargrams setObject:@"" forKey:@"ORDERMEMO"];
+        NSLog(@"-- pargrams:%@",pargrams);
+        [BaseApi getMenthodWithUrl:JoinShopCarURL block:^(NSDictionary *dict, NSError *error) {
+            if (!error) {
+                NSLog(@"%@",dict[@"message"]);
+            }else{
+                NSLog(@"error%@",error);
+            }
+        } dic:pargrams noNetWork:nil];
+    }else{
+        NSLog(@"请控制数量在1~999999");
+    }
+}
 #pragma mark - setter
 
 - (void)setModel:(ProcurementModel *)model {
-    
+    _model = model;
     [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:model.PICNAME] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
     self.nameLb.text = model.goodsname;
     self.specificationLb.text = model.Spec;
@@ -249,7 +295,14 @@
     self.priceLb.text = [NSString stringWithFormat:@"%@/%@",model.arprice,model.useunit];//零售价
     
 }
-
+#pragma mark - textfield
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    NSString*num = textField.text;
+    if ([AnimaDefaultUtil isNotNull:num] && [num integerValue]>0 && [num integerValue]<999999) {
+        return YES;
+    }
+    return NO;
+}
 
 @end
 

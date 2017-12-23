@@ -10,7 +10,7 @@
 
 @interface SubmitOrdersViewController : BaseViewController
 
-@property (nonatomic,copy) NSMutableArray *orderIDs;//细单id
+@property (nonatomic,copy) NSString *orderIDs;//细单id
 @property (nonatomic,copy) NSString * orderNo;//订单编号
 @property (nonatomic,copy) NSArray *modelArr;
 @property (nonatomic,assign) double totalMoeny;

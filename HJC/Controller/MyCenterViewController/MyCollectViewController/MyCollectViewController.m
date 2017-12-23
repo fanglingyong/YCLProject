@@ -10,11 +10,12 @@
 #import "NavView.h"
 #import "CollectCell.h"
 #import "CollectModel.h"
+#import "MJRefresh.h"
 
 @interface MyCollectViewController ()
 @property(nonatomic,strong)NavView *navView;
 @property(nonatomic,strong)NSMutableArray *modelArr;
-
+@property(nonatomic,assign)NSInteger page;
 @end
 
 @implementation MyCollectViewController
@@ -24,10 +25,13 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
-    
-    [self.tableView setMinY:64 maxY:kScreenHeight];
+    self.page = 1;
+    self.modelArr = [NSMutableArray array];
+    [self.tableView setMinY:kStateHeight+44 maxY:kScreenHeight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+    [self network_get_collect];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,11 +41,10 @@
 
 
 #pragma mark - 页面元素
-
 -(NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"收藏夹";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -56,7 +59,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return _modelArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -93,7 +96,30 @@
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark - net
+-(void)nextPage{
+    _page+=1;
+}
+-(void)network_get_collect{
+    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:@"4," forKey:@"Parastr"];//供应商ID 4-股份
+    [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_page] forKey:@"WebPara"];//货品ID
+    NSLog(@"-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:GetCollect block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",dict);
+            for (NSDictionary*modelDic in dict[@"data"]) {
+                CollectModel*model = [[CollectModel alloc] init];
+                [model setValuesForKeysWithDictionary:modelDic];
+                [_modelArr addObject:model];
+            }
+            [self.tableView reloadData];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    } dic:pargrams noNetWork:nil];
+}
 /*
 #pragma mark - Navigation
 
