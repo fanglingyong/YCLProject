@@ -26,6 +26,30 @@
 
 @implementation LoginViewController
 
++ (instancetype)instance {
+    static LoginViewController *_viewController = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _viewController = [[LoginViewController alloc] init];
+    });
+    return _viewController;
+}
+
++ (BOOL)openLogin {
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+    if([model.P_LSM intValue] == 0){
+        LoginViewController *view = [LoginViewController instance];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
+        nav.navigationBarHidden = YES;
+        [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:nav animated:YES completion:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openLogin"];
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -95,7 +119,9 @@
                 [model setValuesForKeysWithDictionary:dict[@"data"][0]];
                 [UserModel saveModel:model];
                 if (model.RID) {
-                    wself.refeshBlock();
+                    if (wself.refeshBlock) {
+                        wself.refeshBlock();
+                    }
                     [wself dismissViewControllerAnimated:YES completion:nil];
                 }else{
                     /**jump bind clinic*/
@@ -170,8 +196,11 @@
     [self.headView addSubview:button];
 }
 -(void)xBtnAction:(UIButton*)sender{
+    if (self.backBlock) {
+        self.backBlock();
+    }
     [self dismissViewControllerAnimated:YES completion:^{
-        
+
     }];
 }
 

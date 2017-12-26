@@ -10,4 +10,5 @@
 #import "BaseTableViewController.h"
 
 @interface MyCenterViewController : BaseTableViewController
+- (void)initClinic;
 @end

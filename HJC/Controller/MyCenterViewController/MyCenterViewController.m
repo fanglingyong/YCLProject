@@ -33,7 +33,7 @@
     [self statusBar];
     [self navView];
     // Do any additional setup after loading the view.
-    [self initClinic];
+//    [self initClinic];
     [self setUpHeaderRefresh:NO footerRefresh:NO];
     [self.tableView setMinY:_navView.maxY maxY:kScreenHeight -49];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

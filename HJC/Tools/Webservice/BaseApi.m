@@ -18,10 +18,11 @@
             block(responseDic,nil);
     } failure:^(NSError *error) {
         NSLog(@"%@请求错误%@",urlStr,error);
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAgain" object:nil];
         if (block)
             block(nil, error);
     } noNetWork:nil];
-    
+
 }
 +(void)postMenthodWirhUrlString :(NSString*)urlString
                         paramDic:(NSMutableDictionary *)paramDic

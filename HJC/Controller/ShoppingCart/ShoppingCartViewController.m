@@ -267,7 +267,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self net_workforshopcar];
+//    [self net_workforshopcar];
 }
 /*
 #pragma mark - Navigation
