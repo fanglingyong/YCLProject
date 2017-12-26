@@ -9,5 +9,5 @@
 #import "BaseTableViewController.h"
 #import "HJC-PrefixHeader.pch"
 @interface ProcurementViewController : BaseViewController
-
+- (void)network_procurementList;
 @end

@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface ShoppingCartViewController : BaseViewController
-
+- (void)net_workforshopcar;
 @end

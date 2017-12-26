@@ -21,6 +21,7 @@
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @property(nonatomic,strong)UITabBarController *tabBarController;
+@property(nonatomic)NSInteger lastSelect;
 
 @end
 
@@ -32,6 +33,8 @@
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAgain) name:@"loginAgain" object:nil];
+
     [self jumpMain];
 
     
@@ -118,6 +121,91 @@
     [self.window makeKeyAndVisible];
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+
+    if([model.P_LSM intValue] == 0){
+        if(tabBarController.viewControllers[0] == viewController){
+            return YES;
+        }else if (tabBarController.viewControllers[1] == viewController){
+            [self loginAction];
+            return NO;
+        }else if (tabBarController.viewControllers[2] == viewController){
+            [self loginAction];
+            return NO;
+        }else if (tabBarController.viewControllers[3] == viewController){
+            [self loginAction];
+            return NO;
+        }else{
+            return YES;
+        }
+    } else {
+        if (tabBarController.viewControllers[3] == viewController){
+            self.lastSelect = tabBarController.selectedIndex;
+            if([self loadUserInfo:tabBarController viewController:viewController]){
+                return YES;
+            }else{
+                return NO;
+            }
+        }else{
+            return YES;
+        }
+    }
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"%@",[viewController class]);
+    if(tabBarController.viewControllers[0] == viewController){
+        UINavigationController *navigationctr = (UINavigationController *)viewController;
+        MainViewController *secvc = (MainViewController *)navigationctr.topViewController;
+        
+    }else if (tabBarController.viewControllers[1] == viewController){
+        UINavigationController *navigationctr = (UINavigationController *)viewController;
+        ProcurementViewController *secvc = (ProcurementViewController *)navigationctr.topViewController;
+        [secvc network_procurementList];
+    }else if (tabBarController.viewControllers[2] == viewController){
+        UINavigationController *navigationctr = (UINavigationController *)viewController;
+        ShoppingCartViewController *secvc = (ShoppingCartViewController *)navigationctr.topViewController;
+        [secvc net_workforshopcar];
+        
+    }else if (tabBarController.viewControllers[3] == viewController){
+        UINavigationController *navigationctr = (UINavigationController *)viewController;
+        MessageCenterViewController *secvc = (MessageCenterViewController *)navigationctr.topViewController;
+    }else{
+        UINavigationController *navigationctr = (UINavigationController *)viewController;
+        MyCenterViewController *secvc = (MyCenterViewController *)navigationctr.topViewController;
+        [secvc initClinic];
+    }
+}
+
+-(void)loginAction{
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+    
+    if([model.P_LSM intValue] == 0){
+        LoginViewController *view = [LoginViewController instance];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:view];
+        nav.navigationBarHidden = YES;
+        view.backBlock = ^{
+            [self loginAgain];
+        };
+        
+        [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:nav animated:YES completion:nil];
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openLogin"];
+    }
+}
+
+-(void)loginAgain{
+    self.tabBarController.selectedIndex = 0;
+}
+
+-(BOOL)loadUserInfo:(UITabBarController *)tabBarController viewController:(UIViewController *)viewController{
+    return YES;
+}
+
+
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -143,6 +231,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
 
 
 @end

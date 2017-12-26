@@ -15,8 +15,9 @@
 #import "ProcurementCell.h"
 #import "MJRefresh.h"
 #import "MedicineDetailViewController.h"
-
-@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate>
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
+@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate>
 
 @property(nonatomic,strong)NavView *navView;
 
@@ -101,12 +102,31 @@
     [self.procurement setupBasicArray:array];
     
     // 加载数据
-    [self headRefresh];
+//    [self headRefresh];
+    
+}
+- (void)initLogin {
+    
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+    if([model.P_LSM intValue] == 0){
+        LoginViewController *login = [[LoginViewController alloc] init];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:login];
+        login.refeshBlock = ^{
+            [self.tableView reloadData];
+        };
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
+    } else {
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
+//    [self initLogin];
 }
 
 
@@ -264,6 +284,9 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.tableView endEditing:YES];
+}
 #pragma mark - 事件
 
 - (void)searchClick {

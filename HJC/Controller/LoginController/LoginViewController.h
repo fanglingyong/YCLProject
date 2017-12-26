@@ -13,5 +13,8 @@ typedef void(^refreshDataBlock)();
 @interface LoginViewController : BaseViewController
 
 @property (nonatomic,copy) refreshDataBlock refeshBlock;
+@property(nonatomic,strong)void(^backBlock)();
++ (instancetype)instance;
++ (BOOL)openLogin;
 
 @end
