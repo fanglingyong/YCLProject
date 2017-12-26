@@ -57,14 +57,10 @@
     [self navView];
     [self creatTableView];
     [self creatDropDownView];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:[NSString stringWithFormat:@"%@",[self class]] object:nil];
-    
-    
     self.tableView.mj_header = [[MJRefreshNormalHeader alloc] init];
     [self.tableView.mj_header setRefreshingTarget:self refreshingAction:@selector(headRefresh)];
     [self.tableView.mj_header beginRefreshing];
-    
     self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
     [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
     
@@ -305,17 +301,37 @@
     [self.tableView.mj_footer endRefreshing];
 
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - net
+-(void)networkGetOrdersDetail{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:_orderNO forKey:@"OrderNo"];
+    [BaseApi getMenthodWithUrl:GetOrderDetail block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",dict);
+            
+        }else{
+            
+        }
+    } dic:pargrams noNetWork:nil];
 }
-*/
+/*
+ 返回：
+ ORDERID        订单细单ID
+ GOODSID        货品ID
+ GOODSNAME        货品名称
+ SPEC        规格
+ PRODUCER    厂家
+ CALCUNIT    单位
+ ORDERAMOUNT    数量
+ SELLPRICE        会员价
+ RETAILPRICE    零售价
+ ORDERSUMS    订单细单金额
+ [NAME]        状态
+ CREATETIME    创建时间
+ COMMITTIME    完成时间
+ [ADDRESS]        送货地址（可不显示）
+ 
+ */
+
 
 @end

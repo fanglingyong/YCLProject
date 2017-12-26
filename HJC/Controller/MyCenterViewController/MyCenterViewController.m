@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "BaseNavigationController.h"
 #import "NavView.h"
-#import "MyOrderViewController.h"
+#import "OrdersTotalViewController.h"
 #import "BindClinicViewController.h"//my clinic
 #import "MyCollectViewController.h"
 #import "ReceiveAddressViewController.h"
@@ -162,7 +162,7 @@
             [self.navigationController pushViewController:VC animated:YES];
         }else{
             //--@"我的订单");
-            MyOrderViewController *VC = [[MyOrderViewController alloc] init];
+            OrdersTotalViewController *VC = [[OrdersTotalViewController alloc] init];
             VC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:VC animated:YES];
         }

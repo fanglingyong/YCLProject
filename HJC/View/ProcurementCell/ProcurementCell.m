@@ -261,7 +261,7 @@
 }
 -(void)shoppCartBtnAction:(UIButton*)sender{
     NSInteger num = [_countLabel.text integerValue];
-    if (num>1&&num<999999) {
+    if (num>=1&&num<=999999) {
         NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
         [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
         [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车

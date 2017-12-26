@@ -10,4 +10,6 @@
 
 @interface MyOrderViewController : BaseViewController
 
+@property (nonatomic,strong) NSString *orderNO;
+
 @end

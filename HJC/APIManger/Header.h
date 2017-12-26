@@ -29,7 +29,7 @@
 //加入购物车
 #define JoinShopCarURL @"/BTN_VECHILE_ITEM_OPERATER"
 //生成订单
-#define ProOrderURL @"/BTN_VECHILE_ITEM_OPERATER"
+#define ProOrderURL @"/BTN_ORDER_GEN_FROM_VEHICLE"
 //获取购物车信息
 #define GetShopCarInfo @"/QN_VEHICLE_LIST_STD"
 //获取供应商信息
@@ -42,6 +42,10 @@
 #define JoinCollect @"/BTN_CORP_BUYGOODS_SAVE"
 //获得收藏夹信息
 #define GetCollect @"/QN_CUSTOMGOODS_FORORDER_STD"
+//获取总单信息
+#define GetOdersNo @"/QN_ORDER_LIST_DOC"
+//获取细单信息
+#define GetOrderDetail @"/QN_ORDER_LIST_DETAIL"
 
 #endif /* Header_h */
 

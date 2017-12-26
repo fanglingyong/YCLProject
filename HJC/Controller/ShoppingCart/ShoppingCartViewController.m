@@ -104,27 +104,32 @@
     sender.userInteractionEnabled = YES;
 }
 -(void)submitOrdersAction:(UIButton*)sender{
-    if (_modelArr.count >0) {
-        NSString *tempOrder = @"{";
-        NSString *orderno = @"";
-        for (ShoppingCartModel*model in _modelArr) {
-            if (model.isSelect) {
-                tempOrder = [NSString stringWithFormat:@"%@%@,",tempOrder,model.orderid];
-                orderno = model.orderno;
+    NSString *tempOrder = @"";
+    NSString *orderno = @"";
+    NSMutableArray * tempArray = [NSMutableArray array];
+    for (ShoppingCartModel*model in _modelArr) {
+        if (model.isSelect) {
+            if ([tempOrder isEqualToString:@""]) {
+                tempOrder = [NSString stringWithFormat:@"%@",model.orderid];
+            }else{
+                tempOrder = [NSString stringWithFormat:@"%@,%@",tempOrder,model.orderid];
             }
+            orderno = model.orderno;
+            [tempArray addObject:model];
         }
-        tempOrder = [tempOrder substringToIndex:tempOrder.length-1];
+    }
+    if ([AnimaDefaultUtil isNotNull:tempOrder]) {
         NSLog(@"提交订单");
         SubmitOrdersViewController *submitOrder = [[SubmitOrdersViewController alloc]init];
         submitOrder.hidesBottomBarWhenPushed = YES;
-        submitOrder.orderIDs = [NSString stringWithFormat:@"%@}",tempOrder];
+        submitOrder.orderIDs = [NSString stringWithFormat:@"%@",tempOrder];
         submitOrder.orderNo = orderno;
-        submitOrder.modelArr = _modelArr;
+        submitOrder.modelArr = tempArray;
         submitOrder.totalMoeny = _total;
         [self.navigationController pushViewController:submitOrder animated:YES];
     }else{
         NSLog(@"购物车为空");
-        [HUDUtil Hud_message:@"无订单可提交,请去采购" view:self.view];
+        [HUDUtil Hud_message:@"无订单可提交" view:self.view];
     }
 }
 -(void)updatePrice{

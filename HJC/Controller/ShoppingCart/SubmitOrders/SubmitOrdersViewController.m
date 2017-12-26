@@ -206,7 +206,7 @@
         [BaseApi getMenthodWithUrl:ProOrderURL block:^(NSDictionary *dict, NSError *error) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (!error) {
-                NSLog(@"success------%@",dict);
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
                 NSLog(@"error------%@",error);
             }
