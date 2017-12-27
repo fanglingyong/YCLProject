@@ -20,7 +20,6 @@
 @property(nonatomic, strong)UILabel *produceAreaLb; // 产地
 @property(nonatomic, strong)UILabel *suppliersLb; // 供应商
 
-@property(nonatomic,strong)UILabel *companyLb; // 公司
 
 @property(nonatomic,strong)UILabel *priceLb;   //价格
 @property(nonatomic,strong)UILabel *countLb;  //数量
@@ -59,8 +58,6 @@
         [self specificationLb];
         [self produceAreaLb];
         [self suppliersLb];
-
-        [self companyLb];
         
         [self priceLb];
         [self countLb];
@@ -174,8 +171,9 @@
 
 -(UILabel *)priceLb{
     if(!_priceLb){
-        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(293), HeightXiShu(40), kScreenWidth - WidthXiShu(20) - WidthXiShu(293), HeightXiShu(20))];
+        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(275), HeightXiShu(40), kScreenWidth - WidthXiShu(20) - WidthXiShu(293) + WidthXiShu(10), HeightXiShu(20))];
         priceLb.text = @"$14.29";
+        priceLb.textAlignment = NSTextAlignmentRight;
         priceLb.font = HEITI(HeightXiShu(16));
         priceLb.textColor = TitleColor;
         [self.bgView addSubview:priceLb];
@@ -246,7 +244,7 @@
 
 - (void)setModel:(OrderModel *)model {
     
-    NSString *priceText = @"总计 ^43.00";
+    NSString *priceText = [NSString stringWithFormat:@"总计 ^%@", [model.ORDERSUMS momeyString]];
     NSMutableAttributedString *priceAttStr = [[NSMutableAttributedString alloc] initWithString:priceText];
     [priceAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:HeightXiShu(18)] range:NSMakeRange(3, priceText.length - 3)];
     [priceAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(3, priceText.length - 3)];
@@ -258,6 +256,16 @@
     [integralAttStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:HeightXiShu(18)] range:NSMakeRange(3, integralText.length - 3)];
     [integralAttStr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(3, integralText.length - 3)];
     self.integralLb.attributedText = integralAttStr;
+    
+    self.orderNumLb.text = [NSString stringWithFormat:@"订单号:%@", model.ORDERID];
+    self.medicineNameLb.text = model.GOODSNAME;
+    self.specificationLb.text = [NSString stringWithFormat:@"规格:%@%@", model.SPEC, model.CALCUNIT];
+    self.produceAreaLb.text = [NSString stringWithFormat:@"产地:%@", model.PRODUCER];
+    self.priceLb.text = [NSString stringWithFormat:@"%@", [model.SELLPRICE momeyString]];
+    self.countLb.text = [NSString stringWithFormat:@"X%ld", (long)[model.ORDERAMOUNT integerValue]];
+
+    self.orderTimeLb.text = model.CREATETIME;
+
     
 }
 

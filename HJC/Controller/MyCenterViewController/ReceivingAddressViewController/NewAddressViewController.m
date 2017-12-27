@@ -87,14 +87,14 @@
 
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
+//    if (section == 0) {
         return 3;
-    }
-    return 1;
+//    }
+//    return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return HeightXiShu(10);
@@ -106,15 +106,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+//    if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             return HeightXiShu(55);
         } else if (indexPath.row == 1) {
             return HeightXiShu(50);
         }
         return HeightXiShu(120);
-    }
-    return HeightXiShu(50);
+//    }
+//    return HeightXiShu(50);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -127,8 +127,8 @@
     }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    if(indexPath.section == 0){
-        
+//    if(indexPath.section == 0){
+    
         if (indexPath.row == 0) {
             UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
             nameLb.text = @"收货人";
@@ -179,18 +179,18 @@
             addressTV.font = HEITI(HeightXiShu(15));
             [cell.contentView addSubview:addressTV];
         }
-    } else {
-        
-        UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(110), HeightXiShu(55))];
-        phoneLb.text = @"设为默认地址";
-        phoneLb.textColor = BlackColor;
-        phoneLb.font = HEITI(HeightXiShu(15));
-        [cell.contentView addSubview:phoneLb];
-        
-        UISwitch *acquieSW = [[UISwitch alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(75), HeightXiShu(10), WidthXiShu(50), HeightXiShu(30))];
-        [acquieSW setOn:self.isAcquiescence];;
-        [cell.contentView addSubview:acquieSW];
-    }
+//    } else {
+//
+//        UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(110), HeightXiShu(55))];
+//        phoneLb.text = @"设为默认地址";
+//        phoneLb.textColor = BlackColor;
+//        phoneLb.font = HEITI(HeightXiShu(15));
+//        [cell.contentView addSubview:phoneLb];
+//
+//        UISwitch *acquieSW = [[UISwitch alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(75), HeightXiShu(10), WidthXiShu(50), HeightXiShu(30))];
+//        [acquieSW setOn:self.isAcquiescence];;
+//        [cell.contentView addSubview:acquieSW];
+//    }
     return cell;
 }
 

@@ -10,15 +10,6 @@
 
 @implementation OrderModel
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"id"]) {
-        self.ID = value;
-    }
-}
 
-
--(void)setDict:(NSDictionary *)dict{
-    self.ID = dict[@"id"];
-}
 
 @end

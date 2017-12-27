@@ -72,6 +72,7 @@
     
     NSArray *array = [NSArray arrayWithObject:self.orderStatusArray];
     [self.orderStatus setupBasicArray:array];
+    [self networkGetOrdersDetail];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,8 +108,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //        return self.modelArr.count;
-    return 6;
+    return self.modelArr.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return HeightXiShu(165);
@@ -308,7 +308,12 @@
     [BaseApi getMenthodWithUrl:GetOrderDetail block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"%@",dict);
-            
+            for (NSDictionary *orderDic in dict[@"data"]) {
+                OrderModel *orderModel = [[OrderModel alloc] init];
+                [orderModel setValuesForKeysWithDictionary:orderDic];
+                [self.modelArr addObject:orderModel];
+            }
+            [self.tableView reloadData];
         }else{
             
         }
