@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface MyOrderViewController : BaseViewController
+@interface MyOrderViewController : BaseTableViewController
 
 @property (nonatomic,strong) NSString *orderNO;
 
