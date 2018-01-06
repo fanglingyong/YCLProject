@@ -106,7 +106,7 @@
     }else{
         NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
         [pargams setObject:account forKey:@"Username"];
-        [pargams setObject:[EncrtDecrt md5:password] forKey:@"Password"];
+        [pargams setObject:password forKey:@"Password"];
         __block typeof (self)wself = self;
         [BaseApi getMenthodWithUrl:LoginURL block:^(NSDictionary *dict, NSError *error) {
             if (error) {

@@ -132,7 +132,6 @@
 
 - (void)headRefresh {
     self.pageIndex = 1;
-    self.pargrams = [NSMutableDictionary dictionary];
     [self network_procurementList];
 }
 
@@ -373,10 +372,13 @@
 }
 #pragma mark - net
 -(void)network_procurementList{
+    if (_pageIndex == 1) {
+        self.pargrams = [NSMutableDictionary dictionary];
+    }
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
     [_pargrams setObject:[NSString stringWithFormat:@"%@,%@",@"4",@""] forKey:@"Parastr"];// 供应商id,药品名称
-    [_pargrams setObject:@"0" forKey:@"UserID"];//暂时设置为0因为只有0才有结果
-    NSLog(@"pargrams :%@", _pargrams);
+    [_pargrams setObject:[self getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+    NSLog(@"这是采购页面pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
         [_tableView.mj_footer endRefreshing];
         if(!error){
