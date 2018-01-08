@@ -17,6 +17,7 @@
 #import "MedicineDetailViewController.h"
 #import "LoginViewController.h"
 #import "BaseNavigationController.h"
+#import "ProcureSearchViewController.h"
 @interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate>
 
 @property(nonatomic,strong)NavView *navView;
@@ -290,8 +291,9 @@
 #pragma mark - 事件
 
 - (void)searchClick {
-    
-    
+    ProcureSearchViewController *VC = [[ProcureSearchViewController alloc] init];
+    VC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)deselectButtons {
