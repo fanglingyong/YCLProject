@@ -150,7 +150,8 @@
         [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
         NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
         [pargrams setObject:account forKey:@"Username"];
-        [pargrams setObject:[EncrtDecrt md5:password1] forKey:@"Password"];
+        [pargrams setObject:password1 forKey:@"Password"];
+//        [EncrtDecrt md5:password1]
         [pargrams setObject:phone forKey:@"HandPhone"];
         [pargrams setObject:_corpId forKey:@"RID"];
 //        [pargrams setObject:_smsCode forKey:@"smscode"];
