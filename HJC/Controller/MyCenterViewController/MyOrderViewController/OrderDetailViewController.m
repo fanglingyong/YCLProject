@@ -25,6 +25,7 @@
     [self statusBar];
     [self navView];
     [self.tableView setMinY:64 maxY:kScreenHeight];
+    [self setUpHeaderRefresh:NO footerRefresh:NO];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     

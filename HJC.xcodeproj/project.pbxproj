@@ -136,6 +136,7 @@
 		3696F9791F95DA85000B9172 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9771F95DA85000B9172 /* LaunchScreen.storyboard */; };
 		3696F97C1F95DA85000B9172 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F97B1F95DA85000B9172 /* main.m */; };
 		3696F9861F95DA86000B9172 /* HJCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F9851F95DA86000B9172 /* HJCUITests.m */; };
+		36A2D511200345A3008ECE20 /* ProcureSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A2D510200345A3008ECE20 /* ProcureSearchViewController.m */; };
 		36C1F3541FCC0D480004E7D5 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1F3531FCC0D480004E7D5 /* MyOrderViewController.m */; };
 		36C9E5941FAB0691003A6451 /* MyCenterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9E5931FAB0691003A6451 /* MyCenterButton.m */; };
 		36CB9C9A1F988B2C00EE774B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C991F988B2C00EE774B /* JavaScriptCore.framework */; };
@@ -585,6 +586,8 @@
 		3696FEE91F95DC87000B9172 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		3696FFB01F95DC88000B9172 /* MyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		3696FFB11F95DC88000B9172 /* MyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
+		36A2D50F200345A3008ECE20 /* ProcureSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcureSearchViewController.h; sourceTree = "<group>"; };
+		36A2D510200345A3008ECE20 /* ProcureSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcureSearchViewController.m; sourceTree = "<group>"; };
 		36C1F3521FCC0D480004E7D5 /* MyOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
 		36C1F3531FCC0D480004E7D5 /* MyOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		36C1F3551FCD64100004E7D5 /* integral_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "integral_bg@3x.png"; sourceTree = "<group>"; };
@@ -844,6 +847,8 @@
 			children = (
 				336FDB861FD11EFD00AFC918 /* ProcurementViewController.h */,
 				336FDB871FD11EFD00AFC918 /* ProcurementViewController.m */,
+				36A2D50F200345A3008ECE20 /* ProcureSearchViewController.h */,
+				36A2D510200345A3008ECE20 /* ProcureSearchViewController.m */,
 			);
 			path = ProcurementController;
 			sourceTree = "<group>";
@@ -2276,6 +2281,7 @@
 				36430BC01F9DBF8F001709DD /* UIImageView+HighlightedWebCache.m in Sources */,
 				452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */,
 				4559C1A71FCD289C005EC6BA /* ClinicCell.m in Sources */,
+				36A2D511200345A3008ECE20 /* ProcureSearchViewController.m in Sources */,
 				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,
 				451068C81FE551680009B113 /* ClinicModel.m in Sources */,
 				450BF4081FED1E0500A90704 /* SubmitOrdersCell.m in Sources */,
