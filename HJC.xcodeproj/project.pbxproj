@@ -318,6 +318,10 @@
 		45BDBE471FB33432001B9581 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE441FB33432001B9581 /* success@2x.png */; };
 		45BDBE481FB33432001B9581 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE451FB33432001B9581 /* success.png */; };
 		45BDBE491FB33432001B9581 /* success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE461FB33432001B9581 /* success@3x.png */; };
+		45EB85C42004E3EE00AD085F /* RegDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85C32004E3EE00AD085F /* RegDelegateViewController.m */; };
+		45EB85C82004FB3700AD085F /* ChangeUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85C72004FB3700AD085F /* ChangeUserViewController.m */; };
+		45EB85CB2004FB4400AD085F /* ChangeUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85CA2004FB4400AD085F /* ChangeUserInfoViewController.m */; };
+		45EB85CE2004FB6100AD085F /* ChangeUserPswdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85CD2004FB6100AD085F /* ChangeUserPswdViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -802,6 +806,14 @@
 		45BDBE441FB33432001B9581 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		45BDBE451FB33432001B9581 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		45BDBE461FB33432001B9581 /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
+		45EB85C22004E3EE00AD085F /* RegDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegDelegateViewController.h; sourceTree = "<group>"; };
+		45EB85C32004E3EE00AD085F /* RegDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegDelegateViewController.m; sourceTree = "<group>"; };
+		45EB85C62004FB3700AD085F /* ChangeUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeUserViewController.h; sourceTree = "<group>"; };
+		45EB85C72004FB3700AD085F /* ChangeUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeUserViewController.m; sourceTree = "<group>"; };
+		45EB85C92004FB4400AD085F /* ChangeUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeUserInfoViewController.h; sourceTree = "<group>"; };
+		45EB85CA2004FB4400AD085F /* ChangeUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeUserInfoViewController.m; sourceTree = "<group>"; };
+		45EB85CC2004FB6100AD085F /* ChangeUserPswdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeUserPswdViewController.h; sourceTree = "<group>"; };
+		45EB85CD2004FB6100AD085F /* ChangeUserPswdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeUserPswdViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1524,6 +1536,7 @@
 		3696FF311F95DC87000B9172 /* MyCenterViewController */ = {
 			isa = PBXGroup;
 			children = (
+				45EB85C52004FA8300AD085F /* ChangeUserInfoController */,
 				457D79871FE53EBC0077F462 /* IntegralDetailController */,
 				457D79831FE528D50077F462 /* CustomServiceController */,
 				368DBF731FD7CCAF00987776 /* ReceivingAddressViewController */,
@@ -1869,6 +1882,8 @@
 				455E1F2E1FAC3EA600805340 /* LoginViewController.m */,
 				4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */,
 				4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */,
+				45EB85C22004E3EE00AD085F /* RegDelegateViewController.h */,
+				45EB85C32004E3EE00AD085F /* RegDelegateViewController.m */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -1933,6 +1948,19 @@
 				45BDBE461FB33432001B9581 /* success@3x.png */,
 			);
 			path = AssoSuccess;
+			sourceTree = "<group>";
+		};
+		45EB85C52004FA8300AD085F /* ChangeUserInfoController */ = {
+			isa = PBXGroup;
+			children = (
+				45EB85C62004FB3700AD085F /* ChangeUserViewController.h */,
+				45EB85C72004FB3700AD085F /* ChangeUserViewController.m */,
+				45EB85C92004FB4400AD085F /* ChangeUserInfoViewController.h */,
+				45EB85CA2004FB4400AD085F /* ChangeUserInfoViewController.m */,
+				45EB85CC2004FB6100AD085F /* ChangeUserPswdViewController.h */,
+				45EB85CD2004FB6100AD085F /* ChangeUserPswdViewController.m */,
+			);
+			path = ChangeUserInfoController;
 			sourceTree = "<group>";
 		};
 		45F7A9DF1FE6B8C2005DE6A3 /* myClinic */ = {
@@ -2240,6 +2268,7 @@
 				36430BBC1F9DBF8F001709DD /* UIButton+WebCache.m in Sources */,
 				3675BBE91FB57FEE0030F914 /* ShoppingCartModel.m in Sources */,
 				36430BBD1F9DBF8F001709DD /* UIImage+GIF.m in Sources */,
+				45EB85C82004FB3700AD085F /* ChangeUserViewController.m in Sources */,
 				336FDB991FD3E96E00AFC918 /* Procurement.m in Sources */,
 				36430BBE1F9DBF8F001709DD /* UIImage+MultiFormat.m in Sources */,
 				3675BBE51FB57E2D0030F914 /* ShoppingCartCell.m in Sources */,
@@ -2282,6 +2311,7 @@
 				36430B801F9DB90B001709DD /* StageChooseView.m in Sources */,
 				363BB5601FD6A5D6004DBA4A /* CollectModel.m in Sources */,
 				361B94D41FAC684200069AAD /* OrderModel.m in Sources */,
+				45EB85CB2004FB4400AD085F /* ChangeUserInfoViewController.m in Sources */,
 				450BF4001FECDC6B00A90704 /* ShopCartChangeAmout.m in Sources */,
 				36430B7F1F9DB903001709DD /* StageAndNumberView.m in Sources */,
 				36430B441F9DB140001709DD /* UIViewController+UIAlertControllerKit.m in Sources */,
@@ -2314,6 +2344,7 @@
 				366EAB381F9D8B6B00A63E83 /* MJRefreshAutoNormalFooter.m in Sources */,
 				366EAB301F9D8B0D00A63E83 /* MJRefreshAutoFooter.m in Sources */,
 				366EAB391F9D8B9600A63E83 /* MJRefreshAutoStateFooter.m in Sources */,
+				45EB85C42004E3EE00AD085F /* RegDelegateViewController.m in Sources */,
 				366EAB431F9D8D3A00A63E83 /* MJRefreshNormalHeader.m in Sources */,
 				36430BC61F9DD6C3001709DD /* MedicineBreedCell.m in Sources */,
 				4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */,
@@ -2349,6 +2380,7 @@
 				455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */,
 				3696F96E1F95DA84000B9172 /* AppDelegate.m in Sources */,
 				369600271F95E41D000B9172 /* MessageCenterViewController.m in Sources */,
+				45EB85CE2004FB6100AD085F /* ChangeUserPswdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

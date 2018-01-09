@@ -12,6 +12,7 @@
 #import "SmsCodeTextField.h"
 #import "AssoSuccessViewController.h"
 #import "EncrtDecrt.h"
+#import "RegDelegateViewController.h"
 
 @interface RegisterUserViewController ()<UITextFieldDelegate>
 
@@ -127,7 +128,8 @@
 }
 -(void)jumpProtocolHtml{
     //jump protocol web page
-    NSLog(@"jump--->hehuimin");
+    RegDelegateViewController *delegateVC = [[RegDelegateViewController alloc] init];
+    [self.navigationController pushViewController:delegateVC animated:YES];
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
     NSLog(@"注册成功!!!");

@@ -18,10 +18,12 @@
 #import "CustomServiceViewController.h"
 #import "IntegralDetailViewController.h"
 #import "RegisterClinicViewController.h"
+#import "ChangeUserViewController.h"
 
 @interface MyCenterViewController ()<UIAlertViewDelegate>
 @property(nonatomic,strong)NavView *navView;
 @property(nonatomic,strong)UIButton *sh;
+@property(nonatomic,strong)UIButton *rChange;
 @property(nonatomic,strong)NSArray *tableViewData;
 @property(nonatomic,strong)UIAlertController *alert;
 @end
@@ -33,7 +35,7 @@
     [self statusBar];
     [self navView];
     // Do any additional setup after loading the view.
-//    [self initClinic];
+    [self initClinic];
     [self setUpHeaderRefresh:NO footerRefresh:NO];
     [self.tableView setMinY:_navView.maxY maxY:kScreenHeight -49];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -218,7 +220,7 @@
 - (NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"个人中心";
         navView.leftBtn.hidden = YES;
@@ -229,6 +231,15 @@
         _sh.titleLabel.font = [UIFont systemFontOfSize:15];
         [_sh addTarget:self action:@selector(jumpToSomething) forControlEvents:UIControlEventTouchUpInside];
         [navView addSubview:_sh];
+        
+        self.rChange = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rChange.frame = CGRectMake(kScreenWidth-70, 4, 68, 36);
+        [_rChange setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_rChange setTitle:@"资料修改" forState:UIControlStateNormal];
+        _rChange.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_rChange addTarget:self action:@selector(jumpToDoChangeUserInfo) forControlEvents:UIControlEventTouchUpInside];
+        [navView addSubview:_rChange];
+        
         _navView = navView;
         [self.view addSubview:_navView];
     }
@@ -245,17 +256,24 @@
         _sh.hidden = YES;
     }
     if([model.P_LSM intValue] > 0){
+        _rChange.hidden = NO;
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
     }else{
+        _rChange.hidden = YES;
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服",@"注册诊所"], nil];
     }
-    
 }
 //诊所审核
 -(void)jumpToSomething{
     ClinicRegisterInfoListViewController *audit = [[ClinicRegisterInfoListViewController alloc] init];
     audit.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:audit animated:YES];
+}
+//change user info
+-(void)jumpToDoChangeUserInfo{
+    ChangeUserViewController *changeUser = [[ChangeUserViewController alloc] init];
+    changeUser.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:changeUser animated:YES];
 }
 //登录注册按钮 在用户没有登录的时候起到作用
 -(void)reg_log_action{

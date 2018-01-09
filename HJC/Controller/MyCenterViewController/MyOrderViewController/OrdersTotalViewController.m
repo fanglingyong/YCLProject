@@ -213,7 +213,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY + HeightXiShu(44), kScreenWidth, kScreenHeight-_navView.maxY - HeightXiShu(44)) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
