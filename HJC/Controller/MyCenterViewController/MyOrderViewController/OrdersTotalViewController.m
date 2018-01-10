@@ -13,8 +13,10 @@
 #import "DropdownSimpleView.h"
 #import "OrderTotalModel.h"
 #import "OrderTotalCell.h"
-#import "MyOrderViewController.h"
+//#import "MyOrderViewController.h"
 #import "DatePickeView.h"
+#import "OrderDetailInfoViewController.h"
+#import "MJRefresh.h"
 
 @interface OrdersTotalViewController ()<UITableViewDelegate,UITableViewDataSource, DropdownViewDelegate, HDDropdownButtonDelegate, DatePickeViewDelegate>
 
@@ -236,11 +238,16 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MyOrderViewController *myorder = [[MyOrderViewController alloc] init];
+//    MyOrderViewController *myorder = [[MyOrderViewController alloc] init];
+//    OrderTotalModel * model = [[OrderTotalModel alloc] init];
+//    model = _ordersArr[indexPath.row];
+//    myorder.orderNO = model.ORDERNO;
+//    [self.navigationController pushViewController:myorder animated:YES];
+    OrderDetailInfoViewController *orderDetail = [[OrderDetailInfoViewController alloc] init];
     OrderTotalModel * model = [[OrderTotalModel alloc] init];
     model = _ordersArr[indexPath.row];
-    myorder.orderNO = model.ORDERNO;
-    [self.navigationController pushViewController:myorder animated:YES];
+    orderDetail.orderNO = model.ORDERNO;
+    [self.navigationController pushViewController:orderDetail animated:YES];
 }
 
 

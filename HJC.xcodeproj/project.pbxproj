@@ -182,6 +182,13 @@
 		452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645A1FE0C473006E51F5 /* MebLicenseViewController.m */; };
 		452D645F1FE0D327006E51F5 /* AuditClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */; };
 		453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 453137E21FD183530095B155 /* SmsCodeTextField.m */; };
+		45571D7620063CDE00545850 /* customService.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7320063CDE00545850 /* customService.png */; };
+		45571D7720063CDE00545850 /* customService@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7420063CDE00545850 /* customService@2x.png */; };
+		45571D7820063CDE00545850 /* customService@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7520063CDE00545850 /* customService@3x.png */; };
+		45571D7F200642C000545850 /* AnnouncementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45571D7E200642C000545850 /* AnnouncementCell.m */; };
+		45571D82200642CC00545850 /* MessagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45571D81200642CC00545850 /* MessagesCell.m */; };
+		45571D852006503C00545850 /* AnnouncementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45571D842006503C00545850 /* AnnouncementViewController.m */; };
+		45571D8820065AAD00545850 /* OrderDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45571D8720065AAD00545850 /* OrderDetailInfoViewController.m */; };
 		4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */; };
 		4559C1231FCBE865005EC6BA /* code_25_25.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0A81FCBE864005EC6BA /* code_25_25.png */; };
 		4559C1241FCBE865005EC6BA /* code_25_25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0A91FCBE864005EC6BA /* code_25_25@2x.png */; };
@@ -654,6 +661,17 @@
 		452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditClinicViewController.m; sourceTree = "<group>"; };
 		453137E11FD183530095B155 /* SmsCodeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmsCodeTextField.h; sourceTree = "<group>"; };
 		453137E21FD183530095B155 /* SmsCodeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsCodeTextField.m; sourceTree = "<group>"; };
+		45571D7320063CDE00545850 /* customService.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customService.png; sourceTree = "<group>"; };
+		45571D7420063CDE00545850 /* customService@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customService@2x.png"; sourceTree = "<group>"; };
+		45571D7520063CDE00545850 /* customService@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customService@3x.png"; sourceTree = "<group>"; };
+		45571D7D200642C000545850 /* AnnouncementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementCell.h; sourceTree = "<group>"; };
+		45571D7E200642C000545850 /* AnnouncementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementCell.m; sourceTree = "<group>"; };
+		45571D80200642CC00545850 /* MessagesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagesCell.h; sourceTree = "<group>"; };
+		45571D81200642CC00545850 /* MessagesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesCell.m; sourceTree = "<group>"; };
+		45571D832006503C00545850 /* AnnouncementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnouncementViewController.h; sourceTree = "<group>"; };
+		45571D842006503C00545850 /* AnnouncementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnouncementViewController.m; sourceTree = "<group>"; };
+		45571D8620065AAD00545850 /* OrderDetailInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailInfoViewController.h; sourceTree = "<group>"; };
+		45571D8720065AAD00545850 /* OrderDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailInfoViewController.m; sourceTree = "<group>"; };
 		4559C0A31FCBA0A9005EC6BA /* RegisterUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserViewController.h; sourceTree = "<group>"; };
 		4559C0A41FCBA0A9005EC6BA /* RegisterUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterUserViewController.m; sourceTree = "<group>"; };
 		4559C0A81FCBE864005EC6BA /* code_25_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = code_25_25.png; sourceTree = "<group>"; };
@@ -1290,6 +1308,8 @@
 			children = (
 				369600251F95E41D000B9172 /* MessageCenterViewController.h */,
 				369600261F95E41D000B9172 /* MessageCenterViewController.m */,
+				45571D832006503C00545850 /* AnnouncementViewController.h */,
+				45571D842006503C00545850 /* AnnouncementViewController.m */,
 			);
 			path = MessageCenter;
 			sourceTree = "<group>";
@@ -1387,6 +1407,7 @@
 		3696F9901F95DC85000B9172 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45571D792006422100545850 /* MessageCell */,
 				362E64AE1FF37E9D00695D57 /* DatePickerView */,
 				450BF4051FED1D6D00A90704 /* SubmitOrdersCell */,
 				452D644F1FE0B775006E51F5 /* ToolViewButton */,
@@ -1558,6 +1579,8 @@
 			children = (
 				450BF4101FF0A01D00A90704 /* OrdersTotalViewController.h */,
 				450BF4111FF0A01D00A90704 /* OrdersTotalViewController.m */,
+				45571D8620065AAD00545850 /* OrderDetailInfoViewController.h */,
+				45571D8720065AAD00545850 /* OrderDetailInfoViewController.m */,
 				36C1F3521FCC0D480004E7D5 /* MyOrderViewController.h */,
 				36C1F3531FCC0D480004E7D5 /* MyOrderViewController.m */,
 				363BB5561FD6A48B004DBA4A /* OrderDetailViewController.h */,
@@ -1684,9 +1707,31 @@
 			path = Audit;
 			sourceTree = "<group>";
 		};
+		45571D7220063CC100545850 /* customService */ = {
+			isa = PBXGroup;
+			children = (
+				45571D7320063CDE00545850 /* customService.png */,
+				45571D7420063CDE00545850 /* customService@2x.png */,
+				45571D7520063CDE00545850 /* customService@3x.png */,
+			);
+			path = customService;
+			sourceTree = "<group>";
+		};
+		45571D792006422100545850 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				45571D7D200642C000545850 /* AnnouncementCell.h */,
+				45571D7E200642C000545850 /* AnnouncementCell.m */,
+				45571D80200642CC00545850 /* MessagesCell.h */,
+				45571D81200642CC00545850 /* MessagesCell.m */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
 		4559C0A61FCBE153005EC6BA /* AllImages */ = {
 			isa = PBXGroup;
 			children = (
+				45571D7220063CC100545850 /* customService */,
 				4559C11F1FCBE865005EC6BA /* log */,
 				4559C0D61FCBE865005EC6BA /* other */,
 				4559C0A71FCBE864005EC6BA /* register */,
@@ -2084,6 +2129,7 @@
 				363BB52A1FD535A4004DBA4A /* integral_bg.png in Resources */,
 				363BB52B1FD535A4004DBA4A /* integral_bg@2x.png in Resources */,
 				363BB52C1FD535A4004DBA4A /* integral_bg@3x.png in Resources */,
+				45571D7720063CDE00545850 /* customService@2x.png in Resources */,
 				4559C12C1FCBE865005EC6BA /* password_25_25.png in Resources */,
 				4559C13B1FCBE865005EC6BA /* message_select.png in Resources */,
 				4559C16D1FCBE865005EC6BA /* delete@3x.png in Resources */,
@@ -2151,6 +2197,7 @@
 				4559C1891FCBE865005EC6BA /* right_arrow.png in Resources */,
 				4559C1691FCBE865005EC6BA /* share@2x.png in Resources */,
 				4559C16C1FCBE865005EC6BA /* delete@2x.png in Resources */,
+				45571D7620063CDE00545850 /* customService.png in Resources */,
 				4559C12B1FCBE865005EC6BA /* gou_select@3x.png in Resources */,
 				4559C1561FCBE865005EC6BA /* collection.png in Resources */,
 				45BDBE301FB2A323001B9581 /* select_up@3x.png in Resources */,
@@ -2178,6 +2225,7 @@
 				4559C1641FCBE865005EC6BA /* reduce_L@3x.png in Resources */,
 				4559C1521FCBE865005EC6BA /* add_L@3x.png in Resources */,
 				4559C14C1FCBE865005EC6BA /* shop_normal@3x.png in Resources */,
+				45571D7820063CDE00545850 /* customService@3x.png in Resources */,
 				4559C13E1FCBE865005EC6BA /* person_normal.png in Resources */,
 				4559C1501FCBE865005EC6BA /* add_L.png in Resources */,
 				4559C1A11FCCE11A005EC6BA /* login_back@2x.png in Resources */,
@@ -2236,6 +2284,7 @@
 				450BF4151FF0FAA400A90704 /* OrderTotalModel.m in Sources */,
 				450BF4181FF0FEEA00A90704 /* OrderTotalCell.m in Sources */,
 				363BB5181FD4FAD1004DBA4A /* AFURLRequestSerialization.m in Sources */,
+				45571D7F200642C000545850 /* AnnouncementCell.m in Sources */,
 				368DBF761FD7CCF200987776 /* ReceiveAddressViewController.m in Sources */,
 				363BB5191FD4FAD1004DBA4A /* AFURLResponseSerialization.m in Sources */,
 				363BB51A1FD4FAD1004DBA4A /* AFURLSessionManager.m in Sources */,
@@ -2262,6 +2311,7 @@
 				36965DA51FB04749006B93E4 /* IntegralBreedViewController.m in Sources */,
 				36965DA41FB04744006B93E4 /* AllBreedViewController.m in Sources */,
 				455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */,
+				45571D852006503C00545850 /* AnnouncementViewController.m in Sources */,
 				453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */,
 				368DBF811FD7CDF500987776 /* ReceiveAddressCell.m in Sources */,
 				455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */,
@@ -2346,6 +2396,7 @@
 				363BB5301FD54158004DBA4A /* ProcurementCell.m in Sources */,
 				366EAB351F9D8B5100A63E83 /* MJRefreshBackNormalFooter.m in Sources */,
 				366EAB361F9D8B5A00A63E83 /* MJRefreshBackGifFooter.m in Sources */,
+				45571D82200642CC00545850 /* MessagesCell.m in Sources */,
 				366EAB371F9D8B6200A63E83 /* MJRefreshComponent.m in Sources */,
 				366EAB381F9D8B6B00A63E83 /* MJRefreshAutoNormalFooter.m in Sources */,
 				366EAB301F9D8B0D00A63E83 /* MJRefreshAutoFooter.m in Sources */,
@@ -2359,6 +2410,7 @@
 				366EAB3B1F9D8BB000A63E83 /* MJRefreshGifHeader.m in Sources */,
 				452D64551FE0C451006E51F5 /* GspLicenseViewController.m in Sources */,
 				366EAB3C1F9D8BBE00A63E83 /* UIScrollView+MJRefresh.m in Sources */,
+				45571D8820065AAD00545850 /* OrderDetailInfoViewController.m in Sources */,
 				36965DA31FB0459E006B93E4 /* MedicineDetailViewController.m in Sources */,
 				4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */,
 				366EAB3D1F9D8BC700A63E83 /* MJRefreshHeader.m in Sources */,
