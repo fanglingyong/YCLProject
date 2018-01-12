@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface MessageCenterViewController : BaseTableViewController
+@interface MessageCenterViewController : BaseViewController
 
 @end
