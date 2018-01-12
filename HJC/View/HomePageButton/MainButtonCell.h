@@ -15,26 +15,17 @@
 @interface MainButtonCell : UIView
 @property(nonatomic,strong)UIView *bgView;
 
-@property(nonatomic,strong)UIButton *introduceBtn;
-//@property(nonatomic,strong)UIButton *gojiltBtn;
-@property(nonatomic,strong)UIButton *carInsurance;
+@property(nonatomic,strong)UIButton *chemicalBtn;
+@property(nonatomic,strong)UIButton *middleBtn;
+@property(nonatomic,strong)UIButton *careBtn;
+@property(nonatomic,strong)UIButton *integralBtn;
+@property(nonatomic,strong)UIButton *salesBtn;
 
+@property(nonatomic,strong)UILabel *chemicalLb;
+@property(nonatomic,strong)UILabel *middleLb;
+@property(nonatomic,strong)UILabel *careLb;
+@property(nonatomic,strong)UILabel *integralLb;
+@property(nonatomic,strong)UILabel *salesLb;
 
-@property(nonatomic,strong)UIButton *creditBtn;
-@property(nonatomic,strong)UIButton *carloansBtn;
-
-@property(nonatomic,strong)UIButton *carrentBtn;
-@property(nonatomic,strong)UIButton *contactBtn;
-@property(nonatomic,strong)UIButton *dddBtn;
-@property(nonatomic,strong)UIButton *ffffBtn;
-
-
-@property(nonatomic,strong)UIButton *assessBtn;
-@property(nonatomic,strong)UIButton *businessBtn;
-
-
-@property(nonatomic,strong)UIButton *loanBtn;
-@property(nonatomic,strong)UIButton *rentBtn;
-@property(nonatomic,strong)UIButton *moreBtn;
 @property(nonatomic,weak)id<MainButtonCellDelegate>delegate;
 @end

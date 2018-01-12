@@ -275,14 +275,16 @@
 
 @interface OrderDetailCell()
 
-@property(nonatomic,strong)UIImageView *medicineImageView;
-@property(nonatomic,strong)UILabel *medicineNameLabel;  //名称
-@property(nonatomic,strong)UILabel *companyLabel; // 公司
-@property(nonatomic,strong)UILabel *specificationLabel; // 规格
-@property(nonatomic,strong)UILabel *validityPeriodLabel; // 有效期
+@property(nonatomic,strong)UIImageView *medicineImg;
 
-@property(nonatomic,strong)UILabel *priceLabel;   //价格
-@property(nonatomic,strong)UILabel *countLabel;  //积分
+@property(nonatomic, strong)UILabel *nameLb;  //名称
+@property(nonatomic, strong)UILabel *specificationLb; // 规格
+@property(nonatomic, strong)UILabel *produceAreaLb; // 产地
+@property(nonatomic, strong)UILabel *suppliersLb; // 供应商
+
+@property(nonatomic,strong)UILabel *priceLb;   //价格
+@property(nonatomic,strong)UILabel *countLb;  //积分
+@property(nonatomic,strong)UIImageView *integralImg;  //积分
 
 @property (nonatomic, retain)UIImageView *lineView;
 
@@ -305,106 +307,121 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self medicineImageView];
-        [self medicineNameLabel];
-        [self companyLabel];
-        [self specificationLabel];
-        [self validityPeriodLabel];
-        [self priceLabel];
-        [self countLabel];
+        [self medicineImg];
+        [self nameLb];
+        [self specificationLb];
+        [self produceAreaLb];
+        [self suppliersLb];
+        
+        [self priceLb];
+        [self countLb];
+        [self integralImg];
+        
         [self lineView];
     }
     return self;
 }
 
 #pragma mark - 页面元素
--(UIImageView *)medicineImageView{
-    if(!_medicineImageView){
-        UIImageView *medicineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(5), HeightXiShu(5), WidthXiShu(80), HeightXiShu(80))];
-        medicineImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        medicineImageView.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:medicineImageView];
-        _medicineImageView = medicineImageView;
+-(UIImageView *)medicineImg{
+    if(!_medicineImg){
+        UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(12), WidthXiShu(80), HeightXiShu(80))];
+        medicineImg.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
+        medicineImg.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:medicineImg];
+        _medicineImg = medicineImg;
     }
-    return _medicineImageView;
+    return _medicineImg;
 }
 
--(UILabel *)medicineNameLabel{
-    if(!_medicineNameLabel){
-        UILabel *medicineNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(5), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
-        medicineNameLabel.text = @"阿司匹林肠溶片 100mg * 30片";
-        medicineNameLabel.font = HEITI(HeightXiShu(15));
-        medicineNameLabel.textColor = TitleColor;
-        [self.contentView addSubview:medicineNameLabel];
-        _medicineNameLabel = medicineNameLabel;
+-(UILabel *)nameLb{
+    if(!_nameLb){
+        UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(5), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
+        nameLb.text = @"阿司匹林肠溶片";
+        nameLb.font = HEITI(HeightXiShu(15));
+        nameLb.textColor = TitleColor;
+        [self.contentView addSubview:nameLb];
+        _nameLb = nameLb;
     }
-    return _medicineNameLabel;
+    return _nameLb;
 }
 
--(UILabel *)companyLabel{
-    if(!_companyLabel){
-        UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(27), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
-        companyLabel.text = @"拜耳中医保健有限公司";
-        companyLabel.font = HEITI(HeightXiShu(13));
-        companyLabel.textColor = TitleColor;
-        [self.contentView addSubview:companyLabel];
-        _companyLabel = companyLabel;
+-(UILabel *)specificationLb{
+    if(!_specificationLb){
+        UILabel *specificationLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(35), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
+        specificationLb.text = @"规格: 100ml*30片";
+        specificationLb.font = HEITI(HeightXiShu(10));
+        specificationLb.textColor = TitleColor;
+        [self.contentView addSubview:specificationLb];
+        _specificationLb = specificationLb;
     }
-    return _companyLabel;
+    return _specificationLb;
 }
 
--(UILabel *)specificationLabel{
-    if(!_specificationLabel){
-        UILabel *specificationLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(47), kScreenWidth - WidthXiShu(120), HeightXiShu(15))];
-        specificationLabel.text = @"规格: 100ml*30片";
-        specificationLabel.font = HEITI(HeightXiShu(13));
-        specificationLabel.textColor = TitleColor;
-        [self.contentView addSubview:specificationLabel];
-        _specificationLabel = specificationLabel;
+-(UILabel *)produceAreaLb{
+    if(!_produceAreaLb){
+        UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(55), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
+        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.font = HEITI(HeightXiShu(10));
+        produceAreaLb.textColor = TitleColor;
+        [self.contentView addSubview:produceAreaLb];
+        _produceAreaLb = produceAreaLb;
     }
-    return _specificationLabel;
+    return _produceAreaLb;
 }
 
--(UILabel *)validityPeriodLabel{
-    if(!_validityPeriodLabel){
-        UILabel *validityPeriodLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(5), HeightXiShu(62), kScreenWidth - WidthXiShu(120), HeightXiShu(15))];
-        validityPeriodLabel.text = @"效期: 2019-7-28";
-        validityPeriodLabel.font = HEITI(HeightXiShu(13));
-        validityPeriodLabel.textColor = TitleColor;
-        [self.contentView addSubview:validityPeriodLabel];
-        _validityPeriodLabel = validityPeriodLabel;
+-(UILabel *)suppliersLb{
+    if(!_suppliersLb){
+        UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(75), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
+        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.font = HEITI(HeightXiShu(10));
+        suppliersLb.textColor = TitleColor;
+        [self.contentView addSubview:suppliersLb];
+        _suppliersLb = suppliersLb;
     }
-    return _validityPeriodLabel;
+    return _suppliersLb;
 }
 
 
--(UILabel *)priceLabel{
-    if(!_priceLabel){
-        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(60), HeightXiShu(5), HeightXiShu(55), HeightXiShu(20))];
-        priceLabel.text = @"$14.29";
-        priceLabel.font = HEITI(HeightXiShu(15));
-        priceLabel.textColor = TitleColor;
-        [self.contentView addSubview:priceLabel];
-        _priceLabel = priceLabel;
+-(UILabel *)priceLb{
+    if(!_priceLb){
+        UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(70), HeightXiShu(20), HeightXiShu(60), HeightXiShu(20))];
+        priceLb.text = @"$14.29";
+        priceLb.textAlignment = NSTextAlignmentRight;
+        priceLb.font = HEITI(HeightXiShu(17));
+        priceLb.textColor = TitleColor;
+        [self.contentView addSubview:priceLb];
+        _priceLb = priceLb;
     }
-    return _priceLabel;
+    return _priceLb;
 }
 
--(UILabel *)countLabel{
-    if(!_countLabel){
-        UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(60), HeightXiShu(23), HeightXiShu(55), HeightXiShu(15))];
-        countLabel.text = @"x8";
-        countLabel.font = HEITI(HeightXiShu(12));
-        countLabel.textColor = TitleColor;
-        [self.contentView addSubview:countLabel];
-        _countLabel = countLabel;
+-(UILabel *)countLb{
+    if(!_countLb){
+        UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(70), HeightXiShu(45), HeightXiShu(60), HeightXiShu(20))];
+        countLb.text = @"x8";
+        countLb.textAlignment = NSTextAlignmentRight;
+        countLb.font = HEITI(HeightXiShu(15));
+        countLb.textColor = TitleColor;
+        [self.contentView addSubview:countLb];
+        _countLb = countLb;
     }
-    return _countLabel;
+    return _countLb;
+}
+
+- (UIImageView *)integralImg {
+    if (!_integralImg) {
+        UIImageView *integralImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(70), WidthXiShu(20), HeightXiShu(20))];
+        integralImg.image = [GetImagePath getImagePath:@"procureIntegral"];
+        [self.contentView addSubview:integralImg];
+        _integralImg = integralImg;
+    }
+    return _integralImg;
 }
 
 - (UIImageView *)lineView{
     if(!_lineView){
-        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(94), kScreenWidth, .5)];
+        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(104), kScreenWidth, .5)];
         lineView.backgroundColor = AllLightGrayColor;
         [self.contentView addSubview:lineView];
         _lineView = lineView;
@@ -424,111 +441,6 @@
 @end
 
 
-@interface OrderLogisticsInfoCell()
-
-@property(nonatomic,strong)UIImageView *leftImageView;
-@property(nonatomic,strong)UILabel *titleLabel;  //名称
-@property(nonatomic,strong)UILabel *timeLabel; // 公司
-@property(nonatomic,strong)UIImageView *arrowImageView;
-@property (nonatomic, retain)UIImageView *lineView;
-
-@end
-
-@implementation OrderLogisticsInfoCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self leftImageView];
-        [self titleLabel];
-        [self timeLabel];
-        [self arrowImageView];
-        [self lineView];
-    }
-    return self;
-}
-
-#pragma mark - 页面元素
--(UIImageView *)leftImageView{
-    if(!_leftImageView){
-        UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(20), WidthXiShu(30), HeightXiShu(30))];
-        leftImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        leftImageView.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:leftImageView];
-        _leftImageView = leftImageView;
-    }
-    return _leftImageView;
-}
-
--(UILabel *)titleLabel{
-    if(!_titleLabel){
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), 0, kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(45))];
-        titleLabel.text = @"货品已经签收, 签收人李先生. 派件员电话188-8866-6044";
-        titleLabel.numberOfLines = 2;
-        titleLabel.font = HEITI(HeightXiShu(15));
-        titleLabel.textColor = [UIColor orangeColor];
-        [self.contentView addSubview:titleLabel];
-        _titleLabel = titleLabel;
-    }
-    return _titleLabel;
-}
-
--(UILabel *)timeLabel{
-    if(!_timeLabel){
-        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(50), kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(15))];
-        timeLabel.text = @"2017-7-27 12:08:14";
-        timeLabel.font = HEITI(HeightXiShu(12));
-        timeLabel.textColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:timeLabel];
-        _timeLabel = timeLabel;
-    }
-    return _timeLabel;
-}
-
--(UIImageView *)arrowImageView{
-    if(!_arrowImageView){
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(23), HeightXiShu(25), WidthXiShu(16), HeightXiShu(20))];
-        arrowImageView.image = [GetImagePath getImagePath:@"right_arrow"];
-        [self.contentView addSubview:arrowImageView];
-        _arrowImageView = arrowImageView;
-    }
-    return _arrowImageView;
-}
-
-- (UIImageView *)lineView{
-    if(!_lineView){
-        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(69), kScreenWidth, .5)];
-        lineView.backgroundColor = AllLightGrayColor;
-        [self.contentView addSubview:lineView];
-        _lineView = lineView;
-    }
-    return _lineView;
-}
-
-
-@end
-
-
-@interface OrderAddressCell()
-
-@property(nonatomic,strong)UIImageView *leftImageView;
-@property(nonatomic,strong)UILabel *nameLabel;  //名称
-@property(nonatomic,strong)UILabel *phoneLabel; // 公司
-@property(nonatomic,strong)UILabel *addressLabel; // 公司
-
-@end
 @implementation OrderAddressCell
 
 - (void)awakeFromNib {
@@ -546,63 +458,231 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self leftImageView];
-        [self nameLabel];
-        [self phoneLabel];
-        [self addressLabel];
+        [self addressTitleLb];
+        [self nameLb];
+        [self phoneLb];
+        [self addressLb];
+        [self remarkTitleLb];
+        [self remarkLb];
+
     }
     return self;
 }
 
 #pragma mark - 页面元素
--(UIImageView *)leftImageView{
-    if(!_leftImageView){
-        UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(15), WidthXiShu(30), HeightXiShu(30))];
-        leftImageView.image = [GetImagePath getImagePath:@"MyOrder_carInsurance_headerPhoto"];
-        leftImageView.backgroundColor = [UIColor lightGrayColor];
-        [self.contentView addSubview:leftImageView];
-        _leftImageView = leftImageView;
+-(UILabel *)addressTitleLb{
+    if(!_addressTitleLb){
+        UILabel *addressTitleLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(0), WidthXiShu(80), HeightXiShu(40))];
+        addressTitleLb.text = @"收货地址";
+        addressTitleLb.font = HEITI(HeightXiShu(14));
+        addressTitleLb.textColor = TitleColor;
+        [self.contentView addSubview:addressTitleLb];
+        _addressTitleLb = addressTitleLb;
     }
-    return _leftImageView;
+    return _addressTitleLb;
 }
 
--(UILabel *)nameLabel{
-    if(!_nameLabel){
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(10), kScreenWidth - WidthXiShu(30) - WidthXiShu(50), HeightXiShu(20))];
-        nameLabel.text = @"古荡社区诊所 李小明";
-        nameLabel.font = HEITI(HeightXiShu(13));
-        nameLabel.textColor = TitleColor;
-        [self.contentView addSubview:nameLabel];
-        _nameLabel = nameLabel;
+-(UILabel *)nameLb{
+    if(!_nameLb){
+        UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(10), WidthXiShu(50), HeightXiShu(15))];
+        nameLb.text = @"李小明";
+        nameLb.font = HEITI(HeightXiShu(10));
+        nameLb.textColor = TitleColor;
+        [self.contentView addSubview:nameLb];
+        _nameLb = nameLb;
     }
-    return _nameLabel;
+    return _nameLb;
 }
 
--(UILabel *)phoneLabel{
-    if(!_phoneLabel){
-        UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(240), HeightXiShu(10), kScreenWidth - WidthXiShu(240), HeightXiShu(20))];
-        phoneLabel.text = @"182-2288-1122";
-        phoneLabel.font = HEITI(HeightXiShu(12));
-        phoneLabel.textColor = TitleColor;
-        [self.contentView addSubview:phoneLabel];
-        _phoneLabel = phoneLabel;
+-(UILabel *)phoneLb{
+    if(!_phoneLb){
+        UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(150), HeightXiShu(10), WidthXiShu(100), HeightXiShu(15))];
+        phoneLb.text = @"18222881122";
+        phoneLb.font = HEITI(HeightXiShu(10));
+        phoneLb.textColor = TitleColor;
+        [self.contentView addSubview:phoneLb];
+        _phoneLb = phoneLb;
     }
-    return _phoneLabel;
+    return _phoneLb;
 }
 
--(UILabel *)addressLabel{
-    if(!_addressLabel){
-        UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(50), HeightXiShu(35), kScreenWidth - WidthXiShu(50), HeightXiShu(20))];
-        addressLabel.text = @"浙江省杭州市西湖区天目山路百丽大厦10栋1层2334室";
-        addressLabel.font = HEITI(HeightXiShu(13));
-        addressLabel.textColor = TitleColor;
-        [self.contentView addSubview:addressLabel];
-        _addressLabel = addressLabel;
+-(UILabel *)addressLb{
+    if(!_addressLb){
+        UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(30), kScreenWidth - WidthXiShu(50), HeightXiShu(20))];
+        addressLb.text = @"浙江省杭州市西湖区天目山路百丽大厦10栋1层2334室";
+        addressLb.font = HEITI(HeightXiShu(10));
+        addressLb.textColor = TitleColor;
+        [self.contentView addSubview:addressLb];
+        _addressLb = addressLb;
     }
-    return _addressLabel;
+    return _addressLb;
+}
+
+-(UILabel *)remarkTitleLb{
+    if(!_remarkTitleLb){
+        UILabel *remarkTitleLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(55), WidthXiShu(80), HeightXiShu(30))];
+        remarkTitleLb.text = @"备注";
+        remarkTitleLb.font = HEITI(HeightXiShu(14));
+        remarkTitleLb.textColor = TitleColor;
+        [self.contentView addSubview:remarkTitleLb];
+        _remarkTitleLb = remarkTitleLb;
+    }
+    return _remarkTitleLb;
+}
+
+-(UILabel *)remarkLb{
+    if(!_remarkLb){
+        UILabel *remarkLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(60), kScreenWidth - WidthXiShu(50), HeightXiShu(20))];
+        remarkLb.text = @"只要最新包装的金水宝, 旧包装的不要";
+        remarkLb.font = HEITI(HeightXiShu(10));
+        remarkLb.textColor = TitleColor;
+        [self.contentView addSubview:remarkLb];
+        _remarkLb = remarkLb;
+    }
+    return _remarkLb;
 }
 
 @end
 
 
 
+@implementation OrderPriceInfoCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self saleLb];
+        [self actualLb];
+        [self salePriceLb];
+        [self actualPriceLb];
+    }
+    return self;
+}
+
+#pragma mark - 页面元素
+
+-(UILabel *)saleLb{
+    if(!_saleLb){
+        UILabel *saleLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(10), WidthXiShu(80), HeightXiShu(30))];
+        saleLb.text = @"优惠促销";
+        saleLb.font = HEITI(HeightXiShu(14));
+        saleLb.textColor = TitleColor;
+        [self.contentView addSubview:saleLb];
+        _saleLb = saleLb;
+    }
+    return _saleLb;
+}
+
+-(UILabel *)salePriceLb{
+    if(!_salePriceLb){
+        UILabel *salePriceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(70), HeightXiShu(10), WidthXiShu(60), HeightXiShu(25))];
+        salePriceLb.text = @"-$3.80";
+        salePriceLb.textAlignment = NSTextAlignmentRight;
+        salePriceLb.font = HEITI(HeightXiShu(10));
+        salePriceLb.textColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:salePriceLb];
+        _salePriceLb = salePriceLb;
+    }
+    return _salePriceLb;
+}
+-(UILabel *)actualLb{
+    if(!_actualLb){
+        UILabel *actualLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(40), WidthXiShu(80), HeightXiShu(20))];
+        actualLb.text = @"实付款";
+        actualLb.font = HEITI(HeightXiShu(14));
+        actualLb.textColor = TitleColor;
+        [self.contentView addSubview:actualLb];
+        _actualLb = actualLb;
+    }
+    return _actualLb;
+}
+
+-(UILabel *)actualPriceLb{
+    if(!_actualPriceLb){
+        UILabel *actualPriceLb = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(110), HeightXiShu(40), WidthXiShu(100), HeightXiShu(20))];
+        actualPriceLb.text = @"$330.80";
+        actualPriceLb.textAlignment = NSTextAlignmentRight;
+        actualPriceLb.font = HEITI(HeightXiShu(15));
+        actualPriceLb.textColor = [UIColor blueColor];
+        [self.contentView addSubview:actualPriceLb];
+        _actualPriceLb = actualPriceLb;
+    }
+    return _actualPriceLb;
+}
+@end
+
+@implementation OrderTimeCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self orderTimeLb];
+        [self deliveryTimeLb];
+        [self receiveTimeLb];
+    }
+    return self;
+}
+
+#pragma mark - 页面元素
+
+-(UILabel *)orderTimeLb{
+    if(!_orderTimeLb){
+        UILabel *orderTimeLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(10), kScreenWidth - WidthXiShu(20), HeightXiShu(17))];
+        orderTimeLb.text = @"下单时间: 2017/02/10 08:11:03";
+        orderTimeLb.font = HEITI(HeightXiShu(10));
+        orderTimeLb.textColor = TitleColor;
+        [self.contentView addSubview:orderTimeLb];
+        _orderTimeLb = orderTimeLb;
+    }
+    return _orderTimeLb;
+}
+
+-(UILabel *)deliveryTimeLb{
+    if(!_deliveryTimeLb){
+        UILabel *deliveryTimeLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(32), kScreenWidth - WidthXiShu(20), HeightXiShu(17))];
+        deliveryTimeLb.text = @"发货时间: 2017/02/10 08:11:03";
+        deliveryTimeLb.font = HEITI(HeightXiShu(10));
+        deliveryTimeLb.textColor = TitleColor;
+        [self.contentView addSubview:deliveryTimeLb];
+        _deliveryTimeLb = deliveryTimeLb;
+    }
+    return _deliveryTimeLb;
+}
+
+-(UILabel *)receiveTimeLb{
+    if(!_receiveTimeLb){
+        UILabel *receiveTimeLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(54), kScreenWidth - WidthXiShu(20), HeightXiShu(17))];
+        receiveTimeLb.text = @"收货时间: 2017/02/10 08:11:03";
+        receiveTimeLb.font = HEITI(HeightXiShu(10));
+        receiveTimeLb.textColor = TitleColor;
+        [self.contentView addSubview:receiveTimeLb];
+        _receiveTimeLb = receiveTimeLb;
+    }
+    return _orderTimeLb;
+}
+
+@end

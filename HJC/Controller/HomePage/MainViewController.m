@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MainButtonCell.h"
 #import "CycleScrollView.h"
+#import "MainTableViewCell.h"
 @interface MainViewController ()<MainButtonCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
@@ -65,9 +66,9 @@
 //    NSLog(@"%@", self.bannerArray);
     
     if (self.bannerArray.count == 1) {
-        self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180)) animationDuration:10000 andIsSingle:true];
+        self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175)) animationDuration:10000 andIsSingle:true];
     } else if (self.bannerArray.count > 1) {
-        self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180)) animationDuration:5 andIsSingle:false];
+        self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175)) animationDuration:5 andIsSingle:false];
     } else {
         return;
     }
@@ -75,14 +76,15 @@
     
     self.adScrollView.backgroundColor = [UIColor whiteColor];
     [self.headerView addSubview:self.adScrollView];
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(kScreenWidth / 2 - WidthXiShu(80), HeightXiShu(180) - HeightXiShu(30), WidthXiShu(160), HeightXiShu(20))];
+    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(175) - HeightXiShu(15), WidthXiShu(25), HeightXiShu(15))];
+    self.pageControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4);
     
     if (self.bannerArray.count == 1) {
         self.pageControl.pageIndicatorTintColor = [UIColor clearColor];
         self.pageControl.currentPageIndicatorTintColor = [UIColor clearColor];
     } else if (self.bannerArray.count > 1) {
-        self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+        self.pageControl.pageIndicatorTintColor = [UIColor brownColor];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     }
     
     [self.adScrollView addSubview:self.pageControl];
@@ -101,7 +103,7 @@
         self.pageControl.numberOfPages = self.bannerArray.count;
         //给图片赋值
         self.adScrollView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
             NSString *url = weakSelf.bannerArray[pageIndex];
 //            NSLog(@"%@", url);
             [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
@@ -135,10 +137,8 @@
 
 - (UIView *)headerView {
     if (!_headerView) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
         headerView.backgroundColor = [UIColor whiteColor];
-        
-        
         _headerView = headerView;
     }
     return _headerView;
@@ -147,10 +147,13 @@
 
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    if (section == 0 || section == 1) {
+        return 1;
+    }
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -168,16 +171,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-
-        return HeightXiShu(180);
-    }
-    if (indexPath.section == 1) {
-
+        return HeightXiShu(100);
+    } else if (indexPath.section == 1) {
         return HeightXiShu(40);
-        
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            return HeightXiShu(30);
+        }
+        return HeightXiShu(150);
+    } else {
+        if (indexPath.row == 0) {
+            return HeightXiShu(30);
+        }
     }
-
-    return HeightXiShu(175);
+    return HeightXiShu(210) * 4;
     
 }
 
@@ -188,12 +195,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     if (indexPath.section == 0) {
        
-        MainButtonCell *mainButtonView = [[MainButtonCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(180))];
+        MainButtonCell *mainButtonView = [[MainButtonCell alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(100))];
         mainButtonView.delegate = self;
         [cell.contentView addSubview:mainButtonView];
-        return cell;
         
     } else if (indexPath.section == 1) {
        
@@ -201,29 +209,50 @@
         dateLabel.text = @"公告";
         dateLabel.textAlignment = NSTextAlignmentCenter;
         dateLabel.textColor = [UIColor whiteColor];
-        dateLabel.backgroundColor = [UIColor blueColor];
-        dateLabel.font = HEITI(HeightXiShu(13));
+        dateLabel.backgroundColor = [UIColor colorFromHexCode:@"#4172e4"];
+        dateLabel.font = HEITI(HeightXiShu(11));
         [cell.contentView addSubview:dateLabel];
         
         
         UILabel *rearkLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(54), HeightXiShu(10), WidthXiShu(235), HeightXiShu(20))];
         rearkLabel.text = @"积分换购商品活动开始啦！";
-        rearkLabel.textColor = [UIColor blueColor];
-        rearkLabel.font = HEITI(HeightXiShu(13));
+        rearkLabel.textColor = [UIColor colorFromHexCode:@"#447de6"];
+        rearkLabel.font = HEITI(HeightXiShu(11));
         [cell.contentView addSubview:rearkLabel];
         
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(30))];
+            dateLabel.text = @"活动专区";
+            dateLabel.textColor = [UIColor colorFromHexCode:@"#447de6"];
+            dateLabel.font = HEITI(HeightXiShu(11));
+            [cell.contentView addSubview:dateLabel];
+        } else {
+            static NSString *identifier = @"ActivityZoneCell";
+            ActivityZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            if (!cell) {
+                cell = [[ActivityZoneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            return cell;
+        }
+
     } else {
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(70), HeightXiShu(30))];
-        titleLabel.text = @[@"现在抢购:", @"支付卡号:", @"支付编号:"][indexPath.row];
-        titleLabel.textColor = TitleColor;
-        titleLabel.font = HEITI(HeightXiShu(14));
-        [cell.contentView addSubview:titleLabel];
-        
-        UILabel *snLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0,kScreenWidth - WidthXiShu(80), HeightXiShu(30))];
-        snLabel.text = @[@"", @"7864874564649643", @"54984564954654951564"][indexPath.row];
-        snLabel.textColor = TitleColor;
-        snLabel.font = HEITI(HeightXiShu(14));
-        [cell.contentView addSubview:snLabel];
+        if (indexPath.row == 0) {
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(5), WidthXiShu(150), HeightXiShu(25))];
+            dateLabel.text = @"推荐品种";
+            dateLabel.textColor = [UIColor colorFromHexCode:@"#447de6"];
+            dateLabel.font = HEITI(HeightXiShu(11));
+            [cell.contentView addSubview:dateLabel];
+        } else {
+            static NSString *identifier = @"RecommendVarietiesCell";
+            RecommendVarietiesCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            if (!cell) {
+                cell = [[RecommendVarietiesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            return cell;
+        }
     }
     return cell;
 }
@@ -234,49 +263,27 @@
     switch (index) {
         case 0:
         {
+            NSLog(@"化学药");
         }
             break;
         case 1:
         {
-           
+            NSLog(@"中成药");
         }
             break;
         case 2:
         {
-
+            NSLog(@"保健品");
         }
             break;
         case 3:
         {
-            
-       
-            
-            
-            
+            NSLog(@"积分");
         }
             break;
         case 4:
         {
-           
-            
-        }
-            break;
-        case 5:
-        {
-          
-            
-        }
-            break;
-        case 6:
-        {
-          
-            
-        }
-            break;
-        case 7:
-        {
-            
-            
+            NSLog(@"促销");
         }
             break;
         default:
