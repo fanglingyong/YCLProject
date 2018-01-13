@@ -20,3 +20,11 @@
 
 
 @end
+
+#import "OrderModel.h"
+
+@interface OrderDetailInfoCell : UITableViewCell
+
+@property(nonatomic,strong)OrderModel *model;
+
+@end
