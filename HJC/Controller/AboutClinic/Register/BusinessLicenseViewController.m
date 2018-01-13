@@ -103,6 +103,7 @@
         if (dict) {
             NSLog(@"success");
             GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
+            gsp.corpid = self.corpid;
             [self.navigationController pushViewController:gsp animated:YES];
         }else{
             NSLog(@"%@",error);

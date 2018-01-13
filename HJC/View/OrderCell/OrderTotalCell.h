@@ -11,15 +11,22 @@
 
 @interface OrderTotalCell : UITableViewCell
 
-@property (nonatomic,strong) UILabel *orderID;
-@property (nonatomic,strong) UILabel *createTime;
-@property (nonatomic,strong) UILabel *address;
-@property (nonatomic,strong) UILabel *ordersum;
 @property (nonatomic,strong) OrderTotalModel *model;
-@property (nonatomic,strong) UIView *cellView;
 
 
 @end
+@interface OrderTotalGoodListCell : UITableViewCell
+
+@property (nonatomic,strong) UIView *cellView;
+@property (nonatomic,strong) UILabel *idd;
+@property (nonatomic,strong) UILabel *goodName;
+@property (nonatomic,strong) UILabel *countNum;
+@property (nonatomic,strong) UILabel *momeyNum;
+
+@end
+
+
+#pragma mark - 细单
 
 #import "OrderModel.h"
 
@@ -28,3 +35,18 @@
 @property(nonatomic,strong)OrderModel *model;
 
 @end
+
+@interface OrderDetailOrderNumCell : UITableViewCell
+
+@property (nonatomic,strong) UILabel *orderNum;
+@property (nonatomic,strong) UILabel *status;
+
+@end
+
+@interface OrderDetailPublicCell : UITableViewCell
+
+@property (nonatomic,strong) UILabel *titlelb;
+@property (nonatomic,strong) UILabel *contentlb;
+
+@end
+
