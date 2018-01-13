@@ -89,10 +89,12 @@
     [self.allClassArray addObject:@"全部分类1"];
     [self.allClassArray addObject:@"全部分类2"];
 
-    [self.suppliersArray addObject:@"供应商0"];
-    [self.suppliersArray addObject:@"供应商1"];
-    [self.suppliersArray addObject:@"供应商2"];
-    
+    [self.suppliersArray addObject:@"华东医药股份有限公司"];
+    [self.suppliersArray addObject:@"华东医药绍兴有限公司"];
+    [self.suppliersArray addObject:@"华东医药器材化剂分公司"];
+    [self.suppliersArray addObject:@"浙江英特药业责任有限公司"];
+    [self.suppliersArray addObject:@"国药控股浙江有限公司"];
+
     [self.promotionsArray addObject:@"促销0"];
     [self.promotionsArray addObject:@"促销1"];
     [self.promotionsArray addObject:@"促销2"];

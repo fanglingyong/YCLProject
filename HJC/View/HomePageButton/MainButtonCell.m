@@ -14,168 +14,157 @@
     if(self == [super initWithFrame:frame]){
         self.backgroundColor = [UIColor whiteColor];
         [self bgView];
-        [self introduceBtn]; //介绍
-//        [self gojiltBtn];    // 去甩单  车险 homePage_CarInsurance
-        [self carInsurance];
-        [self creditBtn];  // 现金贷
-        [self carloansBtn]; // 车贷宝
+        [self chemicalBtn];  //化学药
+        [self middleBtn];    //中成药
+        [self careBtn];      //保健品
+        [self integralBtn];  //积分
+        [self salesBtn];     //促销
         
-        [self carrentBtn];  //车租宝
-        [self contactBtn]; // 联系我们
-        [self assessBtn]; // 爱车估价
-        [self businessBtn]; // 招商加盟
-        [self dddBtn];
-        [self ffffBtn];
-
-//        [self loanBtn];    // 车贷宝流程
-//        [self rentBtn];  // 活动转区
-//        [self moreBtn];    // 更多
+        [self chemicalLb];  //化学药
+        [self middleLb];    //中成药
+        [self careLb];      //保健品
+        [self integralLb];  //积分
+        [self salesLb];     //促销
     }
     return self;
 }
 
 -(UIView *)bgView{
     if(!_bgView){
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(100))];
         bgView.backgroundColor = [UIColor whiteColor];
         [self addSubview:bgView];
         _bgView = bgView;
     }
     return _bgView;
 }
-
--(UIButton *)introduceBtn{
-    if(!_introduceBtn){
-        UIButton *introduceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        introduceBtn.frame = CGRectMake(0, HeightXiShu(15), kScreenWidth/5, HeightXiShu(65));
-        [introduceBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        introduceBtn.tag = 0;
-        [introduceBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:introduceBtn];
-        _introduceBtn = introduceBtn;
+// 化学药
+-(UIButton *)chemicalBtn{
+    if(!_chemicalBtn){
+        UIButton *chemicalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        chemicalBtn.frame = CGRectMake(0, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [chemicalBtn setImage:[GetImagePath getImagePath:@"home_middle"] forState:UIControlStateNormal];
+        chemicalBtn.tag = 0;
+        [chemicalBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:chemicalBtn];
+        _chemicalBtn = chemicalBtn;
     }
-    return _introduceBtn;
+    return _chemicalBtn;
 }
 
--(UIButton *)carInsurance{
-    if(!_carInsurance){
-        UIButton *carInsurance = [UIButton buttonWithType:UIButtonTypeCustom];
-        carInsurance.frame = CGRectMake(self.introduceBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(65));
-        [carInsurance setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        carInsurance.tag = 1;
-        [carInsurance addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:carInsurance];
-        _carInsurance = carInsurance;
+-(UILabel *)chemicalLb{
+    if(!_chemicalLb){
+        UILabel *chemicalLb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.chemicalBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        chemicalLb.text = @"化学药";
+        chemicalLb.textColor = TitleColor;
+        chemicalLb.font = HEITI(HeightXiShu(11));
+        chemicalLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:chemicalLb];
+        _chemicalLb = chemicalLb;
     }
-    return _carInsurance;
+    return _chemicalLb;
+}
+// 中成药
+-(UIButton *)middleBtn{
+    if(!_middleBtn){
+        UIButton *middleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        middleBtn.frame = CGRectMake(self.chemicalBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [middleBtn setImage:[GetImagePath getImagePath:@"home_chemical"] forState:UIControlStateNormal];
+        middleBtn.tag = 1;
+        [middleBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:middleBtn];
+        _middleBtn = middleBtn;
+    }
+    return _middleBtn;
+}
+-(UILabel *)middleLb{
+    if(!_middleLb){
+        UILabel *middleLb = [[UILabel alloc] initWithFrame:CGRectMake(self.chemicalBtn.maxX, self.middleBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        middleLb.text = @"中成药";
+        middleLb.textColor = TitleColor;
+        middleLb.font = HEITI(HeightXiShu(11));
+        middleLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:middleLb];
+        _middleLb = middleLb;
+    }
+    return _middleLb;
+}
+// 保健品
+-(UIButton *)careBtn{
+    if(!_careBtn){
+        UIButton *careBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        careBtn.frame = CGRectMake(self.middleBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [careBtn setImage:[GetImagePath getImagePath:@"home_care"] forState:UIControlStateNormal];
+        careBtn.tag = 2;
+        [careBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:careBtn];
+        _careBtn = careBtn;
+    }
+    return _careBtn;
+}
+-(UILabel *)careLb{
+    if(!_careLb){
+        UILabel *careLb = [[UILabel alloc] initWithFrame:CGRectMake(self.middleBtn.maxX, self.careBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        careLb.text = @"保健品";
+        careLb.textColor = TitleColor;
+        careLb.font = HEITI(HeightXiShu(11));
+        careLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:careLb];
+        _careLb = careLb;
+    }
+    return _careLb;
+}
+// 积分
+-(UIButton *)integralBtn{
+    if(!_integralBtn){
+        UIButton *integralBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        integralBtn.frame = CGRectMake(self.careBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [integralBtn setImage:[GetImagePath getImagePath:@"home_integral"] forState:UIControlStateNormal];
+        integralBtn.tag = 3;
+        [integralBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:integralBtn];
+        _integralBtn = integralBtn;
+    }
+    return _integralBtn;
+}
+-(UILabel *)integralLb{
+    if(!_integralLb){
+        UILabel *integralLb = [[UILabel alloc] initWithFrame:CGRectMake(self.careBtn.maxX, self.careBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        integralLb.text = @"积分";
+        integralLb.textColor = TitleColor;
+        integralLb.font = HEITI(HeightXiShu(11));
+        integralLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:integralLb];
+        _integralLb = integralLb;
+    }
+    return _integralLb;
+}
+// 促销
+-(UIButton *)salesBtn{
+    if(!_salesBtn){
+        UIButton *salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        salesBtn.frame = CGRectMake(self.integralBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [salesBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
+        salesBtn.tag = 5;
+        [salesBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:salesBtn];
+        _salesBtn = salesBtn;
+    }
+    return _salesBtn;
+}
+-(UILabel *)salesLb{
+    if(!_salesLb){
+        UILabel *salesLb = [[UILabel alloc] initWithFrame:CGRectMake(self.integralBtn.maxX, self.salesBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        salesLb.text = @"促销";
+        salesLb.textColor = TitleColor;
+        salesLb.font = HEITI(HeightXiShu(11));
+        salesLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:salesLb];
+        _salesLb = salesLb;
+    }
+    return _salesLb;
 }
 
--(UIButton *)creditBtn{
-    if(!_creditBtn){
-        UIButton *creditBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        creditBtn.frame = CGRectMake(self.carInsurance.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(65));
-        [creditBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        creditBtn.tag = 2;
-        [creditBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:creditBtn];
-        _creditBtn = creditBtn;
-    }
-    return _creditBtn;
-}
-
--(UIButton *)carloansBtn{
-    if(!_carloansBtn){
-        UIButton *carloansBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        carloansBtn.frame = CGRectMake(self.creditBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(65));
-        [carloansBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        carloansBtn.tag = 3;
-        [carloansBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:carloansBtn];
-        _carloansBtn = carloansBtn;
-    }
-    return _carloansBtn;
-}
-
--(UIButton *)dddBtn{
-    if(!_dddBtn){
-        UIButton *dddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        dddBtn.frame = CGRectMake(self.carloansBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(65));
-        [dddBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        dddBtn.tag = 5;
-        [dddBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:dddBtn];
-        _dddBtn = dddBtn;
-    }
-    return _dddBtn;
-}
-
--(UIButton *)carrentBtn{
-    if(!_carrentBtn){
-        UIButton *carrentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        carrentBtn.frame = CGRectMake(0, self.introduceBtn.maxY+HeightXiShu(17), kScreenWidth/5, HeightXiShu(65));
-        [carrentBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        carrentBtn.tag = 4;
-        [carrentBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:carrentBtn];
-        _carrentBtn = carrentBtn;
-    }
-    return _carrentBtn;
-}
-
--(UIButton *)contactBtn{
-    if(!_contactBtn){
-        UIButton *contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        contactBtn.frame = CGRectMake(self.carrentBtn.maxX, self.introduceBtn.maxY+HeightXiShu(17), kScreenWidth/5, HeightXiShu(65));
-        [contactBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        contactBtn.tag = 5;
-        [contactBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:contactBtn];
-        _contactBtn = contactBtn;
-    }
-    return _contactBtn;
-}
-
-
-
--(UIButton *)assessBtn{
-    if(!_assessBtn){
-        UIButton *assessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        assessBtn.frame = CGRectMake(self.contactBtn.maxX, self.introduceBtn.maxY+HeightXiShu(17), kScreenWidth/5, HeightXiShu(65));
-        [assessBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        assessBtn.tag = 6;
-        [assessBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:assessBtn];
-        _assessBtn = assessBtn;
-    }
-    return _assessBtn;
-}
-
--(UIButton *)businessBtn{
-    if(!_businessBtn){
-        UIButton *businessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        businessBtn.frame = CGRectMake(self.assessBtn.maxX, self.introduceBtn.maxY+HeightXiShu(17), kScreenWidth/5, HeightXiShu(65));
-        [businessBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        businessBtn.tag = 7;
-        [businessBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:businessBtn];
-        _businessBtn = businessBtn;
-    }
-    return _businessBtn;
-}
-
-
--(UIButton *)ffffBtn{
-    if(!_ffffBtn){
-        UIButton *ffffBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        ffffBtn.frame = CGRectMake(self.carloansBtn.maxX, self.dddBtn.maxY+HeightXiShu(17), kScreenWidth/5, HeightXiShu(65));
-        [ffffBtn setImage:[GetImagePath getImagePath:@"add_L"] forState:UIControlStateNormal];
-        ffffBtn.tag = 7;
-        [ffffBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:ffffBtn];
-        _ffffBtn = ffffBtn;
-    }
-    return _ffffBtn;
-}
 -(void)buttonAction:(UIButton *)button{
     if([self.delegate respondsToSelector:@selector(mainButtonClick:)]){
         [self.delegate mainButtonClick:button.tag];

@@ -61,25 +61,18 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 2;
-    } else if (section == 1) {
-        return 6;
-    } else if (section == 2) {
-        return 1;
+        return 5;
     } else {
-        return 3;
+        return 1;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0;
-    }
-    return HeightXiShu(5);
+    return HeightXiShu(10);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(5))];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
     view.backgroundColor = AllLightGrayColor;
     return view;
 }
@@ -87,23 +80,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return HeightXiShu(70);
+            return HeightXiShu(35);
         }
-        return HeightXiShu(60);
+        return HeightXiShu(105);
     }
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            return HeightXiShu(40);
-        } else if (indexPath.row == 1) {
-            return HeightXiShu(95);
-        } else {
-            return HeightXiShu(30);
-        }
+        return HeightXiShu(90);
     }
     if (indexPath.section == 2) {
-        return HeightXiShu(44);
+        return HeightXiShu(70);
     }
-    return HeightXiShu(30);
+    return HeightXiShu(78);
     
 }
 
@@ -116,34 +103,24 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            OrderModel *model = self.modelArr[indexPath.row];
-            static NSString* const identifier = @"OrderCell";
-            OrderLogisticsInfoCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!orderCell) {
-                orderCell = [[OrderLogisticsInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-                orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            orderCell.model = model;
-            return orderCell;
-        } else {
-            OrderModel *model = self.modelArr[indexPath.row];
-            static NSString* const identifier = @"OrderCell";
-            OrderAddressCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            if (!orderCell) {
-                orderCell = [[OrderAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-                orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            orderCell.model = model;
-            return orderCell;
-        }
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(40))];
-            dateLabel.text = @"2017-07-28";
+            UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(240), HeightXiShu(35))];
+            dateLabel.text = @"订单号: 2017112014250001";
             dateLabel.textColor = TitleColor;
             dateLabel.font = HEITI(HeightXiShu(15));
             [cell.contentView addSubview:dateLabel];
-        } else if (indexPath.row == 1) {
+            
+            UILabel *statesLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(70), 0, WidthXiShu(60), HeightXiShu(35))];
+            statesLabel.text = @"已收货";
+            statesLabel.textColor = TitleColor;
+            statesLabel.textAlignment = NSTextAlignmentRight;
+            statesLabel.font = HEITI(HeightXiShu(15));
+            [cell.contentView addSubview:statesLabel];
+            
+            UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(34), kScreenWidth, .5)];
+            lineView.backgroundColor = AllLightGrayColor;
+            [cell.contentView addSubview:lineView];
+            
+        } else {
             OrderModel *model = self.modelArr[indexPath.row];
             static NSString* const identifier = @"OrderDetailCell";
             OrderDetailCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -153,54 +130,49 @@
             }
             orderCell.model = model;
             return orderCell;
-        } else if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) {
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(30))];
-            titleLabel.text = @[@"采购总价", @"积分折扣", @"运费"][indexPath.row - 2];
-            titleLabel.textColor = TitleColor;
-            titleLabel.font = HEITI(HeightXiShu(14));
-            [cell.contentView addSubview:titleLabel];
-            
-            UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(235), 0,kScreenWidth - WidthXiShu(235), HeightXiShu(30))];
-            priceLabel.text = @[@"$228.0", @"$192.2", @"$0.00"][indexPath.row - 2];
-            priceLabel.textColor = TitleColor;
-            priceLabel.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:priceLabel];
-        } else {
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(30))];
-            titleLabel.text = @"实付金额";
-            titleLabel.textColor = BlackColor;
-            titleLabel.font = HEITI(HeightXiShu(14));
-            [cell.contentView addSubview:titleLabel];
-            
-            UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(235), 0,kScreenWidth - WidthXiShu(235), HeightXiShu(30))];
-            priceLabel.text = @"$22.59";
-            priceLabel.textColor = AllRedColor;
-            priceLabel.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:priceLabel];
         }
+    } else if (indexPath.section == 1) {
+        OrderModel *model = self.modelArr[indexPath.row];
+        static NSString* const identifier = @"OrderAddressCell";
+        OrderAddressCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!orderCell) {
+            orderCell = [[OrderAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        orderCell.model = model;
+        return orderCell;
+        
     } else if (indexPath.section == 2) {
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(44))];
-        titleLabel.textColor = BlackColor;
-        NSString *text = @"返积分 12 点";
-        NSLog(@"%lu", (unsigned long)text.length);
-        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc] initWithString:text];
-        [AttributedStr addAttribute:NSForegroundColorAttributeName value:AllRedColor range:NSMakeRange(4, text.length - 6)];
-        titleLabel.attributedText = AttributedStr;
-        titleLabel.font = HEITI(HeightXiShu(14));
-        [cell.contentView addSubview:titleLabel];
+        OrderModel *model = self.modelArr[indexPath.row];
+        static NSString* const identifier = @"OrderPriceInfoCell";
+        OrderPriceInfoCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!orderCell) {
+            orderCell = [[OrderPriceInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        orderCell.model = model;
+        return orderCell;
+    } else if (indexPath.section == 2) {
+        OrderModel *model = self.modelArr[indexPath.row];
+        static NSString* const identifier = @"OrderPriceInfoCell";
+        OrderPriceInfoCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!orderCell) {
+            orderCell = [[OrderPriceInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        orderCell.model = model;
+        return orderCell;
         
     } else {
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(70), HeightXiShu(30))];
-        titleLabel.text = @[@"订单编号:", @"支付卡号:", @"支付编号:"][indexPath.row];
-        titleLabel.textColor = TitleColor;
-        titleLabel.font = HEITI(HeightXiShu(14));
-        [cell.contentView addSubview:titleLabel];
-        
-        UILabel *snLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0,kScreenWidth - WidthXiShu(80), HeightXiShu(30))];
-        snLabel.text = @[@"4544887874654654646", @"7864874564649643", @"54984564954654951564"][indexPath.row];
-        snLabel.textColor = TitleColor;
-        snLabel.font = HEITI(HeightXiShu(14));
-        [cell.contentView addSubview:snLabel];
+        OrderModel *model = self.modelArr[indexPath.row];
+        static NSString* const identifier = @"OrderTimeCell";
+        OrderTimeCell *orderCell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!orderCell) {
+            orderCell = [[OrderTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            orderCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        orderCell.model = model;
+        return orderCell;
     }
     return cell;
 }

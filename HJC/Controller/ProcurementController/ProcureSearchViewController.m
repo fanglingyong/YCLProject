@@ -20,6 +20,7 @@
 @property (nonatomic, retain)UIButton *searchBtn;
 
 @property (nonatomic, retain)NSMutableArray *searchArr;
+@property (nonatomic, retain)NSMutableArray *hotArr;
 
 @end
 
@@ -29,6 +30,7 @@
     self = [super init];
     if (self) {
         self.searchArr = [NSMutableArray array];
+        self.hotArr = [NSMutableArray array];
     }
     return self;
 }
@@ -46,8 +48,9 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    self.searchArr = [NSMutableArray arrayWithObjects:@"泮立苏", @"优甲乐", @"亮甲", nil];
-    
+    self.searchArr = [NSMutableArray arrayWithObject:@"泮立苏"];
+    self.hotArr = [NSMutableArray arrayWithObjects:@"泮立苏", @"优甲乐", @"亮甲", nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -59,7 +62,7 @@
 #pragma mark - tableView delegate dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -67,11 +70,16 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(25))];
     view.backgroundColor = [UIColor whiteColor];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(10), WidthXiShu(150), HeightXiShu(15))];
-    label.text = @"最近搜索";
+    if (section == 0) {
+        label.text = @"最近搜索";
+    } else {
+        label.text = @"热门搜索";
+    }
     label.font = HEITI(HeightXiShu(14));
     label.textColor = TitleColor;
     [view addSubview:label];
@@ -80,15 +88,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = self.searchArr.count / 6;
+    if (indexPath.section == 0) {
+        NSInteger row = self.searchArr.count / 6;
+        return HeightXiShu(45) * (row + 1);
+    }
+    NSInteger row = self.hotArr.count / 6;
     return HeightXiShu(45) * (row + 1);
+
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     static NSString *identifier = @"ProcurementCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
@@ -98,14 +111,26 @@
     CGFloat width = (kScreenWidth - WidthXiShu(30) - WidthXiShu(25)) / 6;
     CGFloat height = HeightXiShu(25);
     
-    for (int i = 0; i < self.searchArr.count; i++) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
-        [button setTitle:[NSString stringWithFormat:@"%@", self.searchArr[i]] forState:UIControlStateNormal];
-        button.titleLabel.font = HEITI(HeightXiShu(12));
-        [button setTitleColor:TitleColor forState:UIControlStateNormal];
-        button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
-        [cell.contentView addSubview:button];
+    if (indexPath.section == 0) {
+        for (int i = 0; i < self.searchArr.count; i++) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
+            [button setTitle:[NSString stringWithFormat:@"%@", self.searchArr[i]] forState:UIControlStateNormal];
+            button.titleLabel.font = HEITI(HeightXiShu(12));
+            [button setTitleColor:TitleColor forState:UIControlStateNormal];
+            button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+            [cell.contentView addSubview:button];
+        }
+    } else {
+        for (int i = 0; i < self.hotArr.count; i++) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
+            [button setTitle:[NSString stringWithFormat:@"%@", self.hotArr[i]] forState:UIControlStateNormal];
+            button.titleLabel.font = HEITI(HeightXiShu(12));
+            [button setTitleColor:TitleColor forState:UIControlStateNormal];
+            button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+            [cell.contentView addSubview:button];
+        }
     }
     return cell;
 }
