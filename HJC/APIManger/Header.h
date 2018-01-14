@@ -46,6 +46,10 @@
 #define GetOdersNo @"/QN_ORDER_LIST_DOC"
 //获取细单信息
 #define GetOrderDetail @"/QN_ORDER_LIST_DETAIL"
+//药品详情
+#define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
+//首页信息
+#define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
 
 #endif /* Header_h */
 

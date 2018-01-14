@@ -192,6 +192,23 @@
     //立即采购
     
 }
+
+#pragma mark - 药品详情
+-(void)net_goodsInfo{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];//
+    [pargrams setObject:_model.GoodsID forKey:@"GoodsId"];//货品ID
+    [pargrams setObject:_model.producer forKey:@"Producer"];//供应商ID
+    NSLog(@"-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:GetGoodsDetailInfo block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"%@",dict);
+            
+        }else{
+            [HUDUtil Hud_message:error.domain view:_headerView];
+        }
+    } dic:pargrams noNetWork:nil];
+}
 /*
  #pragma mark - Navigation
  
