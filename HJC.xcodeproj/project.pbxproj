@@ -188,6 +188,7 @@
 		450BF4121FF0A01D00A90704 /* OrdersTotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF4111FF0A01D00A90704 /* OrdersTotalViewController.m */; };
 		450BF4151FF0FAA400A90704 /* OrderTotalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF4141FF0FAA400A90704 /* OrderTotalModel.m */; };
 		450BF4181FF0FEEA00A90704 /* OrderTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 450BF4171FF0FEEA00A90704 /* OrderTotalCell.m */; };
+		450E1E6C2009FFE60053525A /* syspic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 450E1E6B2009FFE60053525A /* syspic.jpg */; };
 		451068C81FE551680009B113 /* ClinicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068C71FE551680009B113 /* ClinicModel.m */; };
 		451068CC1FE565230009B113 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CA1FE565230009B113 /* MBProgressHUD.m */; };
 		451068CF1FE565710009B113 /* HUDUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 451068CE1FE565710009B113 /* HUDUtil.m */; };
@@ -674,6 +675,7 @@
 		450BF4141FF0FAA400A90704 /* OrderTotalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderTotalModel.m; sourceTree = "<group>"; };
 		450BF4161FF0FEEA00A90704 /* OrderTotalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderTotalCell.h; sourceTree = "<group>"; };
 		450BF4171FF0FEEA00A90704 /* OrderTotalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderTotalCell.m; sourceTree = "<group>"; };
+		450E1E6B2009FFE60053525A /* syspic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = syspic.jpg; sourceTree = "<group>"; };
 		450EA05C1FD4EC0600BF250C /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		451068C61FE551680009B113 /* ClinicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClinicModel.h; sourceTree = "<group>"; };
 		451068C71FE551680009B113 /* ClinicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClinicModel.m; sourceTree = "<group>"; };
@@ -2054,6 +2056,7 @@
 		45BDBE3C1FB32DBF001B9581 /* DefaultIcon */ = {
 			isa = PBXGroup;
 			children = (
+				450E1E6B2009FFE60053525A /* syspic.jpg */,
 				45BDBE411FB32E06001B9581 /* sysIcon3.jpg */,
 				45BDBE3F1FB32DE6001B9581 /* sysIcon2.jpg */,
 				45BDBE3D1FB32DCC001B9581 /* sysIcon1.jpg */,
@@ -2243,6 +2246,7 @@
 				4559C1931FCBE865005EC6BA /* procureCart@2x.png in Resources */,
 				4559C1431FCBE865005EC6BA /* person_select@3x.png in Resources */,
 				45BDBE321FB2A323001B9581 /* select_up.png in Resources */,
+				450E1E6C2009FFE60053525A /* syspic.jpg in Resources */,
 				45BDBE471FB33432001B9581 /* success@2x.png in Resources */,
 				45BDBE351FB2A323001B9581 /* select_up@2x.png in Resources */,
 				4559C1801FCBE865005EC6BA /* edit.png in Resources */,

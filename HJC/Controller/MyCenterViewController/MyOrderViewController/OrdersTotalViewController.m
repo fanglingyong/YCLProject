@@ -225,7 +225,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 118;
+    return 240;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -238,15 +238,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    MyOrderViewController *myorder = [[MyOrderViewController alloc] init];
-//    OrderTotalModel * model = [[OrderTotalModel alloc] init];
-//    model = _ordersArr[indexPath.row];
-//    myorder.orderNO = model.ORDERNO;
-//    [self.navigationController pushViewController:myorder animated:YES];
     OrderDetailInfoViewController *orderDetail = [[OrderDetailInfoViewController alloc] init];
-    OrderTotalModel * model = [[OrderTotalModel alloc] init];
-    model = _ordersArr[indexPath.row];
-    orderDetail.orderNO = model.ORDERNO;
+//    OrderTotalModel * model = [[OrderTotalModel alloc] init];
+//    model = _ordersArr[indexPath.section];
+//    orderDetail.orderNO = model.ORDERNO;
     [self.navigationController pushViewController:orderDetail animated:YES];
 }
 

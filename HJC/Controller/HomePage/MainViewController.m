@@ -319,7 +319,7 @@
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
 //    [pargrams setObject:@"0" forKey:@"UserID"];
     NSLog(@"参数-- pargrams:%@",pargrams);
-    [BaseApi getMenthodWithUrl:GetHomeList block:^(NSDictionary *dict, NSError *error) {
+    [BaseApi getMenthodWithUrl:GetHomeInfo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"success:%@",dict[@"data"]);
             self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"2"]];

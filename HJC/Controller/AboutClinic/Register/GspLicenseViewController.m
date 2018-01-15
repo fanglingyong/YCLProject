@@ -85,6 +85,7 @@
 }
 
 -(void)toolButtonAction:(UIButton*)sender{
+    sender.userInteractionEnabled = NO;
     if (!_businessLicense.image) {
         UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"还没有上传图片,确定跳过吗?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"考虑一下" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -97,7 +98,7 @@
         [ac addAction:cancel];
         [ac addAction:sure];
         [self presentViewController:ac animated:YES completion:^{
-            
+            sender.userInteractionEnabled = YES;
         }];
         return;
     }
@@ -115,6 +116,7 @@
             [HUDUtil Hud_message:error.domain view:self.view];
         }
     }];
+    sender.userInteractionEnabled = YES;
 }
 
 #pragma mark - photo
