@@ -17,12 +17,13 @@
 @end
 @interface OrderTotalGoodListCell : UITableViewCell
 
+@property (nonatomic,strong) OrderGoodsListModel *model;
 @property (nonatomic,strong) UIView *cellView;
 @property (nonatomic,strong) UILabel *idd;
 @property (nonatomic,strong) UILabel *goodName;
 @property (nonatomic,strong) UILabel *countNum;
 @property (nonatomic,strong) UILabel *momeyNum;
-
+@property (nonatomic,assign) NSInteger iddNum;
 @end
 
 

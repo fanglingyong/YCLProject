@@ -281,7 +281,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
-    VC.model = _dataArray[indexPath.row];
+    ProcurementModel *model = _dataArray[indexPath.row];
+    VC.goodsID = model.GoodsID;
+    VC.provider = model.provider;
     VC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:VC animated:YES];
 }

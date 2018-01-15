@@ -31,4 +31,5 @@
 - (NSString *)transformFromChineseToAlphabet;
 //金额
 - (NSString*)momeyString;
+- (NSString*)fString;
 @end

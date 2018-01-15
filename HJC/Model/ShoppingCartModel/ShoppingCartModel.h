@@ -57,6 +57,7 @@
 @property (nonatomic,strong) NSString* spec; //-- 规格
 @property (nonatomic,strong) NSString* totalcount; //--
 @property (nonatomic,strong) NSString* useunit; //-- 单位
+@property (nonatomic,strong) NSString* goodspic; //-- 图片
 
 @property (nonatomic,assign) BOOL isSelect;//购物车中是否被选择
 

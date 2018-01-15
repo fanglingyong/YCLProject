@@ -218,13 +218,13 @@
 
 - (void)setModel:(MedicineDetailModel *)model{
     
-    self.nameLb.text = model.goodsname;
-    self.originalPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.arprice,model.useunit];//零售价
-    self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.arprice,model.useunit];//现价
+    self.nameLb.text = model.GOODSNAME;
+    self.originalPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.RETAILPRICE,model.CALCUNIT];//零售价
+    self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.SELLPRICE,model.CALCUNIT];//现价
     
-    self.specificationLb.text = model.Spec;
-    self.produceAreaLb.text = model.producer;
-    self.suppliersLb.text = model.CorpName;
+    self.specificationLb.text = model.SPEC;
+    self.produceAreaLb.text = model.PRODUCER;
+    self.suppliersLb.text = model.CORPNAME;
     
 }
 

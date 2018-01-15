@@ -11,6 +11,7 @@
 
 @interface MedicineDetailViewController : BaseTableViewController
 
-@property (nonatomic, strong) ProcurementModel *model;
+@property (nonatomic, copy) NSString *provider;
+@property (nonatomic, copy) NSString *goodsID;
 
 @end

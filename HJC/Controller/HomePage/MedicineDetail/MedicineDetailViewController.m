@@ -21,7 +21,7 @@
 @property (nonatomic, retain)UIView *headerView;
 @property (nonatomic, strong) UIImageView *goodImageView;
 @property (nonatomic, retain)MerchandiseFooterButton *footerView;
-
+@property (nonatomic, strong) MedicineDetailModel *model;
 
 @property(nonatomic)NSInteger startIndex;
 @property(nonatomic,strong)NSMutableArray *modelArr;
@@ -44,7 +44,8 @@
     [self statusBar];
     [self navView];
     // Do any additional setup after loading the view.
-    [self startUI];
+    [self net_goodsInfo];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,16 +78,8 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.footerView];
-    _goodImageView.image = [UIImage imageNamed:@"sysIcon3.jpg"];
-    [self.modelArr addObject:[self getMedicModel]];
+    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BigPic,_model.GOODSPIC]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
     [self.tableView reloadData];
-}
-
--(MedicineDetailModel *)getMedicModel{
-    NSMutableDictionary * dic = [_model returnToDictionaryWithModel];
-    MedicineDetailModel *model = [[MedicineDetailModel alloc] init];
-    [model setValuesForKeysWithDictionary:dic];
-    return model;
 }
 
 - (UIView *)headerView {
@@ -127,17 +120,13 @@
     return HeightXiShu(200);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MedicineDetailModel *model = [[MedicineDetailModel alloc] init];
-    if (self.modelArr.count > 0) {
-        model = self.modelArr[indexPath.row];
-    }
     static NSString* const identifier = @"MedicineDetailCell";
     MedicineDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[MedicineDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.model = model;
+    cell.model = _model;
     return cell;
 }
 #pragma mark - 事件
@@ -152,8 +141,8 @@
     //收藏
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
-    [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
+    [pargrams setObject:_model.CORPID forKey:@"PROVIDER"];//供应商ID
+    [pargrams setObject:_model.GOODSID forKey:@"GOODSID"];//货品ID
     NSLog(@"-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:JoinCollect block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
@@ -172,10 +161,10 @@
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
     [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
-    [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
-    [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
-    [pargrams setObject:_model.asprice forKey:@"SELLPRICE"];//协议价格
-    [pargrams setObject:_model.arprice forKey:@"RETAILPRICE"];//零售价
+    [pargrams setObject:_model.CORPID forKey:@"PROVIDER"];//供应商ID
+    [pargrams setObject:_model.GOODSID forKey:@"GOODSID"];//货品ID
+    [pargrams setObject:_model.SELLPRICE forKey:@"SELLPRICE"];//协议价格
+    [pargrams setObject:_model.RETAILPRICE forKey:@"RETAILPRICE"];//零售价
     [pargrams setObject:amout forKey:@"AMOUNT"];//数量
     [pargrams setObject:@"" forKey:@"ORDERMEMO"];
     NSLog(@"-- pargrams:%@",pargrams);
@@ -197,13 +186,15 @@
 -(void)net_goodsInfo{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];//
-    [pargrams setObject:_model.GoodsID forKey:@"GoodsId"];//货品ID
-    [pargrams setObject:_model.producer forKey:@"Producer"];//供应商ID
+    [pargrams setObject:_goodsID forKey:@"GoodsId"];//货品ID
+    [pargrams setObject:_provider forKey:@"Producer"];//供应商ID
     NSLog(@"-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsDetailInfo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"%@",dict);
-            
+            _model = [[MedicineDetailModel alloc] init];
+            [_model setValuesForKeysWithDictionary:dict[@"data"][0]];
+            [self startUI];
         }else{
             [HUDUtil Hud_message:error.domain view:_headerView];
         }

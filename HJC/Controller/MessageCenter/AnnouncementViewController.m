@@ -61,7 +61,7 @@
 }
 -(void)createImageView:(CGFloat)height_y imageUrl:(NSString*)imageUrl{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, height_y+10, kScreenWidth-20, kScreenWidth/2-10)];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"sysIcon1.jpg"]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,imageUrl]] placeholderImage:[UIImage imageNamed:@"sysIcon1.jpg"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_scrollView addSubview:imageView];
     _scrol_height+=kScreenWidth/2+10;

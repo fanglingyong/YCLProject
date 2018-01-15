@@ -53,7 +53,7 @@
             medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
             medicineImg.layer.masksToBounds = YES;
             
-            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", HomePic, [array[i] objectForKey:@"goodspic"]]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SmallPic, [array[i] objectForKey:@"goodspic"]]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
             [self.scrollView addSubview:medicineImg];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, HeightXiShu(90), WidthXiShu(90), HeightXiShu(30))];
@@ -109,7 +109,7 @@
             medicineImg.layer.borderWidth = .5;
             medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
             medicineImg.layer.masksToBounds = YES;
-            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", HomePic, [array[i] objectForKey:@"goodspic"]]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SmallPic, [array[i] objectForKey:@"goodspic"]]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
             [self.contentView addSubview:medicineImg];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(165) + HeightXiShu(210) * (i / 2), width, HeightXiShu(15))];

@@ -180,7 +180,7 @@
 #pragma mark - setter
 
 - (void)setModel:(CollectModel *)model {
-    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:model.PICNAME] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
     _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.CorpName];

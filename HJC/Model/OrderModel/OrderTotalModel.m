@@ -10,4 +10,30 @@
 
 @implementation OrderTotalModel
 
+-(void)setValue:(id)value forKey:(NSString *)key{
+    if ([key isEqualToString:@"goodsList"]) {
+        self.GoodsList = [NSMutableArray array];
+        for (NSDictionary*dic in value) {
+            OrderGoodsListModel *modelgl = [[OrderGoodsListModel alloc] init];
+            [modelgl setValuesForKeysWithDictionary:dic];
+            [self.GoodsList addObject:modelgl];
+        }
+    }else{
+       [super setValue:value forKey:key];
+    }
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+   
+}
+
+@end
+
+/**************************************
+ 
+ */
+
+@implementation OrderGoodsListModel
+
+
 @end

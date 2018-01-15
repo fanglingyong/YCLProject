@@ -100,7 +100,7 @@
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(170))];
             NSString *url = weakSelf.bannerArray[pageIndex];
             NSLog(@"%@", url);
-            [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BigPic,url]]];
             return imageView;
         };
         

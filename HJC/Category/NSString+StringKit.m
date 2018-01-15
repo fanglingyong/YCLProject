@@ -87,4 +87,12 @@
     double money = [self doubleValue];
     return [NSString stringWithFormat:@"%.2f",money];
 }
+- (NSString*)fString{
+    int newInt = [self intValue];
+    double newDou = [self doubleValue];
+    if (newDou - newInt == 0) {
+        return [NSString stringWithFormat:@"%d",newInt];
+    }
+    return [NSString stringWithFormat:@"%.2f",newDou];
+}
 @end

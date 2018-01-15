@@ -84,7 +84,7 @@
 -(void)networkGetOrders{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-    [pargrams setObject:[NSString stringWithFormat:@"%@ 00:00:00,%@ 00:00:00", self.orderBegTimeBtn.currentTitle, self.orderEndTimeBtn.currentTitle] forKey:@"Parastr"];
+    [pargrams setObject:[NSString stringWithFormat:@"%@ 00:00:00,%@ 23:59:59", self.orderBegTimeBtn.currentTitle, self.orderEndTimeBtn.currentTitle] forKey:@"Parastr"];
 
 //    [pargrams setObject:@"2017-12-01 17:20:26,2017-12-25 17:20:44" forKey:@"Parastr"];
     [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_page] forKey:@"WebPara"];
@@ -225,9 +225,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 240;
+    return [self calcCellHeight:indexPath];
 }
-
+-(CGFloat)calcCellHeight:(NSIndexPath*)indexPath{
+    OrderTotalModel *model = _ordersArr[indexPath.row];
+    CGFloat cellHeight = model.GoodsList.count * 30 + 90;
+    return cellHeight;
+}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     OrderTotalCell * cell = [tableView dequeueReusableCellWithIdentifier:@"orderTotalCell"];
     if (!cell) {
@@ -238,11 +242,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    OrderDetailInfoViewController *orderDetail = [[OrderDetailInfoViewController alloc] init];
+//    OrderDetailInfoViewController *orderDetail = [[OrderDetailInfoViewController alloc] init];
 //    OrderTotalModel * model = [[OrderTotalModel alloc] init];
 //    model = _ordersArr[indexPath.section];
 //    orderDetail.orderNO = model.ORDERNO;
-    [self.navigationController pushViewController:orderDetail animated:YES];
+//    [self.navigationController pushViewController:orderDetail animated:YES];
 }
 
 

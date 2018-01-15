@@ -79,7 +79,7 @@
             
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth-20, kScreenWidth-20)];
             image.contentMode = UIViewContentModeScaleAspectFit;
-            [image sd_setImageWithURL:[NSURL URLWithString:arr[i]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+            [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,arr[i]]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
             [view addSubview:image];
             
             [_scrollView addSubview:view];

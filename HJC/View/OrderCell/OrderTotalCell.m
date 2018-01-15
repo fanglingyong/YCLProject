@@ -15,10 +15,13 @@
 @property (nonatomic,strong) UILabel *psStatus;//配送状态
 @property (nonatomic,strong) UILabel *createTime;//创建时间
 @property (nonatomic,strong) UILabel *address;
-@property (nonatomic,strong) UITableView *goodsList;
+@property (nonatomic,strong) UITableView *listtab;
 @property (nonatomic,strong) UILabel *integral;//积分
 @property (nonatomic,strong) UILabel *ordersum;//总价
 @property (nonatomic,strong) UIView *cellView;
+@property (nonatomic,strong) UIView *view1;
+@property (nonatomic,strong) UIView *view2;
+@property (nonatomic,strong) NSMutableArray *goodslist;
 
 @end
 
@@ -28,16 +31,17 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.goodslist = [NSMutableArray array];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.cellView];
         self.contentView.backgroundColor = [UIColor colorFromHexCode:@"#cccccc"];
         
         [self.cellView addSubview:self.orderID];
         [self.cellView addSubview:self.psStatus];
-        [self.cellView addSubview:[self view1]];
-        [self.cellView addSubview:self.goodsList];
+        [self.cellView addSubview:self.view1];
+        [self.cellView addSubview:self.listtab];
 //        [self.cellView addSubview:self.address];
-        [self.cellView addSubview:[self view2]];
+        [self.cellView addSubview:self.view2];
         [self.cellView addSubview:self.createTime];
         [self.cellView addSubview:self.integral];
         [self.cellView addSubview:self.ordersum];
@@ -58,14 +62,18 @@
     return _cellView;
 }
 -(UIView*)view2{
-    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(0, _goodsList.maxY, _cellView.width, 2)];
-    view2.backgroundColor = [UIColor colorFromHexCode:@"#cccccc"];
-    return view2;
+    if (!_view2) {
+        _view2 = [[UIView alloc] initWithFrame:CGRectMake(0, _listtab.maxY, _cellView.width, 2)];
+        _view2.backgroundColor = [UIColor colorFromHexCode:@"#cccccc"];
+    }
+    return _view2;
 }
 -(UIView*)view1{
-    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 36, _cellView.width, 1)];
-    view1.backgroundColor = [UIColor colorFromHexCode:@"#cccccc"];
-    return view1;
+    if (!_view1) {
+        _view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 36, _cellView.width, 1)];
+        _view1.backgroundColor = [UIColor colorFromHexCode:@"#cccccc"];
+    }
+    return _view1;
 }
 
 -(UILabel *)orderID{
@@ -89,7 +97,7 @@
 
 -(UILabel *)createTime{
     if (!_createTime) {
-        _createTime = [[UILabel alloc] initWithFrame:CGRectMake(8, _goodsList.maxY+10, kScreenWidth==320?120:130, 20)];
+        _createTime = [[UILabel alloc] initWithFrame:CGRectMake(8, _listtab.maxY+10, kScreenWidth==320?120:130, 20)];
         _createTime.text = @"订单时间:";
         _createTime.font = [UIFont systemFontOfSize:kScreenWidth==320?12:13];
         _createTime.textColor = [UIColor colorFromHexCode:@"#969696"];
@@ -98,7 +106,7 @@
 }
 -(UILabel*)integral{
     if (!_integral) {
-        _integral = [[UILabel alloc] initWithFrame:CGRectMake(_createTime.maxX+5, _goodsList.maxY+10, 60, 20)];
+        _integral = [[UILabel alloc] initWithFrame:CGRectMake(_createTime.maxX+5, _listtab.maxY+10, 60, 20)];
         _integral.text = @"积90000";
         _integral.font = [UIFont systemFontOfSize:14];
     }
@@ -106,7 +114,7 @@
 }
 -(UILabel *)ordersum{
     if (!_ordersum) {
-        _ordersum = [[UILabel alloc] initWithFrame:CGRectMake(_createTime.maxX+70, _goodsList.maxY+10, _cellView.width-_createTime.maxX-78, 20)];
+        _ordersum = [[UILabel alloc] initWithFrame:CGRectMake(_createTime.maxX+70, _listtab.maxY+10, _cellView.width-_createTime.maxX-78, 20)];
         _ordersum.textColor = [UIColor colorFromHexCode:@"#FF9900"];
         _ordersum.textAlignment = NSTextAlignmentRight;
         _ordersum.font = [UIFont systemFontOfSize:14];
@@ -123,18 +131,18 @@
     return _address;
 }
 #pragma mark - table
--(UITableView*)goodsList{
-    if (!_goodsList) {
-        _goodsList = [[UITableView alloc] initWithFrame:CGRectMake(0, 37,_cellView.width,150) style:UITableViewStylePlain];
-        _goodsList.delegate = self;
-        _goodsList.dataSource = self;
-        _goodsList.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _goodsList.userInteractionEnabled = NO;
+-(UITableView*)listtab{
+    if (!_listtab) {
+        _listtab = [[UITableView alloc] initWithFrame:CGRectMake(0, 37,_cellView.width,150) style:UITableViewStylePlain];
+        _listtab.delegate = self;
+        _listtab.dataSource = self;
+        _listtab.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _listtab.userInteractionEnabled = NO;
     }
-    return _goodsList;
+    return _listtab;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.goodslist.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -145,15 +153,30 @@
     if (!cell) {
         cell = [[OrderTotalGoodListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderTotalGoodListCell"];
     }
-//    cell.model = _ordersArr[indexPath.row];
+    cell.iddNum = indexPath.row;
+    cell.model = _goodslist[indexPath.row];
     return cell;
 }
 
 -(void)setModel:(OrderTotalModel *)model{
     _orderID.text = [NSString stringWithFormat:@"%@",model.ORDERNO];
+    _psStatus.text = [NSString stringWithFormat:@"%@",model.PROSTATUSNAME];
 //    _address.text = model.ADDRESS;
+    
     _ordersum.text = [NSString stringWithFormat:@"￥%@",[model.ORDERSUMS momeyString]];
     _createTime.text = [NSString stringWithFormat:@"%@",model.CREATETIME];
+    _integral.text = [NSString stringWithFormat:@"积%@",model.INTEGRAL];
+    
+    _goodslist = [NSMutableArray array];
+    [_goodslist addObjectsFromArray:model.GoodsList];
+    
+    _cellView.frame = CGRectMake(10, 8, kScreenWidth-20, 90+_goodslist.count*30-12);
+    _listtab.frame = CGRectMake(0, 37,_cellView.width,_goodslist.count*30);
+    _view2.frame = CGRectMake(0, _listtab.maxY, _cellView.width, 2);
+    _ordersum.frame = CGRectMake(_createTime.maxX+70, _listtab.maxY+10, _cellView.width-_createTime.maxX-78, 20);
+    _integral.frame = CGRectMake(_createTime.maxX+5, _listtab.maxY+10, 60, 20);
+    _createTime.frame = CGRectMake(8, _listtab.maxY+10, kScreenWidth==320?120:130, 20);
+    [_listtab reloadData];
 }
 
 
@@ -187,14 +210,14 @@
         _idd = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, 22, 22)];
         _idd.textColor = [UIColor colorFromHexCode:@"#9c9c9c"];
         _idd.font = [UIFont systemFontOfSize:15];
-        _idd.text = @"0";
+        _idd.text = @"";
     }
     return _idd;
 }
 -(UILabel*)goodName{
     if (!_goodName){
         _goodName = [[UILabel alloc] initWithFrame:CGRectMake(38, 0, _cellView.width-190, 22)];
-        _goodName.text = @"zzzzzzzzz";
+        _goodName.text = @"";
         _goodName.font = [UIFont systemFontOfSize:14];
     }
     return _goodName;
@@ -202,7 +225,7 @@
 -(UILabel*)countNum{
     if (!_countNum){
         _countNum = [[UILabel alloc] initWithFrame:CGRectMake(_cellView.width-148, 0, 40, 22)];
-        _countNum.text = @"X999";
+        _countNum.text = @"X0";
         _countNum.font = [UIFont systemFontOfSize:14];
     }
     return _countNum;
@@ -210,11 +233,20 @@
 -(UILabel*)momeyNum{
     if (!_momeyNum){
         _momeyNum = [[UILabel alloc] initWithFrame:CGRectMake(_cellView.width-108, 0, 100, 22)];
-        _momeyNum.text = @"￥000000.00";
+        _momeyNum.text = @"￥0.00";
 //        _momeyNum.textAlignment = NSTextAlignmentRight;
         _momeyNum.font = [UIFont systemFontOfSize:14];
     }
     return _momeyNum;
+}
+-(void)setIddNum:(NSInteger)iddNum{
+    _idd.text = [NSString stringWithFormat:@"%ld",iddNum];
+}
+-(void)setModel:(OrderGoodsListModel *)model{
+    _model=model;
+    _goodName.text = model.GOODSNAME;
+    _countNum.text = [NSString stringWithFormat:@"X%@",[model.ORDERAMOUNT fString]];
+    _momeyNum.text = [NSString stringWithFormat:@"￥%@",[model.ORDERSUMS fString]];
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "MainButtonCell.h"
 #import "CycleScrollView.h"
 #import "MainTableViewCell.h"
+#import "MedicineDetailViewController.h"
+
 @interface MainViewController ()<MainButtonCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
@@ -269,6 +271,21 @@
     }
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    VC.hidesBottomBarWhenPushed = YES;
+    if (indexPath.section==2) {
+        NSDictionary *model = self.activeArray[indexPath.row];
+        VC.goodsID = model[@"GoodsID"];
+        VC.provider = model[@"provider"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.section==3){
+        NSDictionary *model = self.recommendArray[indexPath.row];
+        VC.goodsID = model[@"GoodsID"];
+        VC.provider = model[@"provider"];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+}
 #pragma mark - 事件
 
 #pragma - mark delegate
@@ -308,20 +325,19 @@
     
     /**
      参数说明
-     
-     @param UserID 用户id 首页没登录传0
-     @param Opcode 内容(1. 头部三张大图, 2, 活动专区, 3, 推荐内容)
+     param UserID 用户id 首页没登录传0
+     param Opcode 内容(1. 头部三张大图, 2, 活动专区, 3, 推荐内容)
      */
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
-//    [pargrams setObject:@"0" forKey:@"UserID"];
-    NSLog(@"参数-- pargrams:%@",pargrams);
-    NSString *postUrl = @"";
-    if ([UserModel getUserModel].P_LSM.length > 0) {
-        postUrl = [NSString stringWithFormat:@"%@?UserID=%@", postUrl, [UserModel getUserModel].P_LSM];
+    UserModel *model = [[UserModel alloc] init];
+    model = [UserModel getUserModel];
+    if ([AnimaDefaultUtil isNotNull:model.P_LSM]) {
+            [pargrams setObject:model.P_LSM forKey:@"UserID"];
     } else {
-        postUrl = [NSString stringWithFormat:@"%@?UserID=0", GetHomeInfo];
+            [pargrams setObject:@"0" forKey:@"UserID"];
     }
-    [BaseApi getMenthodWithUrl:postUrl block:^(NSDictionary *dict, NSError *error) {
+    NSLog(@"参数-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:GetHomeInfo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"success:%@",dict[@"data"]);
             if (self.bannerArray.count == 0) {
