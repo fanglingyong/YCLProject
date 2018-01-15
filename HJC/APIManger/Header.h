@@ -46,6 +46,8 @@
 #define GetOdersNo @"/QN_ORDER_LIST_DOC"
 //获取细单信息
 #define GetOrderDetail @"/QN_ORDER_LIST_DETAIL"
+//首页活动专区 推荐品种
+#define GetHomeList @"/QN_GOODS_LIST_INDEX_HEAD?UserID=0"
 
 #endif /* Header_h */
 

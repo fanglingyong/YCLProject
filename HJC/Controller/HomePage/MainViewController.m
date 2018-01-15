@@ -18,6 +18,8 @@
 @property(nonatomic, retain)CycleScrollView *adScrollView;
 @property(nonatomic, retain)UIPageControl *pageControl;
 @property(nonatomic, retain)NSMutableArray *bannerArray;
+@property(nonatomic, retain)NSMutableArray *activeArray;
+@property(nonatomic, retain)NSMutableArray *recommendArray;
 
 @end
 
@@ -27,6 +29,9 @@
     self = [super init];
     if (self) {
         self.bannerArray = [NSMutableArray array];
+        self.activeArray = [NSMutableArray array];
+        self.recommendArray = [NSMutableArray array];
+
     }
     return self;
 }
@@ -47,6 +52,7 @@
     self.tableView.tableHeaderView = self.headerView;
     
     [self createAdScrollView];
+    [self handleDate];
     
 }
 
@@ -184,7 +190,11 @@
             return HeightXiShu(30);
         }
     }
-    return HeightXiShu(210) * 4;
+    long row = self.recommendArray.count / 2;
+    if (self.recommendArray.count % 2 > 0) {
+        row += 1;
+    }
+    return HeightXiShu(210) * row;
     
 }
 
@@ -228,11 +238,15 @@
             dateLabel.font = HEITI(HeightXiShu(11));
             [cell.contentView addSubview:dateLabel];
         } else {
+            
             static NSString *identifier = @"ActivityZoneCell";
             ActivityZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
             if (!cell) {
                 cell = [[ActivityZoneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            if (self.activeArray.count > 0) {
+                [cell setDate:self.activeArray];
             }
             return cell;
         }
@@ -250,6 +264,9 @@
             if (!cell) {
                 cell = [[RecommendVarietiesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            if (self.recommendArray.count > 0) {
+                [cell setDate:self.recommendArray];
             }
             return cell;
         }
@@ -290,6 +307,33 @@
             break;
     }
 }
+#pragma mark - 接口
+- (void)handleDate {
+    
+    /**
+     参数说明
+     
+     @param UserID 用户id 首页没登录传0
+     @param Opcode 内容(1. 头部三张大图, 2, 活动专区, 3, 推荐内容)
+     */
+    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+//    [pargrams setObject:@"0" forKey:@"UserID"];
+    NSLog(@"参数-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:GetHomeList block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            NSLog(@"success:%@",dict[@"data"]);
+            self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"2"]];
+            self.recommendArray = [NSMutableArray arrayWithArray:dict[@"data"][@"3"]];
+        }else{
+            NSLog(@"error:%@",error);
+        }
+        NSLog(@"activeArray%@", self.activeArray);
+        NSLog(@"recommendArray%@", self.recommendArray);
+
+        [self.tableView reloadData];
+    } dic:pargrams noNetWork:nil];
+}
+            
 
 
 

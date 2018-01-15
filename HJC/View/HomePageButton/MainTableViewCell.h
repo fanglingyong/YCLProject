@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityZoneCell : UITableViewCell
 
+@interface ActivityZoneCell : UITableViewCell
+@property (nonatomic, retain)NSMutableArray *array;
+- (void)setDate:(NSMutableArray *)array;
 @end
 
 @interface RecommendVarietiesCell : UITableViewCell
-
+@property (nonatomic, retain)NSMutableArray *array;
+- (void)setDate:(NSMutableArray *)array;
 @end

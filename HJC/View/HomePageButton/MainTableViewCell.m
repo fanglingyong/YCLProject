@@ -29,45 +29,49 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setUpContentView];
+        [self setDate:self.array];
     }
     return self;
 }
 
 #pragma mark - 页面元素
-- (void)setUpContentView {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(150))];
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.bounces = NO;
-    self.scrollView.backgroundColor = [UIColor whiteColor];
-    self.scrollView.contentSize = CGSizeMake(WidthXiShu(95) * 6 + WidthXiShu(5), 0);
-    [self.contentView addSubview:self.scrollView];
+- (void)setDate:(NSMutableArray *)array {
+    NSLog(@"arrayarray%@", array);
     
-    for (int i = 0; i < 6; i++) {
-        UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, 0, WidthXiShu(90), HeightXiShu(90))];
-        medicineImg.layer.borderWidth = .5;
-        medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
-        medicineImg.layer.masksToBounds = YES;
-        medicineImg.image = [UIImage imageNamed:@"sysIcon3.jpg"];
-        [self.scrollView addSubview:medicineImg];
+    if (array.count > 0) {
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(150))];
+        self.scrollView.showsVerticalScrollIndicator = NO;
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.bounces = NO;
+        self.scrollView.backgroundColor = [UIColor whiteColor];
+        self.scrollView.contentSize = CGSizeMake(WidthXiShu(95) * array.count + WidthXiShu(5), 0);
+        [self.contentView addSubview:self.scrollView];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, HeightXiShu(90), WidthXiShu(90), HeightXiShu(30))];
-        label.text = @"泮托拉错那苍茸胶囊(泮立苏)";
-        label.textColor = TitleColor;
-        label.font = HEITI(HeightXiShu(10));
-        label.numberOfLines = 2;
-        [self.scrollView addSubview:label];
-
-        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, HeightXiShu(125), WidthXiShu(90), HeightXiShu(20))];
-        priceLabel.text = @"$43.00/盒";
-        priceLabel.textColor = [UIColor blueColor];
-        priceLabel.textColor = TitleColor;
-        priceLabel.font = HEITI(HeightXiShu(10));
-        [self.scrollView addSubview:priceLabel];
-        
+        for (int i = 0; i < array.count; i++) {
+            UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, 0, WidthXiShu(90), HeightXiShu(90))];
+            medicineImg.layer.borderWidth = .5;
+            medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
+            medicineImg.layer.masksToBounds = YES;
+            
+            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[array[i] objectForKey:@"goodspic"]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+            [self.scrollView addSubview:medicineImg];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, HeightXiShu(90), WidthXiShu(90), HeightXiShu(30))];
+            label.text = [array[i] objectForKey:@"goodsname"];
+            label.textColor = TitleColor;
+            label.font = HEITI(HeightXiShu(10));
+            label.numberOfLines = 2;
+            [self.scrollView addSubview:label];
+            
+            UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, HeightXiShu(125), WidthXiShu(90), HeightXiShu(20))];
+            
+            priceLabel.text = [NSString stringWithFormat:@"%@/%@", [array[i] objectForKey:@"Spec"], [array[i] objectForKey:@"useunit"]];
+            priceLabel.textColor = [UIColor blueColor];
+            priceLabel.textColor = TitleColor;
+            priceLabel.font = HEITI(HeightXiShu(10));
+            [self.scrollView addSubview:priceLabel];
+        }
     }
-    
 }
 
 @end
@@ -89,37 +93,40 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setUpContentView];
+        [self setDate:self.array];
     }
     return self;
 }
 
 #pragma mark - 页面元素
-- (void)setUpContentView {
-  
-    CGFloat width = (kScreenWidth - WidthXiShu(20) * 3) / 2;
-    CGFloat height = HeightXiShu(155);
-    for (int i = 0; i < 8; i++) {
-        UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(5) + HeightXiShu(210) * (i / 2), width, height)];
-        medicineImg.layer.borderWidth = .5;
-        medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
-        medicineImg.layer.masksToBounds = YES;
-        medicineImg.image = [UIImage imageNamed:@"sysIcon3.jpg"];
-        [self.contentView addSubview:medicineImg];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(165) + HeightXiShu(210) * (i / 2), width, HeightXiShu(15))];
-        label.text = @"泮托拉错那苍茸胶囊(泮立苏)";
-        label.textColor = TitleColor;
-        label.font = HEITI(HeightXiShu(10));
-        [self.contentView addSubview:label];
-        
-        UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(180) + HeightXiShu(210) * (i / 2), width, HeightXiShu(15))];
-        priceLabel.text = @"$43.00/盒";
-        priceLabel.textColor = [UIColor blueColor];
-        priceLabel.textColor = TitleColor;
-        priceLabel.font = HEITI(HeightXiShu(10));
-        [self.contentView addSubview:priceLabel];
-        
+- (void)setDate:(NSMutableArray *)array {
+
+    if (array.count > 0) {
+        CGFloat width = (kScreenWidth - WidthXiShu(20) * 3) / 2;
+        CGFloat height = HeightXiShu(155);
+        for (int i = 0; i < array.count; i++) {
+            UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(5) + HeightXiShu(210) * (i / 2), width, height)];
+            medicineImg.layer.borderWidth = .5;
+            medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
+            medicineImg.layer.masksToBounds = YES;
+            [medicineImg sd_setImageWithURL:[NSURL URLWithString:[array[i] objectForKey:@"goodspic"]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+            [self.contentView addSubview:medicineImg];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(165) + HeightXiShu(210) * (i / 2), width, HeightXiShu(15))];
+            label.text = [array[i] objectForKey:@"goodsname"];
+            label.textColor = TitleColor;
+            label.font = HEITI(HeightXiShu(10));
+            [self.contentView addSubview:label];
+            
+            UILabel *priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(180) + HeightXiShu(210) * (i / 2), width, HeightXiShu(15))];
+            priceLabel.text = [NSString stringWithFormat:@"%@/%@", [array[i] objectForKey:@"Spec"], [array[i] objectForKey:@"useunit"]];
+            
+            priceLabel.textColor = [UIColor blueColor];
+            priceLabel.textColor = TitleColor;
+            priceLabel.font = HEITI(HeightXiShu(10));
+            [self.contentView addSubview:priceLabel];
+            
+        }
     }
     
 }

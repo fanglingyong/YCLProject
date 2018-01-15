@@ -87,6 +87,7 @@
 		36430BC21F9DBF8F001709DD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430BB21F9DBE9E001709DD /* UIView+WebCacheOperation.m */; };
 		36430BC61F9DD6C3001709DD /* MedicineBreedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430BC51F9DD6C3001709DD /* MedicineBreedCell.m */; };
 		36430BCA1F9DD7DD001709DD /* MedicineBreesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430BC91F9DD7DD001709DD /* MedicineBreesModel.m */; };
+		364326C6200C474A0078E378 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 364326C5200C474A0078E378 /* HomeModel.m */; };
 		3645B96D200756FE00D2D568 /* home_care.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B95E200756FD00D2D568 /* home_care.png */; };
 		3645B96E200756FE00D2D568 /* home_care@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B95F200756FD00D2D568 /* home_care@2x.png */; };
 		3645B96F200756FE00D2D568 /* home_care@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B960200756FD00D2D568 /* home_care@3x.png */; };
@@ -485,6 +486,8 @@
 		36430BC51F9DD6C3001709DD /* MedicineBreedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineBreedCell.m; sourceTree = "<group>"; };
 		36430BC81F9DD7DD001709DD /* MedicineBreesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedicineBreesModel.h; sourceTree = "<group>"; };
 		36430BC91F9DD7DD001709DD /* MedicineBreesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineBreesModel.m; sourceTree = "<group>"; };
+		364326C4200C474A0078E378 /* HomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		364326C5200C474A0078E378 /* HomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
 		3645B95E200756FD00D2D568 /* home_care.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_care.png; sourceTree = "<group>"; };
 		3645B95F200756FD00D2D568 /* home_care@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_care@2x.png"; sourceTree = "<group>"; };
 		3645B960200756FD00D2D568 /* home_care@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_care@3x.png"; sourceTree = "<group>"; };
@@ -1174,6 +1177,15 @@
 			path = MedicineModel;
 			sourceTree = "<group>";
 		};
+		364326C3200C44730078E378 /* HomeModel */ = {
+			isa = PBXGroup;
+			children = (
+				364326C4200C474A0078E378 /* HomeModel.h */,
+				364326C5200C474A0078E378 /* HomeModel.m */,
+			);
+			path = HomeModel;
+			sourceTree = "<group>";
+		};
 		3645B95D200756FD00D2D568 /* HomeButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1512,7 @@
 		3696FC0A1F95DC86000B9172 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				364326C3200C44730078E378 /* HomeModel */,
 				450BF40C1FED387300A90704 /* SubmitOrdersModel */,
 				451068D01FE5FDC70009B113 /* ClinicModel */,
 				457D797F1FE514250077F462 /* UserModel */,
@@ -2466,6 +2479,7 @@
 				366EAB311F9D8B1B00A63E83 /* MJRefreshFooter.m in Sources */,
 				366EAB321F9D8B2800A63E83 /* MJRefreshBackFooter.m in Sources */,
 				366EAB331F9D8B3300A63E83 /* UIScrollView+MJExtension.m in Sources */,
+				364326C6200C474A0078E378 /* HomeModel.m in Sources */,
 				366EAB341F9D8B3F00A63E83 /* MJRefreshBackStateFooter.m in Sources */,
 				363BB5301FD54158004DBA4A /* ProcurementCell.m in Sources */,
 				366EAB351F9D8B5100A63E83 /* MJRefreshBackNormalFooter.m in Sources */,
