@@ -50,6 +50,6 @@
 #define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
-
+#define HomePic @"http://120.26.97.79/WebApi/IndexPic/"
 #endif /* Header_h */
 

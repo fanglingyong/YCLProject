@@ -41,18 +41,10 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     
-
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/1154433-d1131eb89323cd1e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/8390198-e0efc31aa87a32fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
-    [self.bannerArray addObject:@"http://upload-images.jianshu.io/upload_images/1154433-a4cc27b8469fbb8e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"];
-    
     [self.tableView setMinY:0 maxY:kScreenHeight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.headerView;
-    
-    [self createAdScrollView];
-    [self handleDate];
     
 }
 
@@ -64,6 +56,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
+    [self handleDate];
 }
 #pragma mark - 页面元素
 
@@ -102,7 +95,7 @@
     
     if (self.bannerArray.count != 0) {
         
-//        NSLog(@"%@", self.bannerArray);
+        NSLog(@"%@", self.bannerArray);
 //        NSLog(@"创建banner图片");
         
         __weak typeof(MainViewController) *weakSelf = self;
@@ -112,7 +105,7 @@
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
             NSString *url = weakSelf.bannerArray[pageIndex];
 //            NSLog(@"%@", url);
-            [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", HomePic, url]]];
             return imageView;
         };
         
@@ -245,6 +238,8 @@
                 cell = [[ActivityZoneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
             if (self.activeArray.count > 0) {
                 [cell setDate:self.activeArray];
             }
@@ -265,6 +260,7 @@
                 cell = [[RecommendVarietiesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
+            [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             if (self.recommendArray.count > 0) {
                 [cell setDate:self.recommendArray];
             }
@@ -319,17 +315,33 @@
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
 //    [pargrams setObject:@"0" forKey:@"UserID"];
     NSLog(@"参数-- pargrams:%@",pargrams);
-    [BaseApi getMenthodWithUrl:GetHomeInfo block:^(NSDictionary *dict, NSError *error) {
+    NSString *postUrl = @"";
+    if ([UserModel getUserModel].P_LSM.length > 0) {
+        postUrl = [NSString stringWithFormat:@"%@?UserID=%@", postUrl, [UserModel getUserModel].P_LSM];
+    } else {
+        postUrl = [NSString stringWithFormat:@"%@?UserID=0", GetHomeInfo];
+    }
+    [BaseApi getMenthodWithUrl:postUrl block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"success:%@",dict[@"data"]);
-            self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"2"]];
-            self.recommendArray = [NSMutableArray arrayWithArray:dict[@"data"][@"3"]];
+            if (self.bannerArray.count == 0) {
+                for (NSDictionary *tempDic in [NSMutableArray arrayWithArray:dict[@"data"][@"1"]]) {
+                    [self.bannerArray addObject:[tempDic objectForKey:@"goodspic"]];
+                }
+            }
+            if (self.activeArray.count == 0) {
+                self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"2"]];
+            }
+            if (self.recommendArray.count == 0) {
+                self.recommendArray = [NSMutableArray arrayWithArray:dict[@"data"][@"3"]];
+            }
         }else{
             NSLog(@"error:%@",error);
         }
         NSLog(@"activeArray%@", self.activeArray);
         NSLog(@"recommendArray%@", self.recommendArray);
 
+        [self createAdScrollView];
         [self.tableView reloadData];
     } dic:pargrams noNetWork:nil];
 }
