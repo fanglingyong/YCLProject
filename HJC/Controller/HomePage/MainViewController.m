@@ -11,8 +11,8 @@
 #import "CycleScrollView.h"
 #import "MainTableViewCell.h"
 #import "MedicineDetailViewController.h"
-
-@interface MainViewController ()<MainButtonCellDelegate>
+#import "SCWebViewController.h"
+@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
 
@@ -126,7 +126,7 @@
         self.adScrollView.TapActionBlock = ^(NSInteger pageIndex){
             NSString *url = weakSelf.bannerArray[pageIndex];
             if (url.length > 0) {
-                //                [weakSelf clickGoToNewVC:url WithName:@""];
+                [weakSelf clickGoToNewVC:[NSString stringWithFormat:@"%@%@", HomePic, url] WithName:@""];
             } else {
                 return;
             }
@@ -134,6 +134,18 @@
     } else {
         return;
     }
+}
+
+#pragma mark-- 跳web端
+- (void)clickGoToNewVC:(NSString*)url WithName:(NSString*)title {
+    
+    SCWebViewController *webVc = [[SCWebViewController alloc]init];
+    NSLog(@"%@",url);
+    webVc.urlString = url;
+    webVc.titleString = title;
+    webVc.IsNav = NO;
+    webVc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:webVc animated:true];
 }
 
 - (UIView *)headerView {
@@ -242,6 +254,7 @@
             }
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
+            cell.delegate = self;
             if (self.activeArray.count > 0) {
                 [cell setDate:self.activeArray];
             }
@@ -263,6 +276,7 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            cell.delegate = self;
             if (self.recommendArray.count > 0) {
                 [cell setDate:self.recommendArray];
             }
@@ -271,21 +285,7 @@
     }
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
-    VC.hidesBottomBarWhenPushed = YES;
-    if (indexPath.section==2) {
-        NSDictionary *model = self.activeArray[indexPath.row];
-        VC.goodsID = model[@"GoodsID"];
-        VC.provider = model[@"provider"];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.section==3){
-        NSDictionary *model = self.recommendArray[indexPath.row];
-        VC.goodsID = model[@"GoodsID"];
-        VC.provider = model[@"provider"];
-        [self.navigationController pushViewController:VC animated:YES];
-    }
-}
+
 #pragma mark - 事件
 
 #pragma - mark delegate
@@ -319,6 +319,29 @@
         default:
             break;
     }
+}
+#pragma mark - 活动专区模块点击
+
+- (void)activityButtonClick:(NSInteger)index {
+    NSLog(@"%ld", (long)index);
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    VC.hidesBottomBarWhenPushed = YES;
+    NSDictionary *model = self.activeArray[index];
+    VC.goodsID = model[@"GoodsID"];
+    VC.provider = model[@"provider"];
+    [self.navigationController pushViewController:VC animated:YES];
+
+}
+#pragma mark - 推荐品种模块点击
+
+- (void)recommendButtonClick:(NSInteger)index {
+    NSLog(@"%ld", (long)index);
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    VC.hidesBottomBarWhenPushed = YES;
+    NSDictionary *model = self.recommendArray[index];
+    VC.goodsID = model[@"GoodsID"];
+    VC.provider = model[@"provider"];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - 接口
 - (void)handleDate {
