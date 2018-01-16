@@ -2145,7 +2145,7 @@
 				TargetAttributes = {
 					3696F9681F95DA84000B9172 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3696F9801F95DA86000B9172 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2693,7 +2693,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FLLG78AHV5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2706,7 +2706,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ylc.eastpharm.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b083c24-14d4-40df-8ec1-fc04d29001aa";
+				PROVISIONING_PROFILE_SPECIFIER = "2018-1-16 14:03:05";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2724,7 +2725,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FLLG78AHV5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2737,7 +2738,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ylc.eastpharm.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8b083c24-14d4-40df-8ec1-fc04d29001aa";
+				PROVISIONING_PROFILE_SPECIFIER = "2018-1-16 14:03:05";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
