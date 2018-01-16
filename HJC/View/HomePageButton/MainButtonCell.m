@@ -145,7 +145,7 @@
         UIButton *salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         salesBtn.frame = CGRectMake(self.integralBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
         [salesBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
-        salesBtn.tag = 5;
+        salesBtn.tag = 4;
         [salesBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:salesBtn];
         _salesBtn = salesBtn;

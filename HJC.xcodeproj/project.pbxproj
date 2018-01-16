@@ -88,6 +88,7 @@
 		36430BC61F9DD6C3001709DD /* MedicineBreedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430BC51F9DD6C3001709DD /* MedicineBreedCell.m */; };
 		36430BCA1F9DD7DD001709DD /* MedicineBreesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36430BC91F9DD7DD001709DD /* MedicineBreesModel.m */; };
 		364326C6200C474A0078E378 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 364326C5200C474A0078E378 /* HomeModel.m */; };
+		364326CA200DCAFC0078E378 /* SCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364326C9200DCAFC0078E378 /* SCWebViewController.m */; };
 		3645B96D200756FE00D2D568 /* home_care.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B95E200756FD00D2D568 /* home_care.png */; };
 		3645B96E200756FE00D2D568 /* home_care@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B95F200756FD00D2D568 /* home_care@2x.png */; };
 		3645B96F200756FE00D2D568 /* home_care@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3645B960200756FD00D2D568 /* home_care@3x.png */; };
@@ -489,6 +490,8 @@
 		36430BC91F9DD7DD001709DD /* MedicineBreesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedicineBreesModel.m; sourceTree = "<group>"; };
 		364326C4200C474A0078E378 /* HomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		364326C5200C474A0078E378 /* HomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		364326C8200DCAFC0078E378 /* SCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebViewController.h; sourceTree = "<group>"; };
+		364326C9200DCAFC0078E378 /* SCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWebViewController.m; sourceTree = "<group>"; };
 		3645B95E200756FD00D2D568 /* home_care.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_care.png; sourceTree = "<group>"; };
 		3645B95F200756FD00D2D568 /* home_care@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_care@2x.png"; sourceTree = "<group>"; };
 		3645B960200756FD00D2D568 /* home_care@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_care@3x.png"; sourceTree = "<group>"; };
@@ -1188,6 +1191,15 @@
 			path = HomeModel;
 			sourceTree = "<group>";
 		};
+		364326C7200DCAFC0078E378 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				364326C8200DCAFC0078E378 /* SCWebViewController.h */,
+				364326C9200DCAFC0078E378 /* SCWebViewController.m */,
+			);
+			path = WebViewController;
+			sourceTree = "<group>";
+		};
 		3645B95D200756FD00D2D568 /* HomeButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1500,6 +1512,7 @@
 		3696F9D61F95DC86000B9172 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				364326C7200DCAFC0078E378 /* WebViewController */,
 				451068C91FE565020009B113 /* MBProgressHUD */,
 				363BB4E51FD4F386004DBA4A /* Webservice */,
 				336FDB9A1FD40B8D00AFC918 /* Utilities */,
@@ -2519,6 +2532,7 @@
 				366EAB001F9D868700A63E83 /* BaseTableViewController.m in Sources */,
 				366EAAFF1F9D868100A63E83 /* BaseTableView.m in Sources */,
 				366EAAFE1F9D867A00A63E83 /* BaseNavigationController.m in Sources */,
+				364326CA200DCAFC0078E378 /* SCWebViewController.m in Sources */,
 				4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */,
 				450BF40F1FED389500A90704 /* SubmitAddressModel.m in Sources */,
 				366EAAFD1F9D867400A63E83 /* BaseCollectionViewCell.m in Sources */,

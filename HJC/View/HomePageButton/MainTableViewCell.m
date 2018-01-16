@@ -48,6 +48,14 @@
         [self.contentView addSubview:self.scrollView];
         
         for (int i = 0; i < array.count; i++) {
+            
+            UIButton *targetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            targetButton.frame = CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, 0, WidthXiShu(90), HeightXiShu(90));
+            targetButton.backgroundColor = [UIColor clearColor];
+            targetButton.tag = i;
+            [targetButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollView addSubview:targetButton];
+
             UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(5) + (WidthXiShu(90) + WidthXiShu(5)) * i, 0, WidthXiShu(90), HeightXiShu(90))];
             medicineImg.layer.borderWidth = .5;
             medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
@@ -71,6 +79,12 @@
             priceLabel.font = HEITI(HeightXiShu(10));
             [self.scrollView addSubview:priceLabel];
         }
+    }
+}
+
+-(void)buttonAction:(UIButton *)button{
+    if([self.delegate respondsToSelector:@selector(activityButtonClick:)]){
+        [self.delegate activityButtonClick:button.tag];
     }
 }
 
@@ -105,6 +119,14 @@
         CGFloat width = (kScreenWidth - WidthXiShu(20) * 3) / 2;
         CGFloat height = HeightXiShu(155);
         for (int i = 0; i < array.count; i++) {
+            
+            UIButton *targetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            targetButton.frame = CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(5) + HeightXiShu(210) * (i / 2), width, height);
+            targetButton.backgroundColor = [UIColor clearColor];
+            targetButton.tag = i;
+            [targetButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.contentView addSubview:targetButton];
+            
             UIImageView *medicineImg = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(20) + (WidthXiShu(20) + width) * (i % 2), HeightXiShu(5) + HeightXiShu(210) * (i / 2), width, height)];
             medicineImg.layer.borderWidth = .5;
             medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
@@ -129,6 +151,12 @@
         }
     }
     
+}
+
+-(void)buttonAction:(UIButton *)button{
+    if([self.delegate respondsToSelector:@selector(recommendButtonClick:)]){
+        [self.delegate recommendButtonClick:button.tag];
+    }
 }
 
 @end

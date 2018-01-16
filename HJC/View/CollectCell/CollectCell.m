@@ -184,7 +184,7 @@
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
     _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.CorpName];
-    _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.provider];
+    _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.producer];
     _priceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.asprice momeyString],model.useunit];   //价格
     
 }
