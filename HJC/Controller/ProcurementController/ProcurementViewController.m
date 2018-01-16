@@ -307,11 +307,8 @@
 }
 
 - (void)dropdownButton:(HDDropdownButton *)titleView didTapButton:(UIButton *)sender {
-    
-    
     if (titleView.selected == YES) {
         [self deselectButtons];
-        
     } else {
         [self deselectButtons];
         if ([titleView isEqual:self.allClassButton]) {
@@ -321,35 +318,25 @@
             self.dropView.selectedIndex = self.procurement.allClass;
             [self.dropView resetContentFrame];
             self.dropView.hidden = NO;
-            
-            NSLog(@"dropView%lu", (unsigned long)self.dropView.selectedIndex);
-            
-            NSLog(@"全部分类");
-            
+            NSLog(@"全部分类：dropView%lu", (unsigned long)self.dropView.selectedIndex);
         }
         if ([titleView isEqual:self.suppliersButton]) {
-            
             self.suppliersButton.selected = YES;
             self.dropView.dataArray = self.procurement.suppliersArray;
             self.dropView.tag = 1002;
             self.dropView.selectedIndex = self.procurement.suppliers;
             [self.dropView resetContentFrame];
             self.dropView.hidden = NO;
-            NSLog(@"dropView%lu", (unsigned long)self.dropView.selectedIndex);
-            NSLog(@"供应商");
-            
-            
+            NSLog(@"供应商：dropView%lu", (unsigned long)self.dropView.selectedIndex);
         }
         if ([titleView isEqual:self.promotionsButton]) {
-            
             self.promotionsButton.selected = YES;
             self.dropView.dataArray = self.procurement.promotionsArray;
             self.dropView.tag = 1003;
             self.dropView.selectedIndex = self.procurement.promotions;
             [self.dropView resetContentFrame];
             self.dropView.hidden = NO;
-            NSLog(@"dropView%lu", (unsigned long)self.dropView.selectedIndex);
-            NSLog(@"促销");
+            NSLog(@"促销：dropView%lu", (unsigned long)self.dropView.selectedIndex);
         }
     }
 }
@@ -383,7 +370,7 @@
     }
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
     [_pargrams setObject:[NSString stringWithFormat:@"%@,%@",@"4",@""] forKey:@"Parastr"];// 供应商id,药品名称
-    [_pargrams setObject:[self getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+    [_pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
         [_tableView.mj_footer endRefreshing];
@@ -408,13 +395,7 @@
         }
     } dic:_pargrams noNetWork:nil];
 }
-- (NSString *)getUserID{
-    if ([UserModel getUserModel].P_LSM) {
-        return [UserModel getUserModel].P_LSM;
-    }else{
-        return @"0";
-    }
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

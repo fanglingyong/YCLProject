@@ -1,22 +1,22 @@
 //
-//  ShoppingCartViewController.m
+//  ShopCarViewController.m
 //  HJC
 //
-//  Created by zhifu360 on 2017/10/17.
-//  Copyright © 2017年 EastChina. All rights reserved.
+//  Created by 方灵勇 on 2018/1/16.
+//  Copyright © 2018年 EastChina. All rights reserved.
 //
 
-#import "ShoppingCartViewController.h"
+#import "ShopCarViewController.h"
 #import "NavView.h"
 #import "ShoppingCartModel.h"
 #import "ShoppingCartCell.h"
 #import "SubmitOrdersViewController.h"
 
-@interface ShoppingCartViewController ()<UITableViewDelegate, UITableViewDataSource,ShopCartCellDelegate>
+@interface ShopCarViewController ()<UITableViewDelegate, UITableViewDataSource,ShopCartCellDelegate>
 @property (nonatomic,strong)NavView *navView;
-@property (nonatomic, retain)UITableView *mainTableView;
+@property (nonatomic, strong)UITableView *mainTableView;
 
-@property (nonatomic, retain)UIView *footView;
+@property (nonatomic, strong)UIView *footView;
 @property (nonatomic, strong)UILabel*momeyLable;
 
 @property(nonatomic,strong)NSMutableArray *modelArr;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ShoppingCartViewController
+@implementation ShopCarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,12 +33,7 @@
     [self navView];
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.footView];
-//    [self net_workforshopcar];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self net_workforshopcar];
 }
 #pragma mark - 页面元素
 -(NavView *)navView{
@@ -47,15 +42,19 @@
         navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"购物车";
-        navView.leftBtn.hidden = YES;
+        navView.leftBtn.hidden = NO;
+        [navView.leftBtn addTarget:self action:@selector(lastPageVC) forControlEvents:UIControlEventTouchUpInside];
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
+-(void)lastPageVC{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(UIView*)footView{
     if (!_footView) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-89, kScreenWidth, 40)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
         _footView.backgroundColor = [UIColor whiteColor];
         
         UIButton *allSelect = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -119,7 +118,7 @@
         }
     }
     if ([AnimaDefaultUtil isNotNull:tempOrder]) {
-        NSLog(@"提交订单");
+//        NSLog(@"提交订单");
         SubmitOrdersViewController *submitOrder = [[SubmitOrdersViewController alloc]init];
         submitOrder.hidesBottomBarWhenPushed = YES;
         submitOrder.orderIDs = [NSString stringWithFormat:@"%@",tempOrder];
@@ -128,7 +127,7 @@
         submitOrder.totalMoeny = _total;
         [self.navigationController pushViewController:submitOrder animated:YES];
     }else{
-        NSLog(@"购物车为空");
+//        NSLog(@"购物车为空");
         [HUDUtil Hud_message:@"无订单可提交" view:self.view];
     }
 }
@@ -150,7 +149,7 @@
 #pragma mark - tableView delegate dataSource
 -(UITableView*)mainTableView{
     if (!_mainTableView) {
-        self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+kStateHeight, kScreenWidth, kScreenHeight-133-kStateHeight) style:UITableViewStylePlain];
+        self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+kStateHeight, kScreenWidth, kScreenHeight-84-kStateHeight) style:UITableViewStylePlain];
         self.mainTableView.delegate = self;
         self.mainTableView.dataSource = self;
         self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -193,7 +192,7 @@
 }
 #pragma mark - cell delegate
 -(void)updateCellForData:(NSInteger)row{
-    NSLog(@"选中/取消");
+//    NSLog(@"选中/取消");
     [self updatePrice];
 }
 -(void)deleteThisCell:(NSInteger)row{
@@ -202,22 +201,22 @@
     [_modelArr removeObjectAtIndex:row];
     [self updatePrice];
     [_mainTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
-//    [_mainTableView reloadData];
+    //    [_mainTableView reloadData];
 }
 -(void)changeOrderDetail:(NSInteger)row oldCount:(NSString*)oldCount{
-    NSLog(@"修改品种数量");
+//    NSLog(@"修改品种数量");
     [self updatePrice];
     [self net_update:_modelArr[row] type:@"2" oldCount:oldCount];
 }
 #pragma mark - 网络请求
 /**
  更新细单请求
-
+ 
  @param model modeldata
  @param type 更新类型 1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
  */
 -(void)net_update:(ShoppingCartModel*)model type:(NSString*)type oldCount:(NSString*)oldCount{
-
+    
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
     [pargrams setObject:type forKey:@"Opcode"];//
@@ -270,10 +269,12 @@
         } dic:pargrams noNetWork:nil];
     }
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-//    [self net_workforshopcar];
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
 /*
 #pragma mark - Navigation
 

@@ -58,7 +58,6 @@
     [pargams setObject:@",10,1" forKey:@"WebPara"];
     [BaseApi getMenthodWithUrl:GetClinicList block:^(NSDictionary *dict, NSError *error) {
         if(dict){
-            NSLog(@"自己诊所————数组%@",dict[@"data"]);
             NSDictionary*clinic = dict[@"data"][0];
             BindClinicModel *model = [[BindClinicModel alloc] init];
             [model setValuesForKeysWithDictionary:clinic];

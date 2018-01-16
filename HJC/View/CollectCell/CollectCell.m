@@ -79,7 +79,7 @@
         medicineImg.layer.masksToBounds = YES;
         medicineImg.layer.borderWidth = .5;
         medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
-        medicineImg.image = [UIImage imageNamed:@"sysIcon3.jpg"];
+        medicineImg.image = [UIImage imageNamed:@"default"];
         [self.contentView addSubview:medicineImg];
         _medicineImg = medicineImg;
     }
@@ -180,7 +180,7 @@
 #pragma mark - setter
 
 - (void)setModel:(CollectModel *)model {
-    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
     _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.CorpName];

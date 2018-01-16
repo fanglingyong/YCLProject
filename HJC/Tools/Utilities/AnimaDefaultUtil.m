@@ -22,7 +22,20 @@
     }];
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
++ (NSString *)getUserID{
+    if ([AnimaDefaultUtil isNotNull:[UserModel getUserModel].P_LSM]) {
+        return [UserModel getUserModel].P_LSM;
+    }else{
+        return @"0";
+    }
+}
++ (BOOL)getUserIsLogin{
+    if ([[UserModel getUserModel].P_LSM intValue]>0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

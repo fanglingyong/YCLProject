@@ -132,7 +132,7 @@
     [self.navigationController pushViewController:delegateVC animated:YES];
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
-    NSLog(@"注册成功!!!");
+//    NSLog(@"注册成功!!!");
     NSString * account = _account.textField.text;
     NSString * password1 = _password.textField.text;
     NSString * password2 = _againpswd.textField.text;

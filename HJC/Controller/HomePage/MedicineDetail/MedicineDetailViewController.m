@@ -10,9 +10,10 @@
 #import "NavView.h"
 #import "MedicineDetailCell.h"
 #import "MedicineDetailModel.h"
-
+#import "LoginViewController.h"
 #import "CycleScrollView.h"
 #import "MerchandiseFooterButton.h"
+#import "ShopCarViewController.h"
 
 @interface MedicineDetailViewController ()<MerchandiseFooterButtonDelegate>
 
@@ -63,7 +64,7 @@
         _navView = navView;
         [self.view addSubview:_navView];
         
-        navView.rightBtn.hidden = NO;
+        navView.rightBtn.hidden = YES;
         [navView.rightBtn setImage:[GetImagePath getImagePath:@"more"] forState:UIControlStateNormal];
         navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, WidthXiShu(30), 0, 0);
         [navView.rightBtn addTarget:self action:@selector(moreClick) forControlEvents:UIControlEventTouchUpInside];
@@ -78,7 +79,7 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.footerView];
-    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BigPic,_model.GOODSPIC]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BigPic,_model.GOODSPIC]] placeholderImage:[UIImage imageNamed:@"default"]];
     [self.tableView reloadData];
 }
 
@@ -134,28 +135,52 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)moreClick {
-    NSLog(@"更多信息");
+//    NSLog(@"更多信息");
 }
 #pragma mark - 事件 MerchandiseFooterButtonDelegate
 - (void)didCollectBtn:(UIButton *)button{
     //收藏
-    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargrams setObject:_model.CORPID forKey:@"PROVIDER"];//供应商ID
-    [pargrams setObject:_model.GOODSID forKey:@"GOODSID"];//货品ID
-    NSLog(@"-- pargrams:%@",pargrams);
-    [BaseApi getMenthodWithUrl:JoinCollect block:^(NSDictionary *dict, NSError *error) {
-        if (!error) {
-            NSLog(@"%@",dict);
-            [HUDUtil Hud_message:dict[@"message"] view:_headerView];
-            self.footerView.collectImg.image = [UIImage imageNamed:@"collection"];
-        }else{
-            [HUDUtil Hud_message:error.domain view:_headerView];
-        }
-    } dic:pargrams noNetWork:nil];
+    if ([AnimaDefaultUtil getUserIsLogin]) {
+        NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+        [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"Userid"];
+        [pargrams setObject:_model.CORPID forKey:@"PROVIDER"];//供应商ID
+        [pargrams setObject:_model.GOODSID forKey:@"GOODSID"];//货品ID
+        NSLog(@"-- pargrams:%@",pargrams);
+        [BaseApi getMenthodWithUrl:JoinCollect block:^(NSDictionary *dict, NSError *error) {
+            if (!error) {
+                [HUDUtil Hud_message:dict[@"message"] view:_headerView];
+                self.footerView.collectImg.image = [UIImage imageNamed:@"collection"];
+            }else{
+                [HUDUtil Hud_message:error.domain view:_headerView];
+            }
+        } dic:pargrams noNetWork:nil];
+    }else{
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [self presentViewController:login animated:YES completion:nil];
+    }
 }
 - (void)didAddShopCartBtn:(UIButton *)button{
+    if ([AnimaDefaultUtil getUserIsLogin]) {
+        [self joinGoodsToShopCarWithJump:NO];
+    }else{
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [self presentViewController:login animated:YES completion:nil];
+    }
+}
+- (void)didProcurementBtn:(UIButton *)button{
+    //立即采购-->加入购物车操作后立即立即跳转到购物车
+    if ([AnimaDefaultUtil getUserIsLogin]) {
+        [self joinGoodsToShopCarWithJump:YES];
+    }else{
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [self presentViewController:login animated:YES completion:nil];
+    }
+}
+- (void)joinGoodsToShopCarWithJump:(BOOL)isJump{
     //加入购物车
+    if (isJump) {
+        [MBProgressHUD showHUDAddedTo:_headerView animated:YES];
+    }
     MedicineDetailCell *cell = (MedicineDetailCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSString *amout = [NSString stringWithFormat:@"%ld",cell.num];
     NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
@@ -170,30 +195,31 @@
     NSLog(@"-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:JoinShopCarURL block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
-            NSLog(@"%@",dict);
-            [HUDUtil Hud_message:dict[@"message"] view:_headerView];
+            if (isJump) {
+                [MBProgressHUD hideHUDForView:_headerView animated:YES];
+                ShopCarViewController *shopcar = [[ShopCarViewController alloc] init];
+                [self.navigationController pushViewController:shopcar animated:YES];
+            }else{
+                [HUDUtil Hud_message:dict[@"message"] view:_headerView];
+            }
         }else{
             [HUDUtil Hud_message:error.domain view:_headerView];
         }
     } dic:pargrams noNetWork:nil];
 }
-- (void)didProcurementBtn:(UIButton *)button{
-    //立即采购
-    
-}
 
 #pragma mark - 药品详情
 -(void)net_goodsInfo{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];//
+    [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//
     [pargrams setObject:_goodsID forKey:@"GoodsId"];//货品ID
     [pargrams setObject:_provider forKey:@"Producer"];//供应商ID
     NSLog(@"-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsDetailInfo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
-            NSLog(@"%@",dict);
             _model = [[MedicineDetailModel alloc] init];
             [_model setValuesForKeysWithDictionary:dict[@"data"][0]];
+//            [self.modelArr addObject:_model];
             [self startUI];
         }else{
             [HUDUtil Hud_message:error.domain view:_headerView];

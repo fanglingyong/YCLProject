@@ -45,7 +45,7 @@
 }
 
 -(void)getSmsCodeToServer{
-    NSLog(@"获取验证码");
+//    NSLog(@"获取验证码");
     _smsBtn.text = @"120秒";
     _smsBtn.userInteractionEnabled = NO;
 }

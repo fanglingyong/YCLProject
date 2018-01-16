@@ -171,7 +171,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 if (dict) {
-                    NSLog(@"诊所id %@",dict[@"data"][0][@"corpid"]);
                     BusinessLicenseViewController * pa = [[BusinessLicenseViewController alloc] init];
                     pa.corpid = dict[@"data"][0][@"corpid"];
                     [self.navigationController pushViewController:pa animated:YES];

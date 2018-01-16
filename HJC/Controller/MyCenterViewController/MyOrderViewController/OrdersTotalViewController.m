@@ -70,10 +70,7 @@
 
     [self networkGetOrders];
     // Do any additional setup after loading the view.
-
-    [self.orderStatusArray addObject:@"订单状态0"];
-    [self.orderStatusArray addObject:@"订单状态1"];
-    [self.orderStatusArray addObject:@"订单状态2"];
+    [self.orderStatusArray addObjectsFromArray:@[@"待付款",@"待发货",@"拣货中",@"配送中",@"已收货"]];
     NSArray *array = [NSArray arrayWithObject:self.orderStatusArray];
     [self.orderStatus setupBasicArray:array];
 }
@@ -84,9 +81,7 @@
 -(void)networkGetOrders{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-    [pargrams setObject:[NSString stringWithFormat:@"%@ 00:00:00,%@ 23:59:59", self.orderBegTimeBtn.currentTitle, self.orderEndTimeBtn.currentTitle] forKey:@"Parastr"];
-
-//    [pargrams setObject:@"2017-12-01 17:20:26,2017-12-25 17:20:44" forKey:@"Parastr"];
+    [pargrams setObject:[NSString stringWithFormat:@"%@-01 00:00:00,%@ 23:59:59", [NSDate getNewDateStringWithDateFmt:@"yyyy-MM"], [NSDate getNewDateStringWithDateFmt:@"yyyy-MM-dd"] ] forKey:@"Parastr"];
     [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_page] forKey:@"WebPara"];
     NSLog(@"%@", pargrams)
     [BaseApi getMenthodWithUrl:GetOdersNo block:^(NSDictionary *dict, NSError *error) {
@@ -136,7 +131,6 @@
     if (!_headerView) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, HeightXiShu(44))];
         headerView.backgroundColor = [UIColor whiteColor];
-        
         // 全部分类
         self.orderStatusButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, 0, WidthXiShu(120), HeightXiShu(44))];
         self.orderStatusButton.delegate = self;
@@ -156,7 +150,7 @@
         self.orderBegTimeBtn.frame = CGRectMake(WidthXiShu(190), HeightXiShu(12), WidthXiShu(70), HeightXiShu(20));
         self.orderBegTimeBtn.titleLabel.font = HEITI(HeightXiShu(12));
         [self.orderBegTimeBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [self.orderBegTimeBtn setTitle:@"2017-12-01" forState:UIControlStateNormal];
+        [self.orderBegTimeBtn setTitle:[NSString stringWithFormat:@"%@-01",[NSDate getNewDateStringWithDateFmt:@"yyyy-MM"]] forState:UIControlStateNormal];
         [self.orderBegTimeBtn addTarget:self action:@selector(orderBegTimeBtnPress) forControlEvents:UIControlEventTouchDown];
         self.orderBegTimeBtn.backgroundColor = AllBackLightGratColor;
         [headerView addSubview:self.orderBegTimeBtn];
@@ -169,7 +163,7 @@
         self.orderEndTimeBtn.frame = CGRectMake(WidthXiShu(275),  HeightXiShu(12), WidthXiShu(70), HeightXiShu(20));
         self.orderEndTimeBtn.titleLabel.font = HEITI(HeightXiShu(12));
         [self.orderEndTimeBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [self.orderEndTimeBtn setTitle:@"2017-12-25" forState:UIControlStateNormal];
+        [self.orderEndTimeBtn setTitle:[NSDate getNewDateStringWithDateFmt:@"yyyy-MM-dd"] forState:UIControlStateNormal];
         [self.orderEndTimeBtn addTarget:self action:@selector(orderEndTimeBtnPress) forControlEvents:UIControlEventTouchDown];
         self.orderEndTimeBtn.backgroundColor = AllBackLightGratColor;
         [headerView addSubview:self.orderEndTimeBtn];
@@ -195,14 +189,12 @@
 - (UIView *)noDateView {
     if (!_noDateView) {
         UIView *noDateView = [[UIView alloc] initWithFrame:CGRectMake(0, _navView.maxY + HeightXiShu(44), kScreenWidth, kScreenHeight-_navView.maxY - HeightXiShu(44))];
-        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(160), kScreenWidth, HeightXiShu(20))];
         label.text = @"暂无此类订单!";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = HEITI(HeightXiShu(15));
         label.textColor = BlackColor;
         [noDateView addSubview:label];
-        
         noDateView.hidden = YES;
         _noDateView = noDateView;
     }
