@@ -51,7 +51,8 @@
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
 
-
+//采购分类 供应商
+#define GetORDERLIST @"/QN_ORDERLIST_FORCONDITION"
 
 
 //图片前缀 banner

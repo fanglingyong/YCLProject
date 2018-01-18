@@ -73,10 +73,7 @@
     [self navView];
     [self creatTableView];
     [self creatDropDownView];
-    
-    
-//    self.tableView.mj_header = [[MJRefreshNormalHeader alloc] init];
-//    [self.tableView.mj_header setRefreshingTarget:self refreshingAction:@selector(headRefresh)];
+
 //    [self.tableView.mj_header beginRefreshing];
     
     self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
@@ -84,26 +81,7 @@
     
 //    [self addNoDataView];
     
-    
-    [self.allClassArray addObject:@"全部分类0"];
-    [self.allClassArray addObject:@"全部分类1"];
-    [self.allClassArray addObject:@"全部分类2"];
-
-    [self.suppliersArray addObject:@"华东医药股份有限公司"];
-    [self.suppliersArray addObject:@"华东医药绍兴有限公司"];
-    [self.suppliersArray addObject:@"华东医药器材化剂分公司"];
-    [self.suppliersArray addObject:@"浙江英特药业责任有限公司"];
-    [self.suppliersArray addObject:@"国药控股浙江有限公司"];
-
-    [self.promotionsArray addObject:@"促销0"];
-    [self.promotionsArray addObject:@"促销1"];
-    [self.promotionsArray addObject:@"促销2"];
-
-   
-    
-    NSArray *array = [NSArray arrayWithObjects:self.allClassArray, self.suppliersArray, self.promotionsArray, nil];
-    [self.procurement setupBasicArray:array];
-    
+    [self getCategory];
     // 加载数据
 //    [self headRefresh];
     
@@ -364,6 +342,36 @@
     [self deselectButtons];
 }
 #pragma mark - net
+- (void)getCategory {
+    /**
+     参数说明
+     */
+    [BaseApi getMenthodWithUrl:GetORDERLIST block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            
+            for (NSDictionary *tempDic in [dict objectForKey:@"yaopin"]) {
+                [self.allClassArray addObject:tempDic];
+            }
+            for (NSDictionary *tempDic in [dict objectForKey:@"gongyingshang"]) {
+                [self.suppliersArray addObject:tempDic];
+            }
+            
+            [self.promotionsArray addObject:@"促销0"];
+            [self.promotionsArray addObject:@"促销1"];
+            [self.promotionsArray addObject:@"促销2"];
+            
+            
+            NSArray *array = [NSArray arrayWithObjects:self.allClassArray, self.suppliersArray, self.promotionsArray, nil];
+            [self.procurement setupBasicArray:array];
+            
+        }else{
+            NSLog(@"error:%@",error);
+        }
+        [self.tableView reloadData];
+    } dic:nil noNetWork:nil];
+    
+    
+}
 -(void)network_procurementList{
     if (_pageIndex == 1) {
         self.pargrams = [NSMutableDictionary dictionary];
@@ -371,7 +379,7 @@
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
     [_pargrams setObject:[NSString stringWithFormat:@"%@,%@",@"4",@""] forKey:@"Parastr"];// 供应商id,药品名称
 //    [_pargrams setObject:[self getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
-    [_pargrams setObject:@"0" forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+//    [_pargrams setObject:@"0" forKey:@"UserID"];//暂时设置为0因为只有0才有结果
 
     [_pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", _pargrams);

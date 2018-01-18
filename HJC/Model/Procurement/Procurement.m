@@ -39,21 +39,21 @@
     if (self.allClass == 0) {
         return @"全部分类";
     }
-    return [self.allClassArray objectAtIndex: self.allClass];
+    return [[self.allClassArray objectAtIndex: self.allClass] objectForKey:@"Name"];
 }
 
 - (NSString *)suppliersTitle{
     if (self.suppliers == 0) {
         return @"供应商";
     }
-    return [self.suppliersArray objectAtIndex:self.suppliers];
+    return [[self.suppliersArray objectAtIndex:self.suppliers] objectForKey:@"Name"];
 }
 
 - (NSString *)promotionsTitle{
     if (self.promotions == 0) {
         return @"促销";
     }
-    return [self.promotionsArray objectAtIndex:self.promotions];
+    return [[self.promotionsArray objectAtIndex:self.promotions] objectForKey:@"Name"];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
