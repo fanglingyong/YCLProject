@@ -50,8 +50,12 @@
 #define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
-
-
+//修改信息
+#define ChangUserInfo @"/BTN_USER_EDIT"
+//取消收藏
+#define CancelShouCang @"/BTN_CORP_BUYGOODS_DEL"
+//修改密码
+#define ChangePassword @"/BTN_USER_EDITPASS"
 
 
 //图片前缀 banner

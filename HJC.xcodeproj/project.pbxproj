@@ -347,6 +347,7 @@
 		45EF315F200E21D2004DAB6E /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EF315E200E21D2004DAB6E /* default.png */; };
 		45EF3163200E382E004DAB6E /* NSDate+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3161200E382E004DAB6E /* NSDate+Anima.m */; };
 		45EF3166200E3842004DAB6E /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3164200E3841004DAB6E /* UIImage+ImageEffects.m */; };
+		45EF316A200E41C6004DAB6E /* SelectStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3169200E41C6004DAB6E /* SelectStatusView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -872,6 +873,8 @@
 		45EF3162200E382E004DAB6E /* NSDate+Anima.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Anima.h"; sourceTree = "<group>"; };
 		45EF3164200E3841004DAB6E /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		45EF3165200E3841004DAB6E /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		45EF3168200E41C6004DAB6E /* SelectStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectStatusView.h; sourceTree = "<group>"; };
+		45EF3169200E41C6004DAB6E /* SelectStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectStatusView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1484,6 +1487,7 @@
 		3696F9901F95DC85000B9172 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45EF3167200E419C004DAB6E /* SelectStatusView */,
 				45571D792006422100545850 /* MessageCell */,
 				362E64AE1FF37E9D00695D57 /* DatePickerView */,
 				450BF4051FED1D6D00A90704 /* SubmitOrdersCell */,
@@ -2110,6 +2114,15 @@
 			path = TabShopCar;
 			sourceTree = "<group>";
 		};
+		45EF3167200E419C004DAB6E /* SelectStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				45EF3168200E41C6004DAB6E /* SelectStatusView.h */,
+				45EF3169200E41C6004DAB6E /* SelectStatusView.m */,
+			);
+			path = SelectStatusView;
+			sourceTree = "<group>";
+		};
 		45F7A9DF1FE6B8C2005DE6A3 /* myClinic */ = {
 			isa = PBXGroup;
 			children = (
@@ -2469,6 +2482,7 @@
 				36430B901F9DBE57001709DD /* ZWAdView.m in Sources */,
 				36430B8E1F9DBE4B001709DD /* PickerView.m in Sources */,
 				36430B8C1F9DBE41001709DD /* InputTextFiledView.m in Sources */,
+				45EF316A200E41C6004DAB6E /* SelectStatusView.m in Sources */,
 				45EF3166200E3842004DAB6E /* UIImage+ImageEffects.m in Sources */,
 				4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */,
 				36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */,

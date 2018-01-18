@@ -90,7 +90,37 @@
 #pragma mark - 事件
 -(void)registerAccountMenthod:(UIButton*)sender{
     NSLog(@"----->修改密码!!!");
-    
+    NSString *account = _account.textField.text;
+    NSString *oldPass = _oldpswd.textField.text;
+    NSString *newPass1 = _password.textField.text;
+    NSString *newPass2 = _againpswd.textField.text;
+    if (![AnimaDefaultUtil isNotNull:account]) {
+        [HUDUtil Hud_message:@"账号不能为空" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:oldPass]){
+        [HUDUtil Hud_message:@"您未输入旧密码" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:newPass1]){
+        [HUDUtil Hud_message:@"新密码不能为空" view:self.view];
+    }else if (![AnimaDefaultUtil isNotNull:newPass2]){
+        [HUDUtil Hud_message:@"请再次输入新密码" view:self.view];
+    }else if (![newPass1 isEqualToString:newPass2]){
+        [HUDUtil Hud_message:@"新密码不相同" view:self.view];
+    }else{
+        NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+        [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];//用户ID
+        [pargrams setObject:account forKey:@"Phone"];//手机号
+        [pargrams setObject:oldPass forKey:@"OldPass"];//旧密码
+        [pargrams setObject:newPass1 forKey:@"NewPass"];//新密码
+        [BaseApi getMenthodWithUrl:ChangePassword block:^(NSDictionary *dict, NSError *error) {
+            if (dict) {
+                //成功
+                [HUDUtil Hud_message:@"修改成功" view:self.view];
+                //            [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                //失败
+                [HUDUtil Hud_message:error.domain view:self.view];
+            }
+        } dic:pargrams noNetWork:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
