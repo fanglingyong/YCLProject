@@ -21,7 +21,7 @@
 @property(nonatomic,strong)UIImageView *integralImg;  //积分图标
 @property(nonatomic,strong)UILabel *priceLb;   //价格
 @property(nonatomic,strong)UIImageView *deleImg;  //删除图标
-
+@property(nonatomic,strong)UIButton *deleBtn;//删除按钮
 @property(nonatomic,strong)UIImageView *footerLine;
 
 @end
@@ -55,7 +55,7 @@
         [self integralImg];
         [self priceLb];
         [self deleImg];
-        
+        [self deleBtn];
         [self footerLine];
     }
     return self;
@@ -166,7 +166,16 @@
     }
     return _deleImg;
 }
-
+-(UIButton*)deleBtn{
+    if (!_deleBtn) {
+        UIButton *deleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleBtn.frame = _deleImg.frame;
+        [deleBtn addTarget:self action:@selector(deleteCollect) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:deleBtn];
+        _deleBtn = deleBtn;
+    }
+    return _deleBtn;
+}
 - (UIImageView *)footerLine{
     if(!_footerLine){
         UIImageView *footerLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, HeightXiShu(99), kScreenWidth, .5)];
@@ -180,6 +189,7 @@
 #pragma mark - setter
 
 - (void)setModel:(CollectModel *)model {
+    _model = model;
     [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
@@ -187,6 +197,11 @@
     _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.producer];
     _priceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.asprice momeyString],model.useunit];   //价格
     
+}
+-(void)deleteCollect{
+    if (self.delegate && [self.delegate respondsToSelector: @selector(deleteCollectAction:)]) {
+        [self.delegate deleteCollectAction:_thisRow];
+    }
 }
 
 @end

@@ -53,6 +53,12 @@
 
 //采购分类 供应商
 #define GetORDERLIST @"/QN_ORDERLIST_FORCONDITION"
+//修改信息
+#define ChangUserInfo @"/BTN_USER_EDIT"
+//取消收藏
+#define CancelShouCang @"/BTN_CORP_BUYGOODS_DEL"
+//修改密码
+#define ChangePassword @"/BTN_USER_EDITPASS"
 
 
 //图片前缀 banner

@@ -249,11 +249,12 @@
 -(void)initClinic{
     UserModel *model = [[UserModel alloc] init];
     model = [UserModel getUserModel];
-    if ([model.P_LEVER isEqualToString:@"1"]) {
-        _sh.hidden = NO;
-    }else{
-        _sh.hidden = YES;
-    }
+//    if ([model.P_LEVER isEqualToString:@"1"]) {
+//        _sh.hidden = NO;
+//    }else{
+//        _sh.hidden = YES;
+//    }
+    _sh.hidden = YES;
     if([model.P_LSM intValue] > 0){
         _rChange.hidden = NO;
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
@@ -289,6 +290,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self initClinic];
+    [self.tableView reloadData];
 }
 //
 - (void)integralBtnAction {

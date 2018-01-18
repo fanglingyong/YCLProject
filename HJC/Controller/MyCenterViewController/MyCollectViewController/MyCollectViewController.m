@@ -12,7 +12,7 @@
 #import "CollectModel.h"
 #import "MJRefresh.h"
 
-@interface MyCollectViewController ()
+@interface MyCollectViewController ()<CollectCancelDelegate>
 @property(nonatomic,strong)NavView *navView;
 @property(nonatomic,strong)NSMutableArray *modelArr;
 @property(nonatomic,assign)NSInteger page;
@@ -88,10 +88,13 @@
         cell = [[CollectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.delegate = self;
     cell.model = model;
     return cell;
 }
-
+-(void)deleteCollectAction:(NSInteger)row{
+    [self net_cancel_collect:row];
+}
 #pragma mark - 事件
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -108,13 +111,33 @@
     NSLog(@"-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:GetCollect block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
-            NSLog(@"%@",dict);
+//            NSLog(@"%@",dict);
             for (NSDictionary*modelDic in dict[@"data"]) {
                 CollectModel*model = [[CollectModel alloc] init];
                 [model setValuesForKeysWithDictionary:modelDic];
                 [_modelArr addObject:model];
             }
             [self.tableView reloadData];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    } dic:pargrams noNetWork:nil];
+}
+-(void)net_cancel_collect:(NSInteger)row{
+    CollectModel *model = [[CollectModel alloc] init];
+    model = _modelArr[row];
+    NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
+    [pargrams setObject:model.GoodsID forKey:@"GOODSID"];
+    [pargrams setObject:model.provider forKey:@"PROVIDER"];
+    NSLog(@"-- pargrams:%@",pargrams);
+    [BaseApi getMenthodWithUrl:CancelShouCang block:^(NSDictionary *dict, NSError *error) {
+        if (!error) {
+            //            NSLog(@"%@",dict);
+            //删除数组里面的值 然后再删除cell
+            [_modelArr removeObjectAtIndex:row];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+//            [self.tableView reloadData];
         }else{
             [HUDUtil Hud_message:error.domain view:self.view];
         }

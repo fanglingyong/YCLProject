@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "CollectModel.h"
+
+@protocol CollectCancelDelegate <NSObject>
+
+@optional
+-(void)deleteCollectAction:(NSInteger)row;
+
+@end
+
 @interface CollectCell : UITableViewCell
+
 @property(nonatomic,strong)CollectModel *model;
+@property (nonatomic,weak) id<CollectCancelDelegate> delegate;
+@property (nonatomic,assign) NSInteger thisRow;
 
 @end
