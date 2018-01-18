@@ -62,7 +62,7 @@
 -(UIImageView*)imagePic{
     if (!_imagePic) {
         _imagePic = [[UIImageView alloc] initWithFrame:CGRectMake(8, 40, 160, 80)];
-        _imagePic.image = [UIImage imageNamed:@"sysIcon1.jpg"];
+        _imagePic.image = [UIImage imageNamed:@"default"];
         _imagePic.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imagePic;

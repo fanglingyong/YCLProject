@@ -33,7 +33,6 @@
         self.bannerArray = [NSMutableArray array];
         self.activeArray = [NSMutableArray array];
         self.recommendArray = [NSMutableArray array];
-
     }
     return self;
 }
@@ -57,7 +56,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
     [self handleDate];
 }
 #pragma mark - 页面元素
@@ -97,7 +95,7 @@
     
     if (self.bannerArray.count != 0) {
         
-        NSLog(@"%@", self.bannerArray);
+//        NSLog(@"%@", self.bannerArray);
 //        NSLog(@"创建banner图片");
         
         __weak typeof(MainViewController) *weakSelf = self;
@@ -140,7 +138,7 @@
 - (void)clickGoToNewVC:(NSString*)url WithName:(NSString*)title {
     
     SCWebViewController *webVc = [[SCWebViewController alloc]init];
-    NSLog(@"%@",url);
+//    NSLog(@"%@",url);
     webVc.urlString = url;
     webVc.titleString = title;
     webVc.IsNav = NO;
@@ -323,7 +321,6 @@
 #pragma mark - 活动专区模块点击
 
 - (void)activityButtonClick:(NSInteger)index {
-    NSLog(@"%ld", (long)index);
     MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
     VC.hidesBottomBarWhenPushed = YES;
     NSDictionary *model = self.activeArray[index];
@@ -335,7 +332,6 @@
 #pragma mark - 推荐品种模块点击
 
 - (void)recommendButtonClick:(NSInteger)index {
-    NSLog(@"%ld", (long)index);
     MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
     VC.hidesBottomBarWhenPushed = YES;
     NSDictionary *model = self.recommendArray[index];
@@ -362,7 +358,6 @@
     NSLog(@"参数-- pargrams:%@",pargrams);
     [BaseApi getMenthodWithUrl:GetHomeInfo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
-            NSLog(@"success:%@",dict[@"data"]);
             if (self.bannerArray.count == 0) {
                 for (NSDictionary *tempDic in [NSMutableArray arrayWithArray:dict[@"data"][@"1"]]) {
                     [self.bannerArray addObject:[tempDic objectForKey:@"goodspic"]];
@@ -377,9 +372,6 @@
         }else{
             NSLog(@"error:%@",error);
         }
-        NSLog(@"activeArray%@", self.activeArray);
-        NSLog(@"recommendArray%@", self.recommendArray);
-
         [self createAdScrollView];
         [self.tableView reloadData];
     } dic:pargrams noNetWork:nil];

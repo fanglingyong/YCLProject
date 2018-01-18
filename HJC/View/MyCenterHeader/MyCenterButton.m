@@ -42,7 +42,6 @@
     
 }
 - (void)setLabelTitle:(NSString *)labelTitle {
-    NSLog(@"%@", labelTitle);
     _labelTitle = labelTitle;
     if (labelTitle) {
         self.label.text = labelTitle;

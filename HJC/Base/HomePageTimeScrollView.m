@@ -101,12 +101,10 @@
 }
 
 -(void)leftButtonClick:(UIButton*)button {
-    NSLog(@"左")
 //    self.block(100);
 }
 
 -(void)rightButtonClick:(UIButton*)button {
-    NSLog(@"右");
 //    self.block(101);
 }
 

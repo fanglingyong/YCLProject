@@ -13,7 +13,8 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 +(void)alertUtil:(UIViewController*)vc message:(NSString*)msg;
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
++ (NSString *)getUserID;
++ (BOOL)getUserIsLogin;
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 

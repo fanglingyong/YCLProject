@@ -101,12 +101,12 @@
         
     } block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
-            NSLog(@"success");
+            
             GspLicenseViewController *gsp = [[GspLicenseViewController alloc] init];
             gsp.corpid = self.corpid;
             [self.navigationController pushViewController:gsp animated:YES];
         }else{
-            NSLog(@"%@",error);
+            
             [HUDUtil Hud_message:error.domain view:self.view];
         }
     }];
@@ -158,14 +158,12 @@
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-//    NSLog(@"%@", imageData);
     [self.businessLicense setImage:image];
     [picker dismissViewControllerAnimated:YES completion:^{
         [self updateImageBtnTitle];
     }];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    NSLog(@"您取消了选择图片");
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {

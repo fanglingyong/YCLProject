@@ -219,13 +219,24 @@
 - (void)setModel:(MedicineDetailModel *)model{
     
     self.nameLb.text = model.GOODSNAME;
-    self.originalPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.RETAILPRICE,model.CALCUNIT];//零售价
-    self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",model.SELLPRICE,model.CALCUNIT];//现价
+    if ([model.RETAILPRICE isEqualToString:model.PRICE]) {
+        self.originalPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.PRICE fString],model.CALCUNIT];
+        self.currentPriceLb.text = @"";// 无现价只显示一个价
+    }else{
+        self.originalPriceLb.attributedText = [self deleteLine:[NSString stringWithFormat:@"￥%@/%@",[model.RETAILPRICE fString],model.CALCUNIT]];//零售价
+        self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.PRICE fString],model.CALCUNIT];//现价
+    }
+    self.specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.SPEC];
+    self.produceAreaLb.text = [NSString stringWithFormat:@"厂家:%@",model.PRODUCER];
+    self.suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.CORPNAME];
     
-    self.specificationLb.text = model.SPEC;
-    self.produceAreaLb.text = model.PRODUCER;
-    self.suppliersLb.text = model.CORPNAME;
-    
+}
+-(NSMutableAttributedString*)deleteLine:(NSString*)oldPrice{
+    NSUInteger length = [oldPrice length];
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:oldPrice];
+    [attri addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, length)];
+    [attri addAttribute:NSStrikethroughColorAttributeName value:[UIColor colorFromHexCode:@"#F2A831"] range:NSMakeRange(0, length)];
+    return attri;
 }
 
 @end

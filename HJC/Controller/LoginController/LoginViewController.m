@@ -111,10 +111,8 @@
         [BaseApi getMenthodWithUrl:LoginURL block:^(NSDictionary *dict, NSError *error) {
             if (error) {
                 [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
-                NSLog(@"error--%@",error);
             }else{
                 //解析数据
-                NSLog(@"登陆返回数据%@",dict);
                 UserModel *model = [[UserModel alloc] init];
                 [model setValuesForKeysWithDictionary:dict[@"data"][0]];
                 [UserModel saveModel:model];

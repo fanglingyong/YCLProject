@@ -86,7 +86,7 @@
         medicineImg.layer.borderWidth = .5;
         medicineImg.layer.borderColor = RGBACOLOR(0, 0, 0, .3).CGColor;
         medicineImg.layer.masksToBounds = YES;
-        medicineImg.image = [UIImage imageNamed:@"sysIcon3.jpg"];
+        medicineImg.image = [UIImage imageNamed:@"default"];
         [self.contentView addSubview:medicineImg];
         _medicineImg = medicineImg;
     }
@@ -281,7 +281,7 @@
 
 - (void)setModel:(ProcurementModel *)model {
     _model = model;
-    [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"sysIcon3.jpg"]];
+    [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];
     self.nameLb.text = model.goodsname;
     self.specificationLb.text = [NSString stringWithFormat:@"规格:%@", model.Spec];
     self.produceAreaLb.text = [NSString stringWithFormat:@"产地:%@", model.producer];

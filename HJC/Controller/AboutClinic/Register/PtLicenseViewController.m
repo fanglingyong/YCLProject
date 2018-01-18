@@ -106,12 +106,12 @@
         
     } block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
-            NSLog(@"success 3");
+            
             MebLicenseViewController *ptL = [[MebLicenseViewController alloc] init];
             ptL.corpid = _corpid;
             [self.navigationController pushViewController:ptL animated:YES];
         }else{
-            NSLog(@"%@",error);
+            
             [HUDUtil Hud_message:error.domain view:self.view];
         }
     }];
@@ -162,14 +162,14 @@
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     //    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    //    NSLog(@"%@", imageData);
+    
     [self.businessLicense setImage:image];
     [picker dismissViewControllerAnimated:YES completion:^{
         [self updateImageBtnTitle];
     }];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    NSLog(@"您取消了选择图片");
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

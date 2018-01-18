@@ -84,7 +84,7 @@
 
 - (void)addShoppingCartClick:(NSInteger)index {
     
-    NSLog(@"%ld", (long)index);
+//    NSLog(@"%ld", (long)index);
     
 }
 

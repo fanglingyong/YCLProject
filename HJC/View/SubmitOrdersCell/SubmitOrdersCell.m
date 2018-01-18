@@ -65,7 +65,7 @@
 -(UIImageView*)goodsPic{
     if (!_goodsPic) {
         _goodsPic = [[UIImageView alloc]initWithFrame:CGRectMake(8, 8, _s_height-16, _s_height-16)];
-        _goodsPic.image = [UIImage imageNamed:@"sysIcon3.jpg"];
+        _goodsPic.image = [UIImage imageNamed:@"default"];
     }
     return _goodsPic;
 }
