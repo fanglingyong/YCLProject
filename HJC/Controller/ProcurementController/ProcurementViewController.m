@@ -348,19 +348,10 @@
      */
     [BaseApi getMenthodWithUrl:GetORDERLIST block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
-            
-            for (NSDictionary *tempDic in [dict objectForKey:@"yaopin"]) {
-                [self.allClassArray addObject:tempDic];
-            }
-            for (NSDictionary *tempDic in [dict objectForKey:@"gongyingshang"]) {
-                [self.suppliersArray addObject:tempDic];
-            }
-            
-            [self.promotionsArray addObject:@"促销0"];
-            [self.promotionsArray addObject:@"促销1"];
-            [self.promotionsArray addObject:@"促销2"];
-            
-            
+            NSLog(@"%@",dict);
+            [self.allClassArray addObjectsFromArray:[dict[@"data"] objectForKey:@"yaopin"]];
+            [self.suppliersArray addObjectsFromArray:[dict[@"data"] objectForKey:@"gongyingshang"]];
+            [self.promotionsArray addObjectsFromArray:@[@"促销广告",@"买100W送iPhone X 10台",@"全场9.9折，仅此一天"]];
             NSArray *array = [NSArray arrayWithObjects:self.allClassArray, self.suppliersArray, self.promotionsArray, nil];
             [self.procurement setupBasicArray:array];
             
@@ -377,10 +368,7 @@
         self.pargrams = [NSMutableDictionary dictionary];
     }
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
-    [_pargrams setObject:[NSString stringWithFormat:@"%@,%@",@"4",@""] forKey:@"Parastr"];// 供应商id,药品名称
-//    [_pargrams setObject:[self getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
-//    [_pargrams setObject:@"0" forKey:@"UserID"];//暂时设置为0因为只有0才有结果
-
+    [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",@"0",@"4",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
     [_pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
