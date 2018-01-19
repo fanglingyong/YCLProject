@@ -323,18 +323,21 @@
     if (filterView.tag == 1001) {
         self.procurement.allClass = ((DropdownSimpleView *)filterView).selectedIndex;
         self.allClassButton.title = self.procurement.allClassTitle;
+        NSLog(@"%lu", (unsigned long)self.procurement.allClass);
     }
     if (filterView.tag == 1002) {
         self.procurement.suppliers = ((DropdownSimpleView *)filterView).selectedIndex;
         self.suppliersButton.title = self.procurement.suppliersTitle;
+        NSLog(@"%lu", (unsigned long)self.procurement.suppliers);
     }
     if (filterView.tag == 1003) {
         self.procurement.promotions = ((DropdownSimpleView *)filterView).selectedIndex;
         self.promotionsButton.title = self.procurement.promotionsTitle;
+        NSLog(@"%lu", (unsigned long)self.procurement.promotions);
     }
     [self deselectButtons];
-    
-    [self headRefresh];
+    self.pageIndex = 1;
+    [self network_procurementList];
 }
 
 - (void)didHideFilterView:(DropdownView *)filterView {
@@ -349,16 +352,37 @@
     [BaseApi getMenthodWithUrl:GetORDERLIST block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"%@",dict);
-            [self.allClassArray addObjectsFromArray:[dict[@"data"] objectForKey:@"yaopin"]];
-            [self.suppliersArray addObjectsFromArray:[dict[@"data"] objectForKey:@"gongyingshang"]];
-            [self.promotionsArray addObjectsFromArray:@[@"促销广告",@"买100W送iPhone X 10台",@"全场9.9折，仅此一天"]];
-            NSArray *array = [NSArray arrayWithObjects:self.allClassArray, self.suppliersArray, self.promotionsArray, nil];
+            [self.allClassArray addObject:@"0"];
+            [self.suppliersArray addObject:@"0"];
+            [self.promotionsArray addObject:@""];
+
+            // 种类
+            NSMutableArray *allClassName = [NSMutableArray array];
+            [allClassName addObject:@"不限"];
+            for (NSDictionary *tempDic in [dict[@"data"] objectForKey:@"yaopin"]) {
+                [self.allClassArray addObject:[tempDic objectForKey:@"DataID"]];
+                [allClassName addObject:[tempDic objectForKey:@"Name"]];
+            }
+            // 供应商
+            NSMutableArray *suppliersName = [NSMutableArray array];
+            [suppliersName addObject:@"不限"];
+            for (NSDictionary *tempDic in [dict[@"data"] objectForKey:@"gongyingshang"]) {
+                [self.suppliersArray addObject:[tempDic objectForKey:@"corpid"]];
+                [suppliersName addObject:[tempDic objectForKey:@"corpname"]];
+            }
+            NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限",@"corpid", @"买100W送iPhone X 10台", nil];
+            [self.promotionsArray addObjectsFromArray:@[@"", @"", @""]];
+            
+            NSLog(@"%@", self.allClassArray)
+            NSLog(@"%@", self.suppliersArray)
+            NSLog(@"%@", self.promotionsArray)
+
+            NSArray *array = [NSArray arrayWithObjects:allClassName, suppliersName, promotionsName, nil];
             [self.procurement setupBasicArray:array];
             
         }else{
             NSLog(@"error:%@",error);
         }
-        [self.tableView reloadData];
     } dic:nil noNetWork:nil];
     
     
@@ -368,18 +392,25 @@
         self.pargrams = [NSMutableDictionary dictionary];
     }
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
-    [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",@"0",@"4",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
+    if (self.allClassArray.count == 0 || self.suppliersArray.count == 0 || self.promotionsArray.count == 0) {
+        [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",@"0",@"0",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
+
+    } else {
+        [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",self.allClassArray[self.procurement.allClass],self.suppliersArray[self.procurement.suppliers],self.promotionsArray[self.procurement.promotions]] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
+    }
     [_pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
         [_tableView.mj_footer endRefreshing];
         if(!error){
+            NSLog(@"%@", dict[@"data"]);
             NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
             if (self.pageIndex == 1) {
                 [self.dataArray removeAllObjects];
                 
-                if (goodsArr.count > 0)
+                if (goodsArr.count > 0) {
                     self.noDateView.hidden = YES;
+                }
                 self.noDateView.hidden = NO;
             }
             for (NSDictionary *dic in goodsArr) {
