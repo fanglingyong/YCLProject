@@ -73,18 +73,15 @@
     [self navView];
     [self creatTableView];
     [self creatDropDownView];
-
 //    [self.tableView.mj_header beginRefreshing];
-    
     self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
     [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
-    
 //    [self addNoDataView];
-    
     [self getCategory];
     // 加载数据
-//    [self headRefresh];
-    
+    [self.allClassArray addObject:@"0"];
+    [self.suppliersArray addObject:@"0"];
+    [self.promotionsArray addObject:@""];
 }
 - (void)initLogin {
     
@@ -202,7 +199,7 @@
 - (NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"采购";
         navView.leftBtn.hidden = YES;
@@ -334,6 +331,7 @@
         self.procurement.promotions = ((DropdownSimpleView *)filterView).selectedIndex;
         self.promotionsButton.title = self.procurement.promotionsTitle;
         NSLog(@"%lu", (unsigned long)self.procurement.promotions);
+        return;//因为促销不和前面两个流程一样。
     }
     [self deselectButtons];
     self.pageIndex = 1;
@@ -352,10 +350,6 @@
     [BaseApi getMenthodWithUrl:GetORDERLIST block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"%@",dict);
-            [self.allClassArray addObject:@"0"];
-            [self.suppliersArray addObject:@"0"];
-            [self.promotionsArray addObject:@""];
-
             // 种类
             NSMutableArray *allClassName = [NSMutableArray array];
             [allClassName addObject:@"不限"];
@@ -372,11 +366,6 @@
             }
             NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限",@"corpid", @"买100W送iPhone X 10台", nil];
             [self.promotionsArray addObjectsFromArray:@[@"", @"", @""]];
-            
-            NSLog(@"%@", self.allClassArray)
-            NSLog(@"%@", self.suppliersArray)
-            NSLog(@"%@", self.promotionsArray)
-
             NSArray *array = [NSArray arrayWithObjects:allClassName, suppliersName, promotionsName, nil];
             [self.procurement setupBasicArray:array];
             
@@ -392,22 +381,18 @@
         self.pargrams = [NSMutableDictionary dictionary];
     }
     [_pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
-    if (self.allClassArray.count == 0 || self.suppliersArray.count == 0 || self.promotionsArray.count == 0) {
-        [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",@"0",@"0",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
-
-    } else {
-        [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",self.allClassArray[self.procurement.allClass],self.suppliersArray[self.procurement.suppliers],self.promotionsArray[self.procurement.promotions]] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称
-    }
+    NSString *dataID = [AnimaDefaultUtil isNotNull:self.allClassArray]?self.allClassArray[self.procurement.allClass]:@"0";
+    NSString *gysID = [AnimaDefaultUtil isNotNull:self.suppliersArray]?self.suppliersArray[self.procurement.suppliers]:@"0";
+    [_pargrams setObject:[NSString stringWithFormat:@"%@,%@,%@",dataID,gysID,@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
     [_pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", _pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
         [_tableView.mj_footer endRefreshing];
         if(!error){
-            NSLog(@"%@", dict[@"data"]);
+            NSLog(@"请求成功了~~~~~~~~");
             NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
             if (self.pageIndex == 1) {
                 [self.dataArray removeAllObjects];
-                
                 if (goodsArr.count > 0) {
                     self.noDateView.hidden = YES;
                 }

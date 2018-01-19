@@ -9,5 +9,5 @@
 #import "BaseTableViewController.h"
 
 @interface MessageCenterViewController : BaseViewController
-
+-(void)net_MessageList;
 @end

@@ -230,6 +230,7 @@
         _sh.titleLabel.font = [UIFont systemFontOfSize:15];
         [_sh addTarget:self action:@selector(jumpToSomething) forControlEvents:UIControlEventTouchUpInside];
         [navView addSubview:_sh];
+        _sh.hidden = YES;
         
         self.rChange = [UIButton buttonWithType:UIButtonTypeCustom];
         _rChange.frame = CGRectMake(kScreenWidth-70, 4, 68, 36);
@@ -254,7 +255,6 @@
 //    }else{
 //        _sh.hidden = YES;
 //    }
-    _sh.hidden = YES;
     if([model.P_LSM intValue] > 0){
         _rChange.hidden = NO;
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"我的订单",@"我的收藏"],@[@"我的诊所",@"我的地址"],@[@"积分明细",@"联系客服"],@[@"退出登录"], nil];
@@ -262,6 +262,7 @@
         _rChange.hidden = YES;
         self.tableViewData = [NSArray arrayWithObjects:@[@"0"],@[@"联系客服",@"注册诊所"], nil];
     }
+    [self.tableView reloadData];
 }
 //诊所审核
 -(void)jumpToSomething{
@@ -289,8 +290,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self initClinic];
-    [self.tableView reloadData];
 }
 //
 - (void)integralBtnAction {

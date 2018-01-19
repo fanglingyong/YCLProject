@@ -33,7 +33,6 @@
     [self navView];
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.footView];
-//    [self net_workforshopcar];
 }
 
 - (void)didReceiveMemoryWarning {

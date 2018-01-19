@@ -60,7 +60,10 @@
 #define CancelShouCang @"/BTN_CORP_BUYGOODS_DEL"
 //修改密码
 #define ChangePassword @"/BTN_USER_EDITPASS"
-
+//获取消息 Parastr    查询条件（传ID时为查询单条记录，传标题时为模糊查询）
+#define GetMessageInfo @"/QN_MESSAGE_FORPERSON"
+//处理消息 ?UserID=&MESSAGEID=& OPCODE=标志（1修改阅读标志2删除消息）
+#define GetDealMessage @"/BTN_MESSAGE_ISREAD"
 
 //图片前缀 banner
 #define HomePic @"http://120.26.97.79/WebApi/IndexPic/"

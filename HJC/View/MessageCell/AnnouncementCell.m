@@ -42,7 +42,7 @@
 -(UILabel*)type{
     if (!_type) {
         _type = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 40, 22)];
-        _type.text = @"消息";
+        _type.text = @"公告";
         _type.font = [UIFont systemFontOfSize:15];
         _type.textAlignment = NSTextAlignmentCenter;
         _type.backgroundColor = [UIColor colorFromHexCode:@"#2B5CDC"];

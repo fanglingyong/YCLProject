@@ -26,6 +26,23 @@
 }
 #pragma mark - Network
 -(void)netWorkForDataSource{
+    [self data_jsj];//失败了先用假数据
+    /*
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:[NSString stringWithFormat:@"%@,",_msgModel.MessAgeId] forKey:@"Parastr"];
+    [pargrams setObject:@",15,1" forKey:@"WebPara"];
+    [BaseApi getMenthodWithUrl:GetMessageInfo block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            
+            
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    } dic:pargrams noNetWork:nil];
+    */
+}
+-(void)data_jsj{
     [self.view addSubview:self.scrollView];
     [self addTitle:@"积分换购商品活动开始了！"];
     [self createImageView:_scrol_height imageUrl:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515603393248&di=8f4911b5562a84e39fab35258dd7a47c&imgtype=0&src=http%3A%2F%2Fimg5.mtime.cn%2FCMS%2FNews%2F2017%2F05%2F10%2F080519.65791869_620X620.jpg"];
@@ -38,7 +55,7 @@
         NavView *navView = [NavView initNavView];
         navView.minY = kStateHeight;
         navView.backgroundColor = [UIColor whiteColor];
-        navView.titleLabel.text = @"消息中心";
+        navView.titleLabel.text = @"公告中心";
         navView.titleLabel.textColor = [UIColor blackColor];
         navView.titleLabel.font = [UIFont systemFontOfSize:18];
         navView.leftBtn.hidden = NO;
@@ -84,6 +101,24 @@
     [_scrollView addSubview:titleLable];
     _scrol_height = 70.;
 }
+
+
+
+#pragma mark - read
+-(void)net_didread{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:_msgModel.MessAgeId forKey:@"MESSAGEID"];
+    [pargrams setObject:@"1" forKey:@"OPCODE"];
+    [BaseApi getMenthodWithUrl:GetDealMessage block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            
+        }else{
+            
+        }
+    } dic:pargrams noNetWork:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

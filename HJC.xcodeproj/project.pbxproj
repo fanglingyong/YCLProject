@@ -348,6 +348,8 @@
 		45EF3163200E382E004DAB6E /* NSDate+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3161200E382E004DAB6E /* NSDate+Anima.m */; };
 		45EF3166200E3842004DAB6E /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3164200E3841004DAB6E /* UIImage+ImageEffects.m */; };
 		45EF316A200E41C6004DAB6E /* SelectStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3169200E41C6004DAB6E /* SelectStatusView.m */; };
+		45EF316D20122DB3004DAB6E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */; };
+		45EF31712012368A004DAB6E /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF31702012368A004DAB6E /* MessageModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -875,6 +877,10 @@
 		45EF3165200E3841004DAB6E /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		45EF3168200E41C6004DAB6E /* SelectStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectStatusView.h; sourceTree = "<group>"; };
 		45EF3169200E41C6004DAB6E /* SelectStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectStatusView.m; sourceTree = "<group>"; };
+		45EF316B20122DB3004DAB6E /* MessageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailViewController.h; sourceTree = "<group>"; };
+		45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
+		45EF316F2012368A004DAB6E /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		45EF31702012368A004DAB6E /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1392,6 +1398,8 @@
 				369600261F95E41D000B9172 /* MessageCenterViewController.m */,
 				45571D832006503C00545850 /* AnnouncementViewController.h */,
 				45571D842006503C00545850 /* AnnouncementViewController.m */,
+				45EF316B20122DB3004DAB6E /* MessageDetailViewController.h */,
+				45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */,
 			);
 			path = MessageCenter;
 			sourceTree = "<group>";
@@ -1525,6 +1533,7 @@
 		3696FC0A1F95DC86000B9172 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45EF316E20123672004DAB6E /* MessageModel */,
 				364326C3200C44730078E378 /* HomeModel */,
 				450BF40C1FED387300A90704 /* SubmitOrdersModel */,
 				451068D01FE5FDC70009B113 /* ClinicModel */,
@@ -2123,6 +2132,15 @@
 			path = SelectStatusView;
 			sourceTree = "<group>";
 		};
+		45EF316E20123672004DAB6E /* MessageModel */ = {
+			isa = PBXGroup;
+			children = (
+				45EF316F2012368A004DAB6E /* MessageModel.h */,
+				45EF31702012368A004DAB6E /* MessageModel.m */,
+			);
+			path = MessageModel;
+			sourceTree = "<group>";
+		};
 		45F7A9DF1FE6B8C2005DE6A3 /* myClinic */ = {
 			isa = PBXGroup;
 			children = (
@@ -2485,6 +2503,7 @@
 				45EF316A200E41C6004DAB6E /* SelectStatusView.m in Sources */,
 				45EF3166200E3842004DAB6E /* UIImage+ImageEffects.m in Sources */,
 				4559C0A51FCBA0A9005EC6BA /* RegisterUserViewController.m in Sources */,
+				45EF316D20122DB3004DAB6E /* MessageDetailViewController.m in Sources */,
 				36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */,
 				452D64581FE0C461006E51F5 /* PtLicenseViewController.m in Sources */,
 				36430B8A1F9DBD4E001709DD /* BaseTextFiled.m in Sources */,
@@ -2511,6 +2530,7 @@
 				36430B3E1F9DB115001709DD /* NSString+LabelKit.m in Sources */,
 				366EAB451F9D8F0400A63E83 /* GetImagePath.m in Sources */,
 				452D644E1FE0B34D006E51F5 /* BusinessLicenseViewController.m in Sources */,
+				45EF31712012368A004DAB6E /* MessageModel.m in Sources */,
 				362E64B11FF37E9D00695D57 /* DatePickeView.m in Sources */,
 				366EAB2F1F9D8AEA00A63E83 /* MJRefreshStateHeader.m in Sources */,
 				45EF315D200E1DB4004DAB6E /* ShopCarViewController.m in Sources */,

@@ -11,12 +11,15 @@
 #import "AnnouncementCell.h"
 #import "MessagesCell.h"
 #import "AnnouncementViewController.h"
+#import "MessageDetailViewController.h"
+#import "MessageModel.h"
 
 @interface MessageCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)NavView *navView;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *msgList;
+@property (nonatomic,assign) NSInteger pageNum;
 @end
 
 @implementation MessageCenterViewController
@@ -27,8 +30,9 @@
     [self statusBar];
     [self navView];
     self.msgList = [NSMutableArray array];
-    [_msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
+    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
     [self.view addSubview:self.tableView];
+//    [self net_MessageList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +60,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, kScreenHeight-_navView.maxY-10) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.bounces = NO;
+//        _tableView.bounces = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = AllBackLightGratColor;
         _tableView.tableFooterView = [[UIView alloc]init];
@@ -94,11 +98,52 @@
         //公告
         AnnouncementViewController *ann = [[AnnouncementViewController alloc] init];
         ann.hidesBottomBarWhenPushed = YES;
+        ann.msgModel = _msgList[indexPath.row];
         [self.navigationController pushViewController:ann animated:YES];
     }else{
         //消息
-        
+        MessageDetailViewController *msgDetail = [[MessageDetailViewController alloc] init];
+        msgDetail.hidesBottomBarWhenPushed = YES;
+        msgDetail.msgModel = _msgList[indexPath.row];
+        [self.navigationController pushViewController:msgDetail animated:YES];
     }
+}
+#pragma mark - net
+-(void)net_MessageList{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:@"," forKey:@"Parastr"];
+    [pargrams setObject:[NSString stringWithFormat:@",15,%ld",_pageNum>1?_pageNum:1] forKey:@"WebPara"];
+    [BaseApi getMenthodWithUrl:GetMessageInfo block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            if (_pageNum==1) {
+                self.msgList = [NSMutableArray array];
+            }
+            NSArray *arr = dict[@"data"];
+            for (NSDictionary*oj in arr) {
+                MessageModel *model = [[MessageModel alloc] init];
+                [model setValuesForKeysWithDictionary:oj];
+                [_msgList addObject:model];
+            }
+            [self.tableView reloadData];
+        }else{
+            
+        }
+    } dic:pargrams noNetWork:nil];
+}
+#pragma mark - read
+-(void)net_deleteMessage{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:@"" forKey:@"MESSAGEID"];
+    [pargrams setObject:@"2" forKey:@"OPCODE"];
+    [BaseApi getMenthodWithUrl:GetDealMessage block:^(NSDictionary *dict, NSError *error) {
+        if (dict) {
+            
+        }else{
+            
+        }
+    } dic:pargrams noNetWork:nil];
 }
 /*
 #pragma mark - Navigation

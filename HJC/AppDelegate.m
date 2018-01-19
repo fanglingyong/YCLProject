@@ -161,14 +161,15 @@
     }else if (tabBarController.viewControllers[1] == viewController){
         UINavigationController *navigationctr = (UINavigationController *)viewController;
         ProcurementViewController *secvc = (ProcurementViewController *)navigationctr.topViewController;
-        [secvc network_procurementList];
+        [secvc headRefresh];
     }else if (tabBarController.viewControllers[2] == viewController){
         UINavigationController *navigationctr = (UINavigationController *)viewController;
         ShoppingCartViewController *secvc = (ShoppingCartViewController *)navigationctr.topViewController;
         [secvc net_workforshopcar];
     }else if (tabBarController.viewControllers[3] == viewController){
-        UINavigationController *navigationctr = (UINavigationController *)viewController;
-        MessageCenterViewController *secvc = (MessageCenterViewController *)navigationctr.topViewController;
+//        UINavigationController *navigationctr = (UINavigationController *)viewController;
+//        MessageCenterViewController *secvc = (MessageCenterViewController *)navigationctr.topViewController;
+//        [secvc net_MessageList];
     }else{
         UINavigationController *navigationctr = (UINavigationController *)viewController;
         MyCenterViewController *secvc = (MyCenterViewController *)navigationctr.topViewController;
