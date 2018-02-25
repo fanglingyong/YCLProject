@@ -66,7 +66,7 @@
 /**
  *  验证手机号是否合法
  *
- *  @param phone
+ *  @param phone a
  *
  *  @return 合法返回yes
  */
@@ -80,7 +80,7 @@
 /**
  *  验证邮箱地址是否合法
  *
- *  @param inEmailID
+ *  @param inEmailID a
  *
  *  @return 合法返回yes
  */
@@ -88,7 +88,7 @@
 /**
  *  验证身份证号是否合法
  *
- *  @param chinaId
+ *  @param chinaId a
  *
  *  @return 合法返回yes
  */

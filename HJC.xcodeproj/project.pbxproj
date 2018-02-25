@@ -147,8 +147,6 @@
 		36965DA81FB047EB006B93E4 /* MedicineDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965DA71FB047EB006B93E4 /* MedicineDetailModel.m */; };
 		36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965DAA1FB04823006B93E4 /* MedicineDetailCell.m */; };
 		3696F96E1F95DA84000B9172 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F96D1F95DA84000B9172 /* AppDelegate.m */; };
-		3696F9741F95DA85000B9172 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9721F95DA85000B9172 /* Main.storyboard */; };
-		3696F9761F95DA85000B9172 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9751F95DA85000B9172 /* Assets.xcassets */; };
 		3696F9791F95DA85000B9172 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3696F9771F95DA85000B9172 /* LaunchScreen.storyboard */; };
 		3696F97C1F95DA85000B9172 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F97B1F95DA85000B9172 /* main.m */; };
 		3696F9861F95DA86000B9172 /* HJCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3696F9851F95DA86000B9172 /* HJCUITests.m */; };
@@ -198,6 +196,7 @@
 		452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645A1FE0C473006E51F5 /* MebLicenseViewController.m */; };
 		452D645F1FE0D327006E51F5 /* AuditClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */; };
 		453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 453137E21FD183530095B155 /* SmsCodeTextField.m */; };
+		454A3EA62012F49300490A12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 454A3EA52012F49200490A12 /* Assets.xcassets */; };
 		45571D7620063CDE00545850 /* customService.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7320063CDE00545850 /* customService.png */; };
 		45571D7720063CDE00545850 /* customService@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7420063CDE00545850 /* customService@2x.png */; };
 		45571D7820063CDE00545850 /* customService@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7520063CDE00545850 /* customService@3x.png */; };
@@ -288,7 +287,6 @@
 		4559C1791FCBE865005EC6BA /* more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1001FCBE865005EC6BA /* more@3x.png */; };
 		4559C17A1FCBE865005EC6BA /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1011FCBE865005EC6BA /* close.png */; };
 		4559C17B1FCBE865005EC6BA /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1021FCBE865005EC6BA /* close@2x.png */; };
-		4559C17C1FCBE865005EC6BA /* close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1031FCBE865005EC6BA /* close@3x.png */; };
 		4559C1801FCBE865005EC6BA /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1071FCBE865005EC6BA /* edit.png */; };
 		4559C1811FCBE865005EC6BA /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1081FCBE865005EC6BA /* edit@2x.png */; };
 		4559C1821FCBE865005EC6BA /* edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1091FCBE865005EC6BA /* edit@3x.png */; };
@@ -582,8 +580,6 @@
 		3696F9691F95DA84000B9172 /* HJC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HJC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3696F96C1F95DA84000B9172 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3696F96D1F95DA84000B9172 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3696F9731F95DA85000B9172 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3696F9751F95DA85000B9172 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3696F9781F95DA85000B9172 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3696F97A1F95DA85000B9172 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3696F97B1F95DA85000B9172 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -697,6 +693,7 @@
 		452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditClinicViewController.m; sourceTree = "<group>"; };
 		453137E11FD183530095B155 /* SmsCodeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmsCodeTextField.h; sourceTree = "<group>"; };
 		453137E21FD183530095B155 /* SmsCodeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsCodeTextField.m; sourceTree = "<group>"; };
+		454A3EA52012F49200490A12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45571D7320063CDE00545850 /* customService.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customService.png; sourceTree = "<group>"; };
 		45571D7420063CDE00545850 /* customService@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customService@2x.png"; sourceTree = "<group>"; };
 		45571D7520063CDE00545850 /* customService@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customService@3x.png"; sourceTree = "<group>"; };
@@ -1473,8 +1470,7 @@
 				3696F9901F95DC85000B9172 /* View */,
 				3696F96C1F95DA84000B9172 /* AppDelegate.h */,
 				3696F96D1F95DA84000B9172 /* AppDelegate.m */,
-				3696F9721F95DA85000B9172 /* Main.storyboard */,
-				3696F9751F95DA85000B9172 /* Assets.xcassets */,
+				454A3EA52012F49200490A12 /* Assets.xcassets */,
 				3696F9771F95DA85000B9172 /* LaunchScreen.storyboard */,
 				3696F97A1F95DA85000B9172 /* Info.plist */,
 				3696F97B1F95DA85000B9172 /* main.m */,
@@ -2289,8 +2285,6 @@
 				4559C1821FCBE865005EC6BA /* edit@3x.png in Resources */,
 				4559C1481FCBE865005EC6BA /* purchase_select@2x.png in Resources */,
 				4559C1581FCBE865005EC6BA /* collection@3x.png in Resources */,
-				4559C17C1FCBE865005EC6BA /* close@3x.png in Resources */,
-				4559C17C1FCBE865005EC6BA /* close@3x.png in Resources */,
 				4559C1621FCBE865005EC6BA /* reduce_L.png in Resources */,
 				4559C1361FCBE865005EC6BA /* home_select@2x.png in Resources */,
 				4559C14D1FCBE865005EC6BA /* shop_select.png in Resources */,
@@ -2311,6 +2305,7 @@
 				45BDBE311FB2A323001B9581 /* select_down.png in Resources */,
 				4559C1491FCBE865005EC6BA /* purchase_select@3x.png in Resources */,
 				3645B971200756FE00D2D568 /* home_chemical@2x.png in Resources */,
+				454A3EA62012F49300490A12 /* Assets.xcassets in Resources */,
 				4559C1791FCBE865005EC6BA /* more@3x.png in Resources */,
 				4559C1881FCBE865005EC6BA /* cartDefault@3x.png in Resources */,
 				4559C1A21FCCE11A005EC6BA /* login_back@3x.png in Resources */,
@@ -2397,9 +2392,7 @@
 				3696F9791F95DA85000B9172 /* LaunchScreen.storyboard in Resources */,
 				4559C1A31FCCE11A005EC6BA /* login_back.png in Resources */,
 				4559C1781FCBE865005EC6BA /* more@2x.png in Resources */,
-				3696F9761F95DA85000B9172 /* Assets.xcassets in Resources */,
 				3645B97B200756FE00D2D568 /* home_sales@3x.png in Resources */,
-				3696F9741F95DA85000B9172 /* Main.storyboard in Resources */,
 				4559C1391FCBE865005EC6BA /* message_normal@2x.png in Resources */,
 				4559C1611FCBE865005EC6BA /* headPortrait@3x.png in Resources */,
 				4559C1551FCBE865005EC6BA /* add_S@3x.png in Resources */,
@@ -2609,14 +2602,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3696F9721F95DA85000B9172 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3696F9731F95DA85000B9172 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3696F9771F95DA85000B9172 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2761,11 +2746,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ylc.eastpharm.com;
+				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b083c24-14d4-40df-8ec1-fc04d29001aa";
-				PROVISIONING_PROFILE_SPECIFIER = "2018-1-16 14:03:05";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "187f9440-25b6-44fd-a66e-590024da0380";
+				PROVISIONING_PROFILE_SPECIFIER = ios_development_profile;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2782,7 +2767,7 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = FLLG78AHV5;
 				ENABLE_BITCODE = NO;
@@ -2794,11 +2779,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = ylc.eastpharm.com;
+				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8b083c24-14d4-40df-8ec1-fc04d29001aa";
-				PROVISIONING_PROFILE_SPECIFIER = "2018-1-16 14:03:05";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "e42287b8-b78c-4128-8d61-fb2670f19c6f";
+				PROVISIONING_PROFILE_SPECIFIER = ios_distribution_profile;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

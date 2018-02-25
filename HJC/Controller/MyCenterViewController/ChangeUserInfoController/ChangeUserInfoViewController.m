@@ -95,7 +95,7 @@
     [self.view addSubview:userInfo];
     
     //--- sure button
-    ToolButtonView * toolBtn = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49) button:@"确定"];
+    ToolButtonView * toolBtn = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-49, kScreenWidth, 49) button:@"确定"];
     [toolBtn addToolTarget:self action:@selector(toolButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toolBtn];
 }

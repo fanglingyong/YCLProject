@@ -67,7 +67,7 @@
     [_imageBtn addTarget:self action:@selector(uploadInfo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_imageBtn];
     
-    ToolButtonView * toolBtn = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49) button:@"下一步"];
+    ToolButtonView * toolBtn = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-49, kScreenWidth, 49) button:@"下一步"];
     [toolBtn addToolTarget:self action:@selector(toolButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toolBtn];
 }

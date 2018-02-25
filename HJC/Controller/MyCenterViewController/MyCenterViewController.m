@@ -238,6 +238,7 @@
         [_rChange setTitle:@"资料修改" forState:UIControlStateNormal];
         _rChange.titleLabel.font = [UIFont systemFontOfSize:15];
         [_rChange addTarget:self action:@selector(jumpToDoChangeUserInfo) forControlEvents:UIControlEventTouchUpInside];
+        self.rChange.hidden=YES;
         [navView addSubview:_rChange];
         
         _navView = navView;
@@ -290,6 +291,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self initClinic];
 }
 //
 - (void)integralBtnAction {

@@ -57,7 +57,7 @@
 #pragma mark - tableView / Delgate &dataSource
 -(UITableView*)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, kScreenHeight-_navView.maxY-10) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, kScreenHeight-SafeAreaBottomHeight-_navView.maxY-10) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
 //        _tableView.bounces = NO;

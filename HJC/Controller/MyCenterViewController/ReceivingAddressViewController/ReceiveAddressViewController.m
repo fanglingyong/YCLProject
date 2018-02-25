@@ -27,7 +27,7 @@
     [self statusBar];
     [self navView];
     [self addButton];
-    [self.tableView setMinY:64 maxY:kScreenHeight - HeightXiShu(50) - HeightXiShu(5)];
+    [self.tableView setMinY:SafeAreaTopHeight maxY:kScreenHeight-SafeAreaBottomHeight - HeightXiShu(50) - HeightXiShu(5)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = AllBackLightGratColor;
     [self net_work];
@@ -42,7 +42,7 @@
 -(NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"收货地址管理";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -54,7 +54,7 @@
 - (UIButton *)addButton {
     if (!_addButton) {
         UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        addButton.frame = CGRectMake(0, kScreenHeight - HeightXiShu(50), kScreenWidth, HeightXiShu(50));
+        addButton.frame = CGRectMake(0, kScreenHeight-SafeAreaBottomHeight- HeightXiShu(50), kScreenWidth, HeightXiShu(50));
         addButton.backgroundColor = [UIColor colorFromHexCode:@"#4172e4"];
         [addButton setTitle:@"添加地址" forState:UIControlStateNormal];
         [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

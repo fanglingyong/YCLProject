@@ -71,7 +71,7 @@
 }
 -(UILabel*)msgAuthorTime{
     if (!_msgAuthorTime) {
-        _msgAuthorTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, _msgScroll.width, 20)];
+        _msgAuthorTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, _msgScroll.width, 20)];
         
         _msgAuthorTime.textAlignment = NSTextAlignmentRight;
         _msgAuthorTime.font = [UIFont systemFontOfSize:14];
@@ -81,7 +81,7 @@
 }
 -(UILabel*)msgInfo{
     if (!_msgInfo) {
-        _msgInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, _msgScroll.width, 22)];
+        _msgInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, _msgScroll.width, 22)];
         
         _msgInfo.font = [UIFont systemFontOfSize:15];
         _msgInfo.numberOfLines = 0;
@@ -96,8 +96,8 @@
 //    _msgTitle.text = _msgModel.MessageTitle;
 //    _msgAuthorTime.text = [NSString stringWithFormat:@"%@ %@",_msgModel.MessageTypeName,_msgModel.massagedate];
 //    _msgInfo.text = _msgModel.Messagecontent;
-    CGFloat height = [AnimaDefaultUtil getAutoLayoutHeight:content Lsize:CGSizeMake(kScreenWidth, 99999) font:[UIFont systemFontOfSize:15]].height;
-    _msgInfo.frame = CGRectMake(0, 50, _msgScroll.width, height);
+    CGFloat height = [AnimaDefaultUtil getAutoLayoutHeight:content Lsize:CGSizeMake(kScreenWidth-16, 99999) font:[UIFont systemFontOfSize:15]].height;
+    _msgInfo.frame = CGRectMake(8, 55, _msgScroll.width-16, height);
     _msgInfo.text = content;
     _msgScroll.contentSize = CGSizeMake(kScreenWidth, _msgInfo.maxY+30);
 }

@@ -117,7 +117,7 @@
     [self toolView];
 }
 -(void)toolView{
-    UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49)];
+    UIView *dView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-49, kScreenWidth, 49)];
     dView.backgroundColor = [UIColor whiteColor];
     dView.layer.shadowColor = [[UIColor blackColor] CGColor];
     dView.layer.shadowOpacity = 0.5f;

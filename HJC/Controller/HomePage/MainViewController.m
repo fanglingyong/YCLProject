@@ -46,7 +46,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.headerView;
-    
 }
 
 - (void)didReceiveMemoryWarning {

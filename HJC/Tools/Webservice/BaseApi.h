@@ -25,10 +25,10 @@
  net work fanglingyong
 
  @param urlString request in header.h
- @param paramDic
- @param image
- @param uploadProgress
- @param block 
+ @param paramDic a
+ @param image a
+ @param uploadProgress a
+ @param block  a
  */
 +(void)postMenthodWirhUrlString :(NSString*)urlString
                         paramDic:(NSMutableDictionary *)paramDic
