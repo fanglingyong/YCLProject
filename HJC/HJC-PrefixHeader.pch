@@ -102,6 +102,7 @@
 
 #define sysBlue [UIColor colorFromHexCode:@"#3975e2"]
 
+#define no
 
 #endif /* HJC_PrefixHeader_pch */
 #endif

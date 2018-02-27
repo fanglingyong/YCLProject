@@ -364,8 +364,8 @@
                 [self.suppliersArray addObject:[tempDic objectForKey:@"corpid"]];
                 [suppliersName addObject:[tempDic objectForKey:@"corpname"]];
             }
-            NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限",@"corpid", @"买100W送iPhone X 10台", nil];
-            [self.promotionsArray addObjectsFromArray:@[@"", @"", @""]];
+            NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限", nil];
+            [self.promotionsArray addObjectsFromArray:@[@""]];
             NSArray *array = [NSArray arrayWithObjects:allClassName, suppliersName, promotionsName, nil];
             [self.procurement setupBasicArray:array];
             

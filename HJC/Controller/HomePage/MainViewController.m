@@ -291,6 +291,7 @@
         case 0:
         {
             NSLog(@"化学药");
+            
         }
             break;
         case 1:
@@ -300,7 +301,7 @@
             break;
         case 2:
         {
-            NSLog(@"保健品");
+            NSLog(@"抗生素剂");
         }
             break;
         case 3:

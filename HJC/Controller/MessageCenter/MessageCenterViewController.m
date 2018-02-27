@@ -20,6 +20,7 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *msgList;
 @property (nonatomic,assign) NSInteger pageNum;
+@property (nonatomic,strong) UIView *noDataView;
 @end
 
 @implementation MessageCenterViewController
@@ -29,10 +30,10 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
-    self.msgList = [NSMutableArray array];
-    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
+//    self.msgList = [NSMutableArray array];
+//    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
     [self.view addSubview:self.tableView];
-//    [self net_MessageList];
+    [self net_MessageList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,7 +128,7 @@
             }
             [self.tableView reloadData];
         }else{
-            
+            [HUDUtil Hud_message:@"暂无数据" view:self.view];
         }
     } dic:pargrams noNetWork:nil];
 }
