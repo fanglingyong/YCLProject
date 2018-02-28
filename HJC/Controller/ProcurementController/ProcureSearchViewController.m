@@ -8,6 +8,8 @@
 
 #import "ProcureSearchViewController.h"
 #import "NavView.h"
+#import "ProcurementModel.h"
+#import "ProcurementCell.h"
 
 @interface ProcureSearchViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -19,8 +21,10 @@
 @property (nonatomic, retain)UILabel *placeLabel;
 @property (nonatomic, retain)UIButton *searchBtn;
 
-@property (nonatomic, retain)NSMutableArray *searchArr;
+@property (nonatomic, retain)NSMutableArray *allHistoryArr;
+@property (nonatomic, retain)NSMutableArray *historyArr;
 @property (nonatomic, retain)NSMutableArray *hotArr;
+@property (nonatomic, retain)NSMutableArray *dataArray;
 
 @end
 
@@ -29,8 +33,10 @@
 {
     self = [super init];
     if (self) {
-        self.searchArr = [NSMutableArray array];
+        self.allHistoryArr = [NSMutableArray array];
+        self.historyArr = [NSMutableArray array];
         self.hotArr = [NSMutableArray array];
+        self.dataArray = [NSMutableArray array];
     }
     return self;
 }
@@ -48,19 +54,46 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    self.searchArr = [NSMutableArray arrayWithObject:@"泮立苏"];
+//    self.historyArr = [NSMutableArray arrayWithObject:@"泮立苏"];
     self.hotArr = [NSMutableArray arrayWithObjects:@"泮立苏", @"优甲乐", @"亮甲", nil];
 
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getHistoryArray];
+}
+- (void)reloadData {
+    
+    NSLog(@"%@", self.allHistoryArr);
+    
+    if (self.allHistoryArr.count >= 10) {
+        [self.historyArr addObjectsFromArray:[self.allHistoryArr subarrayWithRange:NSMakeRange(0, 10)]];
+    } else {
+        [self.historyArr addObjectsFromArray:self.allHistoryArr];
+    }
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.searchTF.text.length > 0) {
+        return 1;
+    }
     return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.searchTF.text.length > 0) {
+        return HeightXiShu(10);
+    }
     return HeightXiShu(25);
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.searchTF.text.length > 0) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
+        view.backgroundColor = AllLightGrayColor;
+        return view;
+    }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(25))];
     view.backgroundColor = [UIColor whiteColor];
     
@@ -78,51 +111,81 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        NSInteger row = self.searchArr.count / 6;
+    
+    if (self.searchTF.text.length > 0) {
+        return HeightXiShu(135);
+    } else {
+        if (indexPath.section == 0) {
+            NSInteger row = self.historyArr.count / 6;
+            return HeightXiShu(45) * (row + 1);
+        }
+        NSInteger row = self.hotArr.count / 6;
         return HeightXiShu(45) * (row + 1);
     }
-    NSInteger row = self.hotArr.count / 6;
-    return HeightXiShu(45) * (row + 1);
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (self.searchTF.text.length > 0) {
+        return self.dataArray.count;
+    }
     return 1;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    static NSString *identifier = @"ProcurementCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    CGFloat width = (kScreenWidth - WidthXiShu(30) - WidthXiShu(25)) / 6;
-    CGFloat height = HeightXiShu(25);
-    
-    if (indexPath.section == 0) {
-        for (int i = 0; i < self.searchArr.count; i++) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
-            [button setTitle:[NSString stringWithFormat:@"%@", self.searchArr[i]] forState:UIControlStateNormal];
-            button.titleLabel.font = HEITI(HeightXiShu(12));
-            [button setTitleColor:TitleColor forState:UIControlStateNormal];
-            button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
-            [cell.contentView addSubview:button];
+    if (self.searchTF.text.length > 0) {
+        ProcurementModel *model = [[ProcurementModel alloc] init];
+        if (self.dataArray.count > 0) {
+            model = self.dataArray[indexPath.row];
         }
+        static NSString *identifier = @"ProcurementSearchCell";
+        ProcurementCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[ProcurementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.model = model;
+        cell.indexPath = indexPath;
+        return cell;
     } else {
-        for (int i = 0; i < self.hotArr.count; i++) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
-            [button setTitle:[NSString stringWithFormat:@"%@", self.hotArr[i]] forState:UIControlStateNormal];
-            button.titleLabel.font = HEITI(HeightXiShu(12));
-            [button setTitleColor:TitleColor forState:UIControlStateNormal];
-            button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
-            [cell.contentView addSubview:button];
+        static NSString *identifier = @"ProcurementCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        CGFloat width = (kScreenWidth - WidthXiShu(30) - WidthXiShu(25)) / 6;
+        CGFloat height = HeightXiShu(25);
+        
+        if (indexPath.section == 0) {
+            for (int i = 0; i < self.historyArr.count; i++) {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                button.tag = i;
+                button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
+                [button setTitle:[NSString stringWithFormat:@"%@", self.historyArr[i]] forState:UIControlStateNormal];
+                button.titleLabel.font = HEITI(HeightXiShu(12));
+                [button setTitleColor:TitleColor forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(historyButtonAction:) forControlEvents:UIControlEventTouchDown];
+                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+                [cell.contentView addSubview:button];
+            }
+        } else {
+            for (int i = 0; i < self.hotArr.count; i++) {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                button.tag = i;
+                button.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
+                [button setTitle:[NSString stringWithFormat:@"%@", self.hotArr[i]] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(hotButtonAction:) forControlEvents:UIControlEventTouchDown];
+                button.titleLabel.font = HEITI(HeightXiShu(12));
+                [button setTitleColor:TitleColor forState:UIControlStateNormal];
+                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+                [cell.contentView addSubview:button];
+            }
+        }
+        return cell;
     }
-    return cell;
 }
 
 
@@ -153,7 +216,7 @@
         [navView addSubview:self.searchTF];
 
         self.placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(70), HeightXiShu(12), WidthXiShu(150), HeightXiShu(20))];
-        self.placeLabel.text = @"泮立苏";
+//        self.placeLabel.text = @"泮立苏";
         self.placeLabel.textColor = TitleColor;
         self.placeLabel.numberOfLines = 0;
         self.placeLabel.font = HEITI(HeightXiShu(13));
@@ -177,8 +240,26 @@
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)searchClick {
+- (void)historyButtonAction:(UIButton *)sender {
+    NSLog(@"%ld", (long)sender.tag);
+    [self.searchTF becomeFirstResponder];
+    self.searchTF.text = [NSString stringWithFormat:@"%@", self.historyArr[sender.tag]];
+    [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
+    [self saveHistoryArray];
     
+}
+- (void)hotButtonAction:(UIButton *)sender {
+    NSLog(@"%ld", (long)sender.tag);
+    [self.searchTF becomeFirstResponder];
+    self.searchTF.text = [NSString stringWithFormat:@"%@", self.hotArr[sender.tag]];
+    [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
+    [self saveHistoryArray];
+}
+- (void)searchClick {
+    if (self.dataArray.count > 0) {
+        [self.dataArray removeAllObjects];
+    }
+    [self network_procurementList];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.placeLabel.alpha = 0;
@@ -192,6 +273,75 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.tableView endEditing:YES];
 }
+
+#pragma mark - 接口
+-(void)network_procurementList{
+    
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:@",10,1" forKey:@"WebPara"];
+    
+    [pargrams setObject:[NSString stringWithFormat:@"0,0,%@",self.searchTF.text] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
+    [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+    NSLog(@"这是采购页面pargrams :%@", pargrams);
+    [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
+        if(!error){
+            NSLog(@"请求成功了~~~~~~~~");
+            NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
+
+            for (NSDictionary *dic in goodsArr) {
+                ProcurementModel *model = [[ProcurementModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [self.dataArray addObject:model];
+            }
+            [self.tableView reloadData];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    } dic:pargrams noNetWork:nil];
+    
+}
+
+
+- (void)getHistoryArray {
+    
+    if ([NSHomeDirectory() stringByAppendingPathComponent:@"Documents/historyArray"]) {
+        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/historyArray"];
+        id array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        self.allHistoryArr = [NSMutableArray arrayWithArray:array];
+    }
+    NSLog(@"allHistoryArr%@", self.allHistoryArr);
+}
+
+- (void)saveHistoryArray {
+    //归档
+    NSArray *array = [NSArray arrayWithArray:self.allHistoryArr];
+    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/historyArray"];
+    BOOL success = [NSKeyedArchiver archiveRootObject:array toFile:filePath];
+    if(success){
+        NSLog(@"保存成功");
+    }
+}
+//  将数组重复的对象去除，只保留一个
+- (void)arrayWithMemberIsOnly:(NSMutableArray *)historyArray name:(NSString *)name
+{
+    NSLog(@"%@",self.allHistoryArr);
+    BOOL  bfound = NO;
+    for (NSString *string in historyArray) {
+        if (string && [string isEqualToString: name]) {
+            [self.allHistoryArr removeObject:string];
+            NSLog(@"cityHistoryArray%@", self.allHistoryArr);
+            [self.allHistoryArr insertObject:name atIndex:0];
+            NSLog(@"cityHistoryArray%@", self.allHistoryArr);
+            return;
+        }
+    }
+    if(!bfound) {
+        [self.allHistoryArr insertObject:name atIndex:0];
+    }
+    NSLog(@"cityHistoryArray%@", self.allHistoryArr);
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

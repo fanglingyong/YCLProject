@@ -70,7 +70,7 @@
 
     [self networkGetOrders];
     // Do any additional setup after loading the view.
-    [self.orderStatusArray addObjectsFromArray:@[@"待付款",@"待发货",@"拣货中",@"配送中",@"已收货"]];
+    [self.orderStatusArray addObjectsFromArray:@[@"不限",@"待付款",@"待发货",@"拣货中",@"配送中",@"已收货"]];
     NSArray *array = [NSArray arrayWithObject:self.orderStatusArray];
     [self.orderStatus setupBasicArray:array];
 }
@@ -357,9 +357,13 @@
 - (void)dropdownButton:(HDDropdownButton *)titleView didTapButton:(UIButton *)sender {
     
     if (titleView.selected == YES) {
+        self.noDateView.hidden = NO;
         [self deselectButtons];
         
     } else {
+        if (self.noDateView) {
+            self.noDateView.hidden = YES;
+        }
         [self deselectButtons];
         if ([titleView isEqual:self.orderStatusButton]) {
             self.orderStatusButton.selected = YES;

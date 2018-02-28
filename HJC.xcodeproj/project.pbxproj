@@ -163,9 +163,6 @@
 		36FD7A3D1FD93C05002315E5 /* procure_arrowDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A3A1FD93BD3002315E5 /* procure_arrowDefault.png */; };
 		36FD7A3E1FD93C05002315E5 /* procure_arrowDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A3B1FD93BD4002315E5 /* procure_arrowDefault@2x.png */; };
 		36FD7A3F1FD93C05002315E5 /* procure_arrowDefault@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A3C1FD93BD4002315E5 /* procure_arrowDefault@3x.png */; };
-		36FD7A4C1FE90EE3002315E5 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F51FCBE865005EC6BA /* search.png */; };
-		36FD7A4D1FE90EE3002315E5 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F61FCBE865005EC6BA /* search@2x.png */; };
-		36FD7A4E1FE90EE3002315E5 /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F71FCBE865005EC6BA /* search@3x.png */; };
 		36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1111FCBE865005EC6BA /* right_arrow@2x.png */; };
 		36FD7A571FE9135A002315E5 /* home_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A541FE91350002315E5 /* home_normal.png */; };
 		36FD7A581FE9135A002315E5 /* home_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A561FE91351002315E5 /* home_normal@2x.png */; };
@@ -2195,7 +2192,7 @@
 				TargetAttributes = {
 					3696F9681F95DA84000B9172 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					3696F9801F95DA86000B9172 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2231,9 +2228,6 @@
 				36FD7A571FE9135A002315E5 /* home_normal.png in Resources */,
 				36FD7A581FE9135A002315E5 /* home_normal@2x.png in Resources */,
 				36FD7A591FE9135A002315E5 /* home_normal@3x.png in Resources */,
-				36FD7A4C1FE90EE3002315E5 /* search.png in Resources */,
-				36FD7A4D1FE90EE3002315E5 /* search@2x.png in Resources */,
-				36FD7A4E1FE90EE3002315E5 /* search@3x.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
 				450BF3FA1FE8EF9A00A90704 /* search.png in Resources */,
 				450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */,
@@ -2735,8 +2729,8 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FLLG78AHV5;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KMK843WA4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2748,8 +2742,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "187f9440-25b6-44fd-a66e-590024da0380";
-				PROVISIONING_PROFILE_SPECIFIER = ios_development_profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2767,9 +2761,9 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FLLG78AHV5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KMK843WA4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2781,8 +2775,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e42287b8-b78c-4128-8d61-fb2670f19c6f";
-				PROVISIONING_PROFILE_SPECIFIER = ios_distribution_profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
