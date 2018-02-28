@@ -291,7 +291,7 @@
             self.dropView.dataArray = self.procurement.allClassArray;
             self.dropView.tag = 1001;
             self.dropView.selectedIndex = self.procurement.allClass;
-            [self.dropView resetContentFrame];
+            [self.dropView resetContentFrame]; 
             self.dropView.hidden = NO;
             NSLog(@"全部分类：dropView%lu", (unsigned long)self.dropView.selectedIndex);
         }
