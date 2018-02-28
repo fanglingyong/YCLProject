@@ -55,7 +55,7 @@
     [self.view addSubview:self.tableView];
     
 //    self.historyArr = [NSMutableArray arrayWithObject:@"泮立苏"];
-    self.hotArr = [NSMutableArray arrayWithObjects:@"泮立苏", @"优甲乐", @"亮甲", nil];
+    self.hotArr = [NSMutableArray arrayWithObjects:@"六味地黄胶囊", @"上清胶囊", @"乳果糖口服液", nil];
 
 }
 - (void)viewWillAppear:(BOOL)animated {

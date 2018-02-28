@@ -12,6 +12,9 @@
 #import "MainTableViewCell.h"
 #import "MedicineDetailViewController.h"
 #import "SCWebViewController.h"
+#import "ProcurementNoTabViewController.h"
+#import "PromotionViewController.h"
+#import "IntegralDetailViewController.h"
 @interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
@@ -291,27 +294,41 @@
         case 0:
         {
             NSLog(@"化学药");
-            
+            ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:pnt animated:YES];
         }
             break;
         case 1:
         {
             NSLog(@"中成药");
+            ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:pnt animated:YES];
         }
             break;
         case 2:
         {
             NSLog(@"抗生素剂");
+            ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:pnt animated:YES];
         }
             break;
         case 3:
         {
-            NSLog(@"积分");
+            NSLog(@"积分"); //跳转到积分页面
+            IntegralDetailViewController *idv = [[IntegralDetailViewController alloc] init];
+            idv.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:idv animated:YES];
         }
             break;
         case 4:
         {
-            NSLog(@"促销");
+            NSLog(@"促销"); //跳转到促销页面
+            PromotionViewController *promotion = [[PromotionViewController alloc]init];
+            promotion.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:promotion animated:YES];
         }
             break;
         default:

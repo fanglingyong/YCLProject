@@ -324,6 +324,8 @@
 		457D79821FE514460077F462 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79811FE514460077F462 /* UserModel.m */; };
 		457D79861FE529220077F462 /* CustomServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79851FE529220077F462 /* CustomServiceViewController.m */; };
 		457D798A1FE53ED50077F462 /* IntegralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79891FE53ED50077F462 /* IntegralDetailViewController.m */; };
+		459930122046E219003E8119 /* ProcurementNoTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459930112046E219003E8119 /* ProcurementNoTabViewController.m */; };
+		459930162046E40D003E8119 /* PromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459930152046E40D003E8119 /* PromotionViewController.m */; };
 		45BDBE281FB293BE001B9581 /* SelectBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BDBE271FB293BE001B9581 /* SelectBoxView.m */; };
 		45BDBE301FB2A323001B9581 /* select_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2A1FB2A323001B9581 /* select_up@3x.png */; };
 		45BDBE311FB2A323001B9581 /* select_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE2B1FB2A323001B9581 /* select_down.png */; };
@@ -843,6 +845,10 @@
 		457D79851FE529220077F462 /* CustomServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomServiceViewController.m; sourceTree = "<group>"; };
 		457D79881FE53ED50077F462 /* IntegralDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralDetailViewController.h; sourceTree = "<group>"; };
 		457D79891FE53ED50077F462 /* IntegralDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailViewController.m; sourceTree = "<group>"; };
+		459930102046E219003E8119 /* ProcurementNoTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcurementNoTabViewController.h; sourceTree = "<group>"; };
+		459930112046E219003E8119 /* ProcurementNoTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcurementNoTabViewController.m; sourceTree = "<group>"; };
+		459930142046E40D003E8119 /* PromotionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionViewController.h; sourceTree = "<group>"; };
+		459930152046E40D003E8119 /* PromotionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionViewController.m; sourceTree = "<group>"; };
 		45BDBE261FB293BE001B9581 /* SelectBoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectBoxView.h; sourceTree = "<group>"; };
 		45BDBE271FB293BE001B9581 /* SelectBoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectBoxView.m; sourceTree = "<group>"; };
 		45BDBE2A1FB2A323001B9581 /* select_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_up@3x.png"; sourceTree = "<group>"; };
@@ -907,6 +913,8 @@
 				336FDB871FD11EFD00AFC918 /* ProcurementViewController.m */,
 				36A2D50F200345A3008ECE20 /* ProcureSearchViewController.h */,
 				36A2D510200345A3008ECE20 /* ProcureSearchViewController.m */,
+				459930102046E219003E8119 /* ProcurementNoTabViewController.h */,
+				459930112046E219003E8119 /* ProcurementNoTabViewController.m */,
 			);
 			path = ProcurementController;
 			sourceTree = "<group>";
@@ -1608,6 +1616,7 @@
 		3696FEB31F95DC87000B9172 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				459930132046E3FE003E8119 /* PromotionController */,
 				336FDB851FD11EEC00AFC918 /* ProcurementController */,
 				455E1F271FAC3EA500805340 /* AboutClinic */,
 				455E1F2A1FAC3EA500805340 /* LoginController */,
@@ -2053,6 +2062,15 @@
 			path = IntegralDetailController;
 			sourceTree = "<group>";
 		};
+		459930132046E3FE003E8119 /* PromotionController */ = {
+			isa = PBXGroup;
+			children = (
+				459930142046E40D003E8119 /* PromotionViewController.h */,
+				459930152046E40D003E8119 /* PromotionViewController.m */,
+			);
+			path = PromotionController;
+			sourceTree = "<group>";
+		};
 		45BDBE291FB2A2EA001B9581 /* SelectBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -2459,6 +2477,7 @@
 				36430BBF1F9DBF8F001709DD /* UIImage+WebP.m in Sources */,
 				36430BC01F9DBF8F001709DD /* UIImageView+HighlightedWebCache.m in Sources */,
 				452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */,
+				459930122046E219003E8119 /* ProcurementNoTabViewController.m in Sources */,
 				4559C1A71FCD289C005EC6BA /* ClinicCell.m in Sources */,
 				36A2D511200345A3008ECE20 /* ProcureSearchViewController.m in Sources */,
 				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,
@@ -2484,6 +2503,7 @@
 				450BF4041FED0F9000A90704 /* SubmitOrdersViewController.m in Sources */,
 				36430BB41F9DBF5A001709DD /* NSData+ImageContentType.m in Sources */,
 				36430BB31F9DBEBE001709DD /* MKAnnotationView+WebCache.m in Sources */,
+				459930162046E40D003E8119 /* PromotionViewController.m in Sources */,
 				36430B901F9DBE57001709DD /* ZWAdView.m in Sources */,
 				36430B8E1F9DBE4B001709DD /* PickerView.m in Sources */,
 				36430B8C1F9DBE41001709DD /* InputTextFiledView.m in Sources */,
