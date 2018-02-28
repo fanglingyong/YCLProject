@@ -30,13 +30,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    NSLog(@"设备宽%f,设备高%f",[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height);
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAgain) name:@"loginAgain" object:nil];
-
     [self jumpMain];
-
     
     return YES;
 }
@@ -171,9 +170,9 @@
 //        MessageCenterViewController *secvc = (MessageCenterViewController *)navigationctr.topViewController;
 //        [secvc net_MessageList];
     }else{
-        UINavigationController *navigationctr = (UINavigationController *)viewController;
-        MyCenterViewController *secvc = (MyCenterViewController *)navigationctr.topViewController;
-        [secvc initClinic];
+//        UINavigationController *navigationctr = (UINavigationController *)viewController;
+//        MyCenterViewController *secvc = (MyCenterViewController *)navigationctr.topViewController;
+//        [secvc initClinic];
     }
 }
 

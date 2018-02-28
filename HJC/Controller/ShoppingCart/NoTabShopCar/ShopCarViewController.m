@@ -54,7 +54,7 @@
 }
 -(UIView*)footView{
     if (!_footView) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-40, kScreenWidth, 40)];
         _footView.backgroundColor = [UIColor whiteColor];
         
         UIButton *allSelect = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -20,6 +20,7 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *msgList;
 @property (nonatomic,assign) NSInteger pageNum;
+@property (nonatomic,strong) UIView *noDataView;
 @end
 
 @implementation MessageCenterViewController
@@ -29,10 +30,10 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
-    self.msgList = [NSMutableArray array];
-    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
+//    self.msgList = [NSMutableArray array];
+//    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
     [self.view addSubview:self.tableView];
-//    [self net_MessageList];
+    [self net_MessageList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,7 +58,7 @@
 #pragma mark - tableView / Delgate &dataSource
 -(UITableView*)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, kScreenHeight-_navView.maxY-10) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _navView.maxY+10, kScreenWidth, kScreenHeight-SafeAreaBottomHeight-_navView.maxY-10) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
 //        _tableView.bounces = NO;
@@ -127,7 +128,7 @@
             }
             [self.tableView reloadData];
         }else{
-            
+            [HUDUtil Hud_message:@"暂无数据" view:self.view];
         }
     } dic:pargrams noNetWork:nil];
 }

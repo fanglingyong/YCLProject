@@ -54,7 +54,7 @@
 }
 -(UIView*)footView{
     if (!_footView) {
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-89, kScreenWidth, 40)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-89, kScreenWidth, 40)];
         _footView.backgroundColor = [UIColor whiteColor];
         
         UIButton *allSelect = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -149,7 +149,7 @@
 #pragma mark - tableView delegate dataSource
 -(UITableView*)mainTableView{
     if (!_mainTableView) {
-        self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+kStateHeight, kScreenWidth, kScreenHeight-133-kStateHeight) style:UITableViewStylePlain];
+        self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, kScreenWidth, kScreenHeight-SafeAreaTopHeight-SafeAreaBottomHeight-89) style:UITableViewStylePlain];
         self.mainTableView.delegate = self;
         self.mainTableView.dataSource = self;
         self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

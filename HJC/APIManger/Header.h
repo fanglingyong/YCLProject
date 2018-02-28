@@ -10,8 +10,8 @@
 #define Header_h
 
 //host path
-#define HostPath @"http://120.26.97.79/WebApi/api"
-
+//#define HostPath @"http://120.26.97.79/WebApi/api"
+#define HostPath @"https://weiyaonet.com/WebApi/api"
 //注册
 #define RegisterURL @"/NewPerson"
 //登陆
@@ -66,11 +66,11 @@
 #define GetDealMessage @"/BTN_MESSAGE_ISREAD"
 
 //图片前缀 banner
-#define HomePic @"http://120.26.97.79/WebApi/IndexPic/"
+#define HomePic @"https://weiyaonet.com/WebApi/IndexPic/"
 // 列表
-#define SmallPic @"http://120.26.97.79/WebApi/smallpic/"
+#define SmallPic @"https://weiyaonet.com/WebApi/smallpic/"
 // 单品种时候
-#define BigPic @"http://120.26.97.79/WebApi/bigpic/"
+#define BigPic @"https://weiyaonet.com/WebApi/bigpic/"
 
 #endif /* Header_h */
 

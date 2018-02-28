@@ -105,7 +105,7 @@
 -(UILabel *)careLb{
     if(!_careLb){
         UILabel *careLb = [[UILabel alloc] initWithFrame:CGRectMake(self.middleBtn.maxX, self.careBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        careLb.text = @"保健品";
+        careLb.text = @"抗生素剂";
         careLb.textColor = TitleColor;
         careLb.font = HEITI(HeightXiShu(11));
         careLb.textAlignment = NSTextAlignmentCenter;

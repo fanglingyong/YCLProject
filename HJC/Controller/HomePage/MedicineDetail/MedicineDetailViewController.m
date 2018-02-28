@@ -57,7 +57,7 @@
 - (NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = kStateHeight;
+        navView.minY = [UIApplication sharedApplication].statusBarFrame.size.height;
         navView.backgroundColor = [UIColor whiteColor];
         navView.titleLabel.text = @"药品详情页";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -74,7 +74,7 @@
 
 #pragma mark - UI
 -(void)startUI{
-    self.tableView.frame = CGRectMake(0, _navView.maxY, kScreenWidth, kScreenHeight-_navView.maxY-HeightXiShu(50));
+    self.tableView.frame = CGRectMake(0, _navView.maxY, kScreenWidth, kScreenHeight-SafeAreaBottomHeight-_navView.maxY-HeightXiShu(50));
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -95,7 +95,7 @@
 }
 - (MerchandiseFooterButton *)footerView {
     if (!_footerView) {
-        MerchandiseFooterButton *footerView = [[MerchandiseFooterButton alloc] initWithFrame:CGRectMake(0, kScreenHeight - HeightXiShu(50), kScreenWidth, HeightXiShu(50))];
+        MerchandiseFooterButton *footerView = [[MerchandiseFooterButton alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight - HeightXiShu(50), kScreenWidth, HeightXiShu(50))];
         footerView.delegate = self;
         footerView.backgroundColor = [UIColor whiteColor];
         _footerView = footerView;

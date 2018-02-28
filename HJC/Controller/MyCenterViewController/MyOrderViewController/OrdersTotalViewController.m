@@ -129,7 +129,7 @@
 #pragma mark - headerView
 - (UIView *)headerView {
     if (!_headerView) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, HeightXiShu(44))];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kStateHeight+44, kScreenWidth, HeightXiShu(44))];
         headerView.backgroundColor = [UIColor whiteColor];
         // 全部分类
         self.orderStatusButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, 0, WidthXiShu(120), HeightXiShu(44))];
@@ -179,7 +179,7 @@
 }
 - (DropdownSimpleView *)dropView {
     if (!_dropView) {
-       DropdownSimpleView *dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, 64 + HeightXiShu(44), kScreenWidth, kScreenHeight - HeightXiShu(44))];
+       DropdownSimpleView *dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + HeightXiShu(44), kScreenWidth, kScreenHeight - HeightXiShu(44))];
         dropView.delegate = self;
         dropView.hidden = YES;
         _dropView = dropView;

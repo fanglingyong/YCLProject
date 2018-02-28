@@ -21,7 +21,7 @@
 @property(nonatomic, strong)UILabel *integralCountLb;   //积分数量
 @property(nonatomic, strong)UIButton *subtractionBtn; // 减
 @property(nonatomic, strong)UIButton *additionBtn;    // 加
-@property(nonatomic, strong)UILabel *countLb;   //个数
+@property(nonatomic, strong)UITextField *countLb;   //个数
 
 
 
@@ -184,9 +184,9 @@
     
 }
 
-- (UILabel *)countLb{
+- (UITextField *)countLb{
     if(!_countLb){
-        UILabel *countLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(284), HeightXiShu(153), HeightXiShu(40), HeightXiShu(25))];
+        UITextField *countLb = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(284), HeightXiShu(153), HeightXiShu(40), HeightXiShu(25))];
         countLb.layer.borderColor = TitleColor.CGColor;
         countLb.layer.borderWidth = HeightXiShu(.5);
         countLb.text = [NSString stringWithFormat:@"%ld",_num];

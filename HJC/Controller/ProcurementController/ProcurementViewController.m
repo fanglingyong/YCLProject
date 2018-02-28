@@ -139,33 +139,33 @@
 }
 
 - (void)creatDropDownView {
-    
+    CGFloat toTop = kStateHeight+44;
     // 全部分类
-    self.allClassButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, 64, (kScreenWidth - 2) / 3, HeightXiShu(49))];
+    self.allClassButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
     self.allClassButton.delegate = self;
     self.allClassButton.backgroundColor = [UIColor whiteColor];
     self.allClassButton.frontColor = TitleColor;
     self.allClassButton.title = self.procurement.allClassTitle;
     [self.view addSubview:self.allClassButton];
     
-    UIView *cutLine1 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3, 64 + HeightXiShu(15), 1, HeightXiShu(20))];
+    UIView *cutLine1 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3, toTop + HeightXiShu(15), 1, HeightXiShu(20))];
     cutLine1.backgroundColor = AllLightGrayColor;
     [self.view addSubview:cutLine1];
     
     // 供应商
-    self.suppliersButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3 + 1, 64, (kScreenWidth - 2) / 3, HeightXiShu(49))];
+    self.suppliersButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3 + 1, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
     self.suppliersButton.delegate = self;
     self.suppliersButton.backgroundColor = [UIColor whiteColor];
     self.suppliersButton.frontColor = TitleColor;
     self.suppliersButton.title = self.procurement.suppliersTitle;
     [self.view addSubview:self.suppliersButton];
     
-    UIView *cutLine2 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 1, 64 + HeightXiShu(15), 1, HeightXiShu(20))];
+    UIView *cutLine2 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 1, toTop + HeightXiShu(15), 1, HeightXiShu(20))];
     cutLine2.backgroundColor = AllLightGrayColor;
     [self.view addSubview:cutLine2];
     
     // 促销
-    self.promotionsButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 2, 64, (kScreenWidth - 2) / 3, HeightXiShu(49))];
+    self.promotionsButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 2, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
     self.promotionsButton.backgroundColor = [UIColor whiteColor];
     self.promotionsButton.frontColor = TitleColor;
     self.promotionsButton.delegate = self;
@@ -173,11 +173,11 @@
     [self.view addSubview:self.promotionsButton];
     
     
-    UIView *cutLine3 = [[UIView alloc] initWithFrame:CGRectMake(0, 64 + HeightXiShu(49), kScreenWidth, 1)];
+    UIView *cutLine3 = [[UIView alloc] initWithFrame:CGRectMake(0, toTop + HeightXiShu(49), kScreenWidth, 1)];
     cutLine3.backgroundColor = AllLightGrayColor;
     [self.view addSubview:cutLine3];
     
-    self.dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, 64 + HeightXiShu(50), kScreenWidth, kScreenHeight - HeightXiShu(50))];
+    self.dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, toTop + HeightXiShu(50), kScreenWidth, kScreenHeight - HeightXiShu(50))];
     self.dropView.delegate = self;
     self.dropView.hidden = YES;
     [self.view addSubview:self.dropView];
@@ -185,7 +185,7 @@
 }
 
 - (void)creatTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,  64 + HeightXiShu(50), kScreenWidth, kScreenHeight - 64 - HeightXiShu(50)) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,  kStateHeight+44 + HeightXiShu(50), kScreenWidth, kScreenHeight - 64 - HeightXiShu(50)) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -364,8 +364,8 @@
                 [self.suppliersArray addObject:[tempDic objectForKey:@"corpid"]];
                 [suppliersName addObject:[tempDic objectForKey:@"corpname"]];
             }
-            NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限",@"corpid", @"买100W送iPhone X 10台", nil];
-            [self.promotionsArray addObjectsFromArray:@[@"", @"", @""]];
+            NSMutableArray *promotionsName = [NSMutableArray arrayWithObjects:@"不限", nil];
+            [self.promotionsArray addObjectsFromArray:@[@""]];
             NSArray *array = [NSArray arrayWithObjects:allClassName, suppliersName, promotionsName, nil];
             [self.procurement setupBasicArray:array];
             

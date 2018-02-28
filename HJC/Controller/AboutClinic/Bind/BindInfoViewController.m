@@ -73,7 +73,7 @@
     [self.view addSubview:searchView];
 }
 -(void)toolViewCreate{
-    ToolButtonView *tool = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-49, kScreenWidth, 49) button:@"未找到,去注册诊所"];
+    ToolButtonView *tool = [[ToolButtonView alloc] initWithFrame:CGRectMake(0, kScreenHeight-SafeAreaBottomHeight-49, kScreenWidth, 49) button:@"未找到,去注册诊所"];
     [tool addToolTarget:self action:@selector(jumpToRegister) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)jumpToRegister{
