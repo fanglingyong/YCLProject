@@ -126,7 +126,7 @@
         self.adScrollView.TapActionBlock = ^(NSInteger pageIndex){
             NSString *url = weakSelf.bannerArray[pageIndex];
             if (url.length > 0) {
-                [weakSelf clickGoToNewVC:[NSString stringWithFormat:@"%@%@", HomePic, url] WithName:@""];
+//                [weakSelf clickGoToNewVC:[NSString stringWithFormat:@"%@%@", HomePic, url] WithName:@""];
             } else {
                 return;
             }

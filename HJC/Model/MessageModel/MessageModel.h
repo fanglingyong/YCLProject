@@ -16,7 +16,9 @@
 @property (nonatomic,strong) NSString *Isread;//是否已读（0未读1已读）
 @property (nonatomic,strong) NSString *Messagecontent;//消息内容
 @property (nonatomic,strong) NSString *MessageTitle;//消息标题
-@property (nonatomic,strong) NSString *massagedate;//消息时间
+@property (nonatomic,strong) NSString *MessDate;//消息时间
+@property (nonatomic,strong) NSString *sortid;
+@property (nonatomic,strong) NSString *totalcount;
 
 @end
 

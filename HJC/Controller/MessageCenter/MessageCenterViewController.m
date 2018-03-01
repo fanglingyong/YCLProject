@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NavView *navView;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *msgList;
+@property (nonatomic,strong) NSMutableArray *typeList;
 @property (nonatomic,assign) NSInteger pageNum;
 @property (nonatomic,strong) UIView *noDataView;
 @end
@@ -30,9 +31,8 @@
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
-//    self.msgList = [NSMutableArray array];
-//    [self.msgList addObjectsFromArray:@[@"2",@"1",@"1",@"1"]];
     [self.view addSubview:self.tableView];
+    _pageNum = 1;
     [self net_MessageList];
 }
 
@@ -74,40 +74,41 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_msgList[indexPath.row] isEqualToString:@"2"]) {
-        return 146;
-    }
-    return 96;
+    return 116;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_msgList[indexPath.row] isEqualToString:@"2"]) {
+    /* if boss have need ，next play it
+    if ([_typeList[indexPath.row] isEqualToString:@"2"]) {
         AnnouncementCell * cell = [tableView dequeueReusableCellWithIdentifier:@"announcementCell"];
         if (!cell) {
             cell = [[AnnouncementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"announcementCell"];
         }
         return cell;
-    }
+    }*/
     MessagesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"messagesCell"];
     if (!cell) {
         cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"messagesCell"];
     }
+    MessageModel *model = _msgList[indexPath.row];
+    cell.model = model;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_msgList[indexPath.row] isEqualToString:@"2"]) {
+/*
+    if ([_typeList[indexPath.row] isEqualToString:@"2"]) {
         //公告
         AnnouncementViewController *ann = [[AnnouncementViewController alloc] init];
         ann.hidesBottomBarWhenPushed = YES;
         ann.msgModel = _msgList[indexPath.row];
         [self.navigationController pushViewController:ann animated:YES];
     }else{
-        //消息
+    }
+*/        //消息
         MessageDetailViewController *msgDetail = [[MessageDetailViewController alloc] init];
         msgDetail.hidesBottomBarWhenPushed = YES;
         msgDetail.msgModel = _msgList[indexPath.row];
         [self.navigationController pushViewController:msgDetail animated:YES];
-    }
 }
 #pragma mark - net
 -(void)net_MessageList{
@@ -119,9 +120,11 @@
         if (dict) {
             if (_pageNum==1) {
                 self.msgList = [NSMutableArray array];
+                self.typeList = [NSMutableArray array];
             }
             NSArray *arr = dict[@"data"];
             for (NSDictionary*oj in arr) {
+                [_typeList addObject:oj[@"MessageType"]];
                 MessageModel *model = [[MessageModel alloc] init];
                 [model setValuesForKeysWithDictionary:oj];
                 [_msgList addObject:model];

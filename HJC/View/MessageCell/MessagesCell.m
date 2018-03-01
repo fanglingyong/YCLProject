@@ -27,7 +27,7 @@
 
 -(UIView*)cellView{
     if (!_cellView) {
-        _cellView = [[UIView alloc] initWithFrame:CGRectMake(8, 8, kScreenWidth-16, 80)];
+        _cellView = [[UIView alloc] initWithFrame:CGRectMake(8, 8, kScreenWidth-16, 100)];
         _cellView.backgroundColor = [UIColor whiteColor];
         _cellView.layer.cornerRadius = 8.;
         _cellView.clipsToBounds = YES;
@@ -35,13 +35,14 @@
         [_cellView addSubview:self.title];
         [_cellView addSubview:self.sign];
         [_cellView addSubview:self.content];
+        [_cellView addSubview:self.datelb];
     }
     return _cellView;
 }
 
 -(UILabel*)type{
     if (!_type) {
-        _type = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 40, 22)];
+        _type = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 70, 22)];
         _type.text = @"消息";
         _type.font = [UIFont systemFontOfSize:15];
         _type.textAlignment = NSTextAlignmentCenter;
@@ -52,7 +53,7 @@
 }
 -(UILabel*)title{
     if (!_title) {
-        _title = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, _cellView.width-112, 22)];
+        _title = [[UILabel alloc] initWithFrame:CGRectMake(90, 10, _cellView.width-142, 22)];
         _title.text = @"这是一条消息";
         _title.font = [UIFont systemFontOfSize:15];
         _title.textColor = [UIColor colorFromHexCode:@"#F2A831"];
@@ -75,6 +76,24 @@
         _content.font = [UIFont systemFontOfSize:15];
     }
     return _content;
+}
+-(UILabel*)datelb{
+    if (!_datelb) {
+        _datelb = [[UILabel alloc] initWithFrame:CGRectMake(8, 70, _cellView.width-16, 20)];
+        _datelb.textColor = [UIColor colorFromHexCode:@"#9c9c9c"];
+        _datelb.text = @"2018-03-01 21:08:52";
+        _datelb.textAlignment = NSTextAlignmentRight;
+        _datelb.font = [UIFont systemFontOfSize:15];
+    }
+    return _datelb;
+}
+-(void)setModel:(MessageModel *)model{
+    _model = model;
+    _sign.text = model.Isread?@"已读":@"未读";
+    _content.text = model.Messagecontent;
+    _type.text = model.MessageTypeName;
+    _title.text = model.MessageTitle;
+    _datelb.text = model.MessDate;
 }
 
 @end

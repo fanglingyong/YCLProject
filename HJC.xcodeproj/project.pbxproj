@@ -347,6 +347,7 @@
 		45EF316A200E41C6004DAB6E /* SelectStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF3169200E41C6004DAB6E /* SelectStatusView.m */; };
 		45EF316D20122DB3004DAB6E /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */; };
 		45EF31712012368A004DAB6E /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EF31702012368A004DAB6E /* MessageModel.m */; };
+		45FD3F1F204843F700BA83BE /* nodata.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45FD3F1E204843F700BA83BE /* nodata.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -881,6 +882,7 @@
 		45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailViewController.m; sourceTree = "<group>"; };
 		45EF316F2012368A004DAB6E /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		45EF31702012368A004DAB6E /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		45FD3F1E204843F700BA83BE /* nodata.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nodata.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2087,6 +2089,7 @@
 		45BDBE3C1FB32DBF001B9581 /* DefaultIcon */ = {
 			isa = PBXGroup;
 			children = (
+				45FD3F1E204843F700BA83BE /* nodata.jpg */,
 				45EF315E200E21D2004DAB6E /* default.png */,
 				450E1E6B2009FFE60053525A /* syspic.jpg */,
 			);
@@ -2245,6 +2248,7 @@
 			files = (
 				36FD7A571FE9135A002315E5 /* home_normal.png in Resources */,
 				36FD7A581FE9135A002315E5 /* home_normal@2x.png in Resources */,
+				45FD3F1F204843F700BA83BE /* nodata.jpg in Resources */,
 				36FD7A591FE9135A002315E5 /* home_normal@3x.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
 				450BF3FA1FE8EF9A00A90704 /* search.png in Resources */,

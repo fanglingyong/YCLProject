@@ -50,7 +50,8 @@
 #define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
-
+//促销
+#define GetSalesPromotion @"QN_Promotion"
 //采购分类 供应商
 #define GetORDERLIST @"/QN_ORDERLIST_FORCONDITION"
 

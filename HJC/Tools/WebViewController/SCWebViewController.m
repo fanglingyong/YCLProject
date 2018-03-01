@@ -73,7 +73,7 @@
 -(NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"药品详情";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
