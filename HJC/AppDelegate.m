@@ -35,6 +35,8 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAgain) name:@"loginAgain" object:nil];
+    
+    [self clearHistoryData];
     [self jumpMain];
     
     return YES;
@@ -201,7 +203,56 @@
     return YES;
 }
 
+- (void)clearHistoryData {
+    NSString *fileName = @"historyArray";
+    NSString *filePath = [self getDirectoryOfDocumentFileWithName:fileName];
+    //    NSLog(@"%@", filePath);
+    if (filePath) {
+        [self removeFileAtPath:filePath];
+    }
+}
+- (NSString *)getDirectoryOfDocumentFileWithName:(NSString *)fileName {
+    NSString *documentsPath = [self getDirectoryOfDocumentFolder];
+    if (documentsPath) {
+        return [documentsPath stringByAppendingPathComponent:fileName]; // 获取用于存取的目标文件的完整路径
+    }
+    return nil;
+}
+- (NSString *)getDirectoryOfDocumentFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); // 获取所有Document文件夹路径
+    NSString *documentsPath = paths[0]; // 搜索目标文件所在Document文件夹的路径，通常为第一个
+    
+    if (!documentsPath) {
+        NSLog(@"Documents目录不存在");
+    }
+    return documentsPath;
+}
 
+- (BOOL)isFileExitsAtPath:(NSString *)filePath {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:filePath isDirectory:NULL]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)removeFileAtPath:(NSString *)filePath {
+    NSError *error = nil;
+    if ([self isFileExitsAtPath:filePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        
+        if (error) {
+            NSLog(@"移除文件失败，错误信息：%@", error);
+        }
+        else {
+            NSLog(@"成功移除文件");
+        }
+    }
+    else {
+        NSLog(@"文件不存在");
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

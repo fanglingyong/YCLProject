@@ -56,16 +56,21 @@
     
 //    self.historyArr = [NSMutableArray arrayWithObject:@"泮立苏"];
     self.hotArr = [NSMutableArray arrayWithObjects:@"六味地黄胶囊", @"上清胶囊", @"乳果糖口服液", nil];
+    [self.searchTF becomeFirstResponder];
 
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self getHistoryArray];
+    [self reloadData];
 }
 - (void)reloadData {
     
     NSLog(@"%@", self.allHistoryArr);
     
+    if (self.historyArr.count > 0) {
+        [self.historyArr removeAllObjects];
+    }
     if (self.allHistoryArr.count >= 10) {
         [self.historyArr addObjectsFromArray:[self.allHistoryArr subarrayWithRange:NSMakeRange(0, 10)]];
     } else {
@@ -116,14 +121,17 @@
         return HeightXiShu(135);
     } else {
         if (indexPath.section == 0) {
-            NSInteger row = self.historyArr.count / 6;
+            NSInteger row = self.historyArr.count / 4;
+            if (self.historyArr.count == 0) {
+                return 0;
+            }
             return HeightXiShu(45) * (row + 1);
         }
-        NSInteger row = self.hotArr.count / 6;
+        NSInteger row = self.hotArr.count / 4;
         return HeightXiShu(45) * (row + 1);
     }
-
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (self.searchTF.text.length > 0) {
@@ -156,7 +164,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        CGFloat width = (kScreenWidth - WidthXiShu(30) - WidthXiShu(25)) / 6;
+        CGFloat width = (kScreenWidth - WidthXiShu(30) - WidthXiShu(25)) / 4;
         CGFloat height = HeightXiShu(25);
         
         if (indexPath.section == 0) {
@@ -168,7 +176,7 @@
                 button.titleLabel.font = HEITI(HeightXiShu(12));
                 [button setTitleColor:TitleColor forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(historyButtonAction:) forControlEvents:UIControlEventTouchDown];
-                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 4), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 4), width, height);
                 [cell.contentView addSubview:button];
             }
         } else {
@@ -180,7 +188,7 @@
                 [button addTarget:self action:@selector(hotButtonAction:) forControlEvents:UIControlEventTouchDown];
                 button.titleLabel.font = HEITI(HeightXiShu(12));
                 [button setTitleColor:TitleColor forState:UIControlStateNormal];
-                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 6), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 6), width, height);
+                button.frame = CGRectMake(WidthXiShu(15) + (width + WidthXiShu(5)) * (i % 4), HeightXiShu(10) + (HeightXiShu(25) + HeightXiShu(5)) * (i / 4), width, height);
                 [cell.contentView addSubview:button];
             }
         }
@@ -246,6 +254,8 @@
     self.searchTF.text = [NSString stringWithFormat:@"%@", self.historyArr[sender.tag]];
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
+    [self reloadData];
+    [self network_procurementList];
     
 }
 - (void)hotButtonAction:(UIButton *)sender {
@@ -254,11 +264,19 @@
     self.searchTF.text = [NSString stringWithFormat:@"%@", self.hotArr[sender.tag]];
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
+    [self reloadData];
+    [self network_procurementList];
 }
 - (void)searchClick {
     if (self.dataArray.count > 0) {
         [self.dataArray removeAllObjects];
     }
+    if (self.searchTF.text.length == 0) {
+        return;
+    }
+    [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
+    [self saveHistoryArray];
+    [self reloadData];
     [self network_procurementList];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
