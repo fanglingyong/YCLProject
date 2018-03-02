@@ -99,7 +99,8 @@
         [cell.contentView addSubview:integralImg];
         
         UILabel *integralLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(40), WidthXiShu(81), HeightXiShu(30))];
-        integralLB.text = [NSString stringWithFormat:@"%@分",[UserModel getUserModel].ischoose?[UserModel getUserModel].ischoose:@"0"];
+//        integralLB.text = [NSString stringWithFormat:@"%@分",[UserModel getUserModel].ischoose?[UserModel getUserModel].ischoose:@"0"];
+        integralLB.text = @"0分";
         integralLB.textAlignment = NSTextAlignmentCenter;
         integralLB.textColor = BlackColor;
         integralLB.font = HEITI(HeightXiShu(19));

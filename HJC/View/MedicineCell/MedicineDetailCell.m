@@ -148,7 +148,7 @@
 - (UILabel *)integralCountLb{
     if(!_integralCountLb){
         UILabel *integralCountLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(140), HeightXiShu(152), WidthXiShu(110), HeightXiShu(35))];
-        integralCountLb.text = @"积分数量: 1分";
+        integralCountLb.text = @"积分数量: 0分";
         integralCountLb.font = HEITI(HeightXiShu(14));
         integralCountLb.textColor = TitleColor;
         [self.contentView addSubview:integralCountLb];

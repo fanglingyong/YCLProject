@@ -48,7 +48,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self medicineImg];
-        [self promotionsImg];
+//        [self promotionsImg];
         [self nameLb];
         [self specificationLb];
         [self produceAreaLb];
