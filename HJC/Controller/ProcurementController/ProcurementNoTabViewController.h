@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "HJC-PrefixHeader.pch"
 
 @interface ProcurementNoTabViewController : BaseViewController
-
+@property (nonatomic, assign)NSInteger classType;
 @end

@@ -295,6 +295,7 @@
         {
             NSLog(@"化学药");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.classType = 1;
             pnt.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:pnt animated:YES];
         }
@@ -303,6 +304,7 @@
         {
             NSLog(@"中成药");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.classType = 2;
             pnt.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:pnt animated:YES];
         }
@@ -311,6 +313,7 @@
         {
             NSLog(@"抗生素剂");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.classType = 3;
             pnt.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:pnt animated:YES];
         }
