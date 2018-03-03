@@ -83,7 +83,7 @@
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
     [pargrams setObject:[NSString stringWithFormat:@"%@ 00:00:00,%@ 23:59:59", self.orderBegTimeBtn.currentTitle, self.orderEndTimeBtn.currentTitle] forKey:@"Parastr"];
     [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_page] forKey:@"WebPara"];
-    NSLog(@"%@", pargrams)
+    NSLog(@"%@", pargrams);
     [BaseApi getMenthodWithUrl:GetOdersNo block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             NSLog(@"%@",dict);
