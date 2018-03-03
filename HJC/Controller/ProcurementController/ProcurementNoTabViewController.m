@@ -157,6 +157,14 @@
     cell.indexPath = indexPath;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MedicineDetailViewController *VC = [[MedicineDetailViewController alloc] init];
+    ProcurementModel *model = _dataArray[indexPath.row];
+    VC.goodsID = model.GoodsID;
+    VC.provider = model.provider;
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
 
 -(void)network_procurementList{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];

@@ -25,7 +25,7 @@
 @property (nonatomic, retain)NSMutableArray *historyArr;
 @property (nonatomic, retain)NSMutableArray *hotArr;
 @property (nonatomic, retain)NSMutableArray *dataArray;
-
+@property (nonatomic, assign)BOOL isDataTableView;
 @end
 
 @implementation ProcureSearchViewController
@@ -37,6 +37,7 @@
         self.historyArr = [NSMutableArray array];
         self.hotArr = [NSMutableArray array];
         self.dataArray = [NSMutableArray array];
+        self.isDataTableView = NO;
     }
     return self;
 }
@@ -57,17 +58,12 @@
 //    self.historyArr = [NSMutableArray arrayWithObject:@"泮立苏"];
     self.hotArr = [NSMutableArray arrayWithObjects:@"六味地黄胶囊", @"上清胶囊", @"乳果糖口服液", nil];
     [self.searchTF becomeFirstResponder];
-
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self getHistoryArray];
-    [self reloadData];
 }
 - (void)reloadData {
-    
     NSLog(@"%@", self.allHistoryArr);
-    
     if (self.historyArr.count > 0) {
         [self.historyArr removeAllObjects];
     }
@@ -82,19 +78,19 @@
 
 #pragma mark - tableView delegate dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         return 1;
     }
     return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         return HeightXiShu(10);
     }
     return HeightXiShu(25);
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
         view.backgroundColor = AllLightGrayColor;
         return view;
@@ -111,13 +107,12 @@
     label.font = HEITI(HeightXiShu(14));
     label.textColor = TitleColor;
     [view addSubview:label];
-    
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         return HeightXiShu(135);
     } else {
         if (indexPath.section == 0) {
@@ -134,7 +129,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         return self.dataArray.count;
     }
     return 1;
@@ -143,7 +138,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (self.searchTF.text.length > 0) {
+    if (self.isDataTableView) {
         ProcurementModel *model = [[ProcurementModel alloc] init];
         if (self.dataArray.count > 0) {
             model = self.dataArray[indexPath.row];
@@ -195,7 +190,11 @@
         return cell;
     }
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isDataTableView) {
+        
+    }
+}
 
 #pragma mark - 页面元素
 
@@ -220,6 +219,7 @@
         self.searchTF.delegate = self;
         self.searchTF.textColor = TitleColor;
         self.searchTF.font = HEITI(HeightXiShu(13));
+        self.searchTF.returnKeyType = UIReturnKeySearch;
         self.searchTF.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
         [navView addSubview:self.searchTF];
 
@@ -250,34 +250,56 @@
 }
 - (void)historyButtonAction:(UIButton *)sender {
     NSLog(@"%ld", (long)sender.tag);
-    [self.searchTF becomeFirstResponder];
-    self.searchTF.text = [NSString stringWithFormat:@"%@", self.historyArr[sender.tag]];
+    if ([self.searchTF canResignFirstResponder]) {
+        [self.searchTF resignFirstResponder];
+    }
+    if (self.dataArray.count > 0) {
+        self.dataArray = [NSMutableArray array];
+        [self.tableView reloadData];
+    }
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
-    [self reloadData];
-    [self network_procurementList];
+    [self network_procurementList:self.historyArr[sender.tag]];
     
 }
 - (void)hotButtonAction:(UIButton *)sender {
     NSLog(@"%ld", (long)sender.tag);
-    [self.searchTF becomeFirstResponder];
-    self.searchTF.text = [NSString stringWithFormat:@"%@", self.hotArr[sender.tag]];
+    if ([self.searchTF canResignFirstResponder]) {
+        [self.searchTF resignFirstResponder];
+    }
+//    self.searchTF.text = [NSString stringWithFormat:@"%@", self.hotArr[sender.tag]];
+    if (self.dataArray.count > 0) {
+        self.dataArray = [NSMutableArray array];
+        [self.tableView reloadData];
+    }
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
-    [self reloadData];
-    [self network_procurementList];
+    [self network_procurementList:self.hotArr[sender.tag]];
 }
 - (void)searchClick {
+    if ([self.searchTF canResignFirstResponder]) {
+        [self.searchTF resignFirstResponder];
+    }
     if (self.dataArray.count > 0) {
         [self.dataArray removeAllObjects];
     }
-    if (self.searchTF.text.length == 0) {
+    if (![AnimaDefaultUtil isNotNull:self.searchTF.text] ) {
         return;
     }
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
     [self reloadData];
-    [self network_procurementList];
+    [self network_procurementList:self.searchTF.text];
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    self.isDataTableView = NO;
+    [self getHistoryArray];
+    [self reloadData];
+    return YES;
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self searchClick];
+    return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.placeLabel.alpha = 0;
@@ -293,24 +315,25 @@
 }
 
 #pragma mark - 接口
--(void)network_procurementList{
+-(void)network_procurementList:(NSString*)searchContent{
     
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:@",10,1" forKey:@"WebPara"];
     
-    [pargrams setObject:[NSString stringWithFormat:@"0,0,%@",self.searchTF.text] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
+    [pargrams setObject:[NSString stringWithFormat:@"0,0,%@",searchContent] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
     [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
         if(!error){
             NSLog(@"请求成功了~~~~~~~~");
             NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
-
+            
             for (NSDictionary *dic in goodsArr) {
                 ProcurementModel *model = [[ProcurementModel alloc] init];
                 [model setValuesForKeysWithDictionary:dic];
                 [self.dataArray addObject:model];
             }
+            self.isDataTableView = YES;
             [self.tableView reloadData];
         }else{
             [HUDUtil Hud_message:error.domain view:self.view];

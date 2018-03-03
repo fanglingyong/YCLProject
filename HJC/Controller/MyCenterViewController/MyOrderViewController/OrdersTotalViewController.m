@@ -81,7 +81,7 @@
 -(void)networkGetOrders{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-    [pargrams setObject:[NSString stringWithFormat:@"%@-01 00:00:00,%@ 23:59:59", [NSDate getNewDateStringWithDateFmt:@"yyyy/MM"], [NSDate getNewDateStringWithDateFmt:@"yyyy/MM/dd"] ] forKey:@"Parastr"];
+    [pargrams setObject:[NSString stringWithFormat:@"%@ 00:00:00,%@ 23:59:59", self.orderBegTimeBtn.currentTitle, self.orderEndTimeBtn.currentTitle] forKey:@"Parastr"];
     [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_page] forKey:@"WebPara"];
     NSLog(@"%@", pargrams)
     [BaseApi getMenthodWithUrl:GetOdersNo block:^(NSDictionary *dict, NSError *error) {
@@ -150,7 +150,7 @@
         self.orderBegTimeBtn.frame = CGRectMake(WidthXiShu(190), HeightXiShu(12), WidthXiShu(70), HeightXiShu(20));
         self.orderBegTimeBtn.titleLabel.font = HEITI(HeightXiShu(12));
         [self.orderBegTimeBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [self.orderBegTimeBtn setTitle:[NSString stringWithFormat:@"%@/01",[NSDate getNewDateStringWithDateFmt:@"yyyy/MM"]] forState:UIControlStateNormal];
+        [self.orderBegTimeBtn setTitle:[NSString stringWithFormat:@"%@-01",[NSDate getNewDateStringWithDateFmt:@"yyyy-MM"]] forState:UIControlStateNormal];
         [self.orderBegTimeBtn addTarget:self action:@selector(orderBegTimeBtnPress) forControlEvents:UIControlEventTouchDown];
         self.orderBegTimeBtn.backgroundColor = AllBackLightGratColor;
         [headerView addSubview:self.orderBegTimeBtn];
@@ -163,7 +163,7 @@
         self.orderEndTimeBtn.frame = CGRectMake(WidthXiShu(275),  HeightXiShu(12), WidthXiShu(70), HeightXiShu(20));
         self.orderEndTimeBtn.titleLabel.font = HEITI(HeightXiShu(12));
         [self.orderEndTimeBtn setTitleColor:TitleColor forState:UIControlStateNormal];
-        [self.orderEndTimeBtn setTitle:[NSDate getNewDateStringWithDateFmt:@"yyyy/MM/dd"] forState:UIControlStateNormal];
+        [self.orderEndTimeBtn setTitle:[NSDate getNewDateStringWithDateFmt:@"yyyy-MM-dd"] forState:UIControlStateNormal];
         [self.orderEndTimeBtn addTarget:self action:@selector(orderEndTimeBtnPress) forControlEvents:UIControlEventTouchDown];
         self.orderEndTimeBtn.backgroundColor = AllBackLightGratColor;
         [headerView addSubview:self.orderEndTimeBtn];
