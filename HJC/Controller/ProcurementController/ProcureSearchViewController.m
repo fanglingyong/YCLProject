@@ -205,7 +205,7 @@
         navView.backgroundColor = NavColor;
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
 
-        self.searchBGView = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(35), HeightXiShu(12), WidthXiShu(290), HeightXiShu(20))];
+        self.searchBGView = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(35), HeightXiShu(7), WidthXiShu(290), HeightXiShu(30))];
         self.searchBGView.backgroundColor = [UIColor colorFromHexCode:@"#f0f1f2"];
         self.searchBGView.layer.masksToBounds = YES;
         self.searchBGView.layer.cornerRadius = HeightXiShu(10);
@@ -215,7 +215,7 @@
         self.searchImg.image = [GetImagePath getImagePath:@"search"];
         [navView addSubview:self.searchImg];
         
-        self.searchTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(70), HeightXiShu(12), WidthXiShu(150), HeightXiShu(20))];
+        self.searchTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(70), HeightXiShu(11), WidthXiShu(150), HeightXiShu(22))];
         self.searchTF.delegate = self;
         self.searchTF.textColor = TitleColor;
         self.searchTF.font = HEITI(HeightXiShu(13));
@@ -250,46 +250,34 @@
 }
 - (void)historyButtonAction:(UIButton *)sender {
     NSLog(@"%ld", (long)sender.tag);
-    if ([self.searchTF canResignFirstResponder]) {
-        [self.searchTF resignFirstResponder];
-    }
-    if (self.dataArray.count > 0) {
-        self.dataArray = [NSMutableArray array];
-        [self.tableView reloadData];
-    }
-    [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
-    [self saveHistoryArray];
+    self.searchTF.text = @"";
+    [self searchWillToDo];
     [self network_procurementList:self.historyArr[sender.tag]];
     
 }
 - (void)hotButtonAction:(UIButton *)sender {
     NSLog(@"%ld", (long)sender.tag);
+    self.searchTF.text = @"";
+    [self searchWillToDo];
+    [self network_procurementList:self.hotArr[sender.tag]];
+}
+- (void)searchClick {
+    if (![AnimaDefaultUtil isNotNull:self.searchTF.text] ) {
+        return;
+    }
+    [self searchWillToDo];
+    [self network_procurementList:self.searchTF.text];
+}
+-(void)searchWillToDo{
     if ([self.searchTF canResignFirstResponder]) {
         [self.searchTF resignFirstResponder];
     }
-//    self.searchTF.text = [NSString stringWithFormat:@"%@", self.hotArr[sender.tag]];
     if (self.dataArray.count > 0) {
         self.dataArray = [NSMutableArray array];
         [self.tableView reloadData];
     }
     [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
     [self saveHistoryArray];
-    [self network_procurementList:self.hotArr[sender.tag]];
-}
-- (void)searchClick {
-    if ([self.searchTF canResignFirstResponder]) {
-        [self.searchTF resignFirstResponder];
-    }
-    if (self.dataArray.count > 0) {
-        [self.dataArray removeAllObjects];
-    }
-    if (![AnimaDefaultUtil isNotNull:self.searchTF.text] ) {
-        return;
-    }
-    [self arrayWithMemberIsOnly:self.allHistoryArr name:self.searchTF.text];
-    [self saveHistoryArray];
-    [self reloadData];
-    [self network_procurementList:self.searchTF.text];
 }
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     self.isDataTableView = NO;
