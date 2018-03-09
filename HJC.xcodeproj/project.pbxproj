@@ -307,9 +307,6 @@
 		4559C1951FCBE865005EC6BA /* acquiescenceAddress.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C11C1FCBE865005EC6BA /* acquiescenceAddress.png */; };
 		4559C1961FCBE865005EC6BA /* acquiescenceAddress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C11D1FCBE865005EC6BA /* acquiescenceAddress@2x.png */; };
 		4559C1971FCBE865005EC6BA /* acquiescenceAddress@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C11E1FCBE865005EC6BA /* acquiescenceAddress@3x.png */; };
-		4559C1981FCBE865005EC6BA /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1201FCBE865005EC6BA /* LOGO.png */; };
-		4559C1991FCBE865005EC6BA /* LOGO@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1211FCBE865005EC6BA /* LOGO@2x.png */; };
-		4559C19A1FCBE865005EC6BA /* LOGO@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C1221FCBE865005EC6BA /* LOGO@3x.png */; };
 		4559C19D1FCBFF79005EC6BA /* TextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4559C19C1FCBFF79005EC6BA /* TextFiledView.m */; };
 		4559C1A11FCCE11A005EC6BA /* login_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C19E1FCCE119005EC6BA /* login_back@2x.png */; };
 		4559C1A21FCCE11A005EC6BA /* login_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C19F1FCCE119005EC6BA /* login_back@3x.png */; };
@@ -336,6 +333,9 @@
 		45BDBE471FB33432001B9581 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE441FB33432001B9581 /* success@2x.png */; };
 		45BDBE481FB33432001B9581 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE451FB33432001B9581 /* success.png */; };
 		45BDBE491FB33432001B9581 /* success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45BDBE461FB33432001B9581 /* success@3x.png */; };
+		45E50B6720527941008ADC0A /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E50B6420527941008ADC0A /* LOGO.png */; };
+		45E50B6820527942008ADC0A /* LOGO@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E50B6520527941008ADC0A /* LOGO@2x.png */; };
+		45E50B6920527942008ADC0A /* LOGO@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E50B6620527941008ADC0A /* LOGO@3x.png */; };
 		45EB85C42004E3EE00AD085F /* RegDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85C32004E3EE00AD085F /* RegDelegateViewController.m */; };
 		45EB85C82004FB3700AD085F /* ChangeUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85C72004FB3700AD085F /* ChangeUserViewController.m */; };
 		45EB85CB2004FB4400AD085F /* ChangeUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45EB85CA2004FB4400AD085F /* ChangeUserInfoViewController.m */; };
@@ -818,9 +818,6 @@
 		4559C11C1FCBE865005EC6BA /* acquiescenceAddress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acquiescenceAddress.png; sourceTree = "<group>"; };
 		4559C11D1FCBE865005EC6BA /* acquiescenceAddress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acquiescenceAddress@2x.png"; sourceTree = "<group>"; };
 		4559C11E1FCBE865005EC6BA /* acquiescenceAddress@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acquiescenceAddress@3x.png"; sourceTree = "<group>"; };
-		4559C1201FCBE865005EC6BA /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
-		4559C1211FCBE865005EC6BA /* LOGO@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LOGO@2x.png"; sourceTree = "<group>"; };
-		4559C1221FCBE865005EC6BA /* LOGO@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LOGO@3x.png"; sourceTree = "<group>"; };
 		4559C19B1FCBFF79005EC6BA /* TextFiledView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextFiledView.h; sourceTree = "<group>"; };
 		4559C19C1FCBFF79005EC6BA /* TextFiledView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextFiledView.m; sourceTree = "<group>"; };
 		4559C19E1FCCE119005EC6BA /* login_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_back@2x.png"; sourceTree = "<group>"; };
@@ -861,6 +858,9 @@
 		45BDBE441FB33432001B9581 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		45BDBE451FB33432001B9581 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		45BDBE461FB33432001B9581 /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
+		45E50B6420527941008ADC0A /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		45E50B6520527941008ADC0A /* LOGO@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LOGO@2x.png"; sourceTree = "<group>"; };
+		45E50B6620527941008ADC0A /* LOGO@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LOGO@3x.png"; sourceTree = "<group>"; };
 		45EB85C22004E3EE00AD085F /* RegDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegDelegateViewController.h; sourceTree = "<group>"; };
 		45EB85C32004E3EE00AD085F /* RegDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegDelegateViewController.m; sourceTree = "<group>"; };
 		45EB85C62004FB3700AD085F /* ChangeUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeUserViewController.h; sourceTree = "<group>"; };
@@ -1993,9 +1993,9 @@
 		4559C11F1FCBE865005EC6BA /* log */ = {
 			isa = PBXGroup;
 			children = (
-				4559C1201FCBE865005EC6BA /* LOGO.png */,
-				4559C1211FCBE865005EC6BA /* LOGO@2x.png */,
-				4559C1221FCBE865005EC6BA /* LOGO@3x.png */,
+				45E50B6420527941008ADC0A /* LOGO.png */,
+				45E50B6520527941008ADC0A /* LOGO@2x.png */,
+				45E50B6620527941008ADC0A /* LOGO@3x.png */,
 			);
 			path = log;
 			sourceTree = "<group>";
@@ -2248,6 +2248,7 @@
 			files = (
 				36FD7A571FE9135A002315E5 /* home_normal.png in Resources */,
 				36FD7A581FE9135A002315E5 /* home_normal@2x.png in Resources */,
+				45E50B6820527942008ADC0A /* LOGO@2x.png in Resources */,
 				45FD3F1F204843F700BA83BE /* nodata.jpg in Resources */,
 				36FD7A591FE9135A002315E5 /* home_normal@3x.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
@@ -2287,9 +2288,7 @@
 				4559C1711FCBE865005EC6BA /* 搜索栏删除1x.png in Resources */,
 				4559C18E1FCBE865005EC6BA /* procure_arrowSelet@3x.png in Resources */,
 				4559C14F1FCBE865005EC6BA /* shop_select@3x.png in Resources */,
-				4559C19A1FCBE865005EC6BA /* LOGO@3x.png in Resources */,
 				4559C13D1FCBE865005EC6BA /* message_select@3x.png in Resources */,
-				4559C1981FCBE865005EC6BA /* LOGO.png in Resources */,
 				4559C1241FCBE865005EC6BA /* code_25_25@2x.png in Resources */,
 				4559C15B1FCBE865005EC6BA /* didBin@3x.png in Resources */,
 				4559C1411FCBE865005EC6BA /* person_select.png in Resources */,
@@ -2331,12 +2330,14 @@
 				4559C17A1FCBE865005EC6BA /* close.png in Resources */,
 				4559C1771FCBE865005EC6BA /* more.png in Resources */,
 				4559C1381FCBE865005EC6BA /* message_normal.png in Resources */,
+				45E50B6720527941008ADC0A /* LOGO.png in Resources */,
 				45EF315F200E21D2004DAB6E /* default.png in Resources */,
 				4559C13F1FCBE865005EC6BA /* person_normal@2x.png in Resources */,
 				4559C16A1FCBE865005EC6BA /* share@3x.png in Resources */,
 				4559C12E1FCBE865005EC6BA /* password_25_25@3x.png in Resources */,
 				4559C1231FCBE865005EC6BA /* code_25_25.png in Resources */,
 				3645B974200756FE00D2D568 /* home_integral@2x.png in Resources */,
+				45E50B6920527942008ADC0A /* LOGO@3x.png in Resources */,
 				4559C1901FCBE865005EC6BA /* 采购界面已加入购物车2x.png in Resources */,
 				4559C15C1FCBE865005EC6BA /* down_arrow.png in Resources */,
 				4559C1441FCBE865005EC6BA /* purchase_normal.png in Resources */,
@@ -2383,7 +2384,6 @@
 				4559C14B1FCBE865005EC6BA /* shop_normal@2x.png in Resources */,
 				4559C12F1FCBE865005EC6BA /* user_25_25.png in Resources */,
 				4559C14E1FCBE865005EC6BA /* shop_select@2x.png in Resources */,
-				4559C1991FCBE865005EC6BA /* LOGO@2x.png in Resources */,
 				45BDBE331FB2A323001B9581 /* select_down@2x.png in Resources */,
 				4559C1401FCBE865005EC6BA /* person_normal@3x.png in Resources */,
 				4559C1851FCBE865005EC6BA /* cartSelect@3x.png in Resources */,
