@@ -64,7 +64,7 @@
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, kStateHeight, kScreenWidth, kScreenWidth*0.6)];
     _headView.backgroundColor = sysBlue;
     UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake([_headView centerX]-120, kScreenWidth*0.3-29, 240, 58)];
-    logo.image = [UIImage imageNamed:@"LOGO"];
+    logo.image = [UIImage imageNamed:@"LOGO_hd"];
     [_headView addSubview:logo];
     
     [self xUIcreateMenthod];
