@@ -13,7 +13,7 @@
 #import "AssoSuccessViewController.h"
 #import "EncrtDecrt.h"
 #import "RegDelegateViewController.h"
-
+#import "RDViewController.h"
 @interface RegisterUserViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) NavView *navView;
@@ -97,7 +97,7 @@
     UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(_isSelectXY.maxX, 0, 248, 22)];
     lable1.textColor = [UIColor colorFromHexCode:@"#111111"];
     lable1.font = [UIFont systemFontOfSize:14];
-    NSString *oldStr = @"同意《华东医药药联采用户注册协议》";
+    NSString *oldStr = @"同意《微药APP用户注册协议》";
     NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle],NSForegroundColorAttributeName:[UIColor colorFromHexCode:@"3795e2"]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc] initWithString:oldStr];
     [attribtStr addAttributes:attribtDic range:NSMakeRange(3, oldStr.length-4)];
@@ -128,8 +128,10 @@
 }
 -(void)jumpProtocolHtml{
     //jump protocol web page
-    RegDelegateViewController *delegateVC = [[RegDelegateViewController alloc] init];
-    [self.navigationController pushViewController:delegateVC animated:YES];
+//    RegDelegateViewController *delegateVC = [[RegDelegateViewController alloc] init];
+//    [self.navigationController pushViewController:delegateVC animated:YES];
+    RDViewController *dvc = [[RDViewController alloc]init];
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 -(void)registerAccountMenthod:(UIButton*)sender{
 //    NSLog(@"注册成功!!!");

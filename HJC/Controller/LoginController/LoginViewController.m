@@ -63,9 +63,15 @@
 -(void)createUIMenthed{
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, kStateHeight, kScreenWidth, kScreenWidth*0.6)];
     _headView.backgroundColor = sysBlue;
-    UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake([_headView centerX]-120, kScreenWidth*0.3-29, 240, 58)];
-    logo.image = [UIImage imageNamed:@"LOGO_hd"];
-    [_headView addSubview:logo];
+//    UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake([_headView centerX]-120, kScreenWidth*0.3-29, 240, 58)];
+//    logo.image = [UIImage imageNamed:@"LOGO_hd"];
+//    [_headView addSubview:logo];
+    UILabel *logoLable = [[UILabel alloc] initWithFrame:CGRectMake(0, kStateHeight, kScreenWidth, 120)];
+    logoLable.text = @"微  药";
+    logoLable.font = [UIFont systemFontOfSize:60 weight:600];
+    logoLable.textAlignment = NSTextAlignmentCenter;
+    logoLable.textColor = [UIColor whiteColor];
+    [_headView addSubview:logoLable];
     
     [self xUIcreateMenthod];
     [self.view addSubview:_headView];
