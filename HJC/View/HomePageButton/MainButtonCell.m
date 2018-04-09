@@ -14,17 +14,18 @@
     if(self == [super initWithFrame:frame]){
         self.backgroundColor = [UIColor whiteColor];
         [self bgView];
-        [self chemicalBtn];  //化学药
-        [self middleBtn];    //中成药
-        [self careBtn];      //保健品
-        [self integralBtn];  //积分
-        [self salesBtn];     //促销
-        
-        [self chemicalLb];  //化学药
-        [self middleLb];    //中成药
-        [self careLb];      //保健品
-        [self integralLb];  //积分
-        [self salesLb];     //促销
+        [self preferentialBtn];  //诊特惠
+        [self worldBtn];    //药世界
+        [self integralBtn];      //换积分
+        [self pharmacyBtn];  //云药房
+        [self informationBtn];     //药资讯
+
+        [self preferentialLb];  //诊特惠
+        [self worldLb];    //药世界
+        [self integralLb];      //换积分
+        [self pharmacyLb];  //云药房
+        [self informationLb];     //药资讯
+
     }
     return self;
 }
@@ -38,89 +39,64 @@
     }
     return _bgView;
 }
-// 化学药
--(UIButton *)chemicalBtn{
-    if(!_chemicalBtn){
-        UIButton *chemicalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        chemicalBtn.frame = CGRectMake(0, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [chemicalBtn setImage:[GetImagePath getImagePath:@"home_middle"] forState:UIControlStateNormal];
-        chemicalBtn.tag = 0;
-        [chemicalBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:chemicalBtn];
-        _chemicalBtn = chemicalBtn;
+// 诊特惠
+-(UIButton *)preferentialBtn{
+    if(!_preferentialBtn){
+        UIButton *preferentialBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        preferentialBtn.frame = CGRectMake(0, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [preferentialBtn setImage:[GetImagePath getImagePath:@"home_middle"] forState:UIControlStateNormal];
+        preferentialBtn.tag = 0;
+        [preferentialBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:preferentialBtn];
+        _preferentialBtn = preferentialBtn;
     }
-    return _chemicalBtn;
+    return _preferentialBtn;
 }
 
--(UILabel *)chemicalLb{
-    if(!_chemicalLb){
-        UILabel *chemicalLb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.chemicalBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        chemicalLb.text = @"化学药";
-        chemicalLb.textColor = TitleColor;
-        chemicalLb.font = HEITI(HeightXiShu(11));
-        chemicalLb.textAlignment = NSTextAlignmentCenter;
-        [self.bgView addSubview:chemicalLb];
-        _chemicalLb = chemicalLb;
+-(UILabel *)preferentialLb{
+    if(!_preferentialLb){
+        UILabel *preferentialLb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.preferentialBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        preferentialLb.text = @"诊特惠";
+        preferentialLb.textColor = TitleColor;
+        preferentialLb.font = HEITI(HeightXiShu(11));
+        preferentialLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:preferentialLb];
+        _preferentialLb = preferentialLb;
     }
-    return _chemicalLb;
+    return _preferentialLb;
 }
-// 中成药
--(UIButton *)middleBtn{
-    if(!_middleBtn){
-        UIButton *middleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        middleBtn.frame = CGRectMake(self.chemicalBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [middleBtn setImage:[GetImagePath getImagePath:@"home_chemical"] forState:UIControlStateNormal];
-        middleBtn.tag = 1;
-        [middleBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:middleBtn];
-        _middleBtn = middleBtn;
+// 药世界
+-(UIButton *)worldBtn{
+    if(!_worldBtn){
+        UIButton *worldBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        worldBtn.frame = CGRectMake(self.preferentialBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [worldBtn setImage:[GetImagePath getImagePath:@"home_chemical"] forState:UIControlStateNormal];
+        worldBtn.tag = 1;
+        [worldBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:worldBtn];
+        _worldBtn = worldBtn;
     }
-    return _middleBtn;
+    return _worldBtn;
 }
--(UILabel *)middleLb{
-    if(!_middleLb){
-        UILabel *middleLb = [[UILabel alloc] initWithFrame:CGRectMake(self.chemicalBtn.maxX, self.middleBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        middleLb.text = @"中成药";
-        middleLb.textColor = TitleColor;
-        middleLb.font = HEITI(HeightXiShu(11));
-        middleLb.textAlignment = NSTextAlignmentCenter;
-        [self.bgView addSubview:middleLb];
-        _middleLb = middleLb;
+-(UILabel *)worldLb{
+    if(!_worldLb){
+        UILabel *worldLb = [[UILabel alloc] initWithFrame:CGRectMake(self.preferentialBtn.maxX, self.worldBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        worldLb.text = @"药世界";
+        worldLb.textColor = TitleColor;
+        worldLb.font = HEITI(HeightXiShu(11));
+        worldLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:worldLb];
+        _worldLb = worldLb;
     }
-    return _middleLb;
+    return _worldLb;
 }
-// 保健品
--(UIButton *)careBtn{
-    if(!_careBtn){
-        UIButton *careBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        careBtn.frame = CGRectMake(self.middleBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [careBtn setImage:[GetImagePath getImagePath:@"home_care"] forState:UIControlStateNormal];
-        careBtn.tag = 2;
-        [careBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:careBtn];
-        _careBtn = careBtn;
-    }
-    return _careBtn;
-}
--(UILabel *)careLb{
-    if(!_careLb){
-        UILabel *careLb = [[UILabel alloc] initWithFrame:CGRectMake(self.middleBtn.maxX, self.careBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        careLb.text = @"抗生素剂";
-        careLb.textColor = TitleColor;
-        careLb.font = HEITI(HeightXiShu(11));
-        careLb.textAlignment = NSTextAlignmentCenter;
-        [self.bgView addSubview:careLb];
-        _careLb = careLb;
-    }
-    return _careLb;
-}
-// 积分
+// 换积分
 -(UIButton *)integralBtn{
     if(!_integralBtn){
         UIButton *integralBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        integralBtn.frame = CGRectMake(self.careBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [integralBtn setImage:[GetImagePath getImagePath:@"home_integral"] forState:UIControlStateNormal];
-        integralBtn.tag = 3;
+        integralBtn.frame = CGRectMake(self.worldBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [integralBtn setImage:[GetImagePath getImagePath:@"home_care"] forState:UIControlStateNormal];
+        integralBtn.tag = 2;
         [integralBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:integralBtn];
         _integralBtn = integralBtn;
@@ -129,8 +105,8 @@
 }
 -(UILabel *)integralLb{
     if(!_integralLb){
-        UILabel *integralLb = [[UILabel alloc] initWithFrame:CGRectMake(self.careBtn.maxX, self.careBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        integralLb.text = @"积分";
+        UILabel *integralLb = [[UILabel alloc] initWithFrame:CGRectMake(self.worldBtn.maxX, self.integralBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        integralLb.text = @"换积分";
         integralLb.textColor = TitleColor;
         integralLb.font = HEITI(HeightXiShu(11));
         integralLb.textAlignment = NSTextAlignmentCenter;
@@ -139,30 +115,55 @@
     }
     return _integralLb;
 }
-// 促销
--(UIButton *)salesBtn{
-    if(!_salesBtn){
-        UIButton *salesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        salesBtn.frame = CGRectMake(self.integralBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [salesBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
-        salesBtn.tag = 4;
-        [salesBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgView addSubview:salesBtn];
-        _salesBtn = salesBtn;
+// 云药房
+-(UIButton *)pharmacyBtn{
+    if(!_pharmacyBtn){
+        UIButton *pharmacyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        pharmacyBtn.frame = CGRectMake(self.integralBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [pharmacyBtn setImage:[GetImagePath getImagePath:@"home_integral"] forState:UIControlStateNormal];
+        pharmacyBtn.tag = 3;
+        [pharmacyBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:pharmacyBtn];
+        _pharmacyBtn = pharmacyBtn;
     }
-    return _salesBtn;
+    return _pharmacyBtn;
 }
--(UILabel *)salesLb{
-    if(!_salesLb){
-        UILabel *salesLb = [[UILabel alloc] initWithFrame:CGRectMake(self.integralBtn.maxX, self.salesBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        salesLb.text = @"促销";
-        salesLb.textColor = TitleColor;
-        salesLb.font = HEITI(HeightXiShu(11));
-        salesLb.textAlignment = NSTextAlignmentCenter;
-        [self.bgView addSubview:salesLb];
-        _salesLb = salesLb;
+-(UILabel *)pharmacyLb{
+    if(!_pharmacyLb){
+        UILabel *pharmacyLb = [[UILabel alloc] initWithFrame:CGRectMake(self.integralBtn.maxX, self.integralBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        pharmacyLb.text = @"云药房";
+        pharmacyLb.textColor = TitleColor;
+        pharmacyLb.font = HEITI(HeightXiShu(11));
+        pharmacyLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:pharmacyLb];
+        _pharmacyLb = pharmacyLb;
     }
-    return _salesLb;
+    return _pharmacyLb;
+}
+// 药资讯
+-(UIButton *)informationBtn{
+    if(!_informationBtn){
+        UIButton *informationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        informationBtn.frame = CGRectMake(self.pharmacyBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
+        [informationBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
+        informationBtn.tag = 4;
+        [informationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.bgView addSubview:informationBtn];
+        _informationBtn = informationBtn;
+    }
+    return _informationBtn;
+}
+-(UILabel *)informationLb{
+    if(!_informationLb){
+        UILabel *informationLb = [[UILabel alloc] initWithFrame:CGRectMake(self.pharmacyBtn.maxX, self.informationBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
+        informationLb.text = @"药资讯";
+        informationLb.textColor = TitleColor;
+        informationLb.font = HEITI(HeightXiShu(11));
+        informationLb.textAlignment = NSTextAlignmentCenter;
+        [self.bgView addSubview:informationLb];
+        _informationLb = informationLb;
+    }
+    return _informationLb;
 }
 
 -(void)buttonAction:(UIButton *)button{

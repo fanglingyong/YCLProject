@@ -15,17 +15,17 @@
 @interface MainButtonCell : UIView
 @property(nonatomic,strong)UIView *bgView;
 
-@property(nonatomic,strong)UIButton *chemicalBtn;
-@property(nonatomic,strong)UIButton *middleBtn;
-@property(nonatomic,strong)UIButton *careBtn;
+@property(nonatomic,strong)UIButton *preferentialBtn;
+@property(nonatomic,strong)UIButton *worldBtn;
 @property(nonatomic,strong)UIButton *integralBtn;
-@property(nonatomic,strong)UIButton *salesBtn;
+@property(nonatomic,strong)UIButton *pharmacyBtn;
+@property(nonatomic,strong)UIButton *informationBtn;
 
-@property(nonatomic,strong)UILabel *chemicalLb;
-@property(nonatomic,strong)UILabel *middleLb;
-@property(nonatomic,strong)UILabel *careLb;
+@property(nonatomic,strong)UILabel *preferentialLb;
+@property(nonatomic,strong)UILabel *worldLb;
 @property(nonatomic,strong)UILabel *integralLb;
-@property(nonatomic,strong)UILabel *salesLb;
+@property(nonatomic,strong)UILabel *pharmacyLb;
+@property(nonatomic,strong)UILabel *informationLb;
 
 @property(nonatomic,weak)id<MainButtonCellDelegate>delegate;
 @end

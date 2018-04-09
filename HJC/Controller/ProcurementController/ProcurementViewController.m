@@ -18,7 +18,7 @@
 #import "LoginViewController.h"
 #import "BaseNavigationController.h"
 #import "ProcureSearchViewController.h"
-@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate>
+@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic,strong)NavView *navView;
 
@@ -27,9 +27,9 @@
 
 @property (nonatomic, retain)DropdownSimpleView *dropView;
 
-@property (nonatomic, retain)HDDropdownButton *allClassButton;
 @property (nonatomic, retain)HDDropdownButton *suppliersButton;
-@property (nonatomic, retain)HDDropdownButton *promotionsButton;
+@property (nonatomic, retain)UITextField *searchTF;
+@property (nonatomic, retain)UIButton *searchBtn;
 
 @property (nonatomic, retain)NSMutableArray *allClassArray;
 @property (nonatomic, retain)NSMutableArray *suppliersArray;
@@ -140,42 +140,33 @@
 
 - (void)creatDropDownView {
     CGFloat toTop = kStateHeight+44;
-    // 全部分类
-    self.allClassButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
-    self.allClassButton.delegate = self;
-    self.allClassButton.backgroundColor = [UIColor whiteColor];
-    self.allClassButton.frontColor = TitleColor;
-    self.allClassButton.title = self.procurement.allClassTitle;
-    [self.view addSubview:self.allClassButton];
-    
-    UIView *cutLine1 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3, toTop + HeightXiShu(15), 1, HeightXiShu(20))];
-    cutLine1.backgroundColor = AllLightGrayColor;
-    [self.view addSubview:cutLine1];
     
     // 供应商
-    self.suppliersButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3 + 1, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
+    self.suppliersButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake(0, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
     self.suppliersButton.delegate = self;
     self.suppliersButton.backgroundColor = [UIColor whiteColor];
     self.suppliersButton.frontColor = TitleColor;
     self.suppliersButton.title = self.procurement.suppliersTitle;
     [self.view addSubview:self.suppliersButton];
     
-    UIView *cutLine2 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 1, toTop + HeightXiShu(15), 1, HeightXiShu(20))];
+    
+    self.searchTF = [[UITextField alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3, toTop + HeightXiShu(15), WidthXiShu(200), HeightXiShu(20))];
+    self.searchTF.delegate = self;
+    self.searchTF.placeholder = @"搜索品名";
+    self.searchTF.clearButtonMode = UITextFieldViewModeAlways;
+    self.searchTF.font = HEITI(HeightXiShu(13));
+    [self.view addSubview:self.searchTF];
+    
+    UIView *cutLine2 = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 2) / 3, self.searchTF.maxY + HeightXiShu(2), WidthXiShu(200), 1)];
     cutLine2.backgroundColor = AllLightGrayColor;
     [self.view addSubview:cutLine2];
+
+    self.searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.searchBtn.frame = CGRectMake(kScreenWidth - WidthXiShu(40), toTop + HeightXiShu(17), WidthXiShu(16), HeightXiShu(16));
+    [self.searchBtn setImage:[GetImagePath getImagePath:@"search"] forState:UIControlStateNormal];
+    [self.searchBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:self.searchBtn];
     
-    // 促销
-    self.promotionsButton = [[HDDropdownButton alloc] initWithFrame:CGRectMake((kScreenWidth - 2) * 2 / 3 + 2, toTop, (kScreenWidth - 2) / 3, HeightXiShu(49))];
-    self.promotionsButton.backgroundColor = [UIColor whiteColor];
-    self.promotionsButton.frontColor = TitleColor;
-    self.promotionsButton.delegate = self;
-    self.promotionsButton.title = self.procurement.promotionsTitle;
-    [self.view addSubview:self.promotionsButton];
-    
-    
-    UIView *cutLine3 = [[UIView alloc] initWithFrame:CGRectMake(0, toTop + HeightXiShu(49), kScreenWidth, 1)];
-    cutLine3.backgroundColor = AllLightGrayColor;
-    [self.view addSubview:cutLine3];
     
     self.dropView = [[DropdownSimpleView alloc] initWithFrame:CGRectMake(0, toTop + HeightXiShu(50), kScreenWidth, kScreenHeight - HeightXiShu(50))];
     self.dropView.delegate = self;
@@ -203,17 +194,27 @@
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"采购";
         navView.leftBtn.hidden = YES;
-        
-        navView.rightBtn.hidden = NO;
-        [navView.rightBtn setImage:[GetImagePath getImagePath:@"search"] forState:UIControlStateNormal];
-        navView.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, WidthXiShu(30), 0, 0);
-        [navView.rightBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
-        
+        navView.rightBtn.hidden = YES;
         _navView = navView;
         [self.view addSubview:_navView];
     }
     return _navView;
 }
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self searchClick];
+    return YES;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.searchTF resignFirstResponder];
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.tableView endEditing:YES];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"搜搜");
+}
+
 #pragma mark - tableView delegate dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -263,21 +264,30 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.tableView endEditing:YES];
-}
 #pragma mark - 事件
 
 - (void)searchClick {
-    ProcureSearchViewController *VC = [[ProcureSearchViewController alloc] init];
-    VC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:VC animated:YES];
+
+    [self.searchTF resignFirstResponder];
+    if (![AnimaDefaultUtil isNotNull:self.searchTF.text] ) {
+        return;
+    }
+    [self searchWillToDo];
+    [self network_procurementList:self.searchTF.text];
+}
+-(void)searchWillToDo{
+    if ([self.searchTF canResignFirstResponder]) {
+        [self.searchTF resignFirstResponder];
+    }
+    if (self.dataArray.count > 0) {
+        self.dataArray = [NSMutableArray array];
+        [self.tableView reloadData];
+    }
 }
 
+
 - (void)deselectButtons {
-    self.allClassButton.selected = NO;
     self.suppliersButton.selected = NO;
-    self.promotionsButton.selected = NO;
     self.dropView.hidden = YES;
 }
 
@@ -286,15 +296,6 @@
         [self deselectButtons];
     } else {
         [self deselectButtons];
-        if ([titleView isEqual:self.allClassButton]) {
-            self.allClassButton.selected = YES;
-            self.dropView.dataArray = self.procurement.allClassArray;
-            self.dropView.tag = 1001;
-            self.dropView.selectedIndex = self.procurement.allClass;
-            [self.dropView resetContentFrame]; 
-            self.dropView.hidden = NO;
-            NSLog(@"全部分类：dropView%lu", (unsigned long)self.dropView.selectedIndex);
-        }
         if ([titleView isEqual:self.suppliersButton]) {
             self.suppliersButton.selected = YES;
             self.dropView.dataArray = self.procurement.suppliersArray;
@@ -304,34 +305,14 @@
             self.dropView.hidden = NO;
             NSLog(@"供应商：dropView%lu", (unsigned long)self.dropView.selectedIndex);
         }
-        if ([titleView isEqual:self.promotionsButton]) {
-            self.promotionsButton.selected = YES;
-            self.dropView.dataArray = self.procurement.promotionsArray;
-            self.dropView.tag = 1003;
-            self.dropView.selectedIndex = self.procurement.promotions;
-            [self.dropView resetContentFrame];
-            self.dropView.hidden = NO;
-            NSLog(@"促销：dropView%lu", (unsigned long)self.dropView.selectedIndex);
-        }
     }
 }
 
 - (void)didSelectRowOfFilterView:(DropdownView *)filterView {
-    if (filterView.tag == 1001) {
-        self.procurement.allClass = ((DropdownSimpleView *)filterView).selectedIndex;
-        self.allClassButton.title = self.procurement.allClassTitle;
-        NSLog(@"%lu", (unsigned long)self.procurement.allClass);
-    }
     if (filterView.tag == 1002) {
         self.procurement.suppliers = ((DropdownSimpleView *)filterView).selectedIndex;
         self.suppliersButton.title = self.procurement.suppliersTitle;
         NSLog(@"%lu", (unsigned long)self.procurement.suppliers);
-    }
-    if (filterView.tag == 1003) {
-        self.procurement.promotions = ((DropdownSimpleView *)filterView).selectedIndex;
-        self.promotionsButton.title = self.procurement.promotionsTitle;
-        NSLog(@"%lu", (unsigned long)self.procurement.promotions);
-        return;//因为促销不和前面两个流程一样。
     }
     [self deselectButtons];
     self.pageIndex = 1;
@@ -342,6 +323,34 @@
     
     [self deselectButtons];
 }
+
+#pragma mark - 接口
+-(void)network_procurementList:(NSString*)searchContent{
+    
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [pargrams setObject:@",10,1" forKey:@"WebPara"];
+    
+    [pargrams setObject:[NSString stringWithFormat:@"0,0,%@",searchContent] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
+    [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
+    NSLog(@"这是采购页面pargrams :%@", pargrams);
+    [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
+        if(!error){
+            NSLog(@"请求成功了~~~~~~~~");
+            NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
+            
+            for (NSDictionary *dic in goodsArr) {
+                ProcurementModel *model = [[ProcurementModel alloc] init];
+                [model setValuesForKeysWithDictionary:dic];
+                [self.dataArray addObject:model];
+            }
+            [self.tableView reloadData];
+        }else{
+            [HUDUtil Hud_message:error.domain view:self.view];
+        }
+    } dic:pargrams noNetWork:nil];
+    
+}
+
 #pragma mark - net
 - (void)getCategory {
     /**

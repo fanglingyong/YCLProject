@@ -15,11 +15,13 @@
 #import "ProcurementNoTabViewController.h"
 #import "PromotionViewController.h"
 #import "IntegralDetailViewController.h"
-@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate>
+@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
 
 @property (nonatomic, retain)UIView *headerView;
+@property (nonatomic, retain)UITextField *textField;
+
 @property(nonatomic, retain)CycleScrollView *adScrollView;
 @property(nonatomic, retain)UIPageControl *pageControl;
 @property(nonatomic, retain)NSMutableArray *bannerArray;
@@ -49,6 +51,8 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.headerView;
+    
+    [self creatSearchBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +65,23 @@
     [self handleDate];
 }
 #pragma mark - 页面元素
+
+- (void)creatSearchBar {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(13), HeightXiShu(10), WidthXiShu(315), HeightXiShu(22))];
+    view.layer.cornerRadius = WidthXiShu(10);
+    [self.headerView addSubview:view];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(13), HeightXiShu(4), WidthXiShu(15), HeightXiShu(15))];
+    imageView.image = [GetImagePath getImagePath:@"search"];
+    [view addSubview:imageView];
+    
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(35), HeightXiShu(0), WidthXiShu(200), HeightXiShu(22))];
+    self.textField.delegate = self;
+    self.textField.font = HEITI(HeightXiShu(13));
+    self.textField.placeholder = @"泮立苏";
+    [view addSubview:self.textField];
+    
+}
 
 - (void)createAdScrollView {
     
@@ -240,7 +261,7 @@
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), 0, WidthXiShu(150), HeightXiShu(30))];
-            dateLabel.text = @"活动专区";
+            dateLabel.text = @"限时折扣";
             dateLabel.textColor = [UIColor colorFromHexCode:@"#447de6"];
             dateLabel.font = HEITI(HeightXiShu(11));
             [cell.contentView addSubview:dateLabel];
@@ -264,7 +285,7 @@
     } else {
         if (indexPath.row == 0) {
             UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(5), WidthXiShu(150), HeightXiShu(25))];
-            dateLabel.text = @"推荐品种";
+            dateLabel.text = @"新品推荐";
             dateLabel.textColor = [UIColor colorFromHexCode:@"#447de6"];
             dateLabel.font = HEITI(HeightXiShu(11));
             [cell.contentView addSubview:dateLabel];
@@ -293,7 +314,7 @@
     switch (index) {
         case 0:
         {
-            NSLog(@"化学药");
+            NSLog(@"诊特惠");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
             pnt.classType = 1;
             pnt.hidesBottomBarWhenPushed = YES;
@@ -302,7 +323,7 @@
             break;
         case 1:
         {
-            NSLog(@"中成药");
+            NSLog(@"药世界");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
             pnt.classType = 2;
             pnt.hidesBottomBarWhenPushed = YES;
@@ -311,7 +332,7 @@
             break;
         case 2:
         {
-            NSLog(@"抗生素剂");
+            NSLog(@"换积分");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
             pnt.classType = 3;
             pnt.hidesBottomBarWhenPushed = YES;
@@ -320,7 +341,7 @@
             break;
         case 3:
         {
-            NSLog(@"积分"); //跳转到积分页面
+            NSLog(@"云药房"); //跳转到积分页面
             IntegralDetailViewController *idv = [[IntegralDetailViewController alloc] init];
             idv.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:idv animated:YES];
@@ -328,7 +349,7 @@
             break;
         case 4:
         {
-            NSLog(@"促销"); //跳转到促销页面
+            NSLog(@"药资讯"); //跳转到促销页面
             PromotionViewController *promotion = [[PromotionViewController alloc]init];
             promotion.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:promotion animated:YES];
@@ -338,6 +359,18 @@
             break;
     }
 }
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"搜搜");
+    
+}
+
 #pragma mark - 活动专区模块点击
 
 - (void)activityButtonClick:(NSInteger)index {
