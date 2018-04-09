@@ -15,7 +15,8 @@
 #import "ProcurementNoTabViewController.h"
 #import "PromotionViewController.h"
 #import "IntegralDetailViewController.h"
-@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate>
+#import "AdPageControl.h"
+@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
 
@@ -46,7 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self statusBar];
-    
+    [self homeFirstToDo];// ad page
     [self.tableView setMinY:0 maxY:kScreenHeight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -54,7 +55,10 @@
     
     [self creatSearchBar];
 }
-
+-(void)homeFirstToDo{
+    AdPageControl *ad = [[AdPageControl alloc]init];
+    [[UIApplication sharedApplication].keyWindow addSubview:ad];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

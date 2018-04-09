@@ -49,7 +49,7 @@
 #import "HUDUtil.h"
 #import "AnimaDefaultUtil.h"
 #import "UserModel.h"
-
+#import "BlocksKit.h"
 
 #define APPVER @"1.0"
 
