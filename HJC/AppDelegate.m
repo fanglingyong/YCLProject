@@ -36,7 +36,10 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAgain) name:@"loginAgain" object:nil];
     
+    
+    
     [self clearHistoryData];
+//    [self jumpAdPage];
     [self jumpMain];
     
     return YES;
@@ -45,12 +48,8 @@
 /**
  登陆视图 window
  */
--(void)jumpLogin{
-    LoginViewController * login = [[LoginViewController alloc]init];
-    BaseNavigationController *loginNav = [[BaseNavigationController alloc] initWithRootViewController:login];
-    loginNav.navigationBarHidden = YES;
-    self.window.rootViewController = loginNav;
-    [self.window makeKeyAndVisible];
+-(void)jumpAdPage{
+    
 }
 
 /**
