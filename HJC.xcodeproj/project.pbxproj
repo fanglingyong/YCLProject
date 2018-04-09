@@ -357,6 +357,7 @@
 		455DEBCF207B2F9100F38D65 /* iphone6p.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 455DEBCE207B2F9100F38D65 /* iphone6p.jpg */; };
 		455DEBD2207B307600F38D65 /* iPhoneX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455DEBD0207B307600F38D65 /* iPhoneX@3x.png */; };
 		455DEBD3207B307600F38D65 /* iPhone6p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 455DEBD1207B307600F38D65 /* iPhone6p@3x.png */; };
+		455DEBD5207BA71400F38D65 /* appstoreIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455DEBD4207BA71400F38D65 /* appstoreIcon.png */; };
 		455E1F331FAC3EBC00805340 /* NSData+Anima.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F321FAC3EBC00805340 /* NSData+Anima.m */; };
 		455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F291FAC3EA500805340 /* BindClinicViewController.m */; };
 		455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */; };
@@ -964,6 +965,7 @@
 		455DEBCE207B2F9100F38D65 /* iphone6p.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone6p.jpg; sourceTree = "<group>"; };
 		455DEBD0207B307600F38D65 /* iPhoneX@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneX@3x.png"; sourceTree = "<group>"; };
 		455DEBD1207B307600F38D65 /* iPhone6p@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone6p@3x.png"; sourceTree = "<group>"; };
+		455DEBD4207BA71400F38D65 /* appstoreIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstoreIcon.png; sourceTree = "<group>"; };
 		455E1F281FAC3EA500805340 /* BindClinicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindClinicViewController.h; sourceTree = "<group>"; };
 		455E1F291FAC3EA500805340 /* BindClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindClinicViewController.m; sourceTree = "<group>"; };
 		455E1F2B1FAC3EA500805340 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
@@ -2386,6 +2388,7 @@
 		45BDBE3C1FB32DBF001B9581 /* DefaultIcon */ = {
 			isa = PBXGroup;
 			children = (
+				455DEBD4207BA71400F38D65 /* appstoreIcon.png */,
 				455DEBD1207B307600F38D65 /* iPhone6p@3x.png */,
 				455DEBD0207B307600F38D65 /* iPhoneX@3x.png */,
 				455DEBCE207B2F9100F38D65 /* iphone6p.jpg */,
@@ -2552,6 +2555,7 @@
 				45E50B6820527942008ADC0A /* LOGO_lc@2x.png in Resources */,
 				45FD3F1F204843F700BA83BE /* nodata.jpg in Resources */,
 				36FD7A591FE9135A002315E5 /* home_normal@3x.png in Resources */,
+				455DEBD5207BA71400F38D65 /* appstoreIcon.png in Resources */,
 				450F06F0205E5349000C2CBA /* LOGO_hd.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
 				450BF3FA1FE8EF9A00A90704 /* search.png in Resources */,
@@ -3091,7 +3095,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = NO;
 				CLANG_WARN_COMMA = NO;
@@ -3124,7 +3127,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = NO;
 				CLANG_WARN_COMMA = NO;

@@ -131,7 +131,7 @@
         self.adScrollView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
             NSString *url = weakSelf.bannerArray[pageIndex];
-//            NSLog(@"%@", url);
+            NSLog(@"%@", [NSString stringWithFormat:@"%@%@", HomePic, url]);
             [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", HomePic, url]]];
             return imageView;
         };
