@@ -107,7 +107,7 @@
         [cell.contentView addSubview:integralLB];
         
         UILabel *userNameLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(180), kScreenWidth, HeightXiShu(25))];
-        userNameLB.text = [UserModel getUserModel].P_NAME?[UserModel getUserModel].P_NAME:@"药联采";
+        userNameLB.text = [UserModel getUserModel].P_NAME?[UserModel getUserModel].P_NAME:@"微药";
         userNameLB.textAlignment = NSTextAlignmentCenter;
         userNameLB.textColor = BlackColor;
         userNameLB.font = HEITI(HeightXiShu(18));

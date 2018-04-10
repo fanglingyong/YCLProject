@@ -170,6 +170,7 @@
 		4500A4701FAF4CDF002AEC90 /* BindInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A46F1FAF4CDF002AEC90 /* BindInfoViewController.m */; };
 		4500A4731FAF4CFA002AEC90 /* RegisterClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */; };
 		4500A4761FB0A9C7002AEC90 /* AssoSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */; };
+		450A7180207C9E0A008B3EFE /* ruiwen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 450A717F207C9E0A008B3EFE /* ruiwen@2x.png */; };
 		450BF3FA1FE8EF9A00A90704 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F51FCBE865005EC6BA /* search.png */; };
 		450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F61FCBE865005EC6BA /* search@2x.png */; };
 		450BF3FC1FE8EF9A00A90704 /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4559C0F71FCBE865005EC6BA /* search@3x.png */; };
@@ -701,6 +702,7 @@
 		4500A4721FAF4CFA002AEC90 /* RegisterClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClinicViewController.m; sourceTree = "<group>"; };
 		4500A4741FB0A9C7002AEC90 /* AssoSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssoSuccessViewController.h; sourceTree = "<group>"; };
 		4500A4751FB0A9C7002AEC90 /* AssoSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssoSuccessViewController.m; sourceTree = "<group>"; };
+		450A717F207C9E0A008B3EFE /* ruiwen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ruiwen@2x.png"; sourceTree = "<group>"; };
 		450BF3FE1FECDC6B00A90704 /* ShopCartChangeAmout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartChangeAmout.h; sourceTree = "<group>"; };
 		450BF3FF1FECDC6B00A90704 /* ShopCartChangeAmout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartChangeAmout.m; sourceTree = "<group>"; };
 		450BF4021FED0F9000A90704 /* SubmitOrdersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitOrdersViewController.h; sourceTree = "<group>"; };
@@ -2388,6 +2390,7 @@
 		45BDBE3C1FB32DBF001B9581 /* DefaultIcon */ = {
 			isa = PBXGroup;
 			children = (
+				450A717F207C9E0A008B3EFE /* ruiwen@2x.png */,
 				455DEBD4207BA71400F38D65 /* appstoreIcon.png */,
 				455DEBD1207B307600F38D65 /* iPhone6p@3x.png */,
 				455DEBD0207B307600F38D65 /* iPhoneX@3x.png */,
@@ -2558,6 +2561,7 @@
 				455DEBD5207BA71400F38D65 /* appstoreIcon.png in Resources */,
 				450F06F0205E5349000C2CBA /* LOGO_hd.png in Resources */,
 				36FD7A4F1FE90EE3002315E5 /* right_arrow@2x.png in Resources */,
+				450A7180207C9E0A008B3EFE /* ruiwen@2x.png in Resources */,
 				450BF3FA1FE8EF9A00A90704 /* search.png in Resources */,
 				450BF3FB1FE8EF9A00A90704 /* search@2x.png in Resources */,
 				450BF3FC1FE8EF9A00A90704 /* search@3x.png in Resources */,

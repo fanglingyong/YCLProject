@@ -29,25 +29,25 @@
 @property(nonatomic, retain)NSMutableArray *activeArray;
 @property(nonatomic, retain)NSMutableArray *recommendArray;
 
+@property(nonatomic, assign)BOOL isCreate;
+@property (nonatomic, retain)UIView *searchView;
+
 @end
 
 @implementation MainViewController
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.bannerArray = [NSMutableArray array];
-        self.activeArray = [NSMutableArray array];
-        self.recommendArray = [NSMutableArray array];
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self statusBar];
     [self homeFirstToDo];// ad page
+
+    self.bannerArray = [NSMutableArray array];
+    self.activeArray = [NSMutableArray array];
+    self.recommendArray = [NSMutableArray array];
+    self.isCreate = NO;
     [self.tableView setMinY:0 maxY:kScreenHeight];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -71,26 +71,25 @@
 #pragma mark - 页面元素
 
 - (void)creatSearchBar {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(13), HeightXiShu(10), WidthXiShu(315), HeightXiShu(22))];
-    view.layer.cornerRadius = WidthXiShu(10);
-    [self.headerView addSubview:view];
+    self.searchView = [[UIView alloc] initWithFrame:CGRectMake(WidthXiShu(13), HeightXiShu(10), WidthXiShu(315), HeightXiShu(22))];
+    _searchView.layer.cornerRadius = WidthXiShu(10);
+    _searchView.backgroundColor = [UIColor colorFromHexCode:@"#f4f4f4"];
+    [self.headerView addSubview:_searchView];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(13), HeightXiShu(4), WidthXiShu(15), HeightXiShu(15))];
     imageView.image = [GetImagePath getImagePath:@"search"];
-    [view addSubview:imageView];
+    [_searchView addSubview:imageView];
     
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(35), HeightXiShu(0), WidthXiShu(200), HeightXiShu(22))];
     self.textField.delegate = self;
     self.textField.font = HEITI(HeightXiShu(13));
     self.textField.placeholder = @"泮立苏";
-    [view addSubview:self.textField];
+    [_searchView addSubview:self.textField];
     
 }
 
 - (void)createAdScrollView {
-    
 //    NSLog(@"%@", self.bannerArray);
-    
     if (self.bannerArray.count == 1) {
         self.adScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175)) animationDuration:10000 andIsSingle:true];
     } else if (self.bannerArray.count > 1) {
@@ -98,41 +97,16 @@
     } else {
         return;
     }
-//    NSLog(@"创建banner");
-    
     self.adScrollView.backgroundColor = [UIColor whiteColor];
-    [self.headerView addSubview:self.adScrollView];
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(30), HeightXiShu(175) - HeightXiShu(15), WidthXiShu(25), HeightXiShu(15))];
-    self.pageControl.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4);
-    
-    if (self.bannerArray.count == 1) {
-        self.pageControl.pageIndicatorTintColor = [UIColor clearColor];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor clearColor];
-    } else if (self.bannerArray.count > 1) {
-        self.pageControl.pageIndicatorTintColor = [UIColor brownColor];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-    }
-    
-    [self.adScrollView addSubview:self.pageControl];
-    [self createBannerImages];
-    
-}
-
--(void)createBannerImages {
-    
+    [self.headerView insertSubview:self.adScrollView belowSubview:_searchView];
     if (self.bannerArray.count != 0) {
-        
-//        NSLog(@"%@", self.bannerArray);
-//        NSLog(@"创建banner图片");
-        
         __weak typeof(MainViewController) *weakSelf = self;
-        self.pageControl.numberOfPages = self.bannerArray.count;
         //给图片赋值
         self.adScrollView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
-            NSString *url = weakSelf.bannerArray[pageIndex];
-            NSLog(@"%@", [NSString stringWithFormat:@"%@%@", HomePic, url]);
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", HomePic, url]]];
+            NSString *url = [NSString stringWithFormat:@"%@%@", HomePic, weakSelf.bannerArray[pageIndex]];
+            NSLog(@"%@", url);
+            [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"ruiwen"]];
             return imageView;
         };
         
@@ -151,7 +125,7 @@
         self.adScrollView.TapActionBlock = ^(NSInteger pageIndex){
             NSString *url = weakSelf.bannerArray[pageIndex];
             if (url.length > 0) {
-//                [weakSelf clickGoToNewVC:[NSString stringWithFormat:@"%@%@", HomePic, url] WithName:@""];
+
             } else {
                 return;
             }
@@ -429,11 +403,18 @@
         }else{
             NSLog(@"error:%@",error);
         }
-        [self createAdScrollView];
-        [self.tableView reloadData];
+        [self updateData];
     } dic:pargrams noNetWork:nil];
 }
-            
+-(void)updateData{
+    [self.tableView reloadData];
+    if (self.isCreate) {
+        
+    }else{
+        self.isCreate = YES;
+        [self createAdScrollView];
+    }
+}
 
 
 
