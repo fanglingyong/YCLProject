@@ -16,7 +16,7 @@
 #import "PromotionViewController.h"
 #import "IntegralDetailViewController.h"
 #import "AdPageControl.h"
-@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate>
+@interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate >
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
 
