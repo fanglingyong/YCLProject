@@ -19,7 +19,7 @@
         self.isValid = YES;
         [self addSubview:self.adPage];
         [self addSubview:self.logo];
-        [self removiewForDely:5.];
+        [self removiewForDely:6.];
     }
     return self;
 }
@@ -39,18 +39,57 @@
 -(UIButton*)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
+        [_cancelBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        _cancelBtn.frame = CGRectMake(kScreenWidth-50, kStateHeight+7, 30, 30);
+        [_cancelBtn addTarget:self action:@selector(removeNew:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelBtn;
 }
-
+-(void)removeNew:(UIButton*)sender{
+    if (_isValid) {
+        _isValid = NO;
+        sender.userInteractionEnabled = NO;
+        [self dissSelf:YES];
+    }
+}
 -(void)removiewForDely:(NSTimeInterval)timer{
+    [self bk_performAfterDelay:3. usingBlock:^(id  _Nonnull obj) {
+        [self addSubview:self.cancelBtn];
+    }];
     [self bk_performAfterDelay:timer usingBlock:^(id  _Nonnull obj) {
         if (_isValid) {
             _isValid = NO;
-            [self removeFromSuperview];
-            //此处可以做个动画效果，暂时不做.
+            [self dissSelf:YES];
         }
     }];
+}
+
+/**
+ change anima
+
+ @param openAnima is open anima for self.
+ */
+-(void)dissSelf:(BOOL)openAnima{
+    if (openAnima) {
+        [UIView animateWithDuration:2. animations:^{
+            self.alpha = 0.;
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+    }else{
+        [self removeFromSuperview];
+    }
+}
+#pragma mark - net
+-(void)netForAdImage{
+    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
+    [BaseApi getMenthodWithUrl:@"" block:^(NSDictionary *dict, NSError *error) {
+        if (error) {
+            //error
+            
+        }else{
+            //this is ok for net work from server
+        }
+    } dic:pargrams noNetWork:nil];
 }
 @end
