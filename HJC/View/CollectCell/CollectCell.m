@@ -190,7 +190,7 @@
 
 - (void)setModel:(CollectModel *)model {
     _model = model;
-    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];
+    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default"]];
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
     _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.CorpName];

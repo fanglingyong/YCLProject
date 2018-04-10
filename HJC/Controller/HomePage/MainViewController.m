@@ -104,7 +104,7 @@
         //给图片赋值
         self.adScrollView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
-            NSString *url = [NSString stringWithFormat:@"%@%@", HomePic, weakSelf.bannerArray[pageIndex]];
+            NSString *url = [[NSString stringWithFormat:@"%@%@", HomePic, weakSelf.bannerArray[pageIndex]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSLog(@"%@", url);
             [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"ruiwen"]];
             return imageView;

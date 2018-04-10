@@ -274,7 +274,7 @@
     [self updateinfo];
 }
 -(void)updateinfo{
-    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,_model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];//药品图片
+    [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,_model.goodspic]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default"]];//药品图片
     _nameLb.text = _model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",_model.spec];
     _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",_model.prodarea];

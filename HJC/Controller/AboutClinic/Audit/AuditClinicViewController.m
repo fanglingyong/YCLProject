@@ -79,7 +79,7 @@
             
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth-20, kScreenWidth-20)];
             image.contentMode = UIViewContentModeScaleAspectFit;
-            [image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,arr[i]]] placeholderImage:[UIImage imageNamed:@"default"]];
+            [image sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,arr[i]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ] placeholderImage:[UIImage imageNamed:@"default"]];
             [view addSubview:image];
             
             [_scrollView addSubview:view];

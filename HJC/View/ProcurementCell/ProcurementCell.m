@@ -281,7 +281,7 @@
 
 - (void)setModel:(ProcurementModel *)model {
     _model = model;
-    [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]] placeholderImage:[UIImage imageNamed:@"default"]];
+    [self.medicineImg sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default"]];
     self.nameLb.text = model.goodsname;
     self.specificationLb.text = [NSString stringWithFormat:@"规格:%@", model.Spec];
     self.produceAreaLb.text = [NSString stringWithFormat:@"产地:%@", model.producer];
