@@ -157,6 +157,7 @@
 		36CB9C9E1F988B4200EE774B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9D1F988B4200EE774B /* ImageIO.framework */; };
 		36CB9CA01F988B5900EE774B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */; };
 		36CB9CA21F988B6B00EE774B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CB9CA11F988B6B00EE774B /* AVFoundation.framework */; };
+		36DB10BD207DEDCA00BB8E36 /* MainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB10BC207DEDCA00BB8E36 /* MainSearchViewController.m */; };
 		36FD7A371FD9292F002315E5 /* detail_integral.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A351FD928A0002315E5 /* detail_integral.png */; };
 		36FD7A381FD9292F002315E5 /* detail_integral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A361FD928A0002315E5 /* detail_integral@2x.png */; };
 		36FD7A391FD9292F002315E5 /* detail_integral@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36FD7A341FD928A0002315E5 /* detail_integral@3x.png */; };
@@ -687,6 +688,8 @@
 		36CB9C9D1F988B4200EE774B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		36CB9C9F1F988B5900EE774B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		36CB9CA11F988B6B00EE774B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		36DB10BB207DEDCA00BB8E36 /* MainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainSearchViewController.h; sourceTree = "<group>"; };
+		36DB10BC207DEDCA00BB8E36 /* MainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainSearchViewController.m; sourceTree = "<group>"; };
 		36FD7A341FD928A0002315E5 /* detail_integral@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_integral@3x.png"; sourceTree = "<group>"; };
 		36FD7A351FD928A0002315E5 /* detail_integral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_integral.png; sourceTree = "<group>"; };
 		36FD7A361FD928A0002315E5 /* detail_integral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_integral@2x.png"; sourceTree = "<group>"; };
@@ -1804,6 +1807,8 @@
 				36965D971FB04438006B93E4 /* MedicineDetail */,
 				3696FEE81F95DC87000B9172 /* MainViewController.h */,
 				3696FEE91F95DC87000B9172 /* MainViewController.m */,
+				36DB10BB207DEDCA00BB8E36 /* MainSearchViewController.h */,
+				36DB10BC207DEDCA00BB8E36 /* MainSearchViewController.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -2520,7 +2525,7 @@
 				TargetAttributes = {
 					3696F9681F95DA84000B9172 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					3696F9801F95DA86000B9172 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2892,6 +2897,7 @@
 				455DEBB6207B2A8F00F38D65 /* NSSet+BlocksKit.m in Sources */,
 				455DEBAB207B2A8F00F38D65 /* NSMapTable+BlocksKit.m in Sources */,
 				455DEBB7207B2A8F00F38D65 /* NSTimer+BlocksKit.m in Sources */,
+				36DB10BD207DEDCA00BB8E36 /* MainSearchViewController.m in Sources */,
 				366EAB311F9D8B1B00A63E83 /* MJRefreshFooter.m in Sources */,
 				366EAB321F9D8B2800A63E83 /* MJRefreshBackFooter.m in Sources */,
 				366EAB331F9D8B3300A63E83 /* UIScrollView+MJExtension.m in Sources */,
@@ -3108,8 +3114,8 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FLLG78AHV5;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KMK843WA4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3121,8 +3127,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "187f9440-25b6-44fd-a66e-590024da0380";
-				PROVISIONING_PROFILE_SPECIFIER = ios_development_profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3139,9 +3145,9 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FLLG78AHV5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7KMK843WA4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3153,8 +3159,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e42287b8-b78c-4128-8d61-fb2670f19c6f";
-				PROVISIONING_PROFILE_SPECIFIER = ios_distribution_profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
