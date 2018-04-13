@@ -197,11 +197,20 @@
 }
 -(void)deleteThisCell:(NSInteger)row{
     NSLog(@"删除品种");
-    [self net_update:_modelArr[row] type:@"3" oldCount:@""];
-    [_modelArr removeObjectAtIndex:row];
-    [self updatePrice];
-    [_mainTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
-    //    [_mainTableView reloadData];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否删除该记录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self net_update:_modelArr[row] type:@"3" oldCount:@""];
+        [_modelArr removeObjectAtIndex:row];
+        [self updatePrice];
+        [_mainTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+        //    [_mainTableView reloadData];
+    }];
+    [alert addAction:cancelAction];
+    [alert addAction:sureAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 -(void)changeOrderDetail:(NSInteger)row oldCount:(NSString*)oldCount{
 //    NSLog(@"修改品种数量");

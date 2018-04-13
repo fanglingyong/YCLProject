@@ -16,6 +16,7 @@
 #import "PromotionViewController.h"
 #import "IntegralDetailViewController.h"
 #import "AdPageControl.h"
+#import "MainSearchViewController.h"
 @interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate >
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
@@ -48,7 +49,7 @@
     self.activeArray = [NSMutableArray array];
     self.recommendArray = [NSMutableArray array];
     self.isCreate = NO;
-    [self.tableView setMinY:0 maxY:kScreenHeight];
+    [self.tableView setMinY:kStateHeight maxY:kScreenHeight - 44];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.headerView;
@@ -149,7 +150,7 @@
 
 - (UIView *)headerView {
     if (!_headerView) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(175))];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, kStateHeight, kScreenWidth, HeightXiShu(175))];
         headerView.backgroundColor = [UIColor whiteColor];
         _headerView = headerView;
     }
@@ -346,6 +347,13 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     NSLog(@"搜搜");
+    if (![AnimaDefaultUtil isNotNull:self.textField.text] ) {
+        return;
+    }
+    MainSearchViewController *VC = [[MainSearchViewController alloc] init];
+    VC.searchString = self.textField.text;
+    VC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 

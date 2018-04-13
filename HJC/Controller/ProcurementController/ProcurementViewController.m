@@ -110,12 +110,19 @@
 
 - (void)headRefresh {
     self.pageIndex = 1;
-    [self network_procurementList];
-}
+    if (self.searchTF.text.length > 0) {
+        [self network_procurementList:self.searchTF.text];
+    } else {
+        [self network_procurementList];
+    }}
 
 - (void)footRefresh {
     self.pageIndex += 1;
-    [self network_procurementList];
+    if (self.searchTF.text.length > 0) {
+        [self network_procurementList:self.searchTF.text];
+    } else {
+        [self network_procurementList];
+    }
 }
 
 - (void)addNoDataView {
@@ -270,6 +277,11 @@
 
     [self.searchTF resignFirstResponder];
     if (![AnimaDefaultUtil isNotNull:self.searchTF.text] ) {
+        if (self.dataArray.count > 0) {
+            [self.dataArray removeAllObjects];
+            [self.tableView reloadData];
+        }
+        [self network_procurementList];
         return;
     }
     [self searchWillToDo];
@@ -328,21 +340,29 @@
 -(void)network_procurementList:(NSString*)searchContent{
     
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:@",10,1" forKey:@"WebPara"];
-    
+    [pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
+
     [pargrams setObject:[NSString stringWithFormat:@"0,0,%@",searchContent] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
     [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
     NSLog(@"这是采购页面pargrams :%@", pargrams);
     [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
+        [_tableView.mj_footer endRefreshing];
         if(!error){
             NSLog(@"请求成功了~~~~~~~~");
             NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
-            
+            if (self.pageIndex == 1) {
+                [self.dataArray removeAllObjects];
+                if (goodsArr.count > 0) {
+                    self.noDateView.hidden = YES;
+                }
+                self.noDateView.hidden = NO;
+            }
             for (NSDictionary *dic in goodsArr) {
                 ProcurementModel *model = [[ProcurementModel alloc] init];
                 [model setValuesForKeysWithDictionary:dic];
                 [self.dataArray addObject:model];
             }
+            self.tableView.mj_footer.hidden = goodsArr.count == 10 ? NO : YES;
             [self.tableView reloadData];
         }else{
             [HUDUtil Hud_message:error.domain view:self.view];
