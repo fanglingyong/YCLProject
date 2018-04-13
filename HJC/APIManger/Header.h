@@ -10,8 +10,8 @@
 #define Header_h
 
 //host path
-//#define HostPath @"http://120.26.97.79/WebApi/api"
-#define HostPath @"https://weiyaonet.com/WebApi/api"
+#define HostPath @"http://122.224.237.123:8083/WebApi/api"
+//#define HostPath @"https://weiyaonet.com/WebApi/api"
 //注册
 #define RegisterURL @"/NewPerson"
 //登陆
