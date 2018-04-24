@@ -21,6 +21,7 @@
 @property (nonatomic, assign)NSInteger pageIndex;
 @property (nonatomic, retain)UIView *noDateView;
 @property (nonatomic, strong)NSString *getUrl;
+@property (nonatomic, strong)MBProgressHUD *hud;
 @end
 
 @implementation ProcurementNoTabViewController
@@ -90,7 +91,7 @@
                 break;
             case 2:
                 navView.titleLabel.text = @"药世界";
-                self.getUrl = @"";
+                self.getUrl = GetGoodsListURL;
                 break;
             case 3:
                 navView.titleLabel.text = @"换积分";
@@ -176,6 +177,7 @@
 -(void)network_procurementList{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     if (_pageIndex == 1) {
+        self.hud = [HUDUtil Hud_loading:@"加载中……" view:self.view];
         pargrams = [NSMutableDictionary dictionary];
     }
     [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
@@ -187,6 +189,7 @@
             NSLog(@"请求成功了~~~~~~~~");
             NSArray *goodsArr = [NSArray arrayWithArray:dict[@"data"]];
             if (self.pageIndex == 1) {
+                [self.hud hideAnimated:YES];
                 [self.dataArray removeAllObjects];
                 if (goodsArr.count > 0) {
                     self.noDateView.hidden = YES;
@@ -201,6 +204,7 @@
             self.tableView.mj_footer.hidden = goodsArr.count == 10 ? NO : YES;
             [self.tableView reloadData];
         }else{
+            [self.hud hideAnimated:YES];
             [HUDUtil Hud_message:error.domain view:self.view];
         }
     } dic:pargrams noNetWork:nil];

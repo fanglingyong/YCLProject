@@ -16,8 +16,18 @@
     hud.mode = MBProgressHUDModeText;
     hud.label.text = txt;
     // Move to bottm center.
-    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+    hud.offset = CGPointMake(0.f, 0.f);
     [hud hideAnimated:YES afterDelay:3.f];
+}
++(MBProgressHUD*)Hud_loading:(NSString *)txt view:(UIView *)view{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    // Set the text mode to show only text.
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = txt;
+    // Move to bottm center.
+    hud.offset = CGPointMake(0.f, 0.f);
+//    [hud hideAnimated:YES afterDelay:3.f];
+    return hud;
 }
 
 @end

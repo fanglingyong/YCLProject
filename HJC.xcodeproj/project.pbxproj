@@ -198,6 +198,7 @@
 		452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645A1FE0C473006E51F5 /* MebLicenseViewController.m */; };
 		452D645F1FE0D327006E51F5 /* AuditClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */; };
 		453137E31FD183530095B155 /* SmsCodeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 453137E21FD183530095B155 /* SmsCodeTextField.m */; };
+		45401996208F5D3500172E23 /* MsgListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45401995208F5D3500172E23 /* MsgListViewController.m */; };
 		454A3EA62012F49300490A12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 454A3EA52012F49200490A12 /* Assets.xcassets */; };
 		45571D7620063CDE00545850 /* customService.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7320063CDE00545850 /* customService.png */; };
 		45571D7720063CDE00545850 /* customService@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45571D7420063CDE00545850 /* customService@2x.png */; };
@@ -751,6 +752,8 @@
 		452D645E1FE0D327006E51F5 /* AuditClinicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditClinicViewController.m; sourceTree = "<group>"; };
 		453137E11FD183530095B155 /* SmsCodeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmsCodeTextField.h; sourceTree = "<group>"; };
 		453137E21FD183530095B155 /* SmsCodeTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmsCodeTextField.m; sourceTree = "<group>"; };
+		45401994208F5D3500172E23 /* MsgListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListViewController.h; sourceTree = "<group>"; };
+		45401995208F5D3500172E23 /* MsgListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgListViewController.m; sourceTree = "<group>"; };
 		454A3EA52012F49200490A12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45571D7320063CDE00545850 /* customService.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customService.png; sourceTree = "<group>"; };
 		45571D7420063CDE00545850 /* customService@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customService@2x.png"; sourceTree = "<group>"; };
@@ -1557,6 +1560,8 @@
 				45571D842006503C00545850 /* AnnouncementViewController.m */,
 				45EF316B20122DB3004DAB6E /* MessageDetailViewController.h */,
 				45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */,
+				45401994208F5D3500172E23 /* MsgListViewController.h */,
+				45401995208F5D3500172E23 /* MsgListViewController.m */,
 			);
 			path = MessageCenter;
 			sourceTree = "<group>";
@@ -2822,6 +2827,7 @@
 				452D645B1FE0C473006E51F5 /* MebLicenseViewController.m in Sources */,
 				455DEBC7207B2A8F00F38D65 /* UIImage+BlocksKit.m in Sources */,
 				459930122046E219003E8119 /* ProcurementNoTabViewController.m in Sources */,
+				45401996208F5D3500172E23 /* MsgListViewController.m in Sources */,
 				4559C1A71FCD289C005EC6BA /* ClinicCell.m in Sources */,
 				36A2D511200345A3008ECE20 /* ProcureSearchViewController.m in Sources */,
 				36965DAB1FB04823006B93E4 /* MedicineDetailCell.m in Sources */,

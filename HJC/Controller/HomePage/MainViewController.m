@@ -13,10 +13,12 @@
 #import "MedicineDetailViewController.h"
 #import "SCWebViewController.h"
 #import "ProcurementNoTabViewController.h"
-#import "PromotionViewController.h"
+//#import "PromotionViewController.h"
+#import "MsgListViewController.h"
 #import "IntegralDetailViewController.h"
 #import "AdPageControl.h"
 #import "MainSearchViewController.h"
+
 @interface MainViewController ()<MainButtonCellDelegate, ActivityZoneCellDelegate, RecommendVarietiesCellDelegate, UITextFieldDelegate >
 
 @property(nonatomic,strong)NSMutableArray *controllersArr;
@@ -333,10 +335,15 @@
             break;
         case 4:
         {
-            NSLog(@"药资讯"); //跳转到促销页面
+            NSLog(@"药资讯");
+            /*** this is jump to 促销
             PromotionViewController *promotion = [[PromotionViewController alloc]init];
             promotion.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:promotion animated:YES];
+            */
+            MsgListViewController *msgList = [[MsgListViewController alloc]init];
+            msgList.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:msgList animated:YES];
         }
             break;
         default:

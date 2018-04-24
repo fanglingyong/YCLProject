@@ -13,4 +13,6 @@
 
 +(void)Hud_message:(NSString *)txt view:(UIView *)view;
 
++(MBProgressHUD*)Hud_loading:(NSString *)txt view:(UIView *)view;
+
 @end
