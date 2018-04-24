@@ -20,7 +20,7 @@
 @property (nonatomic, retain)NSMutableArray *dataArray;
 @property (nonatomic, assign)NSInteger pageIndex;
 @property (nonatomic, retain)UIView *noDateView;
-
+@property (nonatomic, strong)NSString *getUrl;
 @end
 
 @implementation ProcurementNoTabViewController
@@ -85,13 +85,20 @@
         navView.backgroundColor = [UIColor whiteColor];
         switch (self.classType) {
             case 1:
-                navView.titleLabel.text = @"化学药";
+                navView.titleLabel.text = @"诊特惠";
+                self.getUrl = GetNavTZh;
                 break;
             case 2:
-                navView.titleLabel.text = @"中成药";
+                navView.titleLabel.text = @"药世界";
+                self.getUrl = @"";
                 break;
             case 3:
-                navView.titleLabel.text = @"抗生素剂";
+                navView.titleLabel.text = @"换积分";
+                self.getUrl = GetNavJifen;
+                break;
+            case 4:
+                navView.titleLabel.text = @"云药房";
+                self.getUrl = GetNavYunYaoku;
                 break;
             default:
                 break;
@@ -171,11 +178,10 @@
     if (_pageIndex == 1) {
         pargrams = [NSMutableDictionary dictionary];
     }
-    [pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
-    [pargrams setObject:[NSString stringWithFormat:@"%ld,%@,%@",(long)self.classType,@"0",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称 [药品名称，不要传促销，促销会单独跳转。而不是放到参数里面请求]
     [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];//暂时设置为0因为只有0才有结果
-    NSLog(@"这是采购页面pargrams :%@", pargrams);
-    [BaseApi getMenthodWithUrl:GetGoodsListURL block:^(NSDictionary *dict, NSError *error) {
+    [pargrams setObject:[NSString stringWithFormat:@",10,%ld",self.pageIndex] forKey:@"WebPara"];
+    [pargrams setObject:[NSString stringWithFormat:@"0,%@,%@,",@"0",@""] forKey:@"Parastr"];// 分类DataID,供应商id,药品名称,产地 [因为URL不同，所以此页面不需要传分类ID，药品名称，产地]
+    [BaseApi getMenthodWithUrl:self.getUrl block:^(NSDictionary *dict, NSError *error) {
         [_tableView.mj_footer endRefreshing];
         if(!error){
             NSLog(@"请求成功了~~~~~~~~");

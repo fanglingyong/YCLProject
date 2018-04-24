@@ -79,7 +79,7 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.footerView];
-    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BigPic,_model.GOODSPIC]] placeholderImage:[UIImage imageNamed:@"default"]];
+    [_goodImageView sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",BigPic,_model.GOODSPIC] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default"]];
     [self.tableView reloadData];
 }
 

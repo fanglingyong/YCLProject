@@ -10,7 +10,8 @@
 #define Header_h
 
 //host path
-#define HostPath @"http://122.224.237.123:8083/WebApi/api"
+//#define HostPath @"http://122.224.237.123:8083/WebApi/api"
+#define HostPath @"http://123.56.30.182/WebApi/api"
 //#define HostPath @"https://weiyaonet.com/WebApi/api"
 //注册
 #define RegisterURL @"/NewPerson"
@@ -65,6 +66,13 @@
 #define GetMessageInfo @"/QN_MESSAGE_FORPERSON"
 //处理消息 ?UserID=&MESSAGEID=& OPCODE=标志（1修改阅读标志2删除消息）
 #define GetDealMessage @"/BTN_MESSAGE_ISREAD"
+
+//诊特惠
+#define GetNavTZh @"/QN_GOODS_LIST_FORORDER_STD_PC_ZS"
+//赚积分
+#define GetNavJifen @"/QN_GOODS_LIST_FORORDER_STD_PC_OTC"
+//云药库
+#define GetNavYunYaoku @"/QN_GOODS_LIST_FORORDER_STD_PC_OTC"
 
 //图片前缀 banner
 #define HomePic @"https://weiyaonet.com/WebApi/IndexPic/"

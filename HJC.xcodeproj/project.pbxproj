@@ -364,6 +364,8 @@
 		455E1F371FAC3FA200805340 /* BindClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F291FAC3EA500805340 /* BindClinicViewController.m */; };
 		455E1F381FAC3FA200805340 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2C1FAC3EA500805340 /* ForgetPasswordViewController.m */; };
 		455E1F391FAC3FA200805340 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455E1F2E1FAC3EA600805340 /* LoginViewController.m */; };
+		4575C93020809B8C00D84D89 /* adPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4575C92E20809B8B00D84D89 /* adPage@2x.png */; };
+		4575C93120809B8C00D84D89 /* adPage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4575C92F20809B8B00D84D89 /* adPage@3x.png */; };
 		457D797B1FE4B54E0077F462 /* AnimaDefaultUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D797A1FE4B54E0077F462 /* AnimaDefaultUtil.m */; };
 		457D797E1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D797D1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.m */; };
 		457D79821FE514460077F462 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79811FE514460077F462 /* UserModel.m */; };
@@ -979,6 +981,8 @@
 		455E1F2E1FAC3EA600805340 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		455E1F311FAC3EBC00805340 /* NSData+Anima.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Anima.h"; sourceTree = "<group>"; };
 		455E1F321FAC3EBC00805340 /* NSData+Anima.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Anima.m"; sourceTree = "<group>"; };
+		4575C92E20809B8B00D84D89 /* adPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adPage@2x.png"; sourceTree = "<group>"; };
+		4575C92F20809B8B00D84D89 /* adPage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adPage@3x.png"; sourceTree = "<group>"; };
 		457D79791FE4B54E0077F462 /* AnimaDefaultUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimaDefaultUtil.h; sourceTree = "<group>"; };
 		457D797A1FE4B54E0077F462 /* AnimaDefaultUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimaDefaultUtil.m; sourceTree = "<group>"; };
 		457D797C1FE4D4AE0077F462 /* ClinicRegisterInfoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClinicRegisterInfoListViewController.h; sourceTree = "<group>"; };
@@ -2395,6 +2399,8 @@
 		45BDBE3C1FB32DBF001B9581 /* DefaultIcon */ = {
 			isa = PBXGroup;
 			children = (
+				4575C92E20809B8B00D84D89 /* adPage@2x.png */,
+				4575C92F20809B8B00D84D89 /* adPage@3x.png */,
 				450A717F207C9E0A008B3EFE /* ruiwen@2x.png */,
 				455DEBD4207BA71400F38D65 /* appstoreIcon.png */,
 				455DEBD1207B307600F38D65 /* iPhone6p@3x.png */,
@@ -2525,7 +2531,7 @@
 				TargetAttributes = {
 					3696F9681F95DA84000B9172 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3696F9801F95DA86000B9172 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2666,6 +2672,7 @@
 				45571D7620063CDE00545850 /* customService.png in Resources */,
 				455DEBD2207B307600F38D65 /* iPhoneX@3x.png in Resources */,
 				4559C12B1FCBE865005EC6BA /* gou_select@3x.png in Resources */,
+				4575C93020809B8C00D84D89 /* adPage@2x.png in Resources */,
 				3645B96F200756FE00D2D568 /* home_care@3x.png in Resources */,
 				4559C1561FCBE865005EC6BA /* collection.png in Resources */,
 				450F06F1205E5349000C2CBA /* LOGO_hd@2x.png in Resources */,
@@ -2703,6 +2710,7 @@
 				4559C1A11FCCE11A005EC6BA /* login_back@2x.png in Resources */,
 				4559C1741FCBE865005EC6BA /* detail_collect.png in Resources */,
 				4559C14B1FCBE865005EC6BA /* shop_normal@2x.png in Resources */,
+				4575C93120809B8C00D84D89 /* adPage@3x.png in Resources */,
 				4559C12F1FCBE865005EC6BA /* user_25_25.png in Resources */,
 				4559C14E1FCBE865005EC6BA /* shop_select@2x.png in Resources */,
 				45BDBE331FB2A323001B9581 /* select_down@2x.png in Resources */,
@@ -3114,8 +3122,8 @@
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7KMK843WA4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = FLLG78AHV5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3127,8 +3135,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "187f9440-25b6-44fd-a66e-590024da0380";
+				PROVISIONING_PROFILE_SPECIFIER = ios_development_profile;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3145,9 +3153,10 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = NO;
 				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7KMK843WA4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = FLLG78AHV5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3159,8 +3168,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = weiyao.ylc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e42287b8-b78c-4128-8d61-fb2670f19c6f";
+				PROVISIONING_PROFILE_SPECIFIER = ios_distribution_profile;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

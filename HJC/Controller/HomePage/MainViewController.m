@@ -85,6 +85,7 @@
     self.textField.delegate = self;
     self.textField.font = HEITI(HeightXiShu(13));
     self.textField.placeholder = @"泮立苏";
+    self.textField.returnKeyType = UIReturnKeySearch;
     [_searchView addSubview:self.textField];
     
 }
@@ -311,7 +312,10 @@
             break;
         case 2:
         {
-            NSLog(@"换积分");
+            NSLog(@"换积分"); //跳转到积分页面
+//            IntegralDetailViewController *idv = [[IntegralDetailViewController alloc] init];
+//            idv.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:idv animated:YES];
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
             pnt.classType = 3;
             pnt.hidesBottomBarWhenPushed = YES;
@@ -320,10 +324,11 @@
             break;
         case 3:
         {
-            NSLog(@"云药房"); //跳转到积分页面
-            IntegralDetailViewController *idv = [[IntegralDetailViewController alloc] init];
-            idv.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:idv animated:YES];
+            NSLog(@"y云药房");
+            ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
+            pnt.classType = 4;
+            pnt.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:pnt animated:YES];
         }
             break;
         case 4:

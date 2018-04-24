@@ -44,7 +44,7 @@
     if(!_preferentialBtn){
         UIButton *preferentialBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         preferentialBtn.frame = CGRectMake(0, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [preferentialBtn setImage:[GetImagePath getImagePath:@"home_middle"] forState:UIControlStateNormal];
+        [preferentialBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
         preferentialBtn.tag = 0;
         [preferentialBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:preferentialBtn];
@@ -95,7 +95,7 @@
     if(!_integralBtn){
         UIButton *integralBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         integralBtn.frame = CGRectMake(self.worldBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [integralBtn setImage:[GetImagePath getImagePath:@"home_care"] forState:UIControlStateNormal];
+        [integralBtn setImage:[GetImagePath getImagePath:@"home_integral"] forState:UIControlStateNormal];
         integralBtn.tag = 2;
         [integralBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:integralBtn];
@@ -120,7 +120,7 @@
     if(!_pharmacyBtn){
         UIButton *pharmacyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         pharmacyBtn.frame = CGRectMake(self.integralBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [pharmacyBtn setImage:[GetImagePath getImagePath:@"home_integral"] forState:UIControlStateNormal];
+        [pharmacyBtn setImage:[GetImagePath getImagePath:@"home_middle"] forState:UIControlStateNormal];
         pharmacyBtn.tag = 3;
         [pharmacyBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:pharmacyBtn];
@@ -145,7 +145,7 @@
     if(!_informationBtn){
         UIButton *informationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         informationBtn.frame = CGRectMake(self.pharmacyBtn.maxX, HeightXiShu(15), kScreenWidth/5, HeightXiShu(50));
-        [informationBtn setImage:[GetImagePath getImagePath:@"home_sales"] forState:UIControlStateNormal];
+        [informationBtn setImage:[GetImagePath getImagePath:@"home_care"] forState:UIControlStateNormal];
         informationBtn.tag = 4;
         [informationBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.bgView addSubview:informationBtn];

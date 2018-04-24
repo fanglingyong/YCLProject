@@ -50,7 +50,7 @@
 }
 #pragma mark - model
 -(void)setModel:(ShoppingCartModel *)model{
-//    [_goodsPic sd_setImageWithURL:[NSURL URLWithString:_model.sortid] placeholderImage:[UIImage imageNamed:@""]];
+    [_goodsPic sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"nodata.jpg"]];
     _goodsNameLable.text = model.goodsname;
     _goodsSpecLable.text = [NSString stringWithFormat:@"规格:%@",model.spec];
     _goodsProcerLable.text = [NSString stringWithFormat:@"产地:%@",model.prodarea];
