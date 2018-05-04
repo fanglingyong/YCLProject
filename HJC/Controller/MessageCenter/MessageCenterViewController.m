@@ -13,6 +13,7 @@
 #import "AnnouncementViewController.h"
 #import "MessageDetailViewController.h"
 #import "MessageModel.h"
+#import "MJRefresh.h"
 
 @interface MessageCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,15 +33,19 @@
     [self statusBar];
     [self navView];
     [self.view addSubview:self.tableView];
-    _pageNum = 1;
-    [self net_MessageList];
+    _pageNum = 0;
+    self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
+    [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)footRefresh{
+    _pageNum +=1;
+    [self net_MessageList];
+}
 
 #pragma mark - 页面元素
 -(NavView *)navView{
@@ -113,7 +118,7 @@
 #pragma mark - net
 -(void)net_MessageList{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
+    [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];
     [pargrams setObject:@"," forKey:@"Parastr"];
     [pargrams setObject:[NSString stringWithFormat:@",15,%ld",_pageNum>1?_pageNum:1] forKey:@"WebPara"];
     [BaseApi getMenthodWithUrl:GetMessageInfo block:^(NSDictionary *dict, NSError *error) {
@@ -128,6 +133,9 @@
                 MessageModel *model = [[MessageModel alloc] init];
                 [model setValuesForKeysWithDictionary:oj];
                 [_msgList addObject:model];
+            }
+            if (arr.count != 15) {
+                [_tableView.mj_footer endRefreshingWithNoMoreData];
             }
             [self.tableView reloadData];
         }else{

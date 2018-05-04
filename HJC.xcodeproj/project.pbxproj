@@ -372,6 +372,8 @@
 		457D79821FE514460077F462 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79811FE514460077F462 /* UserModel.m */; };
 		457D79861FE529220077F462 /* CustomServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79851FE529220077F462 /* CustomServiceViewController.m */; };
 		457D798A1FE53ED50077F462 /* IntegralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 457D79891FE53ED50077F462 /* IntegralDetailViewController.m */; };
+		458FD8E2209BE9E600A044A6 /* MsgYaozixunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FD8E1209BE9E600A044A6 /* MsgYaozixunModel.m */; };
+		458FD8E5209BFE5200A044A6 /* WebMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FD8E4209BFE5200A044A6 /* WebMessageController.m */; };
 		459930122046E219003E8119 /* ProcurementNoTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459930112046E219003E8119 /* ProcurementNoTabViewController.m */; };
 		459930162046E40D003E8119 /* PromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459930152046E40D003E8119 /* PromotionViewController.m */; };
 		45BDBE281FB293BE001B9581 /* SelectBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45BDBE271FB293BE001B9581 /* SelectBoxView.m */; };
@@ -996,6 +998,10 @@
 		457D79851FE529220077F462 /* CustomServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomServiceViewController.m; sourceTree = "<group>"; };
 		457D79881FE53ED50077F462 /* IntegralDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralDetailViewController.h; sourceTree = "<group>"; };
 		457D79891FE53ED50077F462 /* IntegralDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralDetailViewController.m; sourceTree = "<group>"; };
+		458FD8E0209BE9E600A044A6 /* MsgYaozixunModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgYaozixunModel.h; sourceTree = "<group>"; };
+		458FD8E1209BE9E600A044A6 /* MsgYaozixunModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgYaozixunModel.m; sourceTree = "<group>"; };
+		458FD8E3209BFE5200A044A6 /* WebMessageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebMessageController.h; sourceTree = "<group>"; };
+		458FD8E4209BFE5200A044A6 /* WebMessageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebMessageController.m; sourceTree = "<group>"; };
 		459930102046E219003E8119 /* ProcurementNoTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcurementNoTabViewController.h; sourceTree = "<group>"; };
 		459930112046E219003E8119 /* ProcurementNoTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcurementNoTabViewController.m; sourceTree = "<group>"; };
 		459930142046E40D003E8119 /* PromotionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionViewController.h; sourceTree = "<group>"; };
@@ -1562,6 +1568,8 @@
 				45EF316C20122DB3004DAB6E /* MessageDetailViewController.m */,
 				45401994208F5D3500172E23 /* MsgListViewController.h */,
 				45401995208F5D3500172E23 /* MsgListViewController.m */,
+				458FD8E3209BFE5200A044A6 /* WebMessageController.h */,
+				458FD8E4209BFE5200A044A6 /* WebMessageController.m */,
 			);
 			path = MessageCenter;
 			sourceTree = "<group>";
@@ -2474,6 +2482,8 @@
 			children = (
 				45EF316F2012368A004DAB6E /* MessageModel.h */,
 				45EF31702012368A004DAB6E /* MessageModel.m */,
+				458FD8E0209BE9E600A044A6 /* MsgYaozixunModel.h */,
+				458FD8E1209BE9E600A044A6 /* MsgYaozixunModel.m */,
 			);
 			path = MessageModel;
 			sourceTree = "<group>";
@@ -2875,9 +2885,11 @@
 				36430B8B1F9DBE3D001709DD /* HomePageTimeScrollView.m in Sources */,
 				452D64581FE0C461006E51F5 /* PtLicenseViewController.m in Sources */,
 				36430B8A1F9DBD4E001709DD /* BaseTextFiled.m in Sources */,
+				458FD8E2209BE9E600A044A6 /* MsgYaozixunModel.m in Sources */,
 				36430B891F9DBCDA001709DD /* NavView.m in Sources */,
 				36430B801F9DB90B001709DD /* StageChooseView.m in Sources */,
 				363BB5601FD6A5D6004DBA4A /* CollectModel.m in Sources */,
+				458FD8E5209BFE5200A044A6 /* WebMessageController.m in Sources */,
 				455DEBAD207B2A8F00F38D65 /* NSMutableDictionary+BlocksKit.m in Sources */,
 				455DEBBD207B2A8F00F38D65 /* NSObject+A2DynamicDelegate.m in Sources */,
 				361B94D41FAC684200069AAD /* OrderModel.m in Sources */,

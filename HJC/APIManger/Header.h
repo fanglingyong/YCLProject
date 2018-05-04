@@ -11,8 +11,8 @@
 
 //host path
 //#define HostPath @"http://122.224.237.123:8083/WebApi/api"
-#define HostPath @"http://123.56.30.182/WebApi/api"
-//#define HostPath @"https://weiyaonet.com/WebApi/api"
+//#define HostPath @"http://123.56.30.182/WebApi/api"
+#define HostPath @"https://weiyaonet.com/WebApi/api"
 //注册
 #define RegisterURL @"/NewPerson"
 //登陆
@@ -73,6 +73,9 @@
 #define GetNavJifen @"/QN_GOODS_LIST_FORORDER_STD_PC_OTC"
 //云药库
 #define GetNavYunYaoku @"/QN_GOODS_LIST_FORORDER_STD_PC_OTC"
+//药资讯
+//#define GetNavYaoZixun @"/QN_MESSAGE_LIST"
+#define GetNavYaoZixun @"http://www.weiyaonet.com/MessAgeList.aspx"
 
 //图片前缀 banner
 #define HomePic @"https://weiyaonet.com/WebApi/IndexPic/"

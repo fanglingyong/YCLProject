@@ -14,7 +14,8 @@
 #import "SCWebViewController.h"
 #import "ProcurementNoTabViewController.h"
 //#import "PromotionViewController.h"
-#import "MsgListViewController.h"
+//#import "MsgListViewController.h"
+#import "WebMessageController.h"
 #import "IntegralDetailViewController.h"
 #import "AdPageControl.h"
 #import "MainSearchViewController.h"
@@ -341,7 +342,7 @@
             promotion.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:promotion animated:YES];
             */
-            MsgListViewController *msgList = [[MsgListViewController alloc]init];
+            WebMessageController *msgList = [[WebMessageController alloc]init];
             msgList.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:msgList animated:YES];
         }

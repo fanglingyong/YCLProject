@@ -13,6 +13,9 @@
 #import "AnnouncementViewController.h"
 #import "MessageDetailViewController.h"
 #import "MessageModel.h"
+#import "MsgYaozixunModel.h"
+#import "MJRefresh.h"
+#import "WebMessageController.h"
 
 @interface MsgListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NavView *navView;
@@ -32,7 +35,15 @@
     [self navView];
     [self.view addSubview:self.tableView];
     _pageNum = 1;
+
 //    [self net_MessageList];//此接口还未有，暂不开放
+//    self.tableView.mj_footer = [[MJRefreshAutoNormalFooter alloc] init];
+//    [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(footRefresh)];
+
+}
+
+-(void)footRefresh{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +68,7 @@
 }
 -(void)backLastControl_menthod{
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 #pragma mark - tableView / Delgate &dataSource
 -(UITableView*)tableView{
@@ -89,46 +101,40 @@
      }
      return cell;
      }*/
-    MessagesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"messagesCell"];
+    MsgYzxCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MsgYzxCell"];
     if (!cell) {
-        cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"messagesCell"];
+        cell = [[MsgYzxCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MsgYzxCell"];
     }
-    MessageModel *model = _msgList[indexPath.row];
+    MsgYaozixunModel *model = _msgList[indexPath.row];
     cell.model = model;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*
-     if ([_typeList[indexPath.row] isEqualToString:@"2"]) {
-     //公告
-     AnnouncementViewController *ann = [[AnnouncementViewController alloc] init];
-     ann.hidesBottomBarWhenPushed = YES;
-     ann.msgModel = _msgList[indexPath.row];
-     [self.navigationController pushViewController:ann animated:YES];
-     }else{
-     }
-     */        //消息
-    MessageDetailViewController *msgDetail = [[MessageDetailViewController alloc] init];
-    msgDetail.hidesBottomBarWhenPushed = YES;
-    msgDetail.msgModel = _msgList[indexPath.row];
-    [self.navigationController pushViewController:msgDetail animated:YES];
+    
+    WebMessageController *web = [[WebMessageController alloc] init];
+    MsgYaozixunModel * model = [[MsgYaozixunModel alloc] init];
+    model = _msgList[indexPath.row];
+    web.hmtlStr = model.messageconyent;
+    [self.navigationController pushViewController:web animated:YES];
+    
 }
 #pragma mark - net
 -(void)net_MessageList{
     NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
     [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-    [pargrams setObject:@"," forKey:@"Parastr"];
-    [pargrams setObject:[NSString stringWithFormat:@",15,%ld",_pageNum>1?_pageNum:1] forKey:@"WebPara"];
-    [BaseApi getMenthodWithUrl:GetMessageInfo block:^(NSDictionary *dict, NSError *error) {
+    [pargrams setObject:@"" forKey:@"Parastr"];
+    //（信息标题、或者id）[--id是单条记录--查询条件此参数为字符行几个条件用,隔开]
+    [pargrams setObject:[NSString stringWithFormat:@",10,%ld",_pageNum] forKey:@"WebPara"];
+    [BaseApi getMenthodWithUrl:GetNavYaoZixun block:^(NSDictionary *dict, NSError *error) {
         if (dict) {
             if (_pageNum==1) {
                 self.msgList = [NSMutableArray array];
-                self.typeList = [NSMutableArray array];
+//                self.typeList = [NSMutableArray array];
             }
             NSArray *arr = dict[@"data"];
             for (NSDictionary*oj in arr) {
-                [_typeList addObject:oj[@"MessageType"]];
-                MessageModel *model = [[MessageModel alloc] init];
+//                [_typeList addObject:oj[@"MessageType"]];
+                MsgYaozixunModel *model = [[MsgYaozixunModel alloc] init];
                 [model setValuesForKeysWithDictionary:oj];
                 [_msgList addObject:model];
             }
@@ -138,20 +144,7 @@
         }
     } dic:pargrams noNetWork:nil];
 }
-#pragma mark - read
--(void)net_deleteMessage{
-    NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
-    [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-    [pargrams setObject:@"" forKey:@"MESSAGEID"];
-    [pargrams setObject:@"2" forKey:@"OPCODE"];
-    [BaseApi getMenthodWithUrl:GetDealMessage block:^(NSDictionary *dict, NSError *error) {
-        if (dict) {
-            
-        }else{
-            
-        }
-    } dic:pargrams noNetWork:nil];
-}
+
 /*
 #pragma mark - Navigation
 
