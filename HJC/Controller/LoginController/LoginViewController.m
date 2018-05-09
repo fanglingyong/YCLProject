@@ -116,7 +116,7 @@
         __block typeof (self)wself = self;
         [BaseApi getMenthodWithUrl:LoginURL block:^(NSDictionary *dict, NSError *error) {
             if (error) {
-                [AnimaDefaultUtil alertUtil:self message:@"sorry,have a error."];
+                [AnimaDefaultUtil alertUtil:self message:@"出错了."];
             }else{
                 //解析数据
                 UserModel *model = [[UserModel alloc] init];

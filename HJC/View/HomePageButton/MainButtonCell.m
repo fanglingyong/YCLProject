@@ -56,7 +56,7 @@
 -(UILabel *)preferentialLb{
     if(!_preferentialLb){
         UILabel *preferentialLb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.preferentialBtn.maxY, kScreenWidth/5, HeightXiShu(25))];
-        preferentialLb.text = @"诊特惠";
+        preferentialLb.text = @"药特惠";
         preferentialLb.textColor = TitleColor;
         preferentialLb.font = HEITI(HeightXiShu(11));
         preferentialLb.textAlignment = NSTextAlignmentCenter;

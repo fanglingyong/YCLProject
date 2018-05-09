@@ -113,7 +113,7 @@
 -(UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(50), WidthXiShu(200), HeightXiShu(20))];
-        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.text = @"产地: ";
         produceAreaLb.font = HEITI(HeightXiShu(11));
         produceAreaLb.textColor = TitleColor;
         [self.contentView addSubview:produceAreaLb];
@@ -125,7 +125,7 @@
 -(UILabel *)suppliersLb{
     if(!_suppliersLb){
         UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(70), WidthXiShu(200), HeightXiShu(20))];
-        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.text = @"供应商: ";
         suppliersLb.font = HEITI(HeightXiShu(11));
         suppliersLb.textColor = TitleColor;
         [self.contentView addSubview:suppliersLb];
@@ -193,8 +193,8 @@
     [_medicineImg sd_setImageWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"%@%@",SmallPic,model.goodspic] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"default"]];
     _medicineNameLb.text = model.goodsname;
     _specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.Spec];
-    _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.CorpName];
-    _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.producer];
+    _produceAreaLb.text = [NSString stringWithFormat:@"产地:%@",model.producer];
+    _suppliersLb.text = [NSString stringWithFormat:@"供应商:%@",model.CorpName];
     _priceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.asprice momeyString],model.useunit];   //价格
     
 }

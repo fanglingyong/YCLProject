@@ -147,7 +147,7 @@
 -(UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(75), WidthXiShu(200), HeightXiShu(20))];
-        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.text = @"产地: ";
         produceAreaLb.font = HEITI(HeightXiShu(11));
         produceAreaLb.textColor = TitleColor;
         [self.bgView addSubview:produceAreaLb];
@@ -159,7 +159,7 @@
 -(UILabel *)suppliersLb{
     if(!_suppliersLb){
         UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(95), WidthXiShu(200), HeightXiShu(20))];
-        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.text = @"供应商: ";
         suppliersLb.font = HEITI(HeightXiShu(11));
         suppliersLb.textColor = TitleColor;
         [self.bgView addSubview:suppliersLb];
@@ -361,7 +361,7 @@
 -(UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(55), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
-        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.text = @"产地: ";
         produceAreaLb.font = HEITI(HeightXiShu(10));
         produceAreaLb.textColor = TitleColor;
         [self.contentView addSubview:produceAreaLb];
@@ -373,7 +373,7 @@
 -(UILabel *)suppliersLb{
     if(!_suppliersLb){
         UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(75), kScreenWidth - WidthXiShu(120), HeightXiShu(20))];
-        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.text = @"供应商: ";
         suppliersLb.font = HEITI(HeightXiShu(10));
         suppliersLb.textColor = TitleColor;
         [self.contentView addSubview:suppliersLb];

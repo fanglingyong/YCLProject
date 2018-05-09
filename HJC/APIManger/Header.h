@@ -45,13 +45,13 @@
 #define GetCollect @"/QN_CUSTOMGOODS_FORORDER_STD"
 //获取总单信息
 #define GetOdersNo @"/QN_ORDER_LIST_DOC"
-//获取细单信息
+//获取细单信息 废弃 2018-05-07 22:02:04
 #define GetOrderDetail @"/QN_ORDER_LIST_DETAIL"
 //药品详情
 #define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
-//促销
+//促销  废弃2018-05-07 22:01:52
 #define GetSalesPromotion @"QN_Promotion"
 //采购分类 供应商
 #define GetORDERLIST @"/QN_ORDERLIST_FORCONDITION"

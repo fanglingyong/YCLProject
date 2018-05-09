@@ -126,7 +126,7 @@
 - (UILabel *)suppliersLb{
     if(!_suppliersLb){
         UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(115), kScreenWidth - WidthXiShu(15), HeightXiShu(25))];
-        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.text = @"供应商: ";
         suppliersLb.font = HEITI(HeightXiShu(14));
         suppliersLb.textColor = TitleColor;
         [self.contentView addSubview:suppliersLb];

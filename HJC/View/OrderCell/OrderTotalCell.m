@@ -342,7 +342,7 @@
 -(UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         _produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + 5, _specificationLb.maxY+4, 200, 16)];
-        _produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        _produceAreaLb.text = @"产地: ";
         _produceAreaLb.font = HEITI(12);
         _produceAreaLb.textColor = TitleColor;
     }
@@ -352,7 +352,7 @@
 -(UILabel *)suppliersLb{
     if(!_suppliersLb){
         _suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + 5, _produceAreaLb.maxY+4, 200, 16)];
-        _suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        _suppliersLb.text = @"供应商: ";
         _suppliersLb.font = HEITI(12);
         _suppliersLb.textColor = TitleColor;
     }

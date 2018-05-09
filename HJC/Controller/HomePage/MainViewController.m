@@ -87,7 +87,7 @@
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(35), HeightXiShu(0), WidthXiShu(200), HeightXiShu(22))];
     self.textField.delegate = self;
     self.textField.font = HEITI(HeightXiShu(13));
-    self.textField.placeholder = @"泮立苏";
+    self.textField.placeholder = @"点击搜索";
     self.textField.returnKeyType = UIReturnKeySearch;
     [_searchView addSubview:self.textField];
     
@@ -297,7 +297,7 @@
     switch (index) {
         case 0:
         {
-            NSLog(@"诊特惠");
+            NSLog(@"药特惠");
             ProcurementNoTabViewController *pnt = [[ProcurementNoTabViewController alloc]init];
             pnt.classType = 1;
             pnt.hidesBottomBarWhenPushed = YES;

@@ -130,7 +130,7 @@
 -(UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(50), WidthXiShu(170), HeightXiShu(20))];
-        produceAreaLb.text = @"产地: 杭州中美华东制药有限公司";
+        produceAreaLb.text = @"产地: ";
         produceAreaLb.font = HEITI(HeightXiShu(11));
         produceAreaLb.textColor = TitleColor;
         [self.contentView addSubview:produceAreaLb];
@@ -142,7 +142,7 @@
 -(UILabel *)suppliersLb{
     if(!_suppliersLb){
         UILabel *suppliersLb = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImg.maxX + WidthXiShu(5), HeightXiShu(70), WidthXiShu(170), HeightXiShu(20))];
-        suppliersLb.text = @"供应商: 华东医药股份有限公司";
+        suppliersLb.text = @"供应商: ";
         suppliersLb.font = HEITI(HeightXiShu(11));
         suppliersLb.textColor = TitleColor;
         [self.contentView addSubview:suppliersLb];
