@@ -98,7 +98,7 @@
 - (UILabel *)addressLb{
     if(!_addressLb){
         UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(100), HeightXiShu(45), kScreenWidth - WidthXiShu(20) - WidthXiShu(100) - WidthXiShu(15), HeightXiShu(40))];
-        addressLb.text = @"浙江省杭州市下城区延安路468号外经贸B座9楼";
+        addressLb.text = @"浙江省杭州市下城区延安路";
         addressLb.numberOfLines = 0;
         addressLb.font = HEITI(HeightXiShu(14));
         addressLb.textColor = TitleColor;

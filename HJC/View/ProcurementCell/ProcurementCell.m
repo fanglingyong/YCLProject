@@ -254,27 +254,33 @@
     }
 }
 -(void)shoppCartBtnAction:(UIButton*)sender{
-    NSInteger num = [_countTF.text integerValue];
-    if (num>=1&&num<=999999) {
-        NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
-        [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-        [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
-        [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
-        [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
-        [pargrams setObject:_model.asprice forKey:@"SELLPRICE"];//协议价格
-        [pargrams setObject:_model.arprice forKey:@"RETAILPRICE"];//零售价
-        [pargrams setObject:_countTF.text forKey:@"AMOUNT"];//数量
-        [pargrams setObject:@"" forKey:@"ORDERMEMO"];
-        NSLog(@"-- pargrams:%@",pargrams);
-        [BaseApi getMenthodWithUrl:JoinShopCarURL block:^(NSDictionary *dict, NSError *error) {
-            if (!error) {
-                NSLog(@"%@",dict[@"message"]);
-            }else{
-                NSLog(@"error%@",error);
-            }
-        } dic:pargrams noNetWork:nil];
+    if ([AnimaDefaultUtil getUserIsLogin]) {
+        NSInteger num = [_countTF.text integerValue];
+        if (num>=1&&num<=999999) {
+            NSMutableDictionary * pargrams = [NSMutableDictionary dictionary];
+            [pargrams setObject:[AnimaDefaultUtil getUserID] forKey:@"UserID"];
+            [pargrams setObject:@"1" forKey:@"Opcode"];//1、加入购物车，2、修改数量，3、删除品种，7、清空购物车
+            [pargrams setObject:_model.provider forKey:@"PROVIDER"];//供应商ID
+            [pargrams setObject:_model.GoodsID forKey:@"GOODSID"];//货品ID
+            [pargrams setObject:_model.asprice forKey:@"SELLPRICE"];//协议价格，销售价格
+            [pargrams setObject:_model.arprice forKey:@"RETAILPRICE"];//零售价
+            [pargrams setObject:_countTF.text forKey:@"AMOUNT"];//数量
+            [pargrams setObject:@"" forKey:@"ORDERMEMO"];
+            NSLog(@"-- pargrams:%@",pargrams);
+            [BaseApi getMenthodWithUrl:JoinShopCarURL block:^(NSDictionary *dict, NSError *error) {
+                if (!error) {
+                    NSLog(@"%@",dict[@"message"]);
+                }else{
+                    NSLog(@"error%@",error);
+                }
+            } dic:pargrams noNetWork:nil];
+        }else{
+            NSLog(@"请控制数量在1~999999");
+        }
     }else{
-        NSLog(@"请控制数量在1~999999");
+        if ([self.delegate respondsToSelector:@selector(needToLogin)]) {
+            [self.delegate needToLogin];
+        }
     }
 }
 #pragma mark - setter

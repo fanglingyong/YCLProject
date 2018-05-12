@@ -80,7 +80,7 @@
 -(UILabel*)addressLable{
     if (!_addressLable) {
         _addressLable = [[UILabel alloc] initWithFrame:CGRectMake(100, 36, kScreenWidth-108, 36)];
-        _addressLable.text = @"浙江省杭州市上城区清泰街金鸡岭路1号北五楼信息中心";
+        _addressLable.text = @"浙江省杭州市上城区";
         _addressLable.numberOfLines = 0;
         _addressLable.font = [UIFont systemFontOfSize:14];
     }
@@ -89,7 +89,7 @@
 -(UILabel*)namePhoneLable{
     if (!_namePhoneLable) {
         _namePhoneLable = [[UILabel alloc] initWithFrame:CGRectMake(100, 8, kScreenWidth-108, 20)];
-        _namePhoneLable.text = @"诸葛明懿 18813147418";
+        _namePhoneLable.text = @"xxx xxxxxxxx";
         _namePhoneLable.font = [UIFont systemFontOfSize:14];
     }
     return _namePhoneLable;

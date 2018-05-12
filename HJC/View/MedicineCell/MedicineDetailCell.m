@@ -114,7 +114,7 @@
 - (UILabel *)produceAreaLb{
     if(!_produceAreaLb){
         UILabel *produceAreaLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), HeightXiShu(90), kScreenWidth - WidthXiShu(15), HeightXiShu(25))];
-        produceAreaLb.text = @"产地: 华润三九医药股份有限公司";
+        produceAreaLb.text = @"产地: ";
         produceAreaLb.font = HEITI(HeightXiShu(14));
         produceAreaLb.textColor = TitleColor;
         [self.contentView addSubview:produceAreaLb];
@@ -221,10 +221,10 @@
     self.nameLb.text = model.GOODSNAME;
     if ([model.RETAILPRICE isEqualToString:model.PRICE]) {
         self.originalPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.PRICE fString],model.CALCUNIT];
-        self.currentPriceLb.text = @"";// 无现价只显示一个价
+        self.currentPriceLb.text = @"";// 无折后价只显示一个价
     }else{
         self.originalPriceLb.attributedText = [self deleteLine:[NSString stringWithFormat:@"￥%@/%@",[model.RETAILPRICE fString],model.CALCUNIT]];//零售价
-        self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.PRICE fString],model.CALCUNIT];//现价
+        self.currentPriceLb.text = [NSString stringWithFormat:@"￥%@/%@",[model.PRICE fString],model.CALCUNIT];//折后价
     }
     self.specificationLb.text = [NSString stringWithFormat:@"规格:%@",model.SPEC];
     self.produceAreaLb.text = [NSString stringWithFormat:@"厂家:%@",model.PRODUCER];

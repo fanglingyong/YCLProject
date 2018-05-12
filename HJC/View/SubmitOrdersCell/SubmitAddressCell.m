@@ -52,7 +52,7 @@
 -(UILabel*)address{
     if (!_address) {
         _address = [[UILabel alloc] initWithFrame:CGRectMake(96, 4, kScreenWidth-104, 18)];
-        _address.text = @"浙江省杭州市上城区清泰街金鸡岭路1号北五楼信息中心";
+        _address.text = @"浙江省杭州市上城区";
         _address.font = [UIFont systemFontOfSize:13];
     }
     return _address;

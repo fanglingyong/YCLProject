@@ -121,13 +121,13 @@
             if (indexPath.row==0) {
                 //收货地址
                 cell.titlelb.text = @"收货地址";
-                cell.contentlb.text = @"刘亦菲  18850015505 \n杭州市上城区清泰街444号东方大厦B幢1704室";
+                cell.contentlb.text = @"";
                 cell.contentlb.font = [UIFont systemFontOfSize:12];
                 cell.contentlb.textColor = [UIColor colorFromHexCode:@"#000000"];
             }else if (indexPath.row==1){
                 //备注
                 cell.titlelb.text = @"备注";
-                cell.contentlb.text = @"你在逗我玩吗？？？";
+                cell.contentlb.text = @"";
                 cell.contentlb.font = [UIFont systemFontOfSize:12];
                 cell.contentlb.textColor = [UIColor colorFromHexCode:@"#8c8c8c"];
             }

@@ -81,7 +81,7 @@
 -(UILabel *)companyLabel{
     if(!_companyLabel){
         UILabel *companyLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.medicineImageView.maxX + WidthXiShu(10), HeightXiShu(35), kScreenWidth - WidthXiShu(120), HeightXiShu(30))];
-        companyLabel.text = @"江中药业股份有限公司";
+        companyLabel.text = @"";
         companyLabel.font = HEITI(HeightXiShu(13));
         companyLabel.textColor = TitleColor;
         [self.contentView addSubview:companyLabel];

@@ -114,7 +114,7 @@
         [cell.contentView addSubview:userNameLB];
         
         UILabel *clinicLB = [[UILabel alloc] initWithFrame:CGRectMake(0, HeightXiShu(206), kScreenWidth, HeightXiShu(20))];
-        clinicLB.text = @"杏联诊所(天水桥)";
+        clinicLB.text = [UserModel getUserModel].P_NAME?[UserModel getUserModel].PostAddress:@"杭州";
         clinicLB.textAlignment = NSTextAlignmentCenter;
         clinicLB.textColor = TitleColor;
         clinicLB.font = HEITI(HeightXiShu(14));

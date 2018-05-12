@@ -10,8 +10,8 @@
 #import "ProcurementModel.h"
 
 @protocol ProcurementCellDelegate <NSObject>
--(void)addShoppingCartClick:(NSInteger)index;
-
+//-(void)addShoppingCartClick:(NSInteger)index;
+-(void)needToLogin;
 @end
 
 @interface ProcurementCell : UITableViewCell

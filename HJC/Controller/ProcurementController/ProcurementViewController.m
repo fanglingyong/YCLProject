@@ -18,7 +18,7 @@
 #import "LoginViewController.h"
 #import "BaseNavigationController.h"
 #import "ProcureSearchViewController.h"
-@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate, UITextFieldDelegate>
+@interface ProcurementViewController ()<UITableViewDataSource, UITableViewDelegate, DropdownViewDelegate, HDDropdownButtonDelegate, UIScrollViewDelegate, UITextFieldDelegate,ProcurementCellDelegate>
 
 @property(nonatomic,strong)NavView *navView;
 
@@ -259,6 +259,7 @@
     }
     cell.model = model;
     cell.indexPath = indexPath;
+    cell.delegate = self;
     return cell;
 }
 
@@ -438,6 +439,17 @@
             [HUDUtil Hud_message:error.domain view:self.view];
         }
     } dic:_pargrams noNetWork:nil];
+}
+
+-(void)needToLogin{
+    LoginViewController *login = [[LoginViewController alloc] init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:login];
+    login.refeshBlock = ^{
+        
+    };
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
