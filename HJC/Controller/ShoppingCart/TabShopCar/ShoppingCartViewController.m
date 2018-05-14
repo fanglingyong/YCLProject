@@ -260,7 +260,7 @@
     if ([UserModel getUserModel]) {
         NSMutableDictionary *pargrams = [NSMutableDictionary dictionary];
         [pargrams setObject:[UserModel getUserModel].P_LSM forKey:@"UserID"];
-        [pargrams setObject:@",100,1" forKey:@"WebPara"];
+        [pargrams setObject:@",1000,1" forKey:@"WebPara"];
         [BaseApi getMenthodWithUrl:GetShopCarInfo block:^(NSDictionary *dict, NSError *error) {
             if (!error) {
                 _modelArr = [NSMutableArray array];

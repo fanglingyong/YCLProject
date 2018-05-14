@@ -10,41 +10,32 @@
 #import "NavView.h"
 
 @interface NewAddressViewController ()<UITextFieldDelegate, UITextViewDelegate>
+
+@property (nonatomic,strong)UITextView *addressTV;
+@property (nonatomic,strong)UITextField *phoneTF;
+@property (nonatomic,strong)UITextField *nameTF;
 @property (nonatomic,strong)NavView *navView;
 @property (nonatomic, retain)UIButton *sureButton;
 
-@property (nonatomic, retain)NSString *name;
-@property (nonatomic, retain)NSString *phone;
-@property (nonatomic, retain)NSString *address;
+//@property (nonatomic, retain)NSString *name;
+//@property (nonatomic, retain)NSString *phone;
+//@property (nonatomic, retain)NSString *address;
 @property (nonatomic, assign)BOOL isAcquiescence;
-
 
 @end
 
 @implementation NewAddressViewController
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.name = @"";
-        self.phone = @"";
-        self.address = @"";
-        self.isAcquiescence = NO;
 
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [self statusBar];
     [self navView];
+    self.isAcquiescence = NO;
     [self sureButton];
-    
-    [self.tableView setMinY:64 maxY:kScreenHeight - HeightXiShu(50) - HeightXiShu(5)];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = AllBackLightGratColor;
+    [self dadiView];
     
 }
 
@@ -52,16 +43,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;
-}
+
 
 #pragma mark - 页面元素
 -(NavView *)navView{
     if(!_navView){
         NavView *navView = [NavView initNavView];
-        navView.minY = 20;
+        navView.minY = kStateHeight;
         navView.backgroundColor = NavColor;
         navView.titleLabel.text = @"收货地址管理";
         [navView.leftBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -73,7 +61,7 @@
 - (UIButton *)sureButton {
     if (!_sureButton) {
         UIButton *sureButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        sureButton.frame = CGRectMake(0, kScreenHeight - HeightXiShu(50), kScreenWidth, HeightXiShu(50));
+        sureButton.frame = CGRectMake(0, kScreenHeight-SafeAreaBottomHeight - HeightXiShu(50), kScreenWidth, HeightXiShu(50));
         sureButton.backgroundColor = [UIColor colorFromHexCode:@"#4172e4"];
         [sureButton setTitle:@"确定" forState:UIControlStateNormal];
         [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -85,114 +73,76 @@
     return _sureButton;
 }
 
-#pragma mark - tableView delegate dataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    if (section == 0) {
-        return 3;
-//    }
-//    return 1;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return HeightXiShu(10);
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, HeightXiShu(10))];
-    view.backgroundColor = AllBackLightGratColor;
-    return view;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return HeightXiShu(55);
-        } else if (indexPath.row == 1) {
-            return HeightXiShu(50);
-        }
-        return HeightXiShu(120);
-//    }
-//    return HeightXiShu(50);
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)dadiView{
+    UIView *dadiView = [[UIView alloc] initWithFrame:CGRectMake(0,  SafeAreaTopHeight, kScreenWidth, kScreenHeight-SafeAreaBottomHeight-SafeAreaTopHeight - HeightXiShu(50) - HeightXiShu(5))];
+    dadiView.backgroundColor = AllBackLightGratColor;
     
-    static NSString* const identifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
+    nameLb.text = @"收货人";
+    nameLb.textColor = BlackColor;
+    nameLb.font = HEITI(HeightXiShu(15));
+    [dadiView addSubview:nameLb];
+    
+   
+    [dadiView addSubview:self.nameTF];
+    
+    UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(54), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
+    cutLine.backgroundColor = AllLightGrayColor;
+    [dadiView addSubview:cutLine];
+//------
+    UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), WidthXiShu(55), WidthXiShu(60), HeightXiShu(50))];
+    phoneLb.text = @"手机号";
+    phoneLb.textColor = BlackColor;
+    phoneLb.font = HEITI(HeightXiShu(15));
+    [dadiView addSubview:phoneLb];
+    [dadiView addSubview:self.phoneTF];
+    
+    UIImageView *cutLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(109), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
+    cutLine1.backgroundColor = AllLightGrayColor;
+    [dadiView addSubview:cutLine1];
+//---------
+    UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), WidthXiShu(110), WidthXiShu(60), HeightXiShu(55))];
+    addressLb.text = @"地址";
+    addressLb.textColor = BlackColor;
+    addressLb.font = HEITI(HeightXiShu(15));
+    [dadiView addSubview:addressLb];
+    [dadiView addSubview:self.addressTV];
+    
+    [self.view addSubview:dadiView];
+}
+-(UITextField*)nameTF{
+    if (!_nameTF) {
+        _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0, kScreenWidth - WidthXiShu(80), HeightXiShu(55))];
+        _nameTF.text = @"";
+        _nameTF.delegate = self;
+        _nameTF.tag = 100;
+        _nameTF.textColor = BlackColor;
+        _nameTF.font = HEITI(HeightXiShu(15));
     }
-    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-//    if(indexPath.section == 0){
-    
-        if (indexPath.row == 0) {
-            UILabel *nameLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
-            nameLb.text = @"收货人";
-            nameLb.textColor = BlackColor;
-            nameLb.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:nameLb];
-            
-            UITextField *nameTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0, kScreenWidth - WidthXiShu(80), HeightXiShu(55))];
-            nameTF.text = self.name;
-            nameTF.delegate = self;
-            nameTF.tag = 100;
-            nameTF.textColor = BlackColor;
-            nameTF.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:nameTF];
-            
-            UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(54), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
-            cutLine.backgroundColor = AllLightGrayColor;
-            [cell.contentView addSubview:cutLine];
-        } else if (indexPath.row == 1) {
-            UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(50))];
-            phoneLb.text = @"手机号";
-            phoneLb.textColor = BlackColor;
-            phoneLb.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:phoneLb];
-            
-            UITextField *phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), 0, kScreenWidth - WidthXiShu(80), HeightXiShu(50))];
-            phoneTF.text = self.phone;
-            phoneTF.delegate = self;
-            phoneTF.tag = 101;
-            phoneTF.textColor = BlackColor;
-            phoneTF.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:phoneTF];
-            
-            UIImageView *cutLine = [[UIImageView alloc] initWithFrame:CGRectMake(WidthXiShu(10), HeightXiShu(49), kScreenWidth - WidthXiShu(20), HeightXiShu(1))];
-            cutLine.backgroundColor = AllLightGrayColor;
-            [cell.contentView addSubview:cutLine];
-        } else {
-            UILabel *addressLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(60), HeightXiShu(55))];
-            addressLb.text = @"地址";
-            addressLb.textColor = BlackColor;
-            addressLb.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:addressLb];
-            
-            UITextView *addressTV = [[UITextView alloc] initWithFrame:CGRectMake(WidthXiShu(80), HeightXiShu(10), kScreenWidth - WidthXiShu(80) - WidthXiShu(10), HeightXiShu(110))];
-            addressTV.textColor = BlackColor;
-            addressTV.delegate = self;
-            addressTV.text = self.address;
-            addressTV.font = HEITI(HeightXiShu(15));
-            [cell.contentView addSubview:addressTV];
-        }
-//    } else {
-//
-//        UILabel *phoneLb = [[UILabel alloc] initWithFrame:CGRectMake(WidthXiShu(15), 0, WidthXiShu(110), HeightXiShu(55))];
-//        phoneLb.text = @"设为默认地址";
-//        phoneLb.textColor = BlackColor;
-//        phoneLb.font = HEITI(HeightXiShu(15));
-//        [cell.contentView addSubview:phoneLb];
-//
-//        UISwitch *acquieSW = [[UISwitch alloc] initWithFrame:CGRectMake(kScreenWidth - WidthXiShu(75), HeightXiShu(10), WidthXiShu(50), HeightXiShu(30))];
-//        [acquieSW setOn:self.isAcquiescence];;
-//        [cell.contentView addSubview:acquieSW];
-//    }
-    return cell;
+    return _nameTF;
 }
+-(UITextField*)phoneTF{
+    if (!_phoneTF) {
+        _phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(WidthXiShu(80), WidthXiShu(55), kScreenWidth - WidthXiShu(80), HeightXiShu(50))];
+        _phoneTF.text = @"";
+        _phoneTF.delegate = self;
+        _phoneTF.tag = 101;
+        _phoneTF.textColor = BlackColor;
+        _phoneTF.font = HEITI(HeightXiShu(15));    }
+    return _phoneTF;
+}
+-(UITextView*)addressTV{
+    if (!_addressTV) {
+        _addressTV = [[UITextView alloc] initWithFrame:CGRectMake(WidthXiShu(80), HeightXiShu(120), kScreenWidth - WidthXiShu(80) - WidthXiShu(10), HeightXiShu(110))];
+        _addressTV.textColor = BlackColor;
+        _addressTV.backgroundColor = AllLightGrayColor;
+        _addressTV.delegate = self;
+        _addressTV.text = @"";
+        _addressTV.font = HEITI(HeightXiShu(15));
+    }
+    return _addressTV;
+}
+
 
 
 #pragma mark - 事件
@@ -200,33 +150,44 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)sureChangeOrAddbuttonMenthod{
-    
-    [self.tableView endEditing:YES];
+    if (![AnimaDefaultUtil isNotNull:self.nameTF.text]) {
+        [HUDUtil Hud_message:@"收货人不能为空" view:self.view];
+        return;
+    }else if (![AnimaDefaultUtil isNotNull:self.addressTV.text]) {
+        [HUDUtil Hud_message:@"地址不能为空" view:self.view];
+        return;
+    }else if (![AnimaDefaultUtil isNotNull:self.phoneTF.text]) {
+        [HUDUtil Hud_message:@"手机号不能为空" view:self.view];
+        return;
+    }
     [self network_corpAddress];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField.tag == 100) {
-        self.name = textField.text;
-    } else if (textField.tag == 101) {
-        self.phone = textField.text;
-    }
+  
 }
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    self.address = textView.text;
-}
+   
 
+}
+-(void)setModel:(ReceiveAddressModel *)model{
+   self.nameTF.text = model.POSTCODE;
+    self.phoneTF.text = model.LINK;
+    self.addressTV.text = model.ADDRESS;
+    self.addressID = model.ADDRESSID;
+}
 /**
  修改新增 收货地址
  */
 -(void)network_corpAddress{
+    
     NSMutableDictionary *pargams = [NSMutableDictionary dictionary];
     [pargams setObject:[UserModel getUserModel].P_LSM forKey:@"Userid"];
-    [pargams setObject:@"0" forKey:@"ADDRESSID"];
+    [pargams setObject:self.addressID forKey:@"ADDRESSID"];
     [pargams setObject:[UserModel getUserModel].RID forKey:@"CORPID"];
-    [pargams setObject:self.address forKey:@"ADDRESS"];
-    [pargams setObject:self.name forKey:@"POSTCODE"];
-    [pargams setObject:self.phone forKey:@"LINK"];
+    [pargams setObject:self.addressTV.text forKey:@"ADDRESS"];
+    [pargams setObject:self.nameTF.text forKey:@"POSTCODE"];
+    [pargams setObject:self.phoneTF.text forKey:@"LINK"];
     [pargams setObject:@"1" forKey:@"ISVALID"];//新增和修改填1，删除记录填2
     NSLog(@"%@", pargams);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];

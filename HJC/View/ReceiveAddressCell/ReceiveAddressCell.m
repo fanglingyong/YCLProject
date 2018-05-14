@@ -27,22 +27,14 @@
 
 @implementation ReceiveAddressCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = AllBackLightGratColor;
         [self bgView];
         [self nameLb];
         [self phoneLb];
@@ -186,6 +178,7 @@
 #pragma mark - setter
 
 - (void)setModel:(ReceiveAddressModel *)model {
+    _model = model;
     _nameLb.text = model.POSTCODE;
     _phoneLb.text = model.LINK;
     _addressLb.text = model.ADDRESS;
@@ -196,11 +189,16 @@
     NSLog(@"设为默认");
 }
 - (void)editBtnPress {
-    NSLog(@"编辑");
-}
+//    NSLog(@"%ld--------%ld",_row,self.row);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(cellMenthodClickToDoOnController:row:)]) {
+        [self.delegate cellMenthodClickToDoOnController:1 row:self.row];
+    }}
 
 - (void)deleteBtnPress {
-    NSLog(@"删除");
+//    NSLog(@"删除");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(cellMenthodClickToDoOnController:row:)]) {
+        [self.delegate cellMenthodClickToDoOnController:2 row:self.row];
+    }
 }
 
 @end

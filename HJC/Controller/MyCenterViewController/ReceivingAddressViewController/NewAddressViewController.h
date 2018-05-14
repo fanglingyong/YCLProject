@@ -11,8 +11,10 @@
 
 typedef void(^refreshUIBlock)(void);
 
-@interface NewAddressViewController : BaseTableViewController
+@interface NewAddressViewController : BaseViewController
 
 @property (nonatomic,copy) refreshUIBlock block;
+@property (nonatomic,copy) ReceiveAddressModel *model;
+@property (nonatomic,strong) NSString *addressID;
 
 @end

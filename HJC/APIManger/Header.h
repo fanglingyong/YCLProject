@@ -51,6 +51,7 @@
 #define GetGoodsDetailInfo @"/QN_GOODS_VIEW_FORORDER_STD"
 //首页活动专区 推荐品种
 #define GetHomeInfo @"/QN_GOODS_LIST_INDEX_HEAD"
+#define GetHomeInfo_NEW @"/QN_GOODS_LIST_INDEX_HEAD_AZ"
 //促销  废弃2018-05-07 22:01:52
 #define GetSalesPromotion @"QN_Promotion"
 //采购分类 供应商

@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 #import "HJC-PrefixHeader.pch"
-@interface ReceiveAddressViewController : BaseTableViewController
+@interface ReceiveAddressViewController : BaseViewController
 
 @end

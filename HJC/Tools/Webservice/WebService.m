@@ -27,9 +27,9 @@
         }else if(status == 0){
             NSLog(@"没有网络(断网)");
         }else if(status == 1){
-            NSLog(@"手机自带网络");
+//            NSLog(@"手机自带网络");
         }else if(status == 2){
-            NSLog(@"WIFI");
+//            NSLog(@"WIFI");
         }
         
     }];

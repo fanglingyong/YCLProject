@@ -408,18 +408,18 @@
             [pargrams setObject:@"0" forKey:@"UserID"];
     }
     NSLog(@"参数-- pargrams:%@",pargrams);
-    [BaseApi getMenthodWithUrl:GetHomeInfo block:^(NSDictionary *dict, NSError *error) {
+    [BaseApi getMenthodWithUrl:GetHomeInfo_NEW block:^(NSDictionary *dict, NSError *error) {
         if (!error) {
             if (self.bannerArray.count == 0) {
-                for (NSDictionary *tempDic in [NSMutableArray arrayWithArray:dict[@"data"][@"1"]]) {
+                for (NSDictionary *tempDic in [NSMutableArray arrayWithArray:dict[@"data"][@"em1"]]) {
                     [self.bannerArray addObject:[tempDic objectForKey:@"goodspic"]];
                 }
             }
             if (self.activeArray.count == 0) {
-                self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"2"]];
+                self.activeArray = [NSMutableArray arrayWithArray:dict[@"data"][@"em2"]];
             }
             if (self.recommendArray.count == 0) {
-                self.recommendArray = [NSMutableArray arrayWithArray:dict[@"data"][@"3"]];
+                self.recommendArray = [NSMutableArray arrayWithArray:dict[@"data"][@"em3"]];
             }
         }else{
             NSLog(@"error:%@",error);
